@@ -121,8 +121,8 @@ const translations = {
 
     // Form Fields
     "form.parentName": "Your Name",
-    "form.email": "Gmail Address",
-    "form.emailInvalid": "Please enter a valid Gmail address",
+    "form.email": "Email Address",
+    "form.emailInvalid": "Please enter a valid email address",
     "form.childName": "Child's Name",
     "form.age": "Age",
     "form.selectAge": "Select Age",
@@ -956,7 +956,7 @@ const translations = {
   },
   ar: {
     // Navigation
-    "nav.adventurePossibilities": "إمكانيات المغامرة",
+    "nav.adventurePossibilities": "إمكانيات ا��مغامرة",
     "nav.howItWorks": "كيف يعمل",
     "nav.examples": "أمثلة",
     "nav.pricing": "الأسعار",
@@ -980,7 +980,7 @@ const translations = {
       "شاهد كتابك ينبض بالحياة مع صفحات المعاينة الفورية",
     "features.printOrDigital": "مطبوع أو رقمي",
     "features.printOrDigitalDesc":
-      "احصل على كتاب مادي مُسلم أو قم بالتحميل فوراً",
+      "احصل على كتاب مادي مُسلم ��و قم بالتحميل فوراً",
 
     // Adventure Types
     "adventure.possibilities": "إمكانيات المغامرة",
@@ -1019,7 +1019,7 @@ const translations = {
       "عدّل الكابتن لوكاس خوذته الفضائية ونظر إلى الكوكب الأحمر أدناه...",
     "examples.example3.title": "أكاديمية الأميرات",
     "examples.example3.adventure":
-      "قلعة ملكية مع أصدقاء التنانين وتعاويذ سحرية للتعلم",
+      "��لعة ملكية مع أصدقاء التنانين وتعاويذ سحرية للتعلم",
     "examples.example3.preview":
       "لوحت الأميرة صوفيا بعصاها المتلألئة وشاهدت الزهور تبدأ في التوهج...",
     "examples.example4.title": "البحث عن كنز القراصنة",
@@ -1080,7 +1080,7 @@ const translations = {
     "form.includeFriends": "الأصدقاء أو العائلة للتضمين",
     "form.characters": "الشخصيات أو المواضيع المفضلة",
     "form.specialDetails": "تفاصيل خاصة أو نكات داخلية",
-    "form.personalExperiences": "التجارب الشخصية للتضمين",
+    "form.personalExperiences": "التجارب الشخصية للت��مين",
     "form.addExperience": "أضف تجربة أخرى",
     "form.activityName": "اسم النشاط",
     "form.activityDetails": "تفاصيل النشاط",
@@ -1128,7 +1128,7 @@ const translations = {
     "order.phoneInvalid": "يرجى إدخال رقم هاتف صالح",
     "order.paymentDetails": "تفاصيل الدفع",
     "order.cardNumber": "رقم البطاقة",
-    "order.cardNumberInvalid": "يرجى إدخال رقم بطاقة صالح",
+    "order.cardNumberInvalid": "يرجى إدخال ��قم بطاقة صالح",
     "order.expiryDate": "تاريخ الانتهاء",
     "order.expiryInvalid": "يرجى إدخال تاريخ انتهاء صالح (شش/سس)",
     "order.cvv": "CVV",
