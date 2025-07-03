@@ -151,12 +151,31 @@ const BookBuilder = () => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
+  const isValidGmail = (email: string) => {
+    const gmailPattern = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+    return gmailPattern.test(email);
+  };
+
   const handleActivityToggle = (activity: string) => {
     const currentActivities = formData.activities;
     const updated = currentActivities.includes(activity)
       ? currentActivities.filter((a) => a !== activity)
       : [...currentActivities, activity];
     updateFormData("activities", updated);
+  };
+
+  const addPersonalExperience = (experience: string) => {
+    if (experience.trim()) {
+      updateFormData("personalExperiences", [
+        ...formData.personalExperiences,
+        experience.trim(),
+      ]);
+    }
+  };
+
+  const removePersonalExperience = (index: number) => {
+    const updated = formData.personalExperiences.filter((_, i) => i !== index);
+    updateFormData("personalExperiences", updated);
   };
 
   const nextStep = () => {
