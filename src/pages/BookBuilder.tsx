@@ -108,6 +108,9 @@ const BookBuilder = () => {
   const [showSaveDialog, setShowSaveDialog] = useState(false);
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
   const [isLoadingDraft, setIsLoadingDraft] = useState(true);
+  const [expandedExperiences, setExpandedExperiences] = useState<Set<string>>(
+    new Set(),
+  );
   const hasInitializedRef = useRef(false);
   const [formData, setFormData] = useState<FormData>({
     parentName: "",
