@@ -291,6 +291,7 @@ const BookBuilder = () => {
               {currentStep === 2 && "About Your Little Hero"}
               {currentStep === 3 && "Choose the Adventure"}
               {currentStep === 4 && "Add Personal Touches"}
+              {currentStep === 5 && "Customize Your Activities"}
             </CardTitle>
             <p className="text-foreground/70">
               {currentStep === 1 &&
@@ -300,6 +301,8 @@ const BookBuilder = () => {
                 "What kind of magical journey should we create?"}
               {currentStep === 4 &&
                 "Make it extra special with these personal details"}
+              {currentStep === 5 &&
+                "Add details, characters, and images for each activity"}
             </p>
           </CardHeader>
 
