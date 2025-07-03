@@ -818,10 +818,9 @@ const BookBuilder = () => {
       <Dialog open={showConfirmation} onOpenChange={setShowConfirmation}>
         <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle>Confirm Your Order</DialogTitle>
+            <DialogTitle>Review Your Book Details</DialogTitle>
             <DialogDescription>
-              Please review your book details before confirming your {orderType}{" "}
-              book order.
+              Please review your book details and choose your preferred format.
             </DialogDescription>
           </DialogHeader>
 
