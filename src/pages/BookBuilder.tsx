@@ -623,7 +623,12 @@ const BookBuilder = () => {
       case 4:
         return true; // Optional details
       case 5:
-        return true; // Optional experience details
+        // First experience is required with title and description
+        if (formData.experiences.length === 0) return false;
+        const firstExperience = formData.experiences[0];
+        return (
+          firstExperience.title.trim() && firstExperience.description.trim()
+        );
       default:
         return false;
     }
