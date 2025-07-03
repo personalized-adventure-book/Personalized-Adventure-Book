@@ -47,6 +47,20 @@ const Preview = () => {
     null,
   );
 
+  const handleOrderClick = (type: "digital" | "printed") => {
+    setOrderType(type);
+    setShowConfirmation(true);
+  };
+
+  const confirmOrder = () => {
+    // Here you would typically integrate with payment processing
+    alert(
+      `Order confirmed! You will receive a confirmation email at ${bookData?.parentEmail}`,
+    );
+    setShowConfirmation(false);
+    // You could navigate to a success page here
+  };
+
   useEffect(() => {
     const data = localStorage.getItem("adventureBookData");
     if (data) {
