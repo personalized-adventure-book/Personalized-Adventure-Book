@@ -33,24 +33,36 @@ const Index = () => {
             </span>
           </div>
           <div className="hidden md:flex items-center space-x-6">
-            <a
-              href="#how-it-works"
-              className="text-foreground/80 hover:text-foreground transition-colors"
+            <button
+              onClick={() => {
+                document.getElementById("how-it-works")?.scrollIntoView({
+                  behavior: "smooth",
+                });
+              }}
+              className="text-foreground/80 hover:text-foreground transition-colors cursor-pointer"
             >
               How It Works
-            </a>
-            <a
-              href="#examples"
-              className="text-foreground/80 hover:text-foreground transition-colors"
+            </button>
+            <button
+              onClick={() => {
+                document.getElementById("book-examples")?.scrollIntoView({
+                  behavior: "smooth",
+                });
+              }}
+              className="text-foreground/80 hover:text-foreground transition-colors cursor-pointer"
             >
               Examples
-            </a>
-            <a
-              href="#pricing"
-              className="text-foreground/80 hover:text-foreground transition-colors"
+            </button>
+            <button
+              onClick={() => {
+                document.getElementById("pricing")?.scrollIntoView({
+                  behavior: "smooth",
+                });
+              }}
+              className="text-foreground/80 hover:text-foreground transition-colors cursor-pointer"
             >
               Pricing
-            </a>
+            </button>
           </div>
         </nav>
       </header>
