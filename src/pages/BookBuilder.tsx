@@ -304,6 +304,7 @@ const BookBuilder = () => {
     field: keyof ExperienceDetail,
     value: any,
   ) => {
+    if (!formData.experiences) return;
     const updated = formData.experiences.map((exp) =>
       exp.id === id ? { ...exp, [field]: value } : exp,
     );
@@ -311,16 +312,19 @@ const BookBuilder = () => {
   };
 
   const removeExperience = (id: string) => {
+    if (!formData.experiences) return;
     const updated = formData.experiences.filter((exp) => exp.id !== id);
     updateFormData("experiences", updated);
   };
 
   const moveExperience = (id: string, direction: "up" | "down") => {
+    if (!formData.experiences || formData.experiences.length === 0) return;
     const experiences = [...formData.experiences];
     const index = experiences.findIndex((exp) => exp.id === id);
     if (
-      (direction === "up" && index > 0) ||
-      (direction === "down" && index < experiences.length - 1)
+      index !== -1 &&
+      ((direction === "up" && index > 0) ||
+        (direction === "down" && index < experiences.length - 1))
     ) {
       const targetIndex = direction === "up" ? index - 1 : index + 1;
       [experiences[index], experiences[targetIndex]] = [
