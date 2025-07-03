@@ -108,9 +108,7 @@ const BookBuilder = () => {
   const [showSaveDialog, setShowSaveDialog] = useState(false);
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
   const [isLoadingDraft, setIsLoadingDraft] = useState(true);
-  const [expandedExperiences, setExpandedExperiences] = useState<Set<string>>(
-    new Set(),
-  );
+  const [expandedExperiences, setExpandedExperiences] = useState<Set<string>>(new Set());
   const hasInitializedRef = useRef(false);
   const [formData, setFormData] = useState<FormData>({
     parentName: "",
@@ -329,7 +327,7 @@ const BookBuilder = () => {
     updateFormData("experiences", updatedExperiences);
 
     // Expand the new experience
-    setExpandedExperiences((prev) => new Set(prev).add(newExperience.id));
+    setExpandedExperiences(prev => new Set(prev).add(newExperience.id));
   };
 
   // Initialize first experience and expand it by default
@@ -353,7 +351,7 @@ const BookBuilder = () => {
 
   // Toggle experience expansion
   const toggleExperience = (experienceId: string) => {
-    setExpandedExperiences((prev) => {
+    setExpandedExperiences(prev => {
       const newSet = new Set(prev);
       if (newSet.has(experienceId)) {
         newSet.delete(experienceId);
@@ -1001,59 +999,99 @@ const BookBuilder = () => {
 
                 <div className="space-y-6">
                   <div className="flex items-center justify-between">
-                    <h3 className="text-lg font-medium">
-                      {t("form.personalExperiences")}
-                    </h3>
+                    <div>
+                      <h3 className="text-lg font-medium">
+                        {t("form.personalExperiences")}
+                      </h3>
+                      <p className="text-sm text-foreground/70 mt-1">
+                        ✨ The more details you add, the more personalized and magical your story becomes! ✨
+                      </p>
+                    </div>
                   </div>
 
-                  {(formData.experiences || []).map((experience, index) => (
-                    <Card
-                      key={experience.id}
-                      className="border-2 border-dashed border-adventure-blue/30"
-                    >
-                      <CardHeader className="pb-4">
-                        <div className="flex items-center justify-between">
-                          <h4 className="font-medium">
-                            Experience {index + 1}
-                          </h4>
-                          <div className="flex items-center space-x-2">
-                            {/* Move up/down buttons */}
-                            <Button
-                              type="button"
-                              variant="ghost"
-                              size="sm"
-                              onClick={() =>
-                                moveExperience(experience.id, "up")
-                              }
-                              disabled={index === 0}
-                            >
-                              <ChevronUp className="w-4 h-4" />
-                            </Button>
-                            <Button
-                              type="button"
-                              variant="ghost"
-                              size="sm"
-                              onClick={() =>
-                                moveExperience(experience.id, "down")
-                              }
-                              disabled={
-                                index === formData.experiences.length - 1
-                              }
-                            >
-                              <ChevronDown className="w-4 h-4" />
-                            </Button>
-                            <Button
-                              type="button"
-                              variant="ghost"
-                              size="sm"
-                              onClick={() => removeExperience(experience.id)}
-                              className="text-red-500 hover:text-red-700"
-                            >
-                              <Trash2 className="w-4 h-4" />
-                            </Button>
+                  {(formData.experiences || []).map((experience, index) => {
+                    const isExpanded = expandedExperiences.has(experience.id);
+                    const isFirst = index === 0;
+                    const isRequired = isFirst || experience.title || experience.description;
+
+                    return (
+                      <Card
+                        key={experience.id}
+                        className={`border-2 ${isFirst ? 'border-adventure-blue/50 bg-adventure-blue/5' : 'border-dashed border-adventure-blue/30'}`}
+                      >
+                        <CardHeader
+                          className="pb-4 cursor-pointer"
+                          onClick={() => toggleExperience(experience.id)}
+                        >
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center space-x-2">
+                              <h4 className="font-medium">
+                                Experience {index + 1} {isFirst && '(Required)'}
+                              </h4>
+                              {experience.title && (
+                                <span className="text-sm text-foreground/70">
+                                  - {experience.title}
+                                </span>
+                              )}
+                            </div>
+                            <div className="flex items-center space-x-2">
+                              {/* Move up/down buttons */}
+                              {!isFirst && (
+                                <>
+                                  <Button
+                                    type="button"
+                                    variant="ghost"
+                                    size="sm"
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      moveExperience(experience.id, "up");
+                                    }}
+                                    disabled={index === 1}
+                                  >
+                                    <ChevronUp className="w-4 h-4" />
+                                  </Button>
+                                  <Button
+                                    type="button"
+                                    variant="ghost"
+                                    size="sm"
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      moveExperience(experience.id, "down");
+                                    }}
+                                    disabled={
+                                      index === formData.experiences.length - 1
+                                    }
+                                  >
+                                    <ChevronDown className="w-4 h-4" />
+                                  </Button>
+                                  <Button
+                                    type="button"
+                                    variant="ghost"
+                                    size="sm"
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      removeExperience(experience.id);
+                                    }}
+                                    className="text-red-500 hover:text-red-700"
+                                  >
+                                    <Trash2 className="w-4 h-4" />
+                                  </Button>
+                                </>
+                              )}
+                              <Button
+                                type="button"
+                                variant="ghost"
+                                size="sm"
+                              >
+                                {isExpanded ? (
+                                  <ChevronUp className="w-4 h-4" />
+                                ) : (
+                                  <ChevronDown className="w-4 h-4" />
+                                )}
+                              </Button>
+                            </div>
                           </div>
-                        </div>
-                      </CardHeader>
+                        </CardHeader>
                       <CardContent className="space-y-6">
                         <div>
                           <Label>{t("form.activityName")}</Label>
