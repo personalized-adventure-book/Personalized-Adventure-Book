@@ -144,8 +144,9 @@ const Preview = () => {
               </div>
             </Card>
 
-            {/* Sample Pages */}
+            {/* Dynamic Sample Pages */}
             <div className="grid gap-4">
+              {/* First Page - Introduction to destination/adventure */}
               <Card className="border-0 shadow-md">
                 <CardContent className="p-6">
                   <div className="flex items-start space-x-4">
@@ -154,7 +155,7 @@ const Preview = () => {
                     </div>
                     <div className="flex-1">
                       <h3 className="font-semibold mb-2">
-                        Page 1: The Adventure Begins
+                        Page 1: Welcome to {bookData.location}
                       </h3>
                       <p className="text-sm text-foreground/70">
                         "Once upon a time, there was a brave {bookData.childAge}
@@ -163,53 +164,70 @@ const Preview = () => {
                         {bookData.favoriteColor
                           ? bookData.favoriteColor.toLowerCase()
                           : "colorful"}{" "}
-                        things and exciting adventures..."
+                        things. Today, {bookData.childName} was about to embark
+                        on an amazing adventure in {bookData.location}, a
+                        magical place full of wonders and exciting
+                        discoveries..."
                       </p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className="border-0 shadow-md">
-                <CardContent className="p-6">
-                  <div className="flex items-start space-x-4">
-                    <div className="w-16 h-16 bg-adventure-green/20 rounded-lg flex items-center justify-center">
-                      <Sparkles className="w-8 h-8 text-adventure-green" />
+              {/* Activity Pages */}
+              {bookData.activities.slice(0, 3).map((activity, index) => (
+                <Card key={index} className="border-0 shadow-md">
+                  <CardContent className="p-6">
+                    <div className="flex items-start space-x-4">
+                      <div
+                        className={`w-16 h-16 bg-adventure-${["green", "purple", "orange"][index]}/20 rounded-lg flex items-center justify-center`}
+                      >
+                        <Sparkles
+                          className={`w-8 h-8 text-adventure-${["green", "purple", "orange"][index]}`}
+                        />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="font-semibold mb-2">
+                          Page {index + 2}: {activity}
+                        </h3>
+                        <p className="text-sm text-foreground/70">
+                          "Here, {bookData.childName} will{" "}
+                          {activity.toLowerCase()}. It was going to be{" "}
+                          {bookData.childGender === "girl" ? "her" : "his"}
+                          favorite part of the adventure in {bookData.location}.
+                          {bookData.includeFriends &&
+                            `Together with ${bookData.includeFriends}, `}
+                          {bookData.childName} was ready for this exciting
+                          challenge..."
+                        </p>
+                      </div>
                     </div>
-                    <div className="flex-1">
-                      <h3 className="font-semibold mb-2">
-                        Page 3: The Journey to {bookData.location}
-                      </h3>
-                      <p className="text-sm text-foreground/70">
-                        "{bookData.childName} packed{" "}
-                        {bookData.childGender === "girl" ? "her" : "his"}{" "}
-                        favorite things
-                        {bookData.petName &&
-                          ` and said goodbye to ${bookData.petName}`}{" "}
-                        before setting off to {bookData.location}..."
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+                  </CardContent>
+                </Card>
+              ))}
 
+              {/* Final Page - Adventure conclusion */}
               <Card className="border-0 shadow-md">
                 <CardContent className="p-6">
                   <div className="flex items-start space-x-4">
-                    <div className="w-16 h-16 bg-adventure-orange/20 rounded-lg flex items-center justify-center">
-                      <Star className="w-8 h-8 text-adventure-orange" />
+                    <div className="w-16 h-16 bg-adventure-yellow/20 rounded-lg flex items-center justify-center">
+                      <Star className="w-8 h-8 text-adventure-yellow" />
                     </div>
                     <div className="flex-1">
                       <h3 className="font-semibold mb-2">
-                        Page 8: The Great Discovery
+                        Final Page: The Adventure Complete
                       </h3>
                       <p className="text-sm text-foreground/70">
-                        "With{" "}
-                        {bookData.includeFriends
-                          ? `${bookData.includeFriends} by ${bookData.childGender === "girl" ? "her" : "his"} side`
-                          : "courage in their heart"}
-                        ,{bookData.childName} discovered the secret to{" "}
-                        {bookData.activities[0] || "solving the mystery"}..."
+                        "After all the amazing adventures in {bookData.location}
+                        ,{bookData.childName} had become a true hero.
+                        {bookData.childGender === "girl" ? "She" : "He"} had
+                        learned so much and made wonderful memories. As{" "}
+                        {bookData.childName} looked back at{" "}
+                        {bookData.childGender === "girl" ? "her" : "his"}
+                        incredible journey,{" "}
+                        {bookData.childGender === "girl" ? "she" : "he"} knew
+                        this was just the beginning of many more adventures to
+                        come..."
                       </p>
                     </div>
                   </div>
