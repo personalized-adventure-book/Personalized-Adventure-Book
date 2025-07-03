@@ -594,8 +594,8 @@ const translations = {
 
     // Form Fields
     "form.parentName": "Il Tuo Nome",
-    "form.email": "Indirizzo Gmail",
-    "form.emailInvalid": "Inserisci un indirizzo Gmail valido",
+    "form.email": "Indirizzo Email",
+    "form.emailInvalid": "Inserisci un indirizzo email valido",
     "form.childName": "Nome del Bambino",
     "form.age": "Età",
     "form.selectAge": "Seleziona Età",
@@ -749,7 +749,7 @@ const translations = {
     // Adventure Types
     "adventure.possibilities": "Posibilidades de Aventura",
     "adventure.possibilitiesDesc":
-      "��Explora los mundos mágicos que podemos crear para tu hijo - y muchos más!",
+      "¡Explora los mundos mágicos que podemos crear para tu hijo - y muchos más!",
     "adventure.spaceMission": "Misión Espacial",
     "adventure.spaceMissionDesc":
       "Despega hacia planetas distantes y conoce amigos alienígenas",
@@ -963,11 +963,11 @@ const translations = {
 
     // Homepage
     "hero.subtitle": "كتب مغامرات شخصية للأطفال",
-    "hero.title": "اصن��",
+    "hero.title": "اصنع",
     "hero.titleHighlight": "مغامرات",
     "hero.subtitle2": "سحرية مع طفلك",
     "hero.description":
-      "حول طفلك إلى بطل كتاب المغامرات ال��خصي الخاص به. اختر من بين الغابات المسحورة، والمهام الفضائية، والرحلات تحت الماء، وأكثر!",
+      "حول طفلك إلى بطل كتاب المغامرات الشخ��ي الخاص به. اختر من بين الغابات المسحورة، والمهام الفضائية، والرحلات تحت الماء، وأكثر!",
     "hero.startCreating": "ابدأ الإنشاء",
     "hero.seeExamples": "انظر الأمثلة",
 
@@ -1007,7 +1007,7 @@ const translations = {
     "examples.adventure": "مغامرة",
     "examples.preview": "معاينة القصة",
     "examples.createYours": "اصنع مغامرتك",
-    "examples.example1.title": "مهمة الغابة السحرية",
+    "examples.example1.title": "م��مة الغابة السحرية",
     "examples.example1.adventure":
       "غابة مسحورة مع حيوانات ناطقة وقرى الجنيات المخفية",
     "examples.example1.preview":
@@ -1024,7 +1024,7 @@ const translations = {
       "لوحت الأميرة صوفيا بعصاها المتلألئة وشاهدت الزهور تبدأ في التوهج...",
     "examples.example4.title": "البحث عن كنز القراصنة",
     "examples.example4.adventure":
-      "الإبحار في البحار السبعة مع طاقم من القراصن�� الودودين",
+      "الإبحار في البحار السبعة مع طاقم من القراصنة الودودين",
     "examples.example4.preview":
       "رصد الضابط الأول أليكس شيئاً يتلألأ تحت الماء الكريستالي...",
     "examples.example5.title": "تلميذ الساحر",
@@ -1069,7 +1069,7 @@ const translations = {
     "form.girl": "بنت",
     "form.other": "آخر",
     "form.adventureType": "اختر نوع المغامرة",
-    "form.customAdventure": "لا تجد نوع مغامرتك؟ أدخ��ها هنا:",
+    "form.customAdventure": "لا تجد نوع مغامرتك؟ أدخله�� هنا:",
     "form.customAdventurePlaceholder": "صف مغامرتك المخصصة...",
     "form.location": "البيئة أو المكان",
     "form.keyActivities": "الأنشطة الرئيسية",
@@ -1136,7 +1136,7 @@ const translations = {
     "order.cardholderName": "اسم حامل البطاقة",
     "order.completePayment": "إكمال الدفع",
     "order.cancel": "إلغاء",
-    "order.confirmed": "تم تأكيد الطلب!",
+    "order.confirmed": "��م تأكيد الطلب!",
     "order.confirmationDetails": "تفاصيل التأكيد",
     "order.shippingDetails": "تفاصيل الشحن",
     "order.deliveryInfo":
@@ -1161,7 +1161,7 @@ const translations = {
     "footer.support": "الدعم",
     "footer.helpCenter": "مركز المساعدة",
     "footer.contactUs": "اتصل بنا",
-    "footer.faq": "الأسئلة الشائعة",
+    "footer.faq": "ا��أسئلة الشائعة",
     "footer.company": "الشركة",
     "footer.about": "حول",
     "footer.privacy": "الخصوصية",
