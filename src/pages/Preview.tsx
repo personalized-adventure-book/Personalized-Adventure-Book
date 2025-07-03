@@ -553,8 +553,10 @@ const Preview = () => {
                   <CardContent className="p-6">
                     <div className="space-y-4">
                       <p className="text-lg leading-relaxed">
-                        {experience.description ||
-                          `In this thrilling chapter, ${bookData.childName} embarks on an incredible journey through ${bookData.location}. Along the way, they discover new friends, face exciting challenges, and learn valuable lessons about courage and friendship.`}
+                        {truncateText(
+                          experience.description ||
+                            `In this thrilling chapter, ${bookData.childName} embarks on an incredible journey through ${bookData.location}. Along the way, they discover new friends, face exciting challenges, and learn valuable lessons about courage and friendship.`,
+                        )}
                       </p>
 
                       {(experience.predefinedActivities.length > 0 ||
