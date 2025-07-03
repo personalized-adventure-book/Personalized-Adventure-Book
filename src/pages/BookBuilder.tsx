@@ -674,6 +674,104 @@ const BookBuilder = () => {
           </CardContent>
         </Card>
       </div>
+
+      {/* Confirmation Dialog */}
+      <Dialog open={showConfirmation} onOpenChange={setShowConfirmation}>
+        <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>Confirm Your Order</DialogTitle>
+            <DialogDescription>
+              Please review your book details before confirming your {orderType}{" "}
+              book order.
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="space-y-4">
+            <div className="grid md:grid-cols-2 gap-4">
+              <div>
+                <h4 className="font-semibold mb-2">Parent Information</h4>
+                <p className="text-sm text-foreground/70">
+                  Name: {formData.parentName}
+                </p>
+                <p className="text-sm text-foreground/70">
+                  Email: {formData.parentEmail}
+                </p>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-2">Child Information</h4>
+                <p className="text-sm text-foreground/70">
+                  Name: {formData.childName}
+                </p>
+                <p className="text-sm text-foreground/70">
+                  Age: {formData.childAge} years old
+                </p>
+                <p className="text-sm text-foreground/70">
+                  Gender: {formData.childGender}
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <h4 className="font-semibold mb-2">Adventure Details</h4>
+              <p className="text-sm text-foreground/70">
+                Type: {formData.adventureType}
+              </p>
+              <p className="text-sm text-foreground/70">
+                Location: {formData.location}
+              </p>
+              {formData.activities.length > 0 && (
+                <p className="text-sm text-foreground/70">
+                  Activities: {formData.activities.join(", ")}
+                </p>
+              )}
+            </div>
+
+            {formData.personalExperiences.length > 0 && (
+              <div>
+                <h4 className="font-semibold mb-2">Personal Experiences</h4>
+                <ul className="text-sm text-foreground/70 space-y-1">
+                  {formData.personalExperiences.map((exp, index) => (
+                    <li key={index}>• {exp}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            <div className="bg-secondary/50 p-4 rounded-lg">
+              <div className="flex justify-between items-center">
+                <span className="font-semibold">
+                  {orderType === "digital"
+                    ? "Digital Book"
+                    : "Printed Hardcover Book"}
+                </span>
+                <span className="font-bold text-lg">
+                  {orderType === "digital" ? "$12.99" : "$24.99"}
+                </span>
+              </div>
+              {orderType === "printed" && (
+                <p className="text-sm text-foreground/70 mt-1">
+                  Free delivery in Europe
+                </p>
+              )}
+            </div>
+          </div>
+
+          <DialogFooter className="flex space-x-3">
+            <Button
+              variant="outline"
+              onClick={() => setShowConfirmation(false)}
+            >
+              Back to Edit
+            </Button>
+            <Button
+              onClick={confirmOrder}
+              className="bg-primary hover:bg-primary/90"
+            >
+              Confirm Order
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
