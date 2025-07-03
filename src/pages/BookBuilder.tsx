@@ -425,16 +425,23 @@ const BookBuilder = () => {
                       {t("form.age")}
                       <RequiredStar />
                     </Label>
-                    <Input
-                      id="childAge"
-                      type="number"
+                    <Select
                       value={formData.childAge}
-                      onChange={(e) =>
-                        updateFormData("childAge", e.target.value)
+                      onValueChange={(value) =>
+                        updateFormData("childAge", value)
                       }
-                      placeholder="5"
-                      className="mt-1"
-                    />
+                    >
+                      <SelectTrigger className="mt-1">
+                        <SelectValue placeholder={t("form.selectAge")} />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {Array.from({ length: 19 }, (_, i) => (
+                          <SelectItem key={i} value={i.toString()}>
+                            {i} {i === 1 ? "year old" : "years old"}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
                   </div>
 
                   <div>
