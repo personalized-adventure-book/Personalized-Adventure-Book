@@ -124,6 +124,20 @@ const Preview = () => {
   const [shippingCost, setShippingCost] = useState(0);
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
 
+  // Function to truncate text for preview
+  const truncateText = (text: string, limit: number = 150) => {
+    if (text.length <= limit) return text;
+
+    // Find the last complete word before the limit
+    const truncated = text.substring(0, limit);
+    const lastSpaceIndex = truncated.lastIndexOf(" ");
+
+    // If there's a space, cut at the last complete word, otherwise use the limit
+    const cutPoint = lastSpaceIndex > 0 ? lastSpaceIndex : limit;
+
+    return text.substring(0, cutPoint) + "...";
+  };
+
   useEffect(() => {
     const savedData = localStorage.getItem("adventureBookData");
     console.log("Raw localStorage data:", savedData);
