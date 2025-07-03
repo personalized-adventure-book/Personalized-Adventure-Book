@@ -651,17 +651,6 @@ const BookBuilder = () => {
         finalAdventureType:
           formData.adventureType || formData.customAdventureType,
       };
-      console.log("Saving book data:", finalData);
-      console.log("Experiences being saved:", finalData.experiences);
-      if (finalData.experiences) {
-        finalData.experiences.forEach((exp: any, index: number) => {
-          console.log(`Saving Experience ${index}:`, {
-            title: exp.title,
-            predefinedActivities: exp.predefinedActivities,
-            customActivities: exp.customActivities,
-          });
-        });
-      }
       localStorage.setItem("adventureBookData", JSON.stringify(finalData));
       navigate("/preview");
     }
@@ -1595,7 +1584,7 @@ const BookBuilder = () => {
                     formData.experiences.length === 0) && (
                     <div className="text-center py-8 text-foreground/70">
                       <p>
-                        ���� Your first adventure experience is ready to be
+                        ������ Your first adventure experience is ready to be
                         created! 🌟
                       </p>
                       <p className="text-sm mt-2">
