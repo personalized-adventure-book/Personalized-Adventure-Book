@@ -456,9 +456,33 @@ const Preview = () => {
                         {index + 1}
                       </span>
                       <span>
-                        {experience.title
-                          ? `Chapter ${index + 1}: Join ${bookData.childName} in "${experience.title}"!`
-                          : `Chapter ${index + 1}: ${bookData.childName}'s Amazing Adventure Begins!`}
+                        {(() => {
+                          const cutePhrases = [
+                            `✨ Chapter ${index + 1}: ${bookData.childName}'s Magical Journey to`,
+                            `🌟 Chapter ${index + 1}: Follow ${bookData.childName} on an Amazing Adventure with`,
+                            `💫 Chapter ${index + 1}: ${bookData.childName} Discovers the Wonders of`,
+                            `🦄 Chapter ${index + 1}: ${bookData.childName}'s Epic Quest through`,
+                            `🌈 Chapter ${index + 1}: ${bookData.childName} Embarks on a Fantastic Tale of`,
+                          ];
+
+                          const defaultPhrases = [
+                            `✨ Chapter ${index + 1}: ${bookData.childName}'s Magical Adventure Begins!`,
+                            `🌟 Chapter ${index + 1}: ${bookData.childName}'s Epic Journey Unfolds!`,
+                            `💫 Chapter ${index + 1}: ${bookData.childName} Discovers Amazing Wonders!`,
+                            `🦄 Chapter ${index + 1}: ${bookData.childName}'s Fantastic Quest Starts!`,
+                            `🌈 Chapter ${index + 1}: ${bookData.childName} Begins an Incredible Tale!`,
+                          ];
+
+                          if (experience.title) {
+                            const randomPhrase =
+                              cutePhrases[index % cutePhrases.length];
+                            return `${randomPhrase} "${experience.title}"! ✨`;
+                          } else {
+                            return defaultPhrases[
+                              index % defaultPhrases.length
+                            ];
+                          }
+                        })()}
                       </span>
                     </CardTitle>
                   </CardHeader>
