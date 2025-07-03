@@ -1380,7 +1380,7 @@ const BookBuilder = () => {
                             {experience.activityDetails &&
                               experience.activityDetails.length > 0 && (
                                 <div className="space-y-4">
-                                  <h5 className="font-medium text-adventure-purple">
+                                  <h5 className="font-medium text-adventure-blue">
                                     Activity Details
                                   </h5>
                                   {experience.activityDetails.map(
