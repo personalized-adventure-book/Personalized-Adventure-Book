@@ -97,6 +97,8 @@ const BookBuilder = () => {
   const { t } = useTranslation();
   const [currentStep, setCurrentStep] = useState(1);
   const [emailTouched, setEmailTouched] = useState(false);
+  const [showSaveDialog, setShowSaveDialog] = useState(false);
+  const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
   const [formData, setFormData] = useState<FormData>({
     parentName: "",
     parentEmail: "",
@@ -115,6 +117,21 @@ const BookBuilder = () => {
 
   const totalSteps = 5;
   const progress = (currentStep / totalSteps) * 100;
+
+  // Load saved draft on mount
+  useEffect(() => {
+    const savedDraft = localStorage.getItem("bookBuilderDraft");
+    if (savedDraft) {
+      const draftData = JSON.parse(savedDraft);
+      setFormData(draftData.formData);
+      setCurrentStep(draftData.currentStep || 1);
+    }
+  }, []);
+
+  // Track changes
+  useEffect(() => {
+    setHasUnsavedChanges(true);
+  }, [formData, currentStep]);
 
   const adventureTypes = [
     {
@@ -172,6 +189,53 @@ const BookBuilder = () => {
 
   const updateFormData = (field: keyof FormData, value: any) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const saveDraft = () => {
+    const draftData = {
+      formData,
+      currentStep,
+      savedAt: new Date().toISOString(),
+      status: "draft",
+    };
+    localStorage.setItem("bookBuilderDraft", JSON.stringify(draftData));
+
+    // Also save to drafts list
+    const existingDrafts = JSON.parse(
+      localStorage.getItem("orderDrafts") || "[]",
+    );
+    const draftId = Date.now().toString();
+    const newDraft = {
+      id: draftId,
+      ...draftData,
+      title: `${formData.childName || "Unnamed"}'s Adventure`,
+    };
+
+    const updatedDrafts = existingDrafts.filter((d: any) => d.id !== draftId);
+    updatedDrafts.push(newDraft);
+    localStorage.setItem("orderDrafts", JSON.stringify(updatedDrafts));
+
+    setHasUnsavedChanges(false);
+  };
+
+  const handleNavigation = (destination: string) => {
+    if (hasUnsavedChanges) {
+      setShowSaveDialog(true);
+      return;
+    }
+    navigate(destination);
+  };
+
+  const handleSaveAndLeave = () => {
+    saveDraft();
+    setShowSaveDialog(false);
+    navigate("/");
+  };
+
+  const handleDiscardAndLeave = () => {
+    localStorage.removeItem("bookBuilderDraft");
+    setShowSaveDialog(false);
+    navigate("/");
   };
 
   const isValidGmail = (email: string) => {
@@ -1265,6 +1329,31 @@ const BookBuilder = () => {
             </div>
           </CardContent>
         </Card>
+
+        {/* Save/Discard Dialog */}
+        <Dialog open={showSaveDialog} onOpenChange={setShowSaveDialog}>
+          <DialogContent className="max-w-md">
+            <DialogHeader>
+              <DialogTitle>Save Your Progress?</DialogTitle>
+              <DialogDescription>
+                You have unsaved changes. Would you like to save your progress
+                before leaving?
+              </DialogDescription>
+            </DialogHeader>
+            <DialogFooter className="flex-col space-y-2 sm:flex-row sm:space-y-0 sm:space-x-2">
+              <Button
+                variant="outline"
+                onClick={handleDiscardAndLeave}
+                className="w-full sm:w-auto"
+              >
+                Discard Changes
+              </Button>
+              <Button onClick={handleSaveAndLeave} className="w-full sm:w-auto">
+                Save Draft
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
       </div>
     </div>
   );
