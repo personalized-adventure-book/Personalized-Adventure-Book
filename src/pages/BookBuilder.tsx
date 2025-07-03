@@ -875,38 +875,64 @@ const BookBuilder = () => {
                 </ul>
               </div>
             )}
-
-            <div className="bg-secondary/50 p-4 rounded-lg">
-              <div className="flex justify-between items-center">
-                <span className="font-semibold">
-                  {orderType === "digital"
-                    ? "Digital Book"
-                    : "Printed Hardcover Book"}
-                </span>
-                <span className="font-bold text-lg">
-                  {orderType === "digital" ? "$12.99" : "$24.99"}
-                </span>
-              </div>
-              {orderType === "printed" && (
-                <p className="text-sm text-foreground/70 mt-1">
-                  Free delivery in Europe
-                </p>
-              )}
-            </div>
           </div>
 
-          <DialogFooter className="flex space-x-3">
+          <DialogFooter className="flex flex-col space-y-4">
+            <div className="text-center">
+              <p className="text-sm text-foreground/70 mb-4">
+                Choose your book format:
+              </p>
+              <div className="grid md:grid-cols-2 gap-4">
+                <Card className="border-2 border-border hover:border-primary/50 transition-colors p-4">
+                  <div className="text-center mb-4">
+                    <Download className="w-8 h-8 text-adventure-blue mx-auto mb-2" />
+                    <h4 className="font-semibold">Digital Book</h4>
+                    <p className="text-sm text-foreground/70">
+                      Instant PDF download
+                    </p>
+                    <div className="text-xl font-bold text-primary mt-2">
+                      $12.99
+                    </div>
+                  </div>
+                  <Button
+                    onClick={() => confirmOrder("digital")}
+                    className="w-full"
+                    variant="outline"
+                  >
+                    Order Digital
+                  </Button>
+                </Card>
+
+                <Card className="border-2 border-primary p-4">
+                  <div className="text-center mb-4">
+                    <Printer className="w-8 h-8 text-adventure-green mx-auto mb-2" />
+                    <h4 className="font-semibold">Printed Book</h4>
+                    <p className="text-sm text-foreground/70">
+                      Professional hardcover
+                    </p>
+                    <div className="text-xl font-bold text-primary mt-2">
+                      $24.99
+                    </div>
+                    <p className="text-xs text-foreground/60">
+                      Free delivery in Europe
+                    </p>
+                  </div>
+                  <Button
+                    onClick={() => confirmOrder("printed")}
+                    className="w-full bg-primary hover:bg-primary/90"
+                  >
+                    Order Printed
+                  </Button>
+                </Card>
+              </div>
+            </div>
+
             <Button
               variant="outline"
               onClick={() => setShowConfirmation(false)}
+              className="self-center"
             >
               Back to Edit
-            </Button>
-            <Button
-              onClick={confirmOrder}
-              className="bg-primary hover:bg-primary/90"
-            >
-              Confirm Order
             </Button>
           </DialogFooter>
         </DialogContent>
