@@ -1277,6 +1277,7 @@ const BookBuilder = () => {
                                           activity,
                                         )
                                       }
+                                      className="data-[state=checked]:bg-green-500 data-[state=checked]:border-green-500"
                                     />
                                     <Label
                                       htmlFor={`${experience.id}-${activity}`}
