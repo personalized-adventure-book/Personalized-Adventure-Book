@@ -54,6 +54,7 @@ interface FormData {
   favoriteColor: string;
   petName: string;
   specialDetails: string;
+  personalExperiences: string[];
 }
 
 const BookBuilder = () => {
@@ -74,6 +75,7 @@ const BookBuilder = () => {
     favoriteColor: "",
     petName: "",
     specialDetails: "",
+    personalExperiences: [],
   });
 
   const totalSteps = 4;
