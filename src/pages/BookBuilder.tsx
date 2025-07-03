@@ -649,6 +649,17 @@ const BookBuilder = () => {
         finalAdventureType:
           formData.adventureType || formData.customAdventureType,
       };
+      console.log("Saving book data:", finalData);
+      console.log("Experiences being saved:", finalData.experiences);
+      if (finalData.experiences) {
+        finalData.experiences.forEach((exp: any, index: number) => {
+          console.log(`Saving Experience ${index}:`, {
+            title: exp.title,
+            predefinedActivities: exp.predefinedActivities,
+            customActivities: exp.customActivities,
+          });
+        });
+      }
       localStorage.setItem("adventureBookData", JSON.stringify(finalData));
       navigate("/preview");
     }
@@ -1053,7 +1064,7 @@ const BookBuilder = () => {
                       {t("form.personalExperiences")}
                     </h3>
                     <p className="text-base font-medium text-adventure-blue">
-                      ✨ The more experiences you add, the more personalized and
+                      �� The more experiences you add, the more personalized and
                       magical your story becomes! ✨
                     </p>
                     <p className="text-sm text-foreground/60 mt-2">
