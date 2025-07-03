@@ -1092,7 +1092,8 @@ const BookBuilder = () => {
                             </div>
                           </div>
                         </CardHeader>
-                      <CardContent className="space-y-6">
+                        {(isExpanded || isFirst) && (
+                          <CardContent className="space-y-6">
                         <div>
                           <Label>{t("form.activityName")}</Label>
                           <Input
