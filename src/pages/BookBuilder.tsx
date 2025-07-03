@@ -350,9 +350,9 @@ const BookBuilder = () => {
     navigate("/");
   };
 
-  const isValidGmail = (email: string) => {
-    const gmailPattern = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
-    return gmailPattern.test(email);
+  const isValidEmail = (email: string) => {
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailPattern.test(email);
   };
 
   // Experience Management Functions
