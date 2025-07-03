@@ -317,9 +317,6 @@ const Index = () => {
                   <span className="text-sm">Print at home option</span>
                 </li>
               </ul>
-              <Button className="w-full" variant="outline" asChild>
-                <Link to="/create">Choose Digital</Link>
-              </Button>
             </CardContent>
           </Card>
 
@@ -355,12 +352,9 @@ const Index = () => {
                 </li>
                 <li className="flex items-center">
                   <Star className="w-4 h-4 text-adventure-yellow mr-2" />
-                  <span className="text-sm">Free shipping</span>
+                  <span className="text-sm">Free delivery in Europe</span>
                 </li>
               </ul>
-              <Button className="w-full bg-primary hover:bg-primary/90" asChild>
-                <Link to="/create">Choose Printed</Link>
-              </Button>
             </CardContent>
           </Card>
         </div>
