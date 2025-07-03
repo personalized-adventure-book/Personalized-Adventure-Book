@@ -108,7 +108,9 @@ const BookBuilder = () => {
   const [showSaveDialog, setShowSaveDialog] = useState(false);
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
   const [isLoadingDraft, setIsLoadingDraft] = useState(true);
-  const [expandedExperiences, setExpandedExperiences] = useState<Set<string>>(new Set());
+  const [expandedExperiences, setExpandedExperiences] = useState<Set<string>>(
+    new Set(),
+  );
   const hasInitializedRef = useRef(false);
   const [formData, setFormData] = useState<FormData>({
     parentName: "",
@@ -327,7 +329,7 @@ const BookBuilder = () => {
     updateFormData("experiences", updatedExperiences);
 
     // Expand the new experience
-    setExpandedExperiences(prev => new Set(prev).add(newExperience.id));
+    setExpandedExperiences((prev) => new Set(prev).add(newExperience.id));
   };
 
   // Initialize first experience and expand it by default
@@ -351,7 +353,7 @@ const BookBuilder = () => {
 
   // Toggle experience expansion
   const toggleExperience = (experienceId: string) => {
-    setExpandedExperiences(prev => {
+    setExpandedExperiences((prev) => {
       const newSet = new Set(prev);
       if (newSet.has(experienceId)) {
         newSet.delete(experienceId);
@@ -1004,7 +1006,8 @@ const BookBuilder = () => {
                         {t("form.personalExperiences")}
                       </h3>
                       <p className="text-sm text-foreground/70 mt-1">
-                        ✨ The more details you add, the more personalized and magical your story becomes! ✨
+                        ✨ The more details you add, the more personalized and
+                        magical your story becomes! ✨
                       </p>
                     </div>
                   </div>
@@ -1012,12 +1015,13 @@ const BookBuilder = () => {
                   {(formData.experiences || []).map((experience, index) => {
                     const isExpanded = expandedExperiences.has(experience.id);
                     const isFirst = index === 0;
-                    const isRequired = isFirst || experience.title || experience.description;
+                    const isRequired =
+                      isFirst || experience.title || experience.description;
 
                     return (
                       <Card
                         key={experience.id}
-                        className={`border-2 ${isFirst ? 'border-adventure-blue/50 bg-adventure-blue/5' : 'border-dashed border-adventure-blue/30'}`}
+                        className={`border-2 ${isFirst ? "border-adventure-blue/50 bg-adventure-blue/5" : "border-dashed border-adventure-blue/30"}`}
                       >
                         <CardHeader
                           className="pb-4 cursor-pointer"
@@ -1026,7 +1030,7 @@ const BookBuilder = () => {
                           <div className="flex items-center justify-between">
                             <div className="flex items-center space-x-2">
                               <h4 className="font-medium">
-                                Experience {index + 1} {isFirst && '(Required)'}
+                                Experience {index + 1} {isFirst && "(Required)"}
                               </h4>
                               {experience.title && (
                                 <span className="text-sm text-foreground/70">
@@ -1078,11 +1082,7 @@ const BookBuilder = () => {
                                   </Button>
                                 </>
                               )}
-                              <Button
-                                type="button"
-                                variant="ghost"
-                                size="sm"
-                              >
+                              <Button type="button" variant="ghost" size="sm">
                                 {isExpanded ? (
                                   <ChevronUp className="w-4 h-4" />
                                 ) : (
@@ -1094,195 +1094,205 @@ const BookBuilder = () => {
                         </CardHeader>
                         {(isExpanded || isFirst) && (
                           <CardContent className="space-y-6">
-                        <div>
-                          <Label>{t("form.activityName")}</Label>
-                          <Input
-                            value={experience.title}
-                            onChange={(e) =>
-                              updateExperience(
-                                experience.id,
-                                "title",
-                                e.target.value,
-                              )
-                            }
-                            placeholder="Swimming with dolphins, Finding treasure..."
-                            className="mt-1"
-                          />
-                        </div>
-
-                        <div>
-                          <Label>{t("form.activityDetails")}</Label>
-                          <Textarea
-                            value={experience.description}
-                            onChange={(e) =>
-                              updateExperience(
-                                experience.id,
-                                "description",
-                                e.target.value,
-                              )
-                            }
-                            placeholder="Describe what happens in this part of the adventure..."
-                            className="mt-1"
-                            rows={3}
-                          />
-                        </div>
-
-                        <div>
-                          <Label>{t("form.selectActivities")}</Label>
-                          <div className="grid grid-cols-2 md:grid-cols-3 gap-2 mt-2">
-                            {activityOptions.map((activity) => (
-                              <div
-                                key={activity}
-                                className="flex items-center space-x-2"
-                              >
-                                <Checkbox
-                                  id={`${experience.id}-${activity}`}
-                                  checked={experience.predefinedActivities.includes(
-                                    activity,
-                                  )}
-                                  onCheckedChange={() =>
-                                    togglePredefinedActivity(
-                                      experience.id,
-                                      activity,
-                                    )
-                                  }
-                                />
-                                <Label
-                                  htmlFor={`${experience.id}-${activity}`}
-                                  className="text-sm"
-                                >
-                                  {activity}
-                                </Label>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-
-                        <div>
-                          <Label>{t("form.customActivities")}</Label>
-                          <div className="space-y-2 mt-2">
-                            {experience.customActivities.map(
-                              (activity, actIndex) => (
-                                <div
-                                  key={actIndex}
-                                  className="flex items-center space-x-2"
-                                >
-                                  <Input value={activity} readOnly />
-                                  <Button
-                                    type="button"
-                                    variant="ghost"
-                                    size="sm"
-                                    onClick={() =>
-                                      removeCustomActivity(
-                                        experience.id,
-                                        actIndex,
-                                      )
-                                    }
-                                    className="text-red-500"
-                                  >
-                                    <X className="w-4 h-4" />
-                                  </Button>
-                                </div>
-                              ),
-                            )}
-                            <Input
-                              placeholder="Add custom activity..."
-                              onKeyPress={(e) => {
-                                if (e.key === "Enter") {
-                                  const target = e.target as HTMLInputElement;
-                                  addCustomActivity(
+                            <div>
+                              <Label>{t("form.activityName")}</Label>
+                              <Input
+                                value={experience.title}
+                                onChange={(e) =>
+                                  updateExperience(
                                     experience.id,
-                                    target.value,
-                                  );
-                                  target.value = "";
+                                    "title",
+                                    e.target.value,
+                                  )
                                 }
-                              }}
-                            />
-                          </div>
-                        </div>
+                                placeholder="Swimming with dolphins, Finding treasure..."
+                                className="mt-1"
+                              />
+                            </div>
 
-                        <div>
-                          <Label>{t("form.activityCharacters")}</Label>
-                          <Input
-                            value={experience.characters}
-                            onChange={(e) =>
-                              updateExperience(
-                                experience.id,
-                                "characters",
-                                e.target.value,
-                              )
-                            }
-                            placeholder="Who's involved in this experience?"
-                            className="mt-1"
-                          />
-                        </div>
+                            <div>
+                              <Label>{t("form.activityDetails")}</Label>
+                              <Textarea
+                                value={experience.description}
+                                onChange={(e) =>
+                                  updateExperience(
+                                    experience.id,
+                                    "description",
+                                    e.target.value,
+                                  )
+                                }
+                                placeholder="Describe what happens in this part of the adventure..."
+                                className="mt-1"
+                                rows={3}
+                              />
+                            </div>
 
-                        {/* Experience Images */}
-                        <div>
-                          <Label>{t("form.uploadImages")} (Experience)</Label>
-                          <div className="mt-2 border-2 border-dashed border-gray-300 rounded-lg p-4">
-                            <input
-                              type="file"
-                              multiple
-                              accept="image/*"
-                              onChange={(e) =>
-                                handleImageUpload(experience.id, e.target.files)
-                              }
-                              className="hidden"
-                              id={`exp-images-${experience.id}`}
-                            />
-                            <Label
-                              htmlFor={`exp-images-${experience.id}`}
-                              className="cursor-pointer flex flex-col items-center space-y-2"
-                            >
-                              <Upload className="w-6 h-6 text-gray-400" />
-                              <span className="text-sm text-gray-500">
-                                Click to upload images for this experience
-                              </span>
-                            </Label>
-                          </div>
-
-                          {/* Experience Image Descriptions */}
-                          {experience.images.length > 0 && (
-                            <div className="mt-4 space-y-4">
-                              <h5 className="font-medium">Experience Images</h5>
-                              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                                {experience.images.map((img, imgIndex) => (
-                                  <div key={imgIndex} className="space-y-2">
-                                    <div className="aspect-square">
-                                      <img
-                                        src={URL.createObjectURL(img.file)}
-                                        alt="Experience upload"
-                                        className="w-full h-full object-cover rounded"
-                                      />
-                                    </div>
-                                    <div>
-                                      <Label className="text-sm">
-                                        Image Description
-                                      </Label>
-                                      <Textarea
-                                        value={img.description}
-                                        onChange={(e) =>
-                                          updateImageDescription(
-                                            experience.id,
-                                            imgIndex,
-                                            e.target.value,
-                                          )
-                                        }
-                                        placeholder="Describe this image..."
-                                        className="mt-1"
-                                        rows={2}
-                                      />
-                                    </div>
+                            <div>
+                              <Label>{t("form.selectActivities")}</Label>
+                              <div className="grid grid-cols-2 md:grid-cols-3 gap-2 mt-2">
+                                {activityOptions.map((activity) => (
+                                  <div
+                                    key={activity}
+                                    className="flex items-center space-x-2"
+                                  >
+                                    <Checkbox
+                                      id={`${experience.id}-${activity}`}
+                                      checked={experience.predefinedActivities.includes(
+                                        activity,
+                                      )}
+                                      onCheckedChange={() =>
+                                        togglePredefinedActivity(
+                                          experience.id,
+                                          activity,
+                                        )
+                                      }
+                                    />
+                                    <Label
+                                      htmlFor={`${experience.id}-${activity}`}
+                                      className="text-sm"
+                                    >
+                                      {activity}
+                                    </Label>
                                   </div>
                                 ))}
                               </div>
                             </div>
-                          )}
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))}
+
+                            <div>
+                              <Label>{t("form.customActivities")}</Label>
+                              <div className="space-y-2 mt-2">
+                                {experience.customActivities.map(
+                                  (activity, actIndex) => (
+                                    <div
+                                      key={actIndex}
+                                      className="flex items-center space-x-2"
+                                    >
+                                      <Input value={activity} readOnly />
+                                      <Button
+                                        type="button"
+                                        variant="ghost"
+                                        size="sm"
+                                        onClick={() =>
+                                          removeCustomActivity(
+                                            experience.id,
+                                            actIndex,
+                                          )
+                                        }
+                                        className="text-red-500"
+                                      >
+                                        <X className="w-4 h-4" />
+                                      </Button>
+                                    </div>
+                                  ),
+                                )}
+                                <Input
+                                  placeholder="Add custom activity..."
+                                  onKeyPress={(e) => {
+                                    if (e.key === "Enter") {
+                                      const target =
+                                        e.target as HTMLInputElement;
+                                      addCustomActivity(
+                                        experience.id,
+                                        target.value,
+                                      );
+                                      target.value = "";
+                                    }
+                                  }}
+                                />
+                              </div>
+                            </div>
+
+                            <div>
+                              <Label>{t("form.activityCharacters")}</Label>
+                              <Input
+                                value={experience.characters}
+                                onChange={(e) =>
+                                  updateExperience(
+                                    experience.id,
+                                    "characters",
+                                    e.target.value,
+                                  )
+                                }
+                                placeholder="Who's involved in this experience?"
+                                className="mt-1"
+                              />
+                            </div>
+
+                            {/* Experience Images */}
+                            <div>
+                              <Label>
+                                {t("form.uploadImages")} (Experience)
+                              </Label>
+                              <div className="mt-2 border-2 border-dashed border-gray-300 rounded-lg p-4">
+                                <input
+                                  type="file"
+                                  multiple
+                                  accept="image/*"
+                                  onChange={(e) =>
+                                    handleImageUpload(
+                                      experience.id,
+                                      e.target.files,
+                                    )
+                                  }
+                                  className="hidden"
+                                  id={`exp-images-${experience.id}`}
+                                />
+                                <Label
+                                  htmlFor={`exp-images-${experience.id}`}
+                                  className="cursor-pointer flex flex-col items-center space-y-2"
+                                >
+                                  <Upload className="w-6 h-6 text-gray-400" />
+                                  <span className="text-sm text-gray-500">
+                                    Click to upload images for this experience
+                                  </span>
+                                </Label>
+                              </div>
+
+                              {/* Experience Image Descriptions */}
+                              {experience.images.length > 0 && (
+                                <div className="mt-4 space-y-4">
+                                  <h5 className="font-medium">
+                                    Experience Images
+                                  </h5>
+                                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                                    {experience.images.map((img, imgIndex) => (
+                                      <div key={imgIndex} className="space-y-2">
+                                        <div className="aspect-square">
+                                          <img
+                                            src={URL.createObjectURL(img.file)}
+                                            alt="Experience upload"
+                                            className="w-full h-full object-cover rounded"
+                                          />
+                                        </div>
+                                        <div>
+                                          <Label className="text-sm">
+                                            Image Description
+                                          </Label>
+                                          <Textarea
+                                            value={img.description}
+                                            onChange={(e) =>
+                                              updateImageDescription(
+                                                experience.id,
+                                                imgIndex,
+                                                e.target.value,
+                                              )
+                                            }
+                                            placeholder="Describe this image..."
+                                            className="mt-1"
+                                            rows={2}
+                                          />
+                                        </div>
+                                      </div>
+                                    ))}
+                                  </div>
+                                </div>
+                              )}
+                            </div>
+                          </CardContent>
+                        )}
+                      </Card>
+                    );
+                  })}
 
                   {/* Activity Details Subsections - Appear at the end */}
                   {formData.experiences &&
