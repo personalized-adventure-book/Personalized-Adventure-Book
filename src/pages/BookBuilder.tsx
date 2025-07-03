@@ -1066,7 +1066,7 @@ const BookBuilder = () => {
                     return (
                       <Card
                         key={experience.id}
-                        className={`border-2 ${isFirst ? "border-adventure-blue/50 bg-adventure-blue/5" : "border-dashed border-adventure-blue/30"}`}
+                        className="border-2 border-adventure-blue/40 bg-adventure-blue/5"
                       >
                         <CardHeader
                           className="pb-4 cursor-pointer"
