@@ -1170,6 +1170,94 @@ const BookBuilder = () => {
                                 )}
                             </div>
 
+                            {/* Characters Involved */}
+                            <div>
+                              <Label>{t("form.activityCharacters")}</Label>
+                              <Input
+                                value={experience.characters}
+                                onChange={(e) =>
+                                  updateExperience(
+                                    experience.id,
+                                    "characters",
+                                    e.target.value,
+                                  )
+                                }
+                                placeholder="Who's involved in this experience?"
+                                className="mt-1"
+                              />
+                            </div>
+
+                            {/* Experience Images */}
+                            <div>
+                              <Label>
+                                {t("form.uploadImages")} (Experience)
+                              </Label>
+                              <div className="mt-2 border-2 border-dashed border-gray-300 rounded-lg p-4">
+                                <input
+                                  type="file"
+                                  multiple
+                                  accept="image/*"
+                                  onChange={(e) =>
+                                    handleImageUpload(
+                                      experience.id,
+                                      e.target.files,
+                                    )
+                                  }
+                                  className="hidden"
+                                  id={`exp-images-${experience.id}`}
+                                />
+                                <Label
+                                  htmlFor={`exp-images-${experience.id}`}
+                                  className="cursor-pointer flex flex-col items-center space-y-2"
+                                >
+                                  <Upload className="w-6 h-6 text-gray-400" />
+                                  <span className="text-sm text-gray-500">
+                                    Click to upload images for this experience
+                                  </span>
+                                </Label>
+                              </div>
+
+                              {/* Experience Image Descriptions */}
+                              {experience.images.length > 0 && (
+                                <div className="mt-4 space-y-3">
+                                  <h5 className="font-medium text-sm">
+                                    Experience Images
+                                  </h5>
+                                  <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+                                    {experience.images.map((img, imgIndex) => (
+                                      <div key={imgIndex} className="space-y-2">
+                                        <div className="aspect-square w-full max-w-[100px]">
+                                          <img
+                                            src={URL.createObjectURL(img.file)}
+                                            alt="Experience upload"
+                                            className="w-full h-full object-cover rounded-lg border-2 border-gray-200 shadow-sm hover:shadow-md transition-shadow"
+                                          />
+                                        </div>
+                                        <div>
+                                          <Label className="text-xs">
+                                            Description
+                                          </Label>
+                                          <Textarea
+                                            value={img.description}
+                                            onChange={(e) =>
+                                              updateImageDescription(
+                                                experience.id,
+                                                imgIndex,
+                                                e.target.value,
+                                              )
+                                            }
+                                            placeholder="Describe image..."
+                                            className="mt-1 text-xs"
+                                            rows={2}
+                                          />
+                                        </div>
+                                      </div>
+                                    ))}
+                                  </div>
+                                </div>
+                              )}
+                            </div>
+
                             <div>
                               <Label>{t("form.selectActivities")}</Label>
                               <div className="grid grid-cols-2 md:grid-cols-3 gap-2 mt-2">
