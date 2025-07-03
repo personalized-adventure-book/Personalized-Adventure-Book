@@ -749,7 +749,7 @@ const translations = {
     // Adventure Types
     "adventure.possibilities": "Posibilidades de Aventura",
     "adventure.possibilitiesDesc":
-      "¡Explora los mundos mágicos que podemos crear para tu hijo - y muchos más!",
+      "¡Explora los mundos m��gicos que podemos crear para tu hijo - y muchos más!",
     "adventure.spaceMission": "Misión Espacial",
     "adventure.spaceMissionDesc":
       "Despega hacia planetas distantes y conoce amigos alienígenas",
@@ -987,7 +987,8 @@ const translations = {
     "adventure.possibilitiesDesc":
       "استكشف العوالم السحرية التي يمكننا إنشاؤها لطفلك - وأكثر من ذلك بكثير!",
     "adventure.spaceMission": "مهمة فضائية",
-    "adventure.spaceMissionDesc": "انطلق إلى كواكب بعيدة والتق بأصدقاء فضائيين",
+    "adventure.spaceMissionDesc":
+      "انطلق إلى كواكب بعيدة والتق بأصدقاء فضا��يين",
     "adventure.enchantedForest": "غابة مسحورة",
     "adventure.enchantedForestDesc": "اكتشف مخلوقات سحرية وكنوز مخفية",
     "adventure.royalCastle": "قلعة ملكية",
@@ -1086,7 +1087,7 @@ const translations = {
     "form.activityDetails": "تفاصيل النشاط",
     "form.activityCharacters": "الشخصيات المشاركة",
     "form.activityImageDesc": "وصف الصورة",
-    "form.uploadImages": "ت��ميل الصور",
+    "form.uploadImages": "تحميل الصور",
     "form.addActivity": "أضف نشاطاً آخر",
     "form.previous": "السابق",
     "form.next": "التالي",
@@ -1109,7 +1110,7 @@ const translations = {
     "pricing.feature5": "كل شيء في الرقمي",
     "pricing.feature6": "تجليد غلاف صلب ممتاز",
     "pricing.feature7": "طباعة احترافية",
-    "pricing.feature8": "توصيل ��جاني في أوروبا",
+    "pricing.feature8": "توصيل مجاني في أوروبا",
     "pricing.popular": "شائع",
 
     // Order
@@ -1135,7 +1136,7 @@ const translations = {
     "order.cvvInvalid": "يرجى إدخال CVV صالح",
     "order.cardholderName": "اسم حامل البطاقة",
     "order.completePayment": "إكمال الدفع",
-    "order.cancel": "إلغاء",
+    "order.cancel": "إلغ��ء",
     "order.confirmed": "تم تأكيد الطلب!",
     "order.confirmationDetails": "تفاصيل التأكيد",
     "order.shippingDetails": "تفاصيل الشحن",
@@ -1291,8 +1292,8 @@ const translations = {
 
     // Form Fields
     "form.parentName": "Jouw Naam",
-    "form.email": "Gmail Adres",
-    "form.emailInvalid": "Voer een geldig Gmail adres in",
+    "form.email": "Email Adres",
+    "form.emailInvalid": "Voer een geldig email adres in",
     "form.childName": "Naam van het Kind",
     "form.age": "Leeftijd",
     "form.selectAge": "Selecteer Leeftijd",
