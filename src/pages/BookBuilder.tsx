@@ -1075,7 +1075,7 @@ const BookBuilder = () => {
                           <div className="flex items-center justify-between">
                             <div className="flex items-center space-x-2">
                               <h4 className="font-medium">
-                                Experience {index + 1} {isFirst && "(Required)"}
+                                Experience {index + 1} (Required)
                               </h4>
                               {experience.title && (
                                 <span className="text-sm text-foreground/70">
