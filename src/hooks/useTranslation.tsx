@@ -794,7 +794,7 @@ const translations = {
     "examples.example4.adventure":
       "Navegando los siete mares con una tripulación de piratas amigables",
     "examples.example4.preview":
-      "El Primer Oficial Alex divisó algo brillando bajo el agua cristalina...",
+      "El Primer Oficial Alex divis�� algo brillando bajo el agua cristalina...",
     "examples.example5.title": "Aprendiz de Mago",
     "examples.example5.adventure":
       "Aprendiendo hechizos mágicos en una torre llena de criaturas misteriosas",
@@ -832,8 +832,8 @@ const translations = {
 
     // Form Fields
     "form.parentName": "Tu Nombre",
-    "form.email": "Dirección Gmail",
-    "form.emailInvalid": "Por favor ingresa una dirección Gmail válida",
+    "form.email": "Dirección de Email",
+    "form.emailInvalid": "Por favor ingresa una dirección de email válida",
     "form.childName": "Nombre del Niño",
     "form.age": "Edad",
     "form.selectAge": "Seleccionar Edad",
@@ -967,7 +967,7 @@ const translations = {
     "hero.titleHighlight": "مغامرات",
     "hero.subtitle2": "سحرية مع طفلك",
     "hero.description":
-      "حول طفلك إلى بطل كتاب المغامرات الشخ��ي الخاص به. اختر من بين الغابات المسحورة، والمهام الفضائية، والرحلات تحت الماء، وأكثر!",
+      "حول طفلك إلى بطل ��تاب المغامرات الشخصي الخاص به. اختر من بين الغابات المسحورة، والمهام الفضائية، والرحلات تحت الماء، وأكثر!",
     "hero.startCreating": "ابدأ الإنشاء",
     "hero.seeExamples": "انظر الأمثلة",
 
@@ -987,7 +987,8 @@ const translations = {
     "adventure.possibilitiesDesc":
       "استكشف العوالم السحرية التي يمكننا إنشاؤها لطفلك - وأكثر من ذلك بكثير!",
     "adventure.spaceMission": "مهمة فضائية",
-    "adventure.spaceMissionDesc": "انطلق إلى كواكب بعيدة والتق بأصدقاء فضائيين",
+    "adventure.spaceMissionDesc":
+      "انطلق إلى كوا��ب بعيدة والتق بأصدقاء فضائيين",
     "adventure.enchantedForest": "غابة مسحورة",
     "adventure.enchantedForestDesc": "اكتشف مخلوقات سحرية وكنوز مخفية",
     "adventure.royalCastle": "قلعة ملكية",
@@ -1007,7 +1008,7 @@ const translations = {
     "examples.adventure": "مغامرة",
     "examples.preview": "معاينة القصة",
     "examples.createYours": "اصنع مغامرتك",
-    "examples.example1.title": "م��مة الغابة السحرية",
+    "examples.example1.title": "مهمة الغابة السحرية",
     "examples.example1.adventure":
       "غابة مسحورة مع حيوانات ناطقة وقرى الجنيات المخفية",
     "examples.example1.preview":
@@ -1069,7 +1070,7 @@ const translations = {
     "form.girl": "بنت",
     "form.other": "آخر",
     "form.adventureType": "اختر نوع المغامرة",
-    "form.customAdventure": "لا تجد نوع مغامرتك؟ أدخله�� هنا:",
+    "form.customAdventure": "لا تجد نوع مغامرتك؟ أدخلها هنا:",
     "form.customAdventurePlaceholder": "صف مغامرتك المخصصة...",
     "form.location": "البيئة أو المكان",
     "form.keyActivities": "الأنشطة الرئيسية",
@@ -1135,8 +1136,8 @@ const translations = {
     "order.cvvInvalid": "يرجى إدخال CVV صالح",
     "order.cardholderName": "اسم حامل البطاقة",
     "order.completePayment": "إكمال الدفع",
-    "order.cancel": "إلغاء",
-    "order.confirmed": "��م تأكيد الطلب!",
+    "order.cancel": "إلغ��ء",
+    "order.confirmed": "تم تأكيد الطلب!",
     "order.confirmationDetails": "تفاصيل التأكيد",
     "order.shippingDetails": "تفاصيل الشحن",
     "order.deliveryInfo":
@@ -1161,7 +1162,7 @@ const translations = {
     "footer.support": "الدعم",
     "footer.helpCenter": "مركز المساعدة",
     "footer.contactUs": "اتصل بنا",
-    "footer.faq": "ا��أسئلة الشائعة",
+    "footer.faq": "الأسئلة الشائعة",
     "footer.company": "الشركة",
     "footer.about": "حول",
     "footer.privacy": "الخصوصية",
