@@ -660,7 +660,7 @@ const BookBuilder = () => {
         return (
           formData.parentName &&
           formData.parentEmail &&
-          isValidGmail(formData.parentEmail)
+          isValidEmail(formData.parentEmail)
         );
       case 2:
         return formData.childName && formData.childAge && formData.childGender;
