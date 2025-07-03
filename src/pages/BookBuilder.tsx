@@ -6,14 +6,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
-import {
   Select,
   SelectContent,
   SelectItem,
@@ -23,6 +15,8 @@ import {
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Progress } from "@/components/ui/progress";
+import Header from "@/components/Header";
+import { useTranslation } from "@/hooks/useTranslation";
 import {
   BookOpen,
   User,
@@ -38,10 +32,10 @@ import {
   Zap,
   Heart,
   X,
-  Download,
-  Printer,
   Upload,
   Image,
+  Plus,
+  Trash2,
 } from "lucide-react";
 
 interface ActivityImage {
@@ -49,12 +43,15 @@ interface ActivityImage {
   description: string;
 }
 
-interface ActivityDetail {
-  name: string;
-  details: string;
+interface ExperienceDetail {
+  id: string;
+  title: string;
+  description: string;
+  activities: string[];
   characters: string;
-  imageDescription: string;
+  customActivities: string[];
   images: ActivityImage[];
+  imageDescription: string;
 }
 
 interface FormData {
@@ -69,27 +66,23 @@ interface FormData {
 
   // Adventure Details
   adventureType: string;
+  customAdventureType: string;
   location: string;
-  activities: string[];
-  activityDetails: ActivityDetail[];
-  characters: string;
-  personalTouches: string;
 
-  // Friends/Family
-  includeFriends: string;
+  // Merged Experiences and Activities
+  experiences: ExperienceDetail[];
+
+  // Personal Details
   favoriteColor: string;
   petName: string;
+  includeFriends: string;
   specialDetails: string;
-  personalExperiences: string[];
 }
 
 const BookBuilder = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [currentStep, setCurrentStep] = useState(1);
-  const [showConfirmation, setShowConfirmation] = useState(false);
-  const [orderType, setOrderType] = useState<"digital" | "printed" | null>(
-    null,
-  );
   const [emailTouched, setEmailTouched] = useState(false);
   const [formData, setFormData] = useState<FormData>({
     parentName: "",
@@ -98,69 +91,54 @@ const BookBuilder = () => {
     childAge: "",
     childGender: "",
     adventureType: "",
+    customAdventureType: "",
     location: "",
-    activities: [],
-    activityDetails: [],
-    characters: "",
-    personalTouches: "",
-    includeFriends: "",
+    experiences: [],
     favoriteColor: "",
     petName: "",
+    includeFriends: "",
     specialDetails: "",
-    personalExperiences: [],
   });
 
   const totalSteps = 5;
   const progress = (currentStep / totalSteps) * 100;
 
-  // Check for pre-selected adventure type on component mount
-  useEffect(() => {
-    const selectedAdventure = localStorage.getItem("selectedAdventure");
-    if (selectedAdventure) {
-      setFormData((prev) => ({ ...prev, adventureType: selectedAdventure }));
-      // Skip to step 3 (adventure details) if adventure is pre-selected
-      setCurrentStep(3);
-      // Clear the stored selection
-      localStorage.removeItem("selectedAdventure");
-    }
-  }, []);
-
   const adventureTypes = [
     {
       id: "space",
-      name: "Space Mission",
+      name: t("adventure.spaceMission"),
       icon: Rocket,
-      description: "Blast off to distant planets",
+      description: t("adventure.spaceMissionDesc"),
     },
     {
       id: "forest",
-      name: "Enchanted Forest",
+      name: t("adventure.enchantedForest"),
       icon: TreePine,
-      description: "Discover magical creatures",
+      description: t("adventure.enchantedForestDesc"),
     },
     {
       id: "castle",
-      name: "Royal Castle",
+      name: t("adventure.royalCastle"),
       icon: Crown,
-      description: "Become a brave knight or princess",
+      description: t("adventure.royalCastleDesc"),
     },
     {
       id: "pirate",
-      name: "Pirate Voyage",
+      name: t("adventure.pirateVoyage"),
       icon: Anchor,
-      description: "Sail the seven seas",
+      description: t("adventure.pirateVoyageDesc"),
     },
     {
       id: "superhero",
-      name: "Superhero Academy",
+      name: t("adventure.superheroAcademy"),
       icon: Zap,
-      description: "Train to become a hero",
+      description: t("adventure.superheroAcademyDesc"),
     },
     {
       id: "underwater",
-      name: "Underwater World",
+      name: t("adventure.underwaterWorld"),
       icon: Heart,
-      description: "Explore coral kingdoms",
+      description: t("adventure.underwaterWorldDesc"),
     },
   ];
 
@@ -188,26 +166,89 @@ const BookBuilder = () => {
     return gmailPattern.test(email);
   };
 
-  const handleActivityToggle = (activity: string) => {
-    const currentActivities = formData.activities;
+  const addExperience = () => {
+    const newExperience: ExperienceDetail = {
+      id: Date.now().toString(),
+      title: "",
+      description: "",
+      activities: [],
+      characters: "",
+      customActivities: [],
+      images: [],
+      imageDescription: "",
+    };
+    updateFormData("experiences", [...formData.experiences, newExperience]);
+  };
+
+  const updateExperience = (
+    id: string,
+    field: keyof ExperienceDetail,
+    value: any,
+  ) => {
+    const updated = formData.experiences.map((exp) =>
+      exp.id === id ? { ...exp, [field]: value } : exp,
+    );
+    updateFormData("experiences", updated);
+  };
+
+  const removeExperience = (id: string) => {
+    const updated = formData.experiences.filter((exp) => exp.id !== id);
+    updateFormData("experiences", updated);
+  };
+
+  const toggleExperienceActivity = (experienceId: string, activity: string) => {
+    const experience = formData.experiences.find(
+      (exp) => exp.id === experienceId,
+    );
+    if (!experience) return;
+
+    const currentActivities = experience.activities;
     const updated = currentActivities.includes(activity)
       ? currentActivities.filter((a) => a !== activity)
       : [...currentActivities, activity];
-    updateFormData("activities", updated);
+
+    updateExperience(experienceId, "activities", updated);
   };
 
-  const addPersonalExperience = (experience: string) => {
-    if (experience.trim()) {
-      updateFormData("personalExperiences", [
-        ...formData.personalExperiences,
-        experience.trim(),
-      ]);
-    }
+  const addCustomActivity = (experienceId: string, activity: string) => {
+    if (!activity.trim()) return;
+
+    const experience = formData.experiences.find(
+      (exp) => exp.id === experienceId,
+    );
+    if (!experience) return;
+
+    const updated = [...experience.customActivities, activity.trim()];
+    updateExperience(experienceId, "customActivities", updated);
   };
 
-  const removePersonalExperience = (index: number) => {
-    const updated = formData.personalExperiences.filter((_, i) => i !== index);
-    updateFormData("personalExperiences", updated);
+  const removeCustomActivity = (experienceId: string, index: number) => {
+    const experience = formData.experiences.find(
+      (exp) => exp.id === experienceId,
+    );
+    if (!experience) return;
+
+    const updated = experience.customActivities.filter((_, i) => i !== index);
+    updateExperience(experienceId, "customActivities", updated);
+  };
+
+  const handleImageUpload = (experienceId: string, files: FileList | null) => {
+    if (!files) return;
+
+    const experience = formData.experiences.find(
+      (exp) => exp.id === experienceId,
+    );
+    if (!experience) return;
+
+    const newImages: ActivityImage[] = Array.from(files).map((file) => ({
+      file,
+      description: "",
+    }));
+
+    updateExperience(experienceId, "images", [
+      ...experience.images,
+      ...newImages,
+    ]);
   };
 
   const nextStep = () => {
@@ -222,12 +263,13 @@ const BookBuilder = () => {
     }
   };
 
-  const confirmOrder = (type: "digital" | "printed") => {
-    localStorage.setItem(
-      "adventureBookData",
-      JSON.stringify({ ...formData, orderType: type }),
-    );
-    setShowConfirmation(false);
+  const handleSubmit = () => {
+    const finalData = {
+      ...formData,
+      finalAdventureType:
+        formData.adventureType || formData.customAdventureType,
+    };
+    localStorage.setItem("adventureBookData", JSON.stringify(finalData));
     navigate("/preview");
   };
 
@@ -242,54 +284,50 @@ const BookBuilder = () => {
       case 2:
         return formData.childName && formData.childAge && formData.childGender;
       case 3:
-        return formData.adventureType && formData.location;
+        return (
+          (formData.adventureType || formData.customAdventureType) &&
+          formData.location
+        );
       case 4:
         return true; // Optional details
       case 5:
-        return true; // Optional activity details
+        return true; // Optional experience details
       default:
         return false;
     }
   };
 
+  const getStepTitle = () => {
+    switch (currentStep) {
+      case 1:
+        return t("form.step1");
+      case 2:
+        return t("form.step2");
+      case 3:
+        return t("form.step3");
+      case 4:
+        return t("form.step4");
+      case 5:
+        return t("form.step5");
+      default:
+        return "";
+    }
+  };
+
+  const RequiredStar = () => <span className="text-red-500 ml-1">*</span>;
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-secondary/30 to-adventure-yellow/20">
-      {/* Header */}
-      <header className="container mx-auto px-4 py-6">
-        <nav className="flex items-center justify-between">
-          <Link to="/" className="flex items-center space-x-2">
-            <div className="w-10 h-10 rounded-full adventure-gradient flex items-center justify-center">
-              <BookOpen className="w-5 h-5 text-white" />
-            </div>
-            <span className="text-xl font-bold adventure-text-gradient">
-              Personalized Adventure Book
-            </span>
-          </Link>
-          <div className="flex items-center space-x-4">
-            <div className="text-sm text-foreground/70">
-              Step {currentStep} of {totalSteps}
-            </div>
-            <Button
-              variant="ghost"
-              size="sm"
-              asChild
-              className="text-foreground/70 hover:text-foreground"
-            >
-              <Link to="/" className="flex items-center space-x-1">
-                <X className="w-4 h-4" />
-                <span>Cancel</span>
-              </Link>
-            </Button>
-          </div>
-        </nav>
-      </header>
+      <Header />
 
       <div className="container mx-auto px-4 py-8 max-w-4xl">
         {/* Progress Bar */}
         <div className="mb-8">
           <div className="flex justify-between text-sm text-foreground/70 mb-2">
-            <span>Create Your Adventure</span>
-            <span>{Math.round(progress)}% Complete</span>
+            <span>{t("nav.examples")}</span>
+            <span>
+              {Math.round(progress)}% {t("form.complete")}
+            </span>
           </div>
           <Progress value={progress} className="h-2" />
         </div>
@@ -297,48 +335,42 @@ const BookBuilder = () => {
         <Card className="border-0 shadow-lg">
           <CardHeader className="text-center pb-6">
             <CardTitle className="text-2xl md:text-3xl">
-              {currentStep === 1 && "Let's Start With You"}
-              {currentStep === 2 && "About Your Little Hero"}
-              {currentStep === 3 && "Choose the Adventure"}
-              {currentStep === 4 && "Add Personal Touches"}
-              {currentStep === 5 && "Customize Your Activities"}
+              {getStepTitle()}
             </CardTitle>
-            <p className="text-foreground/70">
-              {currentStep === 1 &&
-                "We need your information to create and deliver the book"}
-              {currentStep === 2 && "Tell us about the star of this adventure"}
-              {currentStep === 3 &&
-                "What kind of magical journey should we create?"}
-              {currentStep === 4 &&
-                "Make it extra special with these personal details"}
-              {currentStep === 5 &&
-                "Add details, characters, and images for each activity"}
-            </p>
           </CardHeader>
 
           <CardContent className="space-y-6">
             {/* Step 1: Parent Information */}
             {currentStep === 1 && (
               <div className="space-y-6">
-                <div className="flex items-center space-x-2 text-adventure-purple">
-                  <User className="w-5 h-5" />
-                  <h3 className="font-semibold">Parent Information</h3>
+                <div className="flex items-center justify-center mb-6">
+                  <div className="w-16 h-16 rounded-full bg-adventure-blue/20 text-adventure-blue flex items-center justify-center">
+                    <User className="w-8 h-8" />
+                  </div>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <Label htmlFor="parentName">Your Name *</Label>
+                <div className="space-y-4">
+                  <div>
+                    <Label htmlFor="parentName">
+                      {t("form.parentName")}
+                      <RequiredStar />
+                    </Label>
                     <Input
                       id="parentName"
                       value={formData.parentName}
                       onChange={(e) =>
                         updateFormData("parentName", e.target.value)
                       }
-                      placeholder="Enter your full name"
+                      placeholder={t("form.parentName")}
+                      className="mt-1"
                     />
                   </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="parentEmail">Gmail Address *</Label>
+
+                  <div>
+                    <Label htmlFor="parentEmail">
+                      {t("form.email")}
+                      <RequiredStar />
+                    </Label>
                     <Input
                       id="parentEmail"
                       type="email"
@@ -347,20 +379,14 @@ const BookBuilder = () => {
                         updateFormData("parentEmail", e.target.value)
                       }
                       onBlur={() => setEmailTouched(true)}
-                      placeholder="your@gmail.com"
-                      className={
-                        emailTouched &&
-                        !isValidGmail(formData.parentEmail) &&
-                        formData.parentEmail
-                          ? "border-red-500"
-                          : ""
-                      }
+                      placeholder="your.name@gmail.com"
+                      className="mt-1"
                     />
                     {emailTouched &&
                       formData.parentEmail &&
                       !isValidGmail(formData.parentEmail) && (
-                        <p className="text-red-500 text-sm">
-                          Please enter a valid Gmail address
+                        <p className="text-red-500 text-sm mt-1">
+                          {t("form.emailInvalid")}
                         </p>
                       )}
                   </div>
@@ -371,68 +397,72 @@ const BookBuilder = () => {
             {/* Step 2: Child Information */}
             {currentStep === 2 && (
               <div className="space-y-6">
-                <div className="flex items-center space-x-2 text-adventure-green">
-                  <Baby className="w-5 h-5" />
-                  <h3 className="font-semibold">Child Information</h3>
+                <div className="flex items-center justify-center mb-6">
+                  <div className="w-16 h-16 rounded-full bg-adventure-pink/20 text-adventure-pink flex items-center justify-center">
+                    <Baby className="w-8 h-8" />
+                  </div>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <Label htmlFor="childName">Child's Name *</Label>
+                <div className="space-y-4">
+                  <div>
+                    <Label htmlFor="childName">
+                      {t("form.childName")}
+                      <RequiredStar />
+                    </Label>
                     <Input
                       id="childName"
                       value={formData.childName}
                       onChange={(e) =>
                         updateFormData("childName", e.target.value)
                       }
-                      placeholder="Enter your child's name"
+                      placeholder={t("form.childName")}
+                      className="mt-1"
                     />
                   </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="childAge">Age *</Label>
-                    <Select
-                      value={formData.childAge}
-                      onValueChange={(value) =>
-                        updateFormData("childAge", value)
-                      }
-                    >
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select age" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="3">3 years old</SelectItem>
-                        <SelectItem value="4">4 years old</SelectItem>
-                        <SelectItem value="5">5 years old</SelectItem>
-                        <SelectItem value="6">6 years old</SelectItem>
-                        <SelectItem value="7">7 years old</SelectItem>
-                        <SelectItem value="8">8 years old</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                </div>
 
-                <div className="space-y-3">
-                  <Label>Gender *</Label>
-                  <RadioGroup
-                    value={formData.childGender}
-                    onValueChange={(value) =>
-                      updateFormData("childGender", value)
-                    }
-                    className="flex space-x-6"
-                  >
-                    <div className="flex items-center space-x-2">
-                      <RadioGroupItem value="boy" id="boy" />
-                      <Label htmlFor="boy">Boy</Label>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <RadioGroupItem value="girl" id="girl" />
-                      <Label htmlFor="girl">Girl</Label>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <RadioGroupItem value="other" id="other" />
-                      <Label htmlFor="other">Other</Label>
-                    </div>
-                  </RadioGroup>
+                  <div>
+                    <Label htmlFor="childAge">
+                      {t("form.age")}
+                      <RequiredStar />
+                    </Label>
+                    <Input
+                      id="childAge"
+                      type="number"
+                      value={formData.childAge}
+                      onChange={(e) =>
+                        updateFormData("childAge", e.target.value)
+                      }
+                      placeholder="5"
+                      className="mt-1"
+                    />
+                  </div>
+
+                  <div>
+                    <Label>
+                      {t("form.gender")}
+                      <RequiredStar />
+                    </Label>
+                    <RadioGroup
+                      value={formData.childGender}
+                      onValueChange={(value) =>
+                        updateFormData("childGender", value)
+                      }
+                      className="mt-2"
+                    >
+                      <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="boy" id="boy" />
+                        <Label htmlFor="boy">{t("form.boy")}</Label>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="girl" id="girl" />
+                        <Label htmlFor="girl">{t("form.girl")}</Label>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="other" id="other" />
+                        <Label htmlFor="other">{t("form.other")}</Label>
+                      </div>
+                    </RadioGroup>
+                  </div>
                 </div>
               </div>
             )}
@@ -440,153 +470,79 @@ const BookBuilder = () => {
             {/* Step 3: Adventure Selection */}
             {currentStep === 3 && (
               <div className="space-y-6">
-                <div className="flex items-center space-x-2 text-adventure-blue">
-                  <MapPin className="w-5 h-5" />
-                  <h3 className="font-semibold">Adventure Details</h3>
-                </div>
-
-                <div className="space-y-4">
-                  <Label>Choose Adventure Type *</Label>
-                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {adventureTypes.map((adventure) => (
-                      <Card
-                        key={adventure.id}
-                        className={`cursor-pointer transition-all duration-200 hover:scale-105 ${
-                          formData.adventureType === adventure.id
-                            ? "border-primary bg-primary/10"
-                            : "border-border hover:border-primary/50"
-                        }`}
-                        onClick={() =>
-                          updateFormData("adventureType", adventure.id)
-                        }
-                      >
-                        <CardContent className="p-4 text-center">
-                          <adventure.icon className="w-8 h-8 mx-auto mb-2 text-primary" />
-                          <h4 className="font-semibold text-sm mb-1">
-                            {adventure.name}
-                          </h4>
-                          <p className="text-xs text-foreground/70">
-                            {adventure.description}
-                          </p>
-                        </CardContent>
-                      </Card>
-                    ))}
+                <div className="flex items-center justify-center mb-6">
+                  <div className="w-16 h-16 rounded-full bg-adventure-purple/20 text-adventure-purple flex items-center justify-center">
+                    <MapPin className="w-8 h-8" />
                   </div>
                 </div>
 
-                <div className="space-y-2">
-                  <Label htmlFor="location">Setting or Location *</Label>
-                  <Input
-                    id="location"
-                    value={formData.location}
-                    onChange={(e) => updateFormData("location", e.target.value)}
-                    placeholder="e.g., Enchanted Forest, Mars Colony, Grand Canyon"
-                  />
-                </div>
-
-                <div className="space-y-3">
-                  <Label>Key Activities</Label>
-                  <p className="text-sm text-foreground/70">
-                    Select activities your child will experience in this
-                    adventure
-                  </p>
-
-                  {/* Pre-defined Activities */}
-                  <div className="grid md:grid-cols-2 gap-3">
-                    {activityOptions.map((activity) => (
-                      <div
-                        key={activity}
-                        className="flex items-center space-x-2"
-                      >
-                        <Checkbox
-                          id={activity}
-                          checked={formData.activities.includes(activity)}
-                          onCheckedChange={() => handleActivityToggle(activity)}
-                        />
-                        <Label htmlFor={activity} className="text-sm">
-                          {activity}
-                        </Label>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Custom Activities */}
-                  <div className="border-t pt-4 space-y-3">
-                    <Label className="text-sm font-medium">
-                      Add Custom Activities
+                <div className="space-y-6">
+                  <div>
+                    <Label>
+                      {t("form.adventureType")}
+                      <RequiredStar />
                     </Label>
-
-                    {formData.activities.filter(
-                      (activity) => !activityOptions.includes(activity),
-                    ).length > 0 && (
-                      <div className="space-y-2">
-                        {formData.activities
-                          .filter(
-                            (activity) => !activityOptions.includes(activity),
-                          )
-                          .map((activity, index) => (
-                            <div
-                              key={`custom-${index}`}
-                              className="flex items-center space-x-2 bg-secondary/50 rounded-lg p-3"
-                            >
-                              <span className="flex-1 text-sm">{activity}</span>
-                              <Button
-                                type="button"
-                                variant="ghost"
-                                size="sm"
-                                onClick={() => {
-                                  const updated = formData.activities.filter(
-                                    (a) => a !== activity,
-                                  );
-                                  updateFormData("activities", updated);
-                                }}
-                                className="h-6 w-6 p-0"
-                              >
-                                <X className="w-3 h-3" />
-                              </Button>
+                    <div className="grid md:grid-cols-2 gap-4 mt-2">
+                      {adventureTypes.map((adventure) => (
+                        <Card
+                          key={adventure.id}
+                          className={`cursor-pointer transition-all hover:shadow-md ${
+                            formData.adventureType === adventure.id
+                              ? "border-primary bg-primary/5"
+                              : "border-border"
+                          }`}
+                          onClick={() => {
+                            updateFormData("adventureType", adventure.id);
+                            updateFormData("customAdventureType", "");
+                          }}
+                        >
+                          <CardContent className="p-4 flex items-center space-x-3">
+                            <adventure.icon className="w-6 h-6 text-primary" />
+                            <div>
+                              <h4 className="font-medium">{adventure.name}</h4>
+                              <p className="text-sm text-foreground/70">
+                                {adventure.description}
+                              </p>
                             </div>
-                          ))}
-                      </div>
-                    )}
-
-                    <div className="flex space-x-2">
-                      <Input
-                        placeholder="e.g., Custom treasure hunt, Special mission..."
-                        onKeyPress={(e) => {
-                          if (e.key === "Enter") {
-                            e.preventDefault();
-                            const target = e.target as HTMLInputElement;
-                            if (target.value.trim()) {
-                              updateFormData("activities", [
-                                ...formData.activities,
-                                target.value.trim(),
-                              ]);
-                              target.value = "";
-                            }
-                          }
-                        }}
-                      />
-                      <Button
-                        type="button"
-                        variant="outline"
-                        onClick={(e) => {
-                          const input = (
-                            e.target as HTMLElement
-                          ).parentElement?.querySelector(
-                            "input",
-                          ) as HTMLInputElement;
-                          if (input && input.value.trim()) {
-                            updateFormData("activities", [
-                              ...formData.activities,
-                              input.value.trim(),
-                            ]);
-                            input.value = "";
-                          }
-                        }}
-                      >
-                        Add
-                      </Button>
+                          </CardContent>
+                        </Card>
+                      ))}
                     </div>
+
+                    <div className="mt-4">
+                      <Label htmlFor="customAdventure" className="text-sm">
+                        {t("form.customAdventure")}
+                      </Label>
+                      <Textarea
+                        id="customAdventure"
+                        value={formData.customAdventureType}
+                        onChange={(e) => {
+                          updateFormData("customAdventureType", e.target.value);
+                          if (e.target.value) {
+                            updateFormData("adventureType", "");
+                          }
+                        }}
+                        placeholder={t("form.customAdventurePlaceholder")}
+                        className="mt-1"
+                        rows={3}
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <Label htmlFor="location">
+                      {t("form.location")}
+                      <RequiredStar />
+                    </Label>
+                    <Input
+                      id="location"
+                      value={formData.location}
+                      onChange={(e) =>
+                        updateFormData("location", e.target.value)
+                      }
+                      placeholder="Magical Kingdom, Space Station, Underwater City..."
+                      className="mt-1"
+                    />
                   </div>
                 </div>
               </div>
@@ -595,15 +551,16 @@ const BookBuilder = () => {
             {/* Step 4: Personal Touches */}
             {currentStep === 4 && (
               <div className="space-y-6">
-                <div className="flex items-center space-x-2 text-adventure-pink">
-                  <Sparkles className="w-5 h-5" />
-                  <h3 className="font-semibold">Personal Touches</h3>
+                <div className="flex items-center justify-center mb-6">
+                  <div className="w-16 h-16 rounded-full bg-adventure-green/20 text-adventure-green flex items-center justify-center">
+                    <Heart className="w-8 h-8" />
+                  </div>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
+                <div className="space-y-4">
+                  <div>
                     <Label htmlFor="favoriteColor">
-                      Child's Favorite Color
+                      {t("form.favoriteColor")}
                     </Label>
                     <Input
                       id="favoriteColor"
@@ -611,352 +568,301 @@ const BookBuilder = () => {
                       onChange={(e) =>
                         updateFormData("favoriteColor", e.target.value)
                       }
-                      placeholder="e.g., Purple, Blue, Pink"
+                      placeholder="Blue, Pink, Rainbow..."
+                      className="mt-1"
                     />
                   </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="petName">Pet's Name (if any)</Label>
+
+                  <div>
+                    <Label htmlFor="petName">{t("form.petName")}</Label>
                     <Input
                       id="petName"
                       value={formData.petName}
                       onChange={(e) =>
                         updateFormData("petName", e.target.value)
                       }
-                      placeholder="e.g., Fluffy, Buddy"
+                      placeholder="Fluffy, Rex, Whiskers..."
+                      className="mt-1"
+                    />
+                  </div>
+
+                  <div>
+                    <Label htmlFor="includeFriends">
+                      {t("form.includeFriends")}
+                    </Label>
+                    <Input
+                      id="includeFriends"
+                      value={formData.includeFriends}
+                      onChange={(e) =>
+                        updateFormData("includeFriends", e.target.value)
+                      }
+                      placeholder="Mom, Dad, Sister Emma, Best friend Jake..."
+                      className="mt-1"
+                    />
+                  </div>
+
+                  <div>
+                    <Label htmlFor="specialDetails">
+                      {t("form.specialDetails")}
+                    </Label>
+                    <Textarea
+                      id="specialDetails"
+                      value={formData.specialDetails}
+                      onChange={(e) =>
+                        updateFormData("specialDetails", e.target.value)
+                      }
+                      placeholder="Special interests, hobbies, funny moments..."
+                      className="mt-1"
+                      rows={3}
                     />
                   </div>
                 </div>
+              </div>
+            )}
 
-                <div className="space-y-2">
-                  <Label htmlFor="includeFriends">
-                    Friends or Family to Include
-                  </Label>
-                  <Input
-                    id="includeFriends"
-                    value={formData.includeFriends}
-                    onChange={(e) =>
-                      updateFormData("includeFriends", e.target.value)
-                    }
-                    placeholder="e.g., Sister Emma, Best friend Jake, Grandma"
-                  />
+            {/* Step 5: Experience Details */}
+            {currentStep === 5 && (
+              <div className="space-y-6">
+                <div className="flex items-center justify-center mb-6">
+                  <div className="w-16 h-16 rounded-full bg-adventure-yellow/20 text-adventure-yellow flex items-center justify-center">
+                    <Sparkles className="w-8 h-8" />
+                  </div>
                 </div>
 
-                <div className="space-y-2">
-                  <Label htmlFor="characters">
-                    Favorite Characters or Themes
-                  </Label>
-                  <Textarea
-                    id="characters"
-                    value={formData.characters}
-                    onChange={(e) =>
-                      updateFormData("characters", e.target.value)
-                    }
-                    placeholder="e.g., Talking animals, Superheroes, Magic spells, Robots"
-                    rows={3}
-                  />
-                </div>
+                <div className="space-y-6">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-lg font-medium">
+                      {t("form.personalExperiences")}
+                    </h3>
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      onClick={addExperience}
+                      className="flex items-center space-x-2"
+                    >
+                      <Plus className="w-4 h-4" />
+                      <span>{t("form.addExperience")}</span>
+                    </Button>
+                  </div>
 
-                <div className="space-y-3">
-                  <Label>Personal Adventures or Experiences</Label>
-                  <p className="text-sm text-foreground/70">
-                    Add real adventures or experiences your child has had that
-                    can be included in the story
-                  </p>
-
-                  {formData.personalExperiences.length > 0 && (
-                    <div className="space-y-2">
-                      {formData.personalExperiences.map((experience, index) => (
-                        <div
-                          key={index}
-                          className="flex items-center space-x-2 bg-secondary/50 rounded-lg p-3"
-                        >
-                          <span className="flex-1 text-sm">{experience}</span>
+                  {formData.experiences.map((experience, index) => (
+                    <Card
+                      key={experience.id}
+                      className="border-2 border-dashed border-adventure-blue/30"
+                    >
+                      <CardHeader className="pb-4">
+                        <div className="flex items-center justify-between">
+                          <h4 className="font-medium">
+                            Experience {index + 1}
+                          </h4>
                           <Button
                             type="button"
                             variant="ghost"
                             size="sm"
-                            onClick={() => removePersonalExperience(index)}
-                            className="h-6 w-6 p-0"
+                            onClick={() => removeExperience(experience.id)}
+                            className="text-red-500 hover:text-red-700"
                           >
-                            <X className="w-3 h-3" />
+                            <Trash2 className="w-4 h-4" />
                           </Button>
                         </div>
-                      ))}
+                      </CardHeader>
+                      <CardContent className="space-y-4">
+                        <div>
+                          <Label>{t("form.activityName")}</Label>
+                          <Input
+                            value={experience.title}
+                            onChange={(e) =>
+                              updateExperience(
+                                experience.id,
+                                "title",
+                                e.target.value,
+                              )
+                            }
+                            placeholder="Swimming with dolphins, Finding treasure..."
+                            className="mt-1"
+                          />
+                        </div>
+
+                        <div>
+                          <Label>{t("form.activityDetails")}</Label>
+                          <Textarea
+                            value={experience.description}
+                            onChange={(e) =>
+                              updateExperience(
+                                experience.id,
+                                "description",
+                                e.target.value,
+                              )
+                            }
+                            placeholder="Describe what happens in this part of the adventure..."
+                            className="mt-1"
+                            rows={3}
+                          />
+                        </div>
+
+                        <div>
+                          <Label>{t("form.selectActivities")}</Label>
+                          <div className="grid grid-cols-2 md:grid-cols-3 gap-2 mt-2">
+                            {activityOptions.map((activity) => (
+                              <div
+                                key={activity}
+                                className="flex items-center space-x-2"
+                              >
+                                <Checkbox
+                                  id={`${experience.id}-${activity}`}
+                                  checked={experience.activities.includes(
+                                    activity,
+                                  )}
+                                  onCheckedChange={() =>
+                                    toggleExperienceActivity(
+                                      experience.id,
+                                      activity,
+                                    )
+                                  }
+                                />
+                                <Label
+                                  htmlFor={`${experience.id}-${activity}`}
+                                  className="text-sm"
+                                >
+                                  {activity}
+                                </Label>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        <div>
+                          <Label>{t("form.customActivities")}</Label>
+                          <div className="space-y-2 mt-2">
+                            {experience.customActivities.map(
+                              (activity, actIndex) => (
+                                <div
+                                  key={actIndex}
+                                  className="flex items-center space-x-2"
+                                >
+                                  <Input value={activity} readOnly />
+                                  <Button
+                                    type="button"
+                                    variant="ghost"
+                                    size="sm"
+                                    onClick={() =>
+                                      removeCustomActivity(
+                                        experience.id,
+                                        actIndex,
+                                      )
+                                    }
+                                    className="text-red-500"
+                                  >
+                                    <X className="w-4 h-4" />
+                                  </Button>
+                                </div>
+                              ),
+                            )}
+                            <Input
+                              placeholder="Add custom activity..."
+                              onKeyPress={(e) => {
+                                if (e.key === "Enter") {
+                                  const target = e.target as HTMLInputElement;
+                                  addCustomActivity(
+                                    experience.id,
+                                    target.value,
+                                  );
+                                  target.value = "";
+                                }
+                              }}
+                            />
+                          </div>
+                        </div>
+
+                        <div>
+                          <Label>{t("form.activityCharacters")}</Label>
+                          <Input
+                            value={experience.characters}
+                            onChange={(e) =>
+                              updateExperience(
+                                experience.id,
+                                "characters",
+                                e.target.value,
+                              )
+                            }
+                            placeholder="Who's involved in this adventure?"
+                            className="mt-1"
+                          />
+                        </div>
+
+                        <div>
+                          <Label>{t("form.activityImageDesc")}</Label>
+                          <Textarea
+                            value={experience.imageDescription}
+                            onChange={(e) =>
+                              updateExperience(
+                                experience.id,
+                                "imageDescription",
+                                e.target.value,
+                              )
+                            }
+                            placeholder="Describe how you'd like this scene to look..."
+                            className="mt-1"
+                            rows={2}
+                          />
+                        </div>
+
+                        <div>
+                          <Label>{t("form.uploadImages")}</Label>
+                          <div className="mt-2 border-2 border-dashed border-gray-300 rounded-lg p-4">
+                            <input
+                              type="file"
+                              multiple
+                              accept="image/*"
+                              onChange={(e) =>
+                                handleImageUpload(experience.id, e.target.files)
+                              }
+                              className="hidden"
+                              id={`images-${experience.id}`}
+                            />
+                            <Label
+                              htmlFor={`images-${experience.id}`}
+                              className="cursor-pointer flex flex-col items-center space-y-2"
+                            >
+                              <Upload className="w-6 h-6 text-gray-400" />
+                              <span className="text-sm text-gray-500">
+                                Click to upload images or drag and drop
+                              </span>
+                            </Label>
+                            {experience.images.length > 0 && (
+                              <div className="mt-2 grid grid-cols-2 md:grid-cols-4 gap-2">
+                                {experience.images.map((img, imgIndex) => (
+                                  <div key={imgIndex} className="relative">
+                                    <img
+                                      src={URL.createObjectURL(img.file)}
+                                      alt="Upload preview"
+                                      className="w-full h-20 object-cover rounded"
+                                    />
+                                  </div>
+                                ))}
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+
+                  {formData.experiences.length === 0 && (
+                    <div className="text-center py-8 text-foreground/70">
+                      <p>
+                        No experiences added yet. Click "Add Experience" to get
+                        started!
+                      </p>
                     </div>
                   )}
-
-                  <div className="flex space-x-2">
-                    <Input
-                      placeholder="e.g., Visited the zoo, went camping, learned to swim..."
-                      onKeyPress={(e) => {
-                        if (e.key === "Enter") {
-                          e.preventDefault();
-                          const target = e.target as HTMLInputElement;
-                          addPersonalExperience(target.value);
-                          target.value = "";
-                        }
-                      }}
-                    />
-                    <Button
-                      type="button"
-                      variant="outline"
-                      onClick={(e) => {
-                        const input = (
-                          e.target as HTMLElement
-                        ).parentElement?.querySelector(
-                          "input",
-                        ) as HTMLInputElement;
-                        if (input) {
-                          addPersonalExperience(input.value);
-                          input.value = "";
-                        }
-                      }}
-                    >
-                      Add
-                    </Button>
-                  </div>
                 </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="specialDetails">
-                    Special Details or Inside Jokes
-                  </Label>
-                  <Textarea
-                    id="specialDetails"
-                    value={formData.specialDetails}
-                    onChange={(e) =>
-                      updateFormData("specialDetails", e.target.value)
-                    }
-                    placeholder="Any special details, inside jokes, or favorite things your child loves"
-                    rows={3}
-                  />
-                </div>
-              </div>
-            )}
-
-            {/* Step 5: Activity Details */}
-            {currentStep === 5 && (
-              <div className="space-y-6">
-                <div className="flex items-center space-x-2 text-adventure-orange">
-                  <MapPin className="w-5 h-5" />
-                  <h3 className="font-semibold">Activity Details</h3>
-                </div>
-
-                {formData.activities.length > 0 ? (
-                  <div className="space-y-6">
-                    {formData.activities.map((activity, index) => {
-                      const detail = formData.activityDetails.find(
-                        (d) => d.name === activity,
-                      ) || {
-                        name: activity,
-                        details: "",
-                        characters: "",
-                        imageDescription: "",
-                        images: [],
-                      };
-
-                      return (
-                        <Card key={index} className="p-6 bg-secondary/30">
-                          <h4 className="font-semibold mb-4 text-adventure-purple text-lg">
-                            {activity}
-                          </h4>
-                          <div className="space-y-4">
-                            <div>
-                              <Label className="text-sm font-medium">
-                                Activity Details
-                              </Label>
-                              <Textarea
-                                placeholder="Describe what happens during this activity..."
-                                value={detail.details}
-                                onChange={(e) => {
-                                  const updated =
-                                    formData.activityDetails.filter(
-                                      (d) => d.name !== activity,
-                                    );
-                                  updated.push({
-                                    ...detail,
-                                    details: e.target.value,
-                                  });
-                                  updateFormData("activityDetails", updated);
-                                }}
-                                rows={3}
-                              />
-                            </div>
-                            <div>
-                              <Label className="text-sm font-medium">
-                                Characters Involved
-                              </Label>
-                              <Input
-                                placeholder="Who is involved in this activity?"
-                                value={detail.characters}
-                                onChange={(e) => {
-                                  const updated =
-                                    formData.activityDetails.filter(
-                                      (d) => d.name !== activity,
-                                    );
-                                  updated.push({
-                                    ...detail,
-                                    characters: e.target.value,
-                                  });
-                                  updateFormData("activityDetails", updated);
-                                }}
-                              />
-                            </div>
-                            <div>
-                              <Label className="text-sm font-medium">
-                                Scene Description
-                              </Label>
-                              <Input
-                                placeholder="Describe the scene or image for this activity..."
-                                value={detail.imageDescription}
-                                onChange={(e) => {
-                                  const updated =
-                                    formData.activityDetails.filter(
-                                      (d) => d.name !== activity,
-                                    );
-                                  updated.push({
-                                    ...detail,
-                                    imageDescription: e.target.value,
-                                  });
-                                  updateFormData("activityDetails", updated);
-                                }}
-                              />
-                            </div>
-
-                            {/* Image Upload Section */}
-                            <div className="space-y-3">
-                              <Label className="text-sm font-medium">
-                                Upload Images (Optional)
-                              </Label>
-
-                              {detail.images && detail.images.length > 0 && (
-                                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                                  {detail.images.map((img, imgIndex) => (
-                                    <div key={imgIndex} className="space-y-2">
-                                      <div className="relative border-2 border-dashed border-gray-300 rounded-lg p-2">
-                                        <Image className="w-full h-20 object-cover rounded" />
-                                        <Button
-                                          type="button"
-                                          variant="ghost"
-                                          size="sm"
-                                          onClick={() => {
-                                            const updated =
-                                              formData.activityDetails.filter(
-                                                (d) => d.name !== activity,
-                                              );
-                                            const newImages =
-                                              detail.images.filter(
-                                                (_, i) => i !== imgIndex,
-                                              );
-                                            updated.push({
-                                              ...detail,
-                                              images: newImages,
-                                            });
-                                            updateFormData(
-                                              "activityDetails",
-                                              updated,
-                                            );
-                                          }}
-                                          className="absolute -top-1 -right-1 h-6 w-6 p-0 bg-red-500 text-white hover:bg-red-600"
-                                        >
-                                          <X className="w-3 h-3" />
-                                        </Button>
-                                      </div>
-                                      <Input
-                                        placeholder="Image description..."
-                                        value={img.description}
-                                        onChange={(e) => {
-                                          const updated =
-                                            formData.activityDetails.filter(
-                                              (d) => d.name !== activity,
-                                            );
-                                          const newImages = [...detail.images];
-                                          newImages[imgIndex] = {
-                                            ...img,
-                                            description: e.target.value,
-                                          };
-                                          updated.push({
-                                            ...detail,
-                                            images: newImages,
-                                          });
-                                          updateFormData(
-                                            "activityDetails",
-                                            updated,
-                                          );
-                                        }}
-                                        className="text-xs"
-                                      />
-                                    </div>
-                                  ))}
-                                </div>
-                              )}
-
-                              <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center">
-                                <input
-                                  type="file"
-                                  accept="image/*"
-                                  multiple
-                                  onChange={(e) => {
-                                    const files = Array.from(
-                                      e.target.files || [],
-                                    );
-                                    if (files.length > 0) {
-                                      const updated =
-                                        formData.activityDetails.filter(
-                                          (d) => d.name !== activity,
-                                        );
-                                      const newImages = files.map((file) => ({
-                                        file,
-                                        description: "",
-                                      }));
-                                      updated.push({
-                                        ...detail,
-                                        images: [
-                                          ...(detail.images || []),
-                                          ...newImages,
-                                        ],
-                                      });
-                                      updateFormData(
-                                        "activityDetails",
-                                        updated,
-                                      );
-                                    }
-                                  }}
-                                  className="hidden"
-                                  id={`file-${index}`}
-                                />
-                                <label
-                                  htmlFor={`file-${index}`}
-                                  className="cursor-pointer"
-                                >
-                                  <Upload className="w-8 h-8 mx-auto mb-2 text-gray-400" />
-                                  <p className="text-sm text-gray-600">
-                                    Click to upload images or drag and drop
-                                  </p>
-                                  <p className="text-xs text-gray-500">
-                                    PNG, JPG up to 10MB each
-                                  </p>
-                                </label>
-                              </div>
-                            </div>
-                          </div>
-                        </Card>
-                      );
-                    })}
-                  </div>
-                ) : (
-                  <div className="text-center py-8">
-                    <p className="text-foreground/70">
-                      No activities selected. Go back to step 3 to add
-                      activities.
-                    </p>
-                  </div>
-                )}
               </div>
             )}
 
             {/* Navigation Buttons */}
-            <div className="flex justify-between pt-6 border-t">
+            <div className="flex justify-between pt-6">
               <Button
                 variant="outline"
                 onClick={prevStep}
@@ -964,7 +870,7 @@ const BookBuilder = () => {
                 className="flex items-center space-x-2"
               >
                 <ArrowLeft className="w-4 h-4" />
-                <span>Previous</span>
+                <span>{t("form.previous")}</span>
               </Button>
 
               {currentStep < totalSteps ? (
@@ -973,151 +879,23 @@ const BookBuilder = () => {
                   disabled={!canProceed()}
                   className="flex items-center space-x-2"
                 >
-                  <span>Next</span>
+                  <span>{t("form.next")}</span>
                   <ArrowRight className="w-4 h-4" />
                 </Button>
               ) : (
                 <Button
-                  onClick={() => {
-                    localStorage.setItem(
-                      "adventureBookData",
-                      JSON.stringify(formData),
-                    );
-                    navigate("/preview");
-                  }}
-                  className="flex items-center space-x-2 bg-primary hover:bg-primary/90"
+                  onClick={handleSubmit}
+                  disabled={!canProceed()}
+                  className="flex items-center space-x-2"
                 >
-                  <Sparkles className="w-4 h-4" />
-                  <span>Review My Book</span>
+                  <span>{t("form.reviewBook")}</span>
+                  <ArrowRight className="w-4 h-4" />
                 </Button>
               )}
             </div>
           </CardContent>
         </Card>
       </div>
-
-      {/* Confirmation Dialog */}
-      <Dialog open={showConfirmation} onOpenChange={setShowConfirmation}>
-        <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
-          <DialogHeader>
-            <DialogTitle>Review Your Book Details</DialogTitle>
-            <DialogDescription>
-              Please review your book details and choose your preferred format.
-            </DialogDescription>
-          </DialogHeader>
-
-          <div className="space-y-4">
-            <div className="grid md:grid-cols-2 gap-4">
-              <div>
-                <h4 className="font-semibold mb-2">Parent Information</h4>
-                <p className="text-sm text-foreground/70">
-                  Name: {formData.parentName}
-                </p>
-                <p className="text-sm text-foreground/70">
-                  Email: {formData.parentEmail}
-                </p>
-              </div>
-              <div>
-                <h4 className="font-semibold mb-2">Child Information</h4>
-                <p className="text-sm text-foreground/70">
-                  Name: {formData.childName}
-                </p>
-                <p className="text-sm text-foreground/70">
-                  Age: {formData.childAge} years old
-                </p>
-                <p className="text-sm text-foreground/70">
-                  Gender: {formData.childGender}
-                </p>
-              </div>
-            </div>
-
-            <div>
-              <h4 className="font-semibold mb-2">Adventure Details</h4>
-              <p className="text-sm text-foreground/70">
-                Type: {formData.adventureType}
-              </p>
-              <p className="text-sm text-foreground/70">
-                Location: {formData.location}
-              </p>
-              {formData.activities.length > 0 && (
-                <p className="text-sm text-foreground/70">
-                  Activities: {formData.activities.join(", ")}
-                </p>
-              )}
-            </div>
-
-            {formData.personalExperiences.length > 0 && (
-              <div>
-                <h4 className="font-semibold mb-2">Personal Experiences</h4>
-                <ul className="text-sm text-foreground/70 space-y-1">
-                  {formData.personalExperiences.map((exp, index) => (
-                    <li key={index}>• {exp}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </div>
-
-          <DialogFooter className="flex flex-col space-y-4">
-            <div className="text-center">
-              <p className="text-sm text-foreground/70 mb-4">
-                Choose your book format:
-              </p>
-              <div className="grid md:grid-cols-2 gap-4">
-                <Card className="border-2 border-border hover:border-primary/50 transition-colors p-4">
-                  <div className="text-center mb-4">
-                    <Download className="w-8 h-8 text-adventure-blue mx-auto mb-2" />
-                    <h4 className="font-semibold">Digital Book</h4>
-                    <p className="text-sm text-foreground/70">
-                      Instant PDF download
-                    </p>
-                    <div className="text-xl font-bold text-primary mt-2">
-                      $12.99
-                    </div>
-                  </div>
-                  <Button
-                    onClick={() => confirmOrder("digital")}
-                    className="w-full"
-                    variant="outline"
-                  >
-                    Order Digital
-                  </Button>
-                </Card>
-
-                <Card className="border-2 border-primary p-4">
-                  <div className="text-center mb-4">
-                    <Printer className="w-8 h-8 text-adventure-green mx-auto mb-2" />
-                    <h4 className="font-semibold">Printed Book</h4>
-                    <p className="text-sm text-foreground/70">
-                      Professional hardcover
-                    </p>
-                    <div className="text-xl font-bold text-primary mt-2">
-                      $24.99
-                    </div>
-                    <p className="text-xs text-foreground/60">
-                      Free delivery in Europe
-                    </p>
-                  </div>
-                  <Button
-                    onClick={() => confirmOrder("printed")}
-                    className="w-full bg-primary hover:bg-primary/90"
-                  >
-                    Order Printed
-                  </Button>
-                </Card>
-              </div>
-            </div>
-
-            <Button
-              variant="outline"
-              onClick={() => setShowConfirmation(false)}
-              className="self-center"
-            >
-              Back to Edit
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
     </div>
   );
 };
