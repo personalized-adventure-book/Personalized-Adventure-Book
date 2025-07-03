@@ -111,6 +111,7 @@ const BookBuilder = () => {
   const [expandedExperiences, setExpandedExperiences] = useState<Set<string>>(
     new Set(),
   );
+  const [hasAttemptedProceed, setHasAttemptedProceed] = useState(false);
   const hasInitializedRef = useRef(false);
   const [formData, setFormData] = useState<FormData>({
     parentName: "",
