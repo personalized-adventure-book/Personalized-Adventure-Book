@@ -1142,7 +1142,7 @@ const BookBuilder = () => {
                             <div>
                               <Label>
                                 {t("form.activityName")}
-                                {isFirst && <RequiredStar />}
+                                <RequiredStar />
                               </Label>
                               <Input
                                 value={experience.title}
@@ -1154,17 +1154,14 @@ const BookBuilder = () => {
                                   )
                                 }
                                 placeholder="Swimming with dolphins, Finding treasure..."
-                                className={`mt-1 ${isFirst && !experience.title && hasAttemptedProceed ? "border-red-300" : ""}`}
-                                required={isFirst}
+                                className={`mt-1 ${!experience.title && hasAttemptedProceed ? "border-red-300" : ""}`}
+                                required
                               />
-                              {isFirst &&
-                                !experience.title &&
-                                hasAttemptedProceed && (
-                                  <p className="text-xs text-red-500 mt-1">
-                                    This field is required for the first
-                                    experience
-                                  </p>
-                                )}
+                              {!experience.title && hasAttemptedProceed && (
+                                <p className="text-xs text-red-500 mt-1">
+                                  Experience name is required
+                                </p>
+                              )}
                             </div>
 
                             <div>
