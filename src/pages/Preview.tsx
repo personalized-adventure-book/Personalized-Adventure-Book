@@ -43,22 +43,101 @@ const Preview = () => {
   const navigate = useNavigate();
   const [bookData, setBookData] = useState<BookData | null>(null);
   const [showConfirmation, setShowConfirmation] = useState(false);
+  const [showAddressForm, setShowAddressForm] = useState(false);
+  const [showPayment, setShowPayment] = useState(false);
   const [orderType, setOrderType] = useState<"digital" | "printed" | null>(
     null,
   );
+  const [shippingAddress, setShippingAddress] = useState({
+    fullName: "",
+    street: "",
+    city: "",
+    postalCode: "",
+    country: "",
+    phone: "",
+  });
+  const [shippingCost, setShippingCost] = useState(0);
+
+  const getShippingCost = (country: string) => {
+    const europeanCountries = [
+      "france",
+      "germany",
+      "italy",
+      "spain",
+      "netherlands",
+      "belgium",
+      "austria",
+      "portugal",
+      "sweden",
+      "denmark",
+      "finland",
+      "norway",
+      "switzerland",
+    ];
+    if (europeanCountries.includes(country.toLowerCase())) {
+      return 0; // Free shipping in Europe
+    } else if (
+      country.toLowerCase() === "united states" ||
+      country.toLowerCase() === "canada"
+    ) {
+      return 15;
+    } else {
+      return 25; // Rest of world
+    }
+  };
 
   const handleOrderClick = (type: "digital" | "printed") => {
     setOrderType(type);
+    if (type === "printed") {
+      setShowAddressForm(true);
+    } else {
+      setShowPayment(true);
+    }
+  };
+
+  const handleAddressSubmit = () => {
+    const cost = getShippingCost(shippingAddress.country);
+    setShippingCost(cost);
+    setShowAddressForm(false);
+    setShowPayment(true);
+  };
+
+  const handlePaymentSubmit = () => {
+    setShowPayment(false);
     setShowConfirmation(true);
   };
 
   const confirmOrder = () => {
-    // Here you would typically integrate with payment processing
-    alert(
-      `Order confirmed! You will receive a confirmation email at ${bookData?.parentEmail}`,
-    );
+    // Generate order number
+    const orderNumber = "ADV" + Date.now().toString().slice(-6);
+
+    // Store order details
+    const orderDetails = {
+      orderNumber,
+      bookData,
+      orderType,
+      shippingAddress: orderType === "printed" ? shippingAddress : null,
+      shippingCost,
+      total: (orderType === "digital" ? 12.99 : 24.99) + shippingCost,
+      orderDate: new Date().toISOString(),
+    };
+
+    localStorage.setItem("currentOrder", JSON.stringify(orderDetails));
+
+    // Send confirmation email (simulate)
+    sendConfirmationEmail(orderDetails);
+
     setShowConfirmation(false);
-    // You could navigate to a success page here
+    navigate("/order-success");
+  };
+
+  const sendConfirmationEmail = (orderDetails: any) => {
+    // In a real app, this would call your email service
+    console.log("Sending confirmation email:", {
+      to: orderDetails.bookData.parentEmail,
+      subject: `Order Confirmation - ${orderDetails.orderNumber}`,
+      orderDetails,
+    });
   };
 
   useEffect(() => {
