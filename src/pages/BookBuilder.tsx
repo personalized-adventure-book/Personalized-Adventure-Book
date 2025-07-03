@@ -119,9 +119,6 @@ const BookBuilder = () => {
   const totalSteps = 5;
   const progress = (currentStep / totalSteps) * 100;
 
-  // Track if data is loaded from draft
-  const [isLoadingDraft, setIsLoadingDraft] = useState(true);
-
   // Load saved draft on mount
   useEffect(() => {
     const savedDraft = localStorage.getItem("bookBuilderDraft");
