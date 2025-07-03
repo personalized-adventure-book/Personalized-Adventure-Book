@@ -29,7 +29,18 @@ const OrderSuccess = () => {
   useEffect(() => {
     const storedOrder = localStorage.getItem("currentOrder");
     if (storedOrder) {
-      setOrderDetails(JSON.parse(storedOrder));
+      const order = JSON.parse(storedOrder);
+      setOrderDetails(order);
+
+      // Save to completed orders list
+      const existingOrders = JSON.parse(
+        localStorage.getItem("completedOrders") || "[]",
+      );
+      existingOrders.push(order);
+      localStorage.setItem("completedOrders", JSON.stringify(existingOrders));
+
+      // Clean up draft data
+      localStorage.removeItem("bookBuilderDraft");
     }
   }, []);
 
