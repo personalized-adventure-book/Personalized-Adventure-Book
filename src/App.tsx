@@ -3,6 +3,8 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { TranslationProvider } from "@/hooks/useTranslation";
+import { ThemeProvider } from "@/hooks/useTheme";
 import Index from "./pages/Index";
 import BookBuilder from "./pages/BookBuilder";
 import Preview from "./pages/Preview";
@@ -13,20 +15,24 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/create" element={<BookBuilder />} />
-          <Route path="/preview" element={<Preview />} />
-          <Route path="/order-success" element={<OrderSuccess />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
+    <ThemeProvider>
+      <TranslationProvider>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/create" element={<BookBuilder />} />
+              <Route path="/preview" element={<Preview />} />
+              <Route path="/order-success" element={<OrderSuccess />} />
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </TooltipProvider>
+      </TranslationProvider>
+    </ThemeProvider>
   </QueryClientProvider>
 );
 
