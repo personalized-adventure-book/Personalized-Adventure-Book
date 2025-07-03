@@ -1387,7 +1387,7 @@ const BookBuilder = () => {
                                     (activityDetail) => (
                                       <Card
                                         key={activityDetail.id}
-                                        className="border border-adventure-purple/30 bg-adventure-purple/5"
+                                        className="border-2 border-adventure-blue/40 bg-adventure-blue/5"
                                       >
                                         <CardHeader className="pb-3">
                                           <div className="flex items-center justify-between">
