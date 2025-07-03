@@ -1339,20 +1339,41 @@ const BookBuilder = () => {
                                     </div>
                                   ),
                                 )}
-                                <Input
-                                  placeholder="Add custom activity..."
-                                  onKeyPress={(e) => {
-                                    if (e.key === "Enter") {
-                                      const target =
-                                        e.target as HTMLInputElement;
-                                      addCustomActivity(
-                                        experience.id,
-                                        target.value,
-                                      );
-                                      target.value = "";
+                                <div className="flex items-center space-x-2">
+                                  <Input
+                                    placeholder="Add custom activity..."
+                                    value={
+                                      customActivityInputs[experience.id] || ""
                                     }
-                                  }}
-                                />
+                                    onChange={(e) =>
+                                      updateCustomActivityInput(
+                                        experience.id,
+                                        e.target.value,
+                                      )
+                                    }
+                                    onKeyPress={(e) => {
+                                      if (e.key === "Enter") {
+                                        handleAddCustomActivity(experience.id);
+                                      }
+                                    }}
+                                  />
+                                  <Button
+                                    type="button"
+                                    variant="outline"
+                                    size="sm"
+                                    onClick={() =>
+                                      handleAddCustomActivity(experience.id)
+                                    }
+                                    disabled={
+                                      !customActivityInputs[
+                                        experience.id
+                                      ]?.trim()
+                                    }
+                                    className="px-3"
+                                  >
+                                    Add
+                                  </Button>
+                                </div>
                               </div>
                             </div>
 
@@ -1554,7 +1575,7 @@ const BookBuilder = () => {
                     formData.experiences.length === 0) && (
                     <div className="text-center py-8 text-foreground/70">
                       <p>
-                        🌟 Your first adventure experience is ready to be
+                        ���� Your first adventure experience is ready to be
                         created! 🌟
                       </p>
                       <p className="text-sm mt-2">
