@@ -1265,8 +1265,8 @@ const BookBuilder = () => {
                                           />
                                         </div>
                                         <div>
-                                          <Label className="text-sm">
-                                            Image Description
+                                          <Label className="text-xs">
+                                            Description
                                           </Label>
                                           <Textarea
                                             value={img.description}
@@ -1277,8 +1277,8 @@ const BookBuilder = () => {
                                                 e.target.value,
                                               )
                                             }
-                                            placeholder="Describe this image..."
-                                            className="mt-1"
+                                            placeholder="Describe image..."
+                                            className="mt-1 text-xs"
                                             rows={2}
                                           />
                                         </div>
