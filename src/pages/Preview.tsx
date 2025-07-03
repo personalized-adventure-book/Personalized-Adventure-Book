@@ -487,6 +487,208 @@ const Preview = () => {
         </div>
       </div>
 
+      {/* Address Form Dialog */}
+      <Dialog open={showAddressForm} onOpenChange={setShowAddressForm}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <DialogTitle>Shipping Address</DialogTitle>
+            <DialogDescription>
+              Please enter your shipping address for the printed book.
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="space-y-4">
+            <div>
+              <Label htmlFor="fullName">Full Name *</Label>
+              <Input
+                id="fullName"
+                value={shippingAddress.fullName}
+                onChange={(e) =>
+                  setShippingAddress((prev) => ({
+                    ...prev,
+                    fullName: e.target.value,
+                  }))
+                }
+                placeholder="Enter full name"
+              />
+            </div>
+            <div>
+              <Label htmlFor="street">Street Address *</Label>
+              <Input
+                id="street"
+                value={shippingAddress.street}
+                onChange={(e) =>
+                  setShippingAddress((prev) => ({
+                    ...prev,
+                    street: e.target.value,
+                  }))
+                }
+                placeholder="Enter street address"
+              />
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <Label htmlFor="city">City *</Label>
+                <Input
+                  id="city"
+                  value={shippingAddress.city}
+                  onChange={(e) =>
+                    setShippingAddress((prev) => ({
+                      ...prev,
+                      city: e.target.value,
+                    }))
+                  }
+                  placeholder="Enter city"
+                />
+              </div>
+              <div>
+                <Label htmlFor="postalCode">Postal Code *</Label>
+                <Input
+                  id="postalCode"
+                  value={shippingAddress.postalCode}
+                  onChange={(e) =>
+                    setShippingAddress((prev) => ({
+                      ...prev,
+                      postalCode: e.target.value,
+                    }))
+                  }
+                  placeholder="Enter postal code"
+                />
+              </div>
+            </div>
+            <div>
+              <Label htmlFor="country">Country *</Label>
+              <Input
+                id="country"
+                value={shippingAddress.country}
+                onChange={(e) => {
+                  setShippingAddress((prev) => ({
+                    ...prev,
+                    country: e.target.value,
+                  }));
+                }}
+                placeholder="Enter country"
+              />
+            </div>
+            <div>
+              <Label htmlFor="phone">Phone Number</Label>
+              <Input
+                id="phone"
+                value={shippingAddress.phone}
+                onChange={(e) =>
+                  setShippingAddress((prev) => ({
+                    ...prev,
+                    phone: e.target.value,
+                  }))
+                }
+                placeholder="Enter phone number"
+              />
+            </div>
+            {shippingAddress.country && (
+              <div className="bg-secondary/50 p-3 rounded-lg">
+                <p className="text-sm">
+                  <strong>Shipping Cost:</strong> $
+                  {getShippingCost(shippingAddress.country).toFixed(2)}
+                  {getShippingCost(shippingAddress.country) === 0 &&
+                    " (Free in Europe!)"}
+                </p>
+              </div>
+            )}
+          </div>
+
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setShowAddressForm(false)}>
+              Cancel
+            </Button>
+            <Button
+              onClick={handleAddressSubmit}
+              disabled={
+                !shippingAddress.fullName ||
+                !shippingAddress.street ||
+                !shippingAddress.city ||
+                !shippingAddress.postalCode ||
+                !shippingAddress.country
+              }
+            >
+              Continue to Payment
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Payment Dialog */}
+      <Dialog open={showPayment} onOpenChange={setShowPayment}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <DialogTitle>Payment Details</DialogTitle>
+            <DialogDescription>
+              Complete your payment to place the order.
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="space-y-4">
+            <div className="bg-secondary/50 p-4 rounded-lg">
+              <h4 className="font-semibold mb-2">Order Summary</h4>
+              <div className="space-y-1 text-sm">
+                <div className="flex justify-between">
+                  <span>
+                    {orderType === "digital" ? "Digital Book" : "Printed Book"}
+                  </span>
+                  <span>${orderType === "digital" ? "12.99" : "24.99"}</span>
+                </div>
+                {orderType === "printed" && shippingCost > 0 && (
+                  <div className="flex justify-between">
+                    <span>Shipping</span>
+                    <span>${shippingCost.toFixed(2)}</span>
+                  </div>
+                )}
+                <div className="border-t pt-1 font-semibold flex justify-between">
+                  <span>Total</span>
+                  <span>
+                    $
+                    {(
+                      (orderType === "digital" ? 12.99 : 24.99) + shippingCost
+                    ).toFixed(2)}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-3">
+              <div>
+                <Label htmlFor="cardNumber">Card Number *</Label>
+                <Input
+                  id="cardNumber"
+                  placeholder="1234 5678 9012 3456"
+                  maxLength={19}
+                />
+              </div>
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <Label htmlFor="expiry">Expiry Date *</Label>
+                  <Input id="expiry" placeholder="MM/YY" maxLength={5} />
+                </div>
+                <div>
+                  <Label htmlFor="cvv">CVV *</Label>
+                  <Input id="cvv" placeholder="123" maxLength={4} />
+                </div>
+              </div>
+              <div>
+                <Label htmlFor="cardName">Cardholder Name *</Label>
+                <Input id="cardName" placeholder="Enter cardholder name" />
+              </div>
+            </div>
+          </div>
+
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setShowPayment(false)}>
+              Cancel
+            </Button>
+            <Button onClick={handlePaymentSubmit}>Complete Payment</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
       {/* Confirmation Dialog */}
       <Dialog open={showConfirmation} onOpenChange={setShowConfirmation}>
         <DialogContent className="max-w-2xl">
