@@ -41,6 +41,12 @@ import {
   ShoppingCart,
   CheckCircle,
   AlertCircle,
+  User,
+  Baby,
+  MapPin,
+  Palette,
+  Users,
+  Gift,
 } from "lucide-react";
 
 interface ExperienceDetail {
@@ -270,7 +276,7 @@ const Preview = () => {
     <div className="min-h-screen bg-gradient-to-br from-background via-secondary/30 to-adventure-yellow/20">
       <Header />
 
-      <div className="container mx-auto px-4 py-8 max-w-6xl">
+      <div className="container mx-auto px-4 py-8 max-w-7xl">
         {/* Back Button */}
         <Button
           variant="outline"
@@ -283,167 +289,370 @@ const Preview = () => {
           </Link>
         </Button>
 
-        {/* Book Preview */}
-        <div className="grid lg:grid-cols-2 gap-8">
-          {/* Preview Pages */}
-          <div className="space-y-6">
-            <h1 className="text-3xl md:text-4xl font-bold adventure-text-gradient">
-              {bookData.childName}'s Adventure Preview
-            </h1>
+        {/* Main Content Grid */}
+        <div className="grid lg:grid-cols-3 gap-8">
+          {/* Book Preview - Takes 2 columns */}
+          <div className="lg:col-span-2 space-y-6">
+            <div className="text-center mb-8">
+              <h1 className="text-3xl md:text-4xl font-bold adventure-text-gradient mb-2">
+                {bookData.childName}'s Adventure Book
+              </h1>
+              <p className="text-lg text-foreground/80">
+                Preview your personalized adventure story
+              </p>
+            </div>
 
-            {/* First Page - Introduction */}
-            <Card className="border-0 shadow-lg overflow-hidden">
-              <div className="bg-gradient-to-br from-adventure-purple to-adventure-pink p-8 text-white">
-                <div className="text-center">
-                  <h2 className="text-2xl font-bold mb-4">
-                    Welcome to {bookData.location}!
-                  </h2>
-                  <div className="w-24 h-24 rounded-full bg-white/20 mx-auto mb-4 flex items-center justify-center">
-                    <Sparkles className="w-12 h-12" />
-                  </div>
-                  <p className="text-lg leading-relaxed">
-                    Meet <strong>{bookData.childName}</strong>, a brave{" "}
-                    {bookData.childAge}-year-old adventurer who is about to
-                    embark on the most exciting{" "}
-                    {bookData.finalAdventureType?.toLowerCase() || "adventure"}{" "}
-                    ever!
-                  </p>
-                  {bookData.favoriteColor && (
-                    <p className="mt-4 text-white/90">
-                      Wearing their favorite {bookData.favoriteColor} outfit,{" "}
-                      {bookData.childName} feels ready for anything!
-                    </p>
-                  )}
-                </div>
-              </div>
-            </Card>
-
-            {/* Experience Pages */}
-            {bookData.experiences.map((experience, index) => (
-              <Card key={experience.id} className="border-0 shadow-lg">
-                <CardHeader className="bg-gradient-to-r from-adventure-blue to-adventure-green text-white">
-                  <CardTitle className="text-xl">
-                    Chapter {index + 1}: {experience.title || "Great Adventure"}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="p-6">
+            {/* Book Details Summary */}
+            <Card className="border-0 shadow-lg">
+              <CardHeader>
+                <CardTitle className="flex items-center space-x-2">
+                  <BookOpen className="w-5 h-5" />
+                  <span>Book Details</span>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-4">
-                    <p className="text-lg leading-relaxed">
-                      {experience.description ||
-                        `In this exciting part of the adventure, ${bookData.childName} discovers amazing new things in ${bookData.location}!`}
-                    </p>
-
-                    {(experience.predefinedActivities.length > 0 ||
-                      experience.customActivities.length > 0) && (
+                    <div className="flex items-start space-x-3">
+                      <User className="w-5 h-5 text-adventure-blue mt-1" />
                       <div>
-                        <h4 className="font-semibold mb-2">
-                          Adventure Activities:
-                        </h4>
-                        <div className="flex flex-wrap gap-2">
-                          {[
-                            ...experience.predefinedActivities,
-                            ...experience.customActivities,
-                          ].map((activity, actIndex) => (
-                            <Badge
-                              key={actIndex}
-                              variant="secondary"
-                              className="bg-adventure-yellow/20 text-adventure-orange"
-                            >
-                              {activity}
-                            </Badge>
-                          ))}
+                        <h4 className="font-medium">Main Character</h4>
+                        <p className="text-sm text-foreground/70">
+                          {bookData.childName}, {bookData.childAge} years old
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start space-x-3">
+                      <MapPin className="w-5 h-5 text-adventure-green mt-1" />
+                      <div>
+                        <h4 className="font-medium">Adventure Setting</h4>
+                        <p className="text-sm text-foreground/70">
+                          {bookData.location}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start space-x-3">
+                      <Sparkles className="w-5 h-5 text-adventure-purple mt-1" />
+                      <div>
+                        <h4 className="font-medium">Adventure Type</h4>
+                        <p className="text-sm text-foreground/70">
+                          {bookData.finalAdventureType ||
+                            bookData.adventureType}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="space-y-4">
+                    {bookData.favoriteColor && (
+                      <div className="flex items-start space-x-3">
+                        <Palette className="w-5 h-5 text-adventure-yellow mt-1" />
+                        <div>
+                          <h4 className="font-medium">Favorite Color</h4>
+                          <p className="text-sm text-foreground/70">
+                            {bookData.favoriteColor}
+                          </p>
                         </div>
                       </div>
                     )}
 
-                    {experience.characters && (
-                      <p className="text-foreground/80">
-                        <strong>Adventure Companions:</strong>{" "}
-                        {experience.characters}
+                    {bookData.includeFriends && (
+                      <div className="flex items-start space-x-3">
+                        <Users className="w-5 h-5 text-adventure-orange mt-1" />
+                        <div>
+                          <h4 className="font-medium">Special Friends</h4>
+                          <p className="text-sm text-foreground/70">
+                            {bookData.includeFriends}
+                          </p>
+                        </div>
+                      </div>
+                    )}
+
+                    {bookData.petName && (
+                      <div className="flex items-start space-x-3">
+                        <Heart className="w-5 h-5 text-adventure-pink mt-1" />
+                        <div>
+                          <h4 className="font-medium">Pet Companion</h4>
+                          <p className="text-sm text-foreground/70">
+                            {bookData.petName}
+                          </p>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Story Preview Pages */}
+            <div className="space-y-6">
+              <h2 className="text-2xl font-bold text-center mb-6">
+                Story Preview
+              </h2>
+
+              {/* Page 1 - Opening */}
+              <Card className="border-0 shadow-lg overflow-hidden">
+                <div className="bg-gradient-to-br from-adventure-purple via-adventure-pink to-adventure-orange p-8 text-white">
+                  <div className="text-center">
+                    <div className="w-20 h-20 rounded-full bg-white/20 mx-auto mb-6 flex items-center justify-center">
+                      <span className="text-3xl">📚</span>
+                    </div>
+                    <h3 className="text-2xl font-bold mb-4">
+                      {bookData.childName}'s Amazing Adventure
+                    </h3>
+                    <p className="text-lg leading-relaxed">
+                      Once upon a time, in the magical world of{" "}
+                      {bookData.location}, there lived a brave{" "}
+                      {bookData.childAge}-year-old named {bookData.childName}.
+                      {bookData.favoriteColor &&
+                        ` Dressed in their favorite ${bookData.favoriteColor} outfit,`}
+                      {bookData.childName} was ready for the adventure of a
+                      lifetime!
+                    </p>
+                    {bookData.petName && (
+                      <p className="mt-4 text-white/90">
+                        Joined by their loyal companion {bookData.petName}, they
+                        set off on their quest.
                       </p>
                     )}
                   </div>
-                </CardContent>
-              </Card>
-            ))}
-
-            {/* Final Page */}
-            <Card className="border-0 shadow-lg overflow-hidden">
-              <div className="bg-gradient-to-br from-adventure-green to-adventure-yellow p-8 text-white">
-                <div className="text-center">
-                  <h2 className="text-2xl font-bold mb-4">
-                    The Adventure Continues!
-                  </h2>
-                  <div className="w-24 h-24 rounded-full bg-white/20 mx-auto mb-4 flex items-center justify-center">
-                    <Heart className="w-12 h-12" />
-                  </div>
-                  <p className="text-lg leading-relaxed">
-                    {bookData.childName} has completed an amazing adventure in{" "}
-                    {bookData.location}! With courage, kindness, and a spirit of
-                    discovery, they've shown that any dream is possible.
-                  </p>
-                  {bookData.includeFriends && (
-                    <p className="mt-4 text-white/90">
-                      Special thanks to {bookData.includeFriends} for being part
-                      of this incredible journey!
-                    </p>
-                  )}
-                  <p className="mt-4 font-bold">
-                    What adventure will {bookData.childName} go on next?
-                  </p>
                 </div>
-              </div>
-            </Card>
+              </Card>
+
+              {/* Experience Pages */}
+              {bookData.experiences.map((experience, index) => (
+                <Card key={experience.id} className="border-0 shadow-lg">
+                  <CardHeader className="bg-gradient-to-r from-adventure-blue to-adventure-green text-white">
+                    <CardTitle className="text-xl flex items-center space-x-2">
+                      <span className="bg-white/20 rounded-full w-8 h-8 flex items-center justify-center text-sm">
+                        {index + 1}
+                      </span>
+                      <span>
+                        Chapter {index + 1}:{" "}
+                        {experience.title || "The Great Adventure"}
+                      </span>
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="p-6">
+                    <div className="space-y-4">
+                      <p className="text-lg leading-relaxed">
+                        {experience.description ||
+                          `In this thrilling chapter, ${bookData.childName} embarks on an incredible journey through ${bookData.location}. Along the way, they discover new friends, face exciting challenges, and learn valuable lessons about courage and friendship.`}
+                      </p>
+
+                      {(experience.predefinedActivities.length > 0 ||
+                        experience.customActivities.length > 0) && (
+                        <div className="bg-adventure-yellow/10 p-4 rounded-lg">
+                          <h4 className="font-semibold mb-3 flex items-center">
+                            <Sparkles className="w-4 h-4 mr-2" />
+                            Adventures in This Chapter:
+                          </h4>
+                          <div className="flex flex-wrap gap-2">
+                            {[
+                              ...experience.predefinedActivities,
+                              ...experience.customActivities,
+                            ].map((activity, actIndex) => (
+                              <Badge
+                                key={actIndex}
+                                variant="secondary"
+                                className="bg-adventure-yellow/30 text-adventure-orange border-adventure-orange/30"
+                              >
+                                {activity}
+                              </Badge>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {experience.characters && (
+                        <div className="bg-adventure-blue/10 p-4 rounded-lg">
+                          <h4 className="font-semibold mb-2 flex items-center">
+                            <Users className="w-4 h-4 mr-2" />
+                            Characters in This Chapter:
+                          </h4>
+                          <p className="text-foreground/80">
+                            {experience.characters}
+                          </p>
+                        </div>
+                      )}
+
+                      {experience.activityDetails.length > 0 && (
+                        <div className="bg-adventure-green/10 p-4 rounded-lg">
+                          <h4 className="font-semibold mb-3">
+                            Special Moments:
+                          </h4>
+                          <div className="grid gap-3">
+                            {experience.activityDetails.map(
+                              (activity, actIndex) => (
+                                <div
+                                  key={activity.id}
+                                  className="bg-white/50 p-3 rounded-lg"
+                                >
+                                  <h5 className="font-medium text-adventure-purple">
+                                    {activity.name}
+                                  </h5>
+                                  {activity.details && (
+                                    <p className="text-sm text-foreground/70 mt-1">
+                                      {activity.details}
+                                    </p>
+                                  )}
+                                </div>
+                              ),
+                            )}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+
+              {/* Final Page - Conclusion */}
+              <Card className="border-0 shadow-lg overflow-hidden">
+                <div className="bg-gradient-to-br from-adventure-green via-adventure-yellow to-adventure-orange p-8 text-white">
+                  <div className="text-center">
+                    <div className="w-20 h-20 rounded-full bg-white/20 mx-auto mb-6 flex items-center justify-center">
+                      <span className="text-3xl">🌟</span>
+                    </div>
+                    <h3 className="text-2xl font-bold mb-4">
+                      The Adventure Continues!
+                    </h3>
+                    <p className="text-lg leading-relaxed">
+                      {bookData.childName} has completed an incredible journey
+                      through {bookData.location}! With bravery, kindness, and
+                      determination, they've shown that any dream is possible.
+                      The memories of this adventure will last forever.
+                    </p>
+                    {bookData.includeFriends && (
+                      <p className="mt-4 text-white/90">
+                        Special thanks to {bookData.includeFriends} for making
+                        this adventure even more magical!
+                      </p>
+                    )}
+                    {bookData.specialDetails && (
+                      <p className="mt-4 text-white/90 italic">
+                        "{bookData.specialDetails}"
+                      </p>
+                    )}
+                    <p className="mt-6 font-bold text-xl">
+                      What amazing adventure will {bookData.childName} discover
+                      next?
+                    </p>
+                    <p className="mt-2 text-lg">
+                      The End... or is it just the beginning?
+                    </p>
+                  </div>
+                </div>
+              </Card>
+            </div>
           </div>
 
-          {/* Order Section */}
+          {/* Order Section - Takes 1 column */}
           <div className="space-y-6">
             {/* Format Choice */}
             {showFormatChoice && (
-              <Card className="border-2 border-primary">
+              <Card className="border-2 border-primary shadow-lg">
                 <CardHeader>
-                  <CardTitle className="text-center">
+                  <CardTitle className="text-center text-xl">
                     {t("order.chooseFormat")}
                   </CardTitle>
+                  <p className="text-center text-sm text-foreground/70">
+                    Choose how you'd like to receive your personalized book
+                  </p>
                 </CardHeader>
-                <CardContent className="space-y-4">
-                  <Button
+                <CardContent className="space-y-6">
+                  <Card
+                    className="cursor-pointer border-2 border-adventure-blue/30 hover:border-adventure-blue transition-colors"
                     onClick={() => handleOrderClick("digital")}
-                    variant="outline"
-                    className="w-full p-6 h-auto flex items-center justify-between"
                   >
-                    <div className="flex items-center space-x-4">
-                      <Download className="w-8 h-8 text-adventure-blue" />
-                      <div className="text-left">
-                        <div className="font-semibold">
-                          {t("pricing.digitalBook")}
+                    <CardContent className="p-6">
+                      <div className="text-center space-y-4">
+                        <Download className="w-12 h-12 text-adventure-blue mx-auto" />
+                        <div>
+                          <h3 className="text-xl font-bold">
+                            {t("pricing.digitalBook")}
+                          </h3>
+                          <p className="text-sm text-foreground/70 mb-2">
+                            {t("pricing.digitalBookDesc")}
+                          </p>
+                          <div className="text-3xl font-bold text-primary mb-4">
+                            $12.99
+                          </div>
                         </div>
-                        <div className="text-sm text-foreground/70">
-                          {t("pricing.digitalBookDesc")}
+                        <div className="space-y-2 text-left">
+                          <div className="flex items-center text-sm">
+                            <Star className="w-4 h-4 text-adventure-yellow mr-2" />
+                            <span>{t("pricing.feature1")}</span>
+                          </div>
+                          <div className="flex items-center text-sm">
+                            <Star className="w-4 h-4 text-adventure-yellow mr-2" />
+                            <span>{t("pricing.feature2")}</span>
+                          </div>
+                          <div className="flex items-center text-sm">
+                            <Star className="w-4 h-4 text-adventure-yellow mr-2" />
+                            <span>{t("pricing.feature3")}</span>
+                          </div>
+                          <div className="flex items-center text-sm">
+                            <Star className="w-4 h-4 text-adventure-yellow mr-2" />
+                            <span>{t("pricing.feature4")}</span>
+                          </div>
                         </div>
+                        <Button className="w-full" size="lg">
+                          Choose Digital
+                        </Button>
                       </div>
-                    </div>
-                    <div className="text-2xl font-bold">$12.99</div>
-                  </Button>
+                    </CardContent>
+                  </Card>
 
-                  <Button
+                  <Card
+                    className="cursor-pointer border-2 border-adventure-green/30 hover:border-adventure-green transition-colors relative"
                     onClick={() => handleOrderClick("printed")}
-                    variant="outline"
-                    className="w-full p-6 h-auto flex items-center justify-between"
                   >
-                    <div className="flex items-center space-x-4">
-                      <Printer className="w-8 h-8 text-adventure-green" />
-                      <div className="text-left">
-                        <div className="font-semibold">
-                          {t("pricing.printedBook")}
-                        </div>
-                        <div className="text-sm text-foreground/70">
-                          {t("pricing.printedBookDesc")}
-                        </div>
-                      </div>
+                    <div className="absolute -top-2 -right-2">
+                      <Badge className="bg-primary text-white">
+                        {t("pricing.popular")}
+                      </Badge>
                     </div>
-                    <div className="text-2xl font-bold">$24.99</div>
-                  </Button>
+                    <CardContent className="p-6">
+                      <div className="text-center space-y-4">
+                        <Printer className="w-12 h-12 text-adventure-green mx-auto" />
+                        <div>
+                          <h3 className="text-xl font-bold">
+                            {t("pricing.printedBook")}
+                          </h3>
+                          <p className="text-sm text-foreground/70 mb-2">
+                            {t("pricing.printedBookDesc")}
+                          </p>
+                          <div className="text-3xl font-bold text-primary mb-4">
+                            $24.99
+                          </div>
+                        </div>
+                        <div className="space-y-2 text-left">
+                          <div className="flex items-center text-sm">
+                            <Star className="w-4 h-4 text-adventure-yellow mr-2" />
+                            <span>{t("pricing.feature5")}</span>
+                          </div>
+                          <div className="flex items-center text-sm">
+                            <Star className="w-4 h-4 text-adventure-yellow mr-2" />
+                            <span>{t("pricing.feature6")}</span>
+                          </div>
+                          <div className="flex items-center text-sm">
+                            <Star className="w-4 h-4 text-adventure-yellow mr-2" />
+                            <span>{t("pricing.feature7")}</span>
+                          </div>
+                          <div className="flex items-center text-sm">
+                            <Star className="w-4 h-4 text-adventure-yellow mr-2" />
+                            <span>{t("pricing.feature8")}</span>
+                          </div>
+                        </div>
+                        <Button className="w-full" size="lg" variant="outline">
+                          Choose Printed
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
                 </CardContent>
               </Card>
             )}
@@ -458,26 +667,28 @@ const Preview = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <div className="flex justify-between">
-                    <span>
-                      {orderType === "digital"
-                        ? t("pricing.digitalBook")
-                        : t("pricing.printedBook")}
-                    </span>
-                    <span>${bookPrice}</span>
-                  </div>
-                  {orderType === "printed" && shippingCost > 0 && (
+                  <div className="space-y-2">
                     <div className="flex justify-between">
-                      <span>Shipping</span>
-                      <span>${shippingCost}</span>
+                      <span>
+                        {orderType === "digital"
+                          ? t("pricing.digitalBook")
+                          : t("pricing.printedBook")}
+                      </span>
+                      <span>${bookPrice.toFixed(2)}</span>
                     </div>
-                  )}
-                  {orderType === "printed" && shippingCost === 0 && (
-                    <div className="flex justify-between text-green-600">
-                      <span>Shipping</span>
-                      <span>FREE</span>
-                    </div>
-                  )}
+                    {orderType === "printed" && (
+                      <div className="flex justify-between">
+                        <span>Shipping</span>
+                        <span>
+                          {shippingCost === 0 ? (
+                            <span className="text-green-600">FREE</span>
+                          ) : (
+                            `$${shippingCost.toFixed(2)}`
+                          )}
+                        </span>
+                      </div>
+                    )}
+                  </div>
                   <div className="border-t pt-4">
                     <div className="flex justify-between font-bold text-lg">
                       <span>Total</span>
@@ -487,6 +698,41 @@ const Preview = () => {
                 </CardContent>
               </Card>
             )}
+
+            {/* Book Statistics */}
+            <Card className="bg-gradient-to-br from-adventure-blue/10 to-adventure-purple/10">
+              <CardHeader>
+                <CardTitle className="text-lg">Your Book Statistics</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <div className="flex justify-between">
+                  <span className="text-sm">Total Chapters:</span>
+                  <span className="font-medium">
+                    {bookData.experiences.length + 2}
+                  </span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-sm">Adventure Activities:</span>
+                  <span className="font-medium">
+                    {bookData.experiences.reduce(
+                      (total, exp) =>
+                        total +
+                        exp.predefinedActivities.length +
+                        exp.customActivities.length,
+                      0,
+                    )}
+                  </span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-sm">Estimated Pages:</span>
+                  <span className="font-medium">20-25</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-sm">Reading Level:</span>
+                  <span className="font-medium">Ages {bookData.childAge}+</span>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
 
@@ -831,6 +1077,9 @@ const Preview = () => {
                   </h4>
                   <div className="space-y-1 text-sm">
                     <p>
+                      <strong>Country:</strong> {shippingAddress.country}
+                    </p>
+                    <p>
                       <strong>Name:</strong> {shippingAddress.fullName}
                     </p>
                     <p>
@@ -841,9 +1090,6 @@ const Preview = () => {
                     </p>
                     <p>
                       <strong>Postal Code:</strong> {shippingAddress.postalCode}
-                    </p>
-                    <p>
-                      <strong>Country:</strong> {shippingAddress.country}
                     </p>
                     <p>
                       <strong>Phone:</strong> {shippingAddress.phone}
