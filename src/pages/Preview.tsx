@@ -127,7 +127,19 @@ const Preview = () => {
   useEffect(() => {
     const savedData = localStorage.getItem("adventureBookData");
     if (savedData) {
-      setBookData(JSON.parse(savedData));
+      const parsedData = JSON.parse(savedData);
+      console.log("Loaded book data:", parsedData);
+      console.log("Experiences:", parsedData.experiences);
+      if (parsedData.experiences) {
+        parsedData.experiences.forEach((exp: any, index: number) => {
+          console.log(`Experience ${index}:`, {
+            title: exp.title,
+            predefinedActivities: exp.predefinedActivities,
+            customActivities: exp.customActivities,
+          });
+        });
+      }
+      setBookData(parsedData);
     } else {
       navigate("/create");
     }
