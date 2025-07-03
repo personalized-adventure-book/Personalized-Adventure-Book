@@ -1250,18 +1250,18 @@ const BookBuilder = () => {
 
                               {/* Experience Image Descriptions */}
                               {experience.images.length > 0 && (
-                                <div className="mt-4 space-y-4">
-                                  <h5 className="font-medium">
+                                <div className="mt-4 space-y-3">
+                                  <h5 className="font-medium text-sm">
                                     Experience Images
                                   </h5>
-                                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                                  <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
                                     {experience.images.map((img, imgIndex) => (
                                       <div key={imgIndex} className="space-y-2">
-                                        <div className="aspect-square">
+                                        <div className="aspect-square w-full max-w-[100px]">
                                           <img
                                             src={URL.createObjectURL(img.file)}
                                             alt="Experience upload"
-                                            className="w-full h-full object-cover rounded"
+                                            className="w-full h-full object-cover rounded-lg border-2 border-gray-200 shadow-sm hover:shadow-md transition-shadow"
                                           />
                                         </div>
                                         <div>
