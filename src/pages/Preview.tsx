@@ -222,8 +222,22 @@ const Preview = () => {
 
   const handlePaymentComplete = () => {
     if (validatePaymentForm()) {
-      setShowPayment(false);
-      setShowConfirmation(true);
+      // Save order data to localStorage
+      const orderData = {
+        orderNumber: "ADV-" + Date.now().toString().slice(-8),
+        bookData,
+        orderType,
+        shippingAddress: orderType === "printed" ? shippingAddress : null,
+        paymentDetails,
+        shippingCost,
+        total: totalPrice,
+        orderDate: new Date().toISOString(),
+        status: "confirmed",
+      };
+
+      localStorage.setItem("currentOrder", JSON.stringify(orderData));
+      localStorage.removeItem("adventureBookData");
+      navigate("/order-success");
     }
   };
 
@@ -1037,96 +1051,6 @@ const Preview = () => {
               </Button>
               <Button onClick={handlePaymentComplete}>
                 {t("order.completePayment")}
-              </Button>
-            </DialogFooter>
-          </DialogContent>
-        </Dialog>
-
-        {/* Confirmation Dialog */}
-        <Dialog open={showConfirmation} onOpenChange={setShowConfirmation}>
-          <DialogContent className="max-w-lg">
-            <DialogHeader>
-              <div className="flex items-center space-x-2">
-                <CheckCircle className="w-6 h-6 text-green-500" />
-                <DialogTitle>{t("order.confirmed")}</DialogTitle>
-              </div>
-            </DialogHeader>
-            <div className="space-y-4">
-              <div className="bg-green-50 p-4 rounded-lg">
-                <h4 className="font-semibold mb-2">
-                  {t("order.confirmationDetails")}
-                </h4>
-                <div className="space-y-1 text-sm">
-                  <p>
-                    <strong>Order ID:</strong> ADV-
-                    {Date.now().toString().slice(-8)}
-                  </p>
-                  <p>
-                    <strong>Book Type:</strong>{" "}
-                    {orderType === "digital"
-                      ? t("pricing.digitalBook")
-                      : t("pricing.printedBook")}
-                  </p>
-                  <p>
-                    <strong>Total:</strong> ${totalPrice.toFixed(2)}
-                  </p>
-                </div>
-              </div>
-
-              {orderType === "printed" && (
-                <div className="bg-blue-50 p-4 rounded-lg">
-                  <h4 className="font-semibold mb-2">
-                    {t("order.shippingDetails")}
-                  </h4>
-                  <div className="space-y-1 text-sm">
-                    <p>
-                      <strong>Country:</strong> {shippingAddress.country}
-                    </p>
-                    <p>
-                      <strong>Name:</strong> {shippingAddress.fullName}
-                    </p>
-                    <p>
-                      <strong>Address:</strong> {shippingAddress.street}
-                    </p>
-                    <p>
-                      <strong>City:</strong> {shippingAddress.city}
-                    </p>
-                    <p>
-                      <strong>Postal Code:</strong> {shippingAddress.postalCode}
-                    </p>
-                    <p>
-                      <strong>Phone:</strong> {shippingAddress.phone}
-                    </p>
-                  </div>
-                </div>
-              )}
-
-              {orderType === "digital" && (
-                <div className="bg-yellow-50 p-4 rounded-lg">
-                  <div className="flex items-center space-x-2 mb-2">
-                    <AlertCircle className="w-5 h-5 text-yellow-600" />
-                    <h4 className="font-semibold">Digital Delivery</h4>
-                  </div>
-                  <p className="text-sm">{t("order.deliveryInfo")}</p>
-                </div>
-              )}
-            </div>
-            <DialogFooter className="flex-col space-y-2">
-              <Button
-                onClick={() => {
-                  localStorage.removeItem("adventureBookData");
-                  navigate("/create");
-                }}
-                className="w-full"
-              >
-                {t("order.createAnother")}
-              </Button>
-              <Button
-                variant="outline"
-                onClick={() => navigate("/")}
-                className="w-full"
-              >
-                {t("order.goHome")}
               </Button>
             </DialogFooter>
           </DialogContent>
