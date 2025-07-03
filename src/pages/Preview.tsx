@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import {
   Dialog,
   DialogContent,
@@ -11,6 +13,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import Header from "@/components/Header";
 import {
   BookOpen,
   Download,
@@ -171,25 +174,16 @@ const Preview = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-secondary/30 to-adventure-yellow/20">
-      {/* Header */}
-      <header className="container mx-auto px-4 py-6">
-        <nav className="flex items-center justify-between">
-          <Link to="/" className="flex items-center space-x-2">
-            <div className="w-10 h-10 rounded-full adventure-gradient flex items-center justify-center">
-              <BookOpen className="w-5 h-5 text-white" />
-            </div>
-            <span className="text-xl font-bold adventure-text-gradient">
-              Personalized Adventure Book
-            </span>
+      <Header showNavigation={false} />
+
+      <div className="container mx-auto px-4 py-4">
+        <Button variant="outline" asChild className="mb-6">
+          <Link to="/create" className="flex items-center space-x-2">
+            <ArrowLeft className="w-4 h-4" />
+            <span>Edit Details</span>
           </Link>
-          <Button variant="outline" asChild>
-            <Link to="/create" className="flex items-center space-x-2">
-              <ArrowLeft className="w-4 h-4" />
-              <span>Edit Details</span>
-            </Link>
-          </Button>
-        </nav>
-      </header>
+        </Button>
+      </div>
 
       <div className="container mx-auto px-4 py-8 max-w-6xl">
         {/* Success Message */}
@@ -283,7 +277,8 @@ const Preview = () => {
                     </div>
                   </CardContent>
                 </Card>
-              ))}
+                );
+              })}
 
               {/* Final Page - Adventure conclusion */}
               <Card className="border-0 shadow-md">
