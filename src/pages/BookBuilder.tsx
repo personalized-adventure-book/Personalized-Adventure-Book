@@ -599,13 +599,16 @@ const BookBuilder = () => {
   };
 
   const handleSubmit = () => {
-    const finalData = {
-      ...formData,
-      finalAdventureType:
-        formData.adventureType || formData.customAdventureType,
-    };
-    localStorage.setItem("adventureBookData", JSON.stringify(finalData));
-    navigate("/preview");
+    setHasAttemptedProceed(true);
+    if (canProceed()) {
+      const finalData = {
+        ...formData,
+        finalAdventureType:
+          formData.adventureType || formData.customAdventureType,
+      };
+      localStorage.setItem("adventureBookData", JSON.stringify(finalData));
+      navigate("/preview");
+    }
   };
 
   const canProceed = () => {
