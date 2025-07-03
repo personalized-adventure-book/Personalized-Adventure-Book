@@ -163,6 +163,9 @@ const BookBuilder = () => {
     }
     setIsLoadingDraft(false);
     hasInitializedRef.current = true;
+
+    // Initialize first experience if none exist
+    setTimeout(() => initializeFirstExperience(), 0);
   }, []);
 
   // Track changes only after initial load
