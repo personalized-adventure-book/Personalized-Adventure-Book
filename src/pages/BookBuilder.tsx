@@ -412,12 +412,10 @@ const BookBuilder = () => {
     field: keyof ExperienceDetail,
     value: any,
   ) => {
-    console.log("updateExperience called:", { id, field, value });
     if (!formData.experiences) return;
     const updated = formData.experiences.map((exp) =>
       exp.id === id ? { ...exp, [field]: value } : exp,
     );
-    console.log("Updated experiences:", updated);
     updateFormData("experiences", updated);
   };
 
