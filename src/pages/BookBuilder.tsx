@@ -135,29 +135,49 @@ const BookBuilder = () => {
   const totalSteps = 5;
   const progress = (currentStep / totalSteps) * 100;
 
+  // Ensure experience data integrity
+  const ensureExperienceIntegrity = (
+    experiences: ExperienceDetail[],
+  ): ExperienceDetail[] => {
+    return experiences.map((exp) => ({
+      ...exp,
+      predefinedActivities: exp.predefinedActivities || [],
+      customActivities: exp.customActivities || [],
+      activityDetails: exp.activityDetails || [],
+      images: exp.images || [],
+    }));
+  };
+
   // Load saved draft on mount
   useEffect(() => {
     const savedDraft = localStorage.getItem("bookBuilderDraft");
     if (savedDraft) {
       try {
         const draftData = JSON.parse(savedDraft);
-        setFormData(
-          draftData.formData || {
-            parentName: "",
-            parentEmail: "",
-            childName: "",
-            childAge: "",
-            childGender: "",
-            adventureType: "",
-            customAdventureType: "",
-            location: "",
-            experiences: [],
-            favoriteColor: "",
-            petName: "",
-            includeFriends: "",
-            specialDetails: "",
-          },
-        );
+        const loadedFormData = draftData.formData || {
+          parentName: "",
+          parentEmail: "",
+          childName: "",
+          childAge: "",
+          childGender: "",
+          adventureType: "",
+          customAdventureType: "",
+          location: "",
+          experiences: [],
+          favoriteColor: "",
+          petName: "",
+          includeFriends: "",
+          specialDetails: "",
+        };
+
+        // Ensure experience data integrity
+        if (loadedFormData.experiences) {
+          loadedFormData.experiences = ensureExperienceIntegrity(
+            loadedFormData.experiences,
+          );
+        }
+
+        setFormData(loadedFormData);
         setCurrentStep(draftData.currentStep || 1);
         setHasUnsavedChanges(false); // Draft data is already saved
       } catch (error) {
