@@ -1289,9 +1289,9 @@ const BookBuilder = () => {
                                   >
                                     <Checkbox
                                       id={`${experience.id}-${activity}`}
-                                      checked={experience.predefinedActivities.includes(
-                                        activity,
-                                      )}
+                                      checked={(
+                                        experience.predefinedActivities || []
+                                      ).includes(activity)}
                                       onCheckedChange={() =>
                                         togglePredefinedActivity(
                                           experience.id,
