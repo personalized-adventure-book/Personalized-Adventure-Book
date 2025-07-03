@@ -21,63 +21,11 @@ import {
 } from "lucide-react";
 
 const Index = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-secondary/30 to-adventure-yellow/20">
-      {/* Header */}
-      <header className="container mx-auto px-4 py-6">
-        <nav className="flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <div className="w-10 h-10 rounded-full adventure-gradient flex items-center justify-center">
-              <BookOpen className="w-5 h-5 text-white" />
-            </div>
-            <span className="text-xl font-bold adventure-text-gradient">
-              Personalized Adventure Book
-            </span>
-          </div>
-          <div className="hidden md:flex items-center space-x-6">
-            <button
-              onClick={() => {
-                document.getElementById("adventure-types")?.scrollIntoView({
-                  behavior: "smooth",
-                });
-              }}
-              className="text-foreground/80 hover:text-foreground transition-colors cursor-pointer"
-            >
-              Adventure Possibilities
-            </button>
-            <button
-              onClick={() => {
-                document.getElementById("how-it-works")?.scrollIntoView({
-                  behavior: "smooth",
-                });
-              }}
-              className="text-foreground/80 hover:text-foreground transition-colors cursor-pointer"
-            >
-              How It Works
-            </button>
-            <button
-              onClick={() => {
-                document.getElementById("book-examples")?.scrollIntoView({
-                  behavior: "smooth",
-                });
-              }}
-              className="text-foreground/80 hover:text-foreground transition-colors cursor-pointer"
-            >
-              Examples
-            </button>
-            <button
-              onClick={() => {
-                document.getElementById("pricing")?.scrollIntoView({
-                  behavior: "smooth",
-                });
-              }}
-              className="text-foreground/80 hover:text-foreground transition-colors cursor-pointer"
-            >
-              Pricing
-            </button>
-          </div>
-        </nav>
-      </header>
+      <Header />
 
       {/* Hero Section */}
       <section className="container mx-auto px-4 py-12 md:py-20">
