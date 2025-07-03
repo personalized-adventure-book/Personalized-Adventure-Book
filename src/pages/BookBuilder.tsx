@@ -375,25 +375,6 @@ const BookBuilder = () => {
     setExpandedExperiences((prev) => new Set(prev).add(newExperience.id));
   };
 
-  // Initialize first experience and expand it by default
-  const initializeFirstExperience = () => {
-    if (formData.experiences.length === 0) {
-      const firstExperience: ExperienceDetail = {
-        id: "experience-1",
-        title: "",
-        description: "",
-        predefinedActivities: [],
-        customActivities: [],
-        activityDetails: [],
-        characters: "",
-        images: [],
-        imageDescription: "",
-      };
-      updateFormData("experiences", [firstExperience]);
-      setExpandedExperiences(new Set(["experience-1"]));
-    }
-  };
-
   // Toggle experience expansion
   const toggleExperience = (experienceId: string) => {
     setExpandedExperiences((prev) => {
