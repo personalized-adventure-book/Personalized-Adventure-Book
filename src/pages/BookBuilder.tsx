@@ -165,7 +165,23 @@ const BookBuilder = () => {
     if (!isLoadingDraft) {
       setHasUnsavedChanges(true);
     }
-  }, [formData, currentStep, isLoadingDraft]);
+  }, [
+    formData.parentName,
+    formData.parentEmail,
+    formData.childName,
+    formData.childAge,
+    formData.childGender,
+    formData.adventureType,
+    formData.customAdventureType,
+    formData.location,
+    formData.favoriteColor,
+    formData.petName,
+    formData.includeFriends,
+    formData.specialDetails,
+    formData.experiences?.length,
+    currentStep,
+    isLoadingDraft,
+  ]);
 
   const adventureTypes = [
     {
