@@ -72,6 +72,7 @@ const BookBuilder = () => {
   const [orderType, setOrderType] = useState<"digital" | "printed" | null>(
     null,
   );
+  const [emailTouched, setEmailTouched] = useState(false);
   const [formData, setFormData] = useState<FormData>({
     parentName: "",
     parentEmail: "",
