@@ -4,6 +4,14 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import {
   BookOpen,
   Download,
   Printer,
@@ -34,6 +42,10 @@ interface BookData {
 const Preview = () => {
   const navigate = useNavigate();
   const [bookData, setBookData] = useState<BookData | null>(null);
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [orderType, setOrderType] = useState<"digital" | "printed" | null>(
+    null,
+  );
 
   useEffect(() => {
     const data = localStorage.getItem("adventureBookData");
