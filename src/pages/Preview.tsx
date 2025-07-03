@@ -47,9 +47,10 @@ interface ExperienceDetail {
   id: string;
   title: string;
   description: string;
-  activities: string[];
-  characters: string;
+  predefinedActivities: string[];
   customActivities: string[];
+  activityDetails: any[];
+  characters: string;
   images: any[];
   imageDescription: string;
 }
@@ -304,7 +305,8 @@ const Preview = () => {
                     Meet <strong>{bookData.childName}</strong>, a brave{" "}
                     {bookData.childAge}-year-old adventurer who is about to
                     embark on the most exciting{" "}
-                    {bookData.finalAdventureType.toLowerCase()} ever!
+                    {bookData.finalAdventureType?.toLowerCase() || "adventure"}{" "}
+                    ever!
                   </p>
                   {bookData.favoriteColor && (
                     <p className="mt-4 text-white/90">
@@ -331,14 +333,15 @@ const Preview = () => {
                         `In this exciting part of the adventure, ${bookData.childName} discovers amazing new things in ${bookData.location}!`}
                     </p>
 
-                    {experience.activities.length > 0 && (
+                    {(experience.predefinedActivities.length > 0 ||
+                      experience.customActivities.length > 0) && (
                       <div>
                         <h4 className="font-semibold mb-2">
                           Adventure Activities:
                         </h4>
                         <div className="flex flex-wrap gap-2">
                           {[
-                            ...experience.activities,
+                            ...experience.predefinedActivities,
                             ...experience.customActivities,
                           ].map((activity, actIndex) => (
                             <Badge
@@ -358,15 +361,6 @@ const Preview = () => {
                         <strong>Adventure Companions:</strong>{" "}
                         {experience.characters}
                       </p>
-                    )}
-
-                    {experience.imageDescription && (
-                      <div className="bg-adventure-blue/10 p-4 rounded-lg">
-                        <p className="text-sm text-foreground/70">
-                          <strong>Scene Description:</strong>{" "}
-                          {experience.imageDescription}
-                        </p>
-                      </div>
                     )}
                   </div>
                 </CardContent>
@@ -404,7 +398,7 @@ const Preview = () => {
 
           {/* Order Section */}
           <div className="space-y-6">
-            {/* Format Choice Dialog */}
+            {/* Format Choice */}
             {showFormatChoice && (
               <Card className="border-2 border-primary">
                 <CardHeader>
