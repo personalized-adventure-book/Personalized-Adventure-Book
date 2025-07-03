@@ -327,15 +327,18 @@ const BookBuilder = () => {
                       onChange={(e) =>
                         updateFormData("parentEmail", e.target.value)
                       }
+                      onBlur={() => setEmailTouched(true)}
                       placeholder="your@gmail.com"
                       className={
+                        emailTouched &&
                         !isValidGmail(formData.parentEmail) &&
                         formData.parentEmail
                           ? "border-red-500"
                           : ""
                       }
                     />
-                    {formData.parentEmail &&
+                    {emailTouched &&
+                      formData.parentEmail &&
                       !isValidGmail(formData.parentEmail) && (
                         <p className="text-red-500 text-sm">
                           Please enter a valid Gmail address
