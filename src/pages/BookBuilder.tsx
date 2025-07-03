@@ -40,6 +40,8 @@ import {
   X,
   Download,
   Printer,
+  Upload,
+  Image,
 } from "lucide-react";
 
 interface ActivityDetail {
