@@ -322,7 +322,43 @@ const BookBuilder = () => {
       images: [],
       imageDescription: "",
     };
-    updateFormData("experiences", [...formData.experiences, newExperience]);
+    const updatedExperiences = [...formData.experiences, newExperience];
+    updateFormData("experiences", updatedExperiences);
+
+    // Expand the new experience
+    setExpandedExperiences((prev) => new Set(prev).add(newExperience.id));
+  };
+
+  // Initialize first experience and expand it by default
+  const initializeFirstExperience = () => {
+    if (formData.experiences.length === 0) {
+      const firstExperience: ExperienceDetail = {
+        id: "experience-1",
+        title: "",
+        description: "",
+        predefinedActivities: [],
+        customActivities: [],
+        activityDetails: [],
+        characters: "",
+        images: [],
+        imageDescription: "",
+      };
+      updateFormData("experiences", [firstExperience]);
+      setExpandedExperiences(new Set(["experience-1"]));
+    }
+  };
+
+  // Toggle experience expansion
+  const toggleExperience = (experienceId: string) => {
+    setExpandedExperiences((prev) => {
+      const newSet = new Set(prev);
+      if (newSet.has(experienceId)) {
+        newSet.delete(experienceId);
+      } else {
+        newSet.add(experienceId);
+      }
+      return newSet;
+    });
   };
 
   const updateExperience = (
