@@ -585,8 +585,10 @@ const BookBuilder = () => {
   };
 
   const nextStep = () => {
-    if (currentStep < totalSteps) {
+    setHasAttemptedProceed(true);
+    if (canProceed() && currentStep < totalSteps) {
       setCurrentStep(currentStep + 1);
+      setHasAttemptedProceed(false); // Reset for next step
     }
   };
 
