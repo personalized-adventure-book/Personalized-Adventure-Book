@@ -36,6 +36,9 @@ import {
   Image,
   Plus,
   Trash2,
+  GripVertical,
+  ChevronUp,
+  ChevronDown,
 } from "lucide-react";
 
 interface ActivityImage {
@@ -43,13 +46,23 @@ interface ActivityImage {
   description: string;
 }
 
+interface ActivityDetail {
+  id: string;
+  name: string;
+  details: string;
+  characters: string;
+  images: ActivityImage[];
+  imageDescription: string;
+}
+
 interface ExperienceDetail {
   id: string;
   title: string;
   description: string;
-  activities: string[];
-  characters: string;
+  predefinedActivities: string[];
   customActivities: string[];
+  activityDetails: ActivityDetail[];
+  characters: string;
   images: ActivityImage[];
   imageDescription: string;
 }
@@ -166,14 +179,16 @@ const BookBuilder = () => {
     return gmailPattern.test(email);
   };
 
+  // Experience Management Functions
   const addExperience = () => {
     const newExperience: ExperienceDetail = {
       id: Date.now().toString(),
       title: "",
       description: "",
-      activities: [],
-      characters: "",
+      predefinedActivities: [],
       customActivities: [],
+      activityDetails: [],
+      characters: "",
       images: [],
       imageDescription: "",
     };
@@ -196,18 +211,42 @@ const BookBuilder = () => {
     updateFormData("experiences", updated);
   };
 
-  const toggleExperienceActivity = (experienceId: string, activity: string) => {
+  const moveExperience = (id: string, direction: "up" | "down") => {
+    const experiences = [...formData.experiences];
+    const index = experiences.findIndex((exp) => exp.id === id);
+    if (
+      (direction === "up" && index > 0) ||
+      (direction === "down" && index < experiences.length - 1)
+    ) {
+      const targetIndex = direction === "up" ? index - 1 : index + 1;
+      [experiences[index], experiences[targetIndex]] = [
+        experiences[targetIndex],
+        experiences[index],
+      ];
+      updateFormData("experiences", experiences);
+    }
+  };
+
+  // Activity Management Functions
+  const togglePredefinedActivity = (experienceId: string, activity: string) => {
     const experience = formData.experiences.find(
       (exp) => exp.id === experienceId,
     );
     if (!experience) return;
 
-    const currentActivities = experience.activities;
+    const currentActivities = experience.predefinedActivities;
     const updated = currentActivities.includes(activity)
       ? currentActivities.filter((a) => a !== activity)
       : [...currentActivities, activity];
 
-    updateExperience(experienceId, "activities", updated);
+    updateExperience(experienceId, "predefinedActivities", updated);
+
+    // Auto-create activity detail if not exists
+    if (!currentActivities.includes(activity)) {
+      addActivityDetail(experienceId, activity);
+    } else {
+      removeActivityDetail(experienceId, activity);
+    }
   };
 
   const addCustomActivity = (experienceId: string, activity: string) => {
@@ -220,6 +259,9 @@ const BookBuilder = () => {
 
     const updated = [...experience.customActivities, activity.trim()];
     updateExperience(experienceId, "customActivities", updated);
+
+    // Auto-create activity detail
+    addActivityDetail(experienceId, activity.trim());
   };
 
   const removeCustomActivity = (experienceId: string, index: number) => {
@@ -228,27 +270,144 @@ const BookBuilder = () => {
     );
     if (!experience) return;
 
+    const activityToRemove = experience.customActivities[index];
     const updated = experience.customActivities.filter((_, i) => i !== index);
     updateExperience(experienceId, "customActivities", updated);
+
+    // Remove corresponding activity detail
+    removeActivityDetail(experienceId, activityToRemove);
   };
 
-  const handleImageUpload = (experienceId: string, files: FileList | null) => {
-    if (!files) return;
-
+  // Activity Detail Management Functions
+  const addActivityDetail = (experienceId: string, activityName: string) => {
     const experience = formData.experiences.find(
       (exp) => exp.id === experienceId,
     );
     if (!experience) return;
+
+    // Check if activity detail already exists
+    const exists = experience.activityDetails.some(
+      (detail) => detail.name === activityName,
+    );
+    if (exists) return;
+
+    const newActivityDetail: ActivityDetail = {
+      id: Date.now().toString() + Math.random(),
+      name: activityName,
+      details: "",
+      characters: "",
+      images: [],
+      imageDescription: "",
+    };
+
+    const updatedDetails = [...experience.activityDetails, newActivityDetail];
+    updateExperience(experienceId, "activityDetails", updatedDetails);
+  };
+
+  const removeActivityDetail = (experienceId: string, activityName: string) => {
+    const experience = formData.experiences.find(
+      (exp) => exp.id === experienceId,
+    );
+    if (!experience) return;
+
+    const updatedDetails = experience.activityDetails.filter(
+      (detail) => detail.name !== activityName,
+    );
+    updateExperience(experienceId, "activityDetails", updatedDetails);
+  };
+
+  const updateActivityDetail = (
+    experienceId: string,
+    activityId: string,
+    field: keyof ActivityDetail,
+    value: any,
+  ) => {
+    const experience = formData.experiences.find(
+      (exp) => exp.id === experienceId,
+    );
+    if (!experience) return;
+
+    const updatedDetails = experience.activityDetails.map((detail) =>
+      detail.id === activityId ? { ...detail, [field]: value } : detail,
+    );
+    updateExperience(experienceId, "activityDetails", updatedDetails);
+  };
+
+  // Image Management Functions
+  const handleImageUpload = (
+    experienceId: string,
+    files: FileList | null,
+    activityId?: string,
+  ) => {
+    if (!files) return;
 
     const newImages: ActivityImage[] = Array.from(files).map((file) => ({
       file,
       description: "",
     }));
 
-    updateExperience(experienceId, "images", [
-      ...experience.images,
-      ...newImages,
-    ]);
+    if (activityId) {
+      // Add to activity detail
+      const experience = formData.experiences.find(
+        (exp) => exp.id === experienceId,
+      );
+      if (!experience) return;
+
+      const activityDetail = experience.activityDetails.find(
+        (detail) => detail.id === activityId,
+      );
+      if (!activityDetail) return;
+
+      updateActivityDetail(experienceId, activityId, "images", [
+        ...activityDetail.images,
+        ...newImages,
+      ]);
+    } else {
+      // Add to experience
+      const experience = formData.experiences.find(
+        (exp) => exp.id === experienceId,
+      );
+      if (!experience) return;
+
+      updateExperience(experienceId, "images", [
+        ...experience.images,
+        ...newImages,
+      ]);
+    }
+  };
+
+  const updateImageDescription = (
+    experienceId: string,
+    imageIndex: number,
+    description: string,
+    activityId?: string,
+  ) => {
+    if (activityId) {
+      const experience = formData.experiences.find(
+        (exp) => exp.id === experienceId,
+      );
+      if (!experience) return;
+
+      const activityDetail = experience.activityDetails.find(
+        (detail) => detail.id === activityId,
+      );
+      if (!activityDetail) return;
+
+      const updatedImages = activityDetail.images.map((img, index) =>
+        index === imageIndex ? { ...img, description } : img,
+      );
+      updateActivityDetail(experienceId, activityId, "images", updatedImages);
+    } else {
+      const experience = formData.experiences.find(
+        (exp) => exp.id === experienceId,
+      );
+      if (!experience) return;
+
+      const updatedImages = experience.images.map((img, index) =>
+        index === imageIndex ? { ...img, description } : img,
+      );
+      updateExperience(experienceId, "images", updatedImages);
+    }
   };
 
   const nextStep = () => {
@@ -641,16 +800,6 @@ const BookBuilder = () => {
                     <h3 className="text-lg font-medium">
                       {t("form.personalExperiences")}
                     </h3>
-                    <Button
-                      type="button"
-                      variant="outline"
-                      size="sm"
-                      onClick={addExperience}
-                      className="flex items-center space-x-2"
-                    >
-                      <Plus className="w-4 h-4" />
-                      <span>{t("form.addExperience")}</span>
-                    </Button>
                   </div>
 
                   {formData.experiences.map((experience, index) => (
@@ -663,18 +812,45 @@ const BookBuilder = () => {
                           <h4 className="font-medium">
                             Experience {index + 1}
                           </h4>
-                          <Button
-                            type="button"
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => removeExperience(experience.id)}
-                            className="text-red-500 hover:text-red-700"
-                          >
-                            <Trash2 className="w-4 h-4" />
-                          </Button>
+                          <div className="flex items-center space-x-2">
+                            {/* Move up/down buttons */}
+                            <Button
+                              type="button"
+                              variant="ghost"
+                              size="sm"
+                              onClick={() =>
+                                moveExperience(experience.id, "up")
+                              }
+                              disabled={index === 0}
+                            >
+                              <ChevronUp className="w-4 h-4" />
+                            </Button>
+                            <Button
+                              type="button"
+                              variant="ghost"
+                              size="sm"
+                              onClick={() =>
+                                moveExperience(experience.id, "down")
+                              }
+                              disabled={
+                                index === formData.experiences.length - 1
+                              }
+                            >
+                              <ChevronDown className="w-4 h-4" />
+                            </Button>
+                            <Button
+                              type="button"
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => removeExperience(experience.id)}
+                              className="text-red-500 hover:text-red-700"
+                            >
+                              <Trash2 className="w-4 h-4" />
+                            </Button>
+                          </div>
                         </div>
                       </CardHeader>
-                      <CardContent className="space-y-4">
+                      <CardContent className="space-y-6">
                         <div>
                           <Label>{t("form.activityName")}</Label>
                           <Input
@@ -718,11 +894,11 @@ const BookBuilder = () => {
                               >
                                 <Checkbox
                                   id={`${experience.id}-${activity}`}
-                                  checked={experience.activities.includes(
+                                  checked={experience.predefinedActivities.includes(
                                     activity,
                                   )}
                                   onCheckedChange={() =>
-                                    toggleExperienceActivity(
+                                    togglePredefinedActivity(
                                       experience.id,
                                       activity,
                                     )
@@ -793,30 +969,14 @@ const BookBuilder = () => {
                                 e.target.value,
                               )
                             }
-                            placeholder="Who's involved in this adventure?"
+                            placeholder="Who's involved in this experience?"
                             className="mt-1"
                           />
                         </div>
 
+                        {/* Experience Images */}
                         <div>
-                          <Label>{t("form.activityImageDesc")}</Label>
-                          <Textarea
-                            value={experience.imageDescription}
-                            onChange={(e) =>
-                              updateExperience(
-                                experience.id,
-                                "imageDescription",
-                                e.target.value,
-                              )
-                            }
-                            placeholder="Describe how you'd like this scene to look..."
-                            className="mt-1"
-                            rows={2}
-                          />
-                        </div>
-
-                        <div>
-                          <Label>{t("form.uploadImages")}</Label>
+                          <Label>{t("form.uploadImages")} (Experience)</Label>
                           <div className="mt-2 border-2 border-dashed border-gray-300 rounded-lg p-4">
                             <input
                               type="file"
@@ -826,35 +986,213 @@ const BookBuilder = () => {
                                 handleImageUpload(experience.id, e.target.files)
                               }
                               className="hidden"
-                              id={`images-${experience.id}`}
+                              id={`exp-images-${experience.id}`}
                             />
                             <Label
-                              htmlFor={`images-${experience.id}`}
+                              htmlFor={`exp-images-${experience.id}`}
                               className="cursor-pointer flex flex-col items-center space-y-2"
                             >
                               <Upload className="w-6 h-6 text-gray-400" />
                               <span className="text-sm text-gray-500">
-                                Click to upload images or drag and drop
+                                Click to upload images for this experience
                               </span>
                             </Label>
-                            {experience.images.length > 0 && (
-                              <div className="mt-2 grid grid-cols-2 md:grid-cols-4 gap-2">
+                          </div>
+
+                          {/* Experience Image Descriptions */}
+                          {experience.images.length > 0 && (
+                            <div className="mt-4 space-y-4">
+                              <h5 className="font-medium">Experience Images</h5>
+                              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 {experience.images.map((img, imgIndex) => (
-                                  <div key={imgIndex} className="relative">
+                                  <div key={imgIndex} className="space-y-2">
                                     <img
                                       src={URL.createObjectURL(img.file)}
-                                      alt="Upload preview"
-                                      className="w-full h-20 object-cover rounded"
+                                      alt="Experience upload"
+                                      className="w-full h-32 object-cover rounded"
                                     />
+                                    <div>
+                                      <Label className="text-sm">
+                                        Image Description
+                                      </Label>
+                                      <Textarea
+                                        value={img.description}
+                                        onChange={(e) =>
+                                          updateImageDescription(
+                                            experience.id,
+                                            imgIndex,
+                                            e.target.value,
+                                          )
+                                        }
+                                        placeholder="Describe this image..."
+                                        className="mt-1"
+                                        rows={2}
+                                      />
+                                    </div>
                                   </div>
                                 ))}
                               </div>
+                            </div>
+                          )}
+                        </div>
+
+                        {/* Activity Details Subsections */}
+                        {experience.activityDetails.length > 0 && (
+                          <div className="space-y-4">
+                            <h5 className="font-medium text-adventure-purple">
+                              Activity Details
+                            </h5>
+                            {experience.activityDetails.map(
+                              (activityDetail) => (
+                                <Card
+                                  key={activityDetail.id}
+                                  className="border border-adventure-purple/30 bg-adventure-purple/5"
+                                >
+                                  <CardHeader className="pb-3">
+                                    <h6 className="font-medium">
+                                      {activityDetail.name}
+                                    </h6>
+                                  </CardHeader>
+                                  <CardContent className="space-y-4">
+                                    <div>
+                                      <Label className="text-sm">
+                                        Activity Details
+                                      </Label>
+                                      <Textarea
+                                        value={activityDetail.details}
+                                        onChange={(e) =>
+                                          updateActivityDetail(
+                                            experience.id,
+                                            activityDetail.id,
+                                            "details",
+                                            e.target.value,
+                                          )
+                                        }
+                                        placeholder="Describe what happens during this activity..."
+                                        className="mt-1"
+                                        rows={3}
+                                      />
+                                    </div>
+
+                                    <div>
+                                      <Label className="text-sm">
+                                        Characters Involved
+                                      </Label>
+                                      <Input
+                                        value={activityDetail.characters}
+                                        onChange={(e) =>
+                                          updateActivityDetail(
+                                            experience.id,
+                                            activityDetail.id,
+                                            "characters",
+                                            e.target.value,
+                                          )
+                                        }
+                                        placeholder="Who's involved in this activity?"
+                                        className="mt-1"
+                                      />
+                                    </div>
+
+                                    {/* Activity Images */}
+                                    <div>
+                                      <Label className="text-sm">
+                                        Activity Images
+                                      </Label>
+                                      <div className="mt-2 border-2 border-dashed border-gray-300 rounded-lg p-3">
+                                        <input
+                                          type="file"
+                                          multiple
+                                          accept="image/*"
+                                          onChange={(e) =>
+                                            handleImageUpload(
+                                              experience.id,
+                                              e.target.files,
+                                              activityDetail.id,
+                                            )
+                                          }
+                                          className="hidden"
+                                          id={`activity-images-${activityDetail.id}`}
+                                        />
+                                        <Label
+                                          htmlFor={`activity-images-${activityDetail.id}`}
+                                          className="cursor-pointer flex flex-col items-center space-y-1"
+                                        >
+                                          <Upload className="w-5 h-5 text-gray-400" />
+                                          <span className="text-xs text-gray-500">
+                                            Upload images for{" "}
+                                            {activityDetail.name}
+                                          </span>
+                                        </Label>
+                                      </div>
+
+                                      {/* Activity Image Descriptions */}
+                                      {activityDetail.images.length > 0 && (
+                                        <div className="mt-3 space-y-3">
+                                          <h6 className="text-sm font-medium">
+                                            Activity Images
+                                          </h6>
+                                          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                            {activityDetail.images.map(
+                                              (img, imgIndex) => (
+                                                <div
+                                                  key={imgIndex}
+                                                  className="space-y-2"
+                                                >
+                                                  <img
+                                                    src={URL.createObjectURL(
+                                                      img.file,
+                                                    )}
+                                                    alt="Activity upload"
+                                                    className="w-full h-24 object-cover rounded"
+                                                  />
+                                                  <div>
+                                                    <Label className="text-xs">
+                                                      Image Description
+                                                    </Label>
+                                                    <Textarea
+                                                      value={img.description}
+                                                      onChange={(e) =>
+                                                        updateImageDescription(
+                                                          experience.id,
+                                                          imgIndex,
+                                                          e.target.value,
+                                                          activityDetail.id,
+                                                        )
+                                                      }
+                                                      placeholder="Describe this image..."
+                                                      className="mt-1"
+                                                      rows={2}
+                                                    />
+                                                  </div>
+                                                </div>
+                                              ),
+                                            )}
+                                          </div>
+                                        </div>
+                                      )}
+                                    </div>
+                                  </CardContent>
+                                </Card>
+                              ),
                             )}
                           </div>
-                        </div>
+                        )}
                       </CardContent>
                     </Card>
                   ))}
+
+                  {/* Add Experience Button - Always at the end */}
+                  <div className="text-center">
+                    <Button
+                      type="button"
+                      variant="outline"
+                      onClick={addExperience}
+                      className="flex items-center space-x-2"
+                    >
+                      <Plus className="w-4 h-4" />
+                      <span>{t("form.addExperience")}</span>
+                    </Button>
+                  </div>
 
                   {formData.experiences.length === 0 && (
                     <div className="text-center py-8 text-foreground/70">
