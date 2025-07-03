@@ -218,15 +218,41 @@ const OrderSuccess = () => {
                   <div className="border-t pt-4">
                     <h4 className="font-semibold mb-2">Shipping Address:</h4>
                     <div className="text-sm text-foreground/70 space-y-1">
-                      <p>{orderDetails.shippingAddress.fullName}</p>
-                      <p>{orderDetails.shippingAddress.street}</p>
                       <p>
-                        {orderDetails.shippingAddress.city},{" "}
+                        <span className="font-medium text-foreground">
+                          Name:
+                        </span>{" "}
+                        {orderDetails.shippingAddress.fullName}
+                      </p>
+                      <p>
+                        <span className="font-medium text-foreground">
+                          Street Address:
+                        </span>{" "}
+                        {orderDetails.shippingAddress.street}
+                      </p>
+                      <p>
+                        <span className="font-medium text-foreground">
+                          City:
+                        </span>{" "}
+                        {orderDetails.shippingAddress.city},
+                        <span className="font-medium text-foreground ml-2">
+                          Postal Code:
+                        </span>{" "}
                         {orderDetails.shippingAddress.postalCode}
                       </p>
-                      <p>{orderDetails.shippingAddress.country}</p>
+                      <p>
+                        <span className="font-medium text-foreground">
+                          Country:
+                        </span>{" "}
+                        {orderDetails.shippingAddress.country}
+                      </p>
                       {orderDetails.shippingAddress.phone && (
-                        <p>Phone: {orderDetails.shippingAddress.phone}</p>
+                        <p>
+                          <span className="font-medium text-foreground">
+                            Phone:
+                          </span>{" "}
+                          {orderDetails.shippingAddress.phone}
+                        </p>
                       )}
                     </div>
                   </div>
