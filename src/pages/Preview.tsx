@@ -821,15 +821,28 @@ const Preview = () => {
                     {(() => {
                       const count = (bookData.experiences || []).reduce(
                         (total, exp) => {
+                          // Count actual activity details (the sections that get created)
+                          const activityDetails = (exp.activityDetails || [])
+                            .length;
+
+                          // Also count predefined and custom activities as backup
                           const predefined = (exp.predefinedActivities || [])
                             .length;
                           const custom = (exp.customActivities || []).length;
+
+                          // Use activityDetails if available, otherwise fall back to predefined + custom
+                          const expCount =
+                            activityDetails > 0
+                              ? activityDetails
+                              : predefined + custom;
+
                           console.log(`Experience ${exp.title || "Unnamed"}:`, {
+                            activityDetails,
                             predefined,
                             custom,
-                            total: predefined + custom,
+                            expCount,
                           });
-                          return total + predefined + custom;
+                          return total + expCount;
                         },
                         0,
                       );
