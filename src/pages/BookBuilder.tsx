@@ -1033,16 +1033,18 @@ const BookBuilder = () => {
                 </div>
 
                 <div className="space-y-6">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h3 className="text-lg font-medium">
-                        {t("form.personalExperiences")}
-                      </h3>
-                      <p className="text-sm text-foreground/70 mt-1">
-                        ✨ The more details you add, the more personalized and
-                        magical your story becomes! ✨
-                      </p>
-                    </div>
+                  <div className="text-center bg-gradient-to-r from-adventure-blue/10 to-adventure-purple/10 rounded-lg p-4 mb-6">
+                    <h3 className="text-lg font-medium mb-3">
+                      {t("form.personalExperiences")}
+                    </h3>
+                    <p className="text-base font-medium text-adventure-blue">
+                      ✨ The more experiences you add, the more personalized and
+                      magical your story becomes! ✨
+                    </p>
+                    <p className="text-sm text-foreground/60 mt-2">
+                      Add details, activities, and characters to create a truly
+                      unique adventure
+                    </p>
                   </div>
 
                   {(formData.experiences || []).map((experience, index) => {
