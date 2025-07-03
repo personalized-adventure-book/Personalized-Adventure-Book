@@ -118,20 +118,48 @@ const BookBuilder = () => {
   const totalSteps = 5;
   const progress = (currentStep / totalSteps) * 100;
 
+  // Track if data is loaded from draft
+  const [isLoadingDraft, setIsLoadingDraft] = useState(true);
+
   // Load saved draft on mount
   useEffect(() => {
     const savedDraft = localStorage.getItem("bookBuilderDraft");
     if (savedDraft) {
-      const draftData = JSON.parse(savedDraft);
-      setFormData(draftData.formData);
-      setCurrentStep(draftData.currentStep || 1);
+      try {
+        const draftData = JSON.parse(savedDraft);
+        setFormData(
+          draftData.formData || {
+            parentName: "",
+            parentEmail: "",
+            childName: "",
+            childAge: "",
+            childGender: "",
+            adventureType: "",
+            customAdventureType: "",
+            location: "",
+            experiences: [],
+            favoriteColor: "",
+            petName: "",
+            includeFriends: "",
+            specialDetails: "",
+          },
+        );
+        setCurrentStep(draftData.currentStep || 1);
+        setHasUnsavedChanges(false); // Draft data is already saved
+      } catch (error) {
+        console.error("Error loading draft:", error);
+        localStorage.removeItem("bookBuilderDraft");
+      }
     }
+    setIsLoadingDraft(false);
   }, []);
 
-  // Track changes
+  // Track changes only after initial load
   useEffect(() => {
-    setHasUnsavedChanges(true);
-  }, [formData, currentStep]);
+    if (!isLoadingDraft) {
+      setHasUnsavedChanges(true);
+    }
+  }, [formData, currentStep, isLoadingDraft]);
 
   const adventureTypes = [
     {
