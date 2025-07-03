@@ -455,6 +455,25 @@ const BookBuilder = () => {
     removeActivityDetail(experienceId, activityToRemove);
   };
 
+  const handleAddCustomActivity = (experienceId: string) => {
+    const inputValue = customActivityInputs[experienceId]?.trim();
+    if (inputValue) {
+      addCustomActivity(experienceId, inputValue);
+      // Clear the input for this experience
+      setCustomActivityInputs((prev) => ({
+        ...prev,
+        [experienceId]: "",
+      }));
+    }
+  };
+
+  const updateCustomActivityInput = (experienceId: string, value: string) => {
+    setCustomActivityInputs((prev) => ({
+      ...prev,
+      [experienceId]: value,
+    }));
+  };
+
   // Activity Detail Management Functions
   const addActivityDetail = (experienceId: string, activityName: string) => {
     const experience = formData.experiences.find(
