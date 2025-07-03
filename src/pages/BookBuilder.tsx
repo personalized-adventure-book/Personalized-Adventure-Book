@@ -159,6 +159,7 @@ const BookBuilder = () => {
       }
     }
     setIsLoadingDraft(false);
+    hasInitializedRef.current = true;
   }, []);
 
   // Track changes only after initial load
