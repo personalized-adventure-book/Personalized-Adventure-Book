@@ -68,7 +68,7 @@ const Header: React.FC<HeaderProps> = ({ showNavigation = true }) => {
               </button>
               <button
                 onClick={() => {
-                  document.getElementById("book-examples")?.scrollIntoView({
+                  document.getElementById("examples")?.scrollIntoView({
                     behavior: "smooth",
                   });
                 }}
