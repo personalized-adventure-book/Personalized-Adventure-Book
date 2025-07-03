@@ -1148,16 +1148,18 @@ const BookBuilder = () => {
                                   )
                                 }
                                 placeholder="Describe what happens in this part of the adventure..."
-                                className={`mt-1 ${isFirst && !experience.description ? "border-red-300" : ""}`}
+                                className={`mt-1 ${isFirst && !experience.description && hasAttemptedProceed ? "border-red-300" : ""}`}
                                 rows={3}
                                 required={isFirst}
                               />
-                              {isFirst && !experience.description && (
-                                <p className="text-xs text-red-500 mt-1">
-                                  This field is required for the first
-                                  experience
-                                </p>
-                              )}
+                              {isFirst &&
+                                !experience.description &&
+                                hasAttemptedProceed && (
+                                  <p className="text-xs text-red-500 mt-1">
+                                    This field is required for the first
+                                    experience
+                                  </p>
+                                )}
                               {!isFirst &&
                                 (!experience.title ||
                                   !experience.description) && (
