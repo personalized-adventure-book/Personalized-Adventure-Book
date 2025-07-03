@@ -212,15 +212,10 @@ const BookBuilder = () => {
     }
   };
 
-  const handleSubmit = (type: "digital" | "printed") => {
-    setOrderType(type);
-    setShowConfirmation(true);
-  };
-
-  const confirmOrder = () => {
+  const confirmOrder = (type: "digital" | "printed") => {
     localStorage.setItem(
       "adventureBookData",
-      JSON.stringify({ ...formData, orderType }),
+      JSON.stringify({ ...formData, orderType: type }),
     );
     setShowConfirmation(false);
     navigate("/preview");
@@ -806,23 +801,13 @@ const BookBuilder = () => {
                   <ArrowRight className="w-4 h-4" />
                 </Button>
               ) : (
-                <div className="flex space-x-3">
-                  <Button
-                    onClick={() => handleSubmit("digital")}
-                    variant="outline"
-                    className="flex items-center space-x-2"
-                  >
-                    <Sparkles className="w-4 h-4" />
-                    <span>Digital Book ($12.99)</span>
-                  </Button>
-                  <Button
-                    onClick={() => handleSubmit("printed")}
-                    className="flex items-center space-x-2 bg-primary hover:bg-primary/90"
-                  >
-                    <Sparkles className="w-4 h-4" />
-                    <span>Printed Book ($24.99)</span>
-                  </Button>
-                </div>
+                <Button
+                  onClick={() => setShowConfirmation(true)}
+                  className="flex items-center space-x-2 bg-primary hover:bg-primary/90"
+                >
+                  <Sparkles className="w-4 h-4" />
+                  <span>Review My Book</span>
+                </Button>
               )}
             </div>
           </CardContent>
