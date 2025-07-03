@@ -1150,6 +1150,14 @@ const BookBuilder = () => {
                                   experience
                                 </p>
                               )}
+                              {!isFirst &&
+                                (!experience.title ||
+                                  !experience.description) && (
+                                  <p className="text-xs text-blue-500 mt-1">
+                                    💡 Fill out the experience name and details
+                                    to make your story more personalized!
+                                  </p>
+                                )}
                             </div>
 
                             <div>
