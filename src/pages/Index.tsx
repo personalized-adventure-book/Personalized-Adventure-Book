@@ -35,6 +35,16 @@ const Index = () => {
           <div className="hidden md:flex items-center space-x-6">
             <button
               onClick={() => {
+                document.getElementById("adventure-types")?.scrollIntoView({
+                  behavior: "smooth",
+                });
+              }}
+              className="text-foreground/80 hover:text-foreground transition-colors cursor-pointer"
+            >
+              Adventure Possibilities
+            </button>
+            <button
+              onClick={() => {
                 document.getElementById("how-it-works")?.scrollIntoView({
                   behavior: "smooth",
                 });
