@@ -294,7 +294,7 @@ const BookBuilder = () => {
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="parentEmail">Email Address *</Label>
+                    <Label htmlFor="parentEmail">Gmail Address *</Label>
                     <Input
                       id="parentEmail"
                       type="email"
@@ -302,8 +302,20 @@ const BookBuilder = () => {
                       onChange={(e) =>
                         updateFormData("parentEmail", e.target.value)
                       }
-                      placeholder="your@email.com"
+                      placeholder="your@gmail.com"
+                      className={
+                        !isValidGmail(formData.parentEmail) &&
+                        formData.parentEmail
+                          ? "border-red-500"
+                          : ""
+                      }
                     />
+                    {formData.parentEmail &&
+                      !isValidGmail(formData.parentEmail) && (
+                        <p className="text-red-500 text-sm">
+                          Please enter a valid Gmail address
+                        </p>
+                      )}
                   </div>
                 </div>
               </div>
