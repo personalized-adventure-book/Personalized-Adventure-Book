@@ -921,7 +921,7 @@ const BookBuilder = () => {
                     </h3>
                   </div>
 
-                  {formData.experiences.map((experience, index) => (
+                  {(formData.experiences || []).map((experience, index) => (
                     <Card
                       key={experience.id}
                       className="border-2 border-dashed border-adventure-blue/30"
