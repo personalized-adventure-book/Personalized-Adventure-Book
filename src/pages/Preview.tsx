@@ -744,13 +744,24 @@ const Preview = () => {
                 <div className="flex justify-between">
                   <span className="text-sm">Adventure Activities:</span>
                   <span className="font-medium">
-                    {(bookData.experiences || []).reduce(
-                      (total, exp) =>
-                        total +
-                        (exp.predefinedActivities || []).length +
-                        (exp.customActivities || []).length,
-                      0,
-                    )}
+                    {(() => {
+                      const count = (bookData.experiences || []).reduce(
+                        (total, exp) => {
+                          const predefined = (exp.predefinedActivities || [])
+                            .length;
+                          const custom = (exp.customActivities || []).length;
+                          console.log(`Experience ${exp.title || "Unnamed"}:`, {
+                            predefined,
+                            custom,
+                            total: predefined + custom,
+                          });
+                          return total + predefined + custom;
+                        },
+                        0,
+                      );
+                      console.log("Total activity count:", count);
+                      return count;
+                    })()}
                   </span>
                 </div>
                 <div className="flex justify-between">
