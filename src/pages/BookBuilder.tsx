@@ -978,7 +978,13 @@ const BookBuilder = () => {
                 </Button>
               ) : (
                 <Button
-                  onClick={() => setShowConfirmation(true)}
+                  onClick={() => {
+                    localStorage.setItem(
+                      "adventureBookData",
+                      JSON.stringify(formData),
+                    );
+                    navigate("/preview");
+                  }}
                   className="flex items-center space-x-2 bg-primary hover:bg-primary/90"
                 >
                   <Sparkles className="w-4 h-4" />
