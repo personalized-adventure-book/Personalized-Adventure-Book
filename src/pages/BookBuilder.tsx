@@ -1520,8 +1520,12 @@ const BookBuilder = () => {
                     formData.experiences.length === 0) && (
                     <div className="text-center py-8 text-foreground/70">
                       <p>
-                        No experiences added yet. Click "Add Experience" to get
-                        started!
+                        🌟 Your first adventure experience is ready to be
+                        created! 🌟
+                      </p>
+                      <p className="text-sm mt-2">
+                        The system will automatically create your first
+                        experience section below.
                       </p>
                     </div>
                   )}
