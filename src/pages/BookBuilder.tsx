@@ -1120,15 +1120,17 @@ const BookBuilder = () => {
                                   )
                                 }
                                 placeholder="Swimming with dolphins, Finding treasure..."
-                                className={`mt-1 ${isFirst && !experience.title ? "border-red-300" : ""}`}
+                                className={`mt-1 ${isFirst && !experience.title && hasAttemptedProceed ? "border-red-300" : ""}`}
                                 required={isFirst}
                               />
-                              {isFirst && !experience.title && (
-                                <p className="text-xs text-red-500 mt-1">
-                                  This field is required for the first
-                                  experience
-                                </p>
-                              )}
+                              {isFirst &&
+                                !experience.title &&
+                                hasAttemptedProceed && (
+                                  <p className="text-xs text-red-500 mt-1">
+                                    This field is required for the first
+                                    experience
+                                  </p>
+                                )}
                             </div>
 
                             <div>
