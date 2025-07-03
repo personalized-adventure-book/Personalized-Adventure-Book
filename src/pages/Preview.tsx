@@ -389,6 +389,80 @@ const Preview = () => {
           </p>
         </div>
       </div>
+
+      {/* Confirmation Dialog */}
+      <Dialog open={showConfirmation} onOpenChange={setShowConfirmation}>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <DialogTitle>Confirm Your Order</DialogTitle>
+            <DialogDescription>
+              Please review your order details before confirming your{" "}
+              {orderType} book order.
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="space-y-4">
+            <div className="grid md:grid-cols-2 gap-4">
+              <div>
+                <h4 className="font-semibold mb-2">Order Details</h4>
+                <p className="text-sm text-foreground/70">
+                  Book: {bookData?.childName}'s Adventure
+                </p>
+                <p className="text-sm text-foreground/70">
+                  Type:{" "}
+                  {orderType === "digital"
+                    ? "Digital PDF"
+                    : "Printed Hardcover"}
+                </p>
+                <p className="text-sm text-foreground/70">
+                  Price: {orderType === "digital" ? "$12.99" : "$24.99"}
+                </p>
+                {orderType === "printed" && (
+                  <p className="text-sm text-foreground/70">
+                    Delivery: Free in Europe (5-7 days)
+                  </p>
+                )}
+              </div>
+              <div>
+                <h4 className="font-semibold mb-2">Delivery Information</h4>
+                <p className="text-sm text-foreground/70">
+                  Name: {bookData?.parentName}
+                </p>
+                <p className="text-sm text-foreground/70">
+                  Email: {bookData?.parentEmail}
+                </p>
+                <p className="text-sm text-foreground/70">
+                  Child: {bookData?.childName} ({bookData?.childAge} years old)
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-secondary/50 p-4 rounded-lg">
+              <div className="flex justify-between items-center">
+                <span className="font-semibold">Total Amount</span>
+                <span className="font-bold text-lg text-primary">
+                  {orderType === "digital" ? "$12.99" : "$24.99"}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <DialogFooter className="flex space-x-3">
+            <Button
+              variant="outline"
+              onClick={() => setShowConfirmation(false)}
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={confirmOrder}
+              className="bg-primary hover:bg-primary/90"
+            >
+              Confirm Order
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
