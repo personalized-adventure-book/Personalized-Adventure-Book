@@ -1288,6 +1288,12 @@ const BookBuilder = () => {
                                               className="mt-1"
                                               rows={2}
                                             />
+                                            {!activityDetail.details && (
+                                              <p className="text-xs text-blue-500 mt-1">
+                                                💡 Describe this activity to
+                                                make it more engaging!
+                                              </p>
+                                            )}
                                           </div>
 
                                           <div>
