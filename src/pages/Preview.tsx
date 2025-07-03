@@ -74,7 +74,7 @@ const Preview = () => {
               <BookOpen className="w-5 h-5 text-white" />
             </div>
             <span className="text-xl font-bold adventure-text-gradient">
-              StoryQuest
+              Personalized Adventure Book
             </span>
           </Link>
           <Button variant="outline" asChild>

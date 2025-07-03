@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -29,6 +29,7 @@ import {
   Anchor,
   Zap,
   Heart,
+  X,
 } from "lucide-react";
 
 interface FormData {
@@ -77,6 +78,18 @@ const BookBuilder = () => {
 
   const totalSteps = 4;
   const progress = (currentStep / totalSteps) * 100;
+
+  // Check for pre-selected adventure type on component mount
+  useEffect(() => {
+    const selectedAdventure = localStorage.getItem("selectedAdventure");
+    if (selectedAdventure) {
+      setFormData((prev) => ({ ...prev, adventureType: selectedAdventure }));
+      // Skip to step 3 (adventure details) if adventure is pre-selected
+      setCurrentStep(3);
+      // Clear the stored selection
+      localStorage.removeItem("selectedAdventure");
+    }
+  }, []);
 
   const adventureTypes = [
     {
@@ -187,11 +200,24 @@ const BookBuilder = () => {
               <BookOpen className="w-5 h-5 text-white" />
             </div>
             <span className="text-xl font-bold adventure-text-gradient">
-              StoryQuest
+              Personalized Adventure Book
             </span>
           </Link>
-          <div className="text-sm text-foreground/70">
-            Step {currentStep} of {totalSteps}
+          <div className="flex items-center space-x-4">
+            <div className="text-sm text-foreground/70">
+              Step {currentStep} of {totalSteps}
+            </div>
+            <Button
+              variant="ghost"
+              size="sm"
+              asChild
+              className="text-foreground/70 hover:text-foreground"
+            >
+              <Link to="/" className="flex items-center space-x-1">
+                <X className="w-4 h-4" />
+                <span>Cancel</span>
+              </Link>
+            </Button>
           </div>
         </nav>
       </header>

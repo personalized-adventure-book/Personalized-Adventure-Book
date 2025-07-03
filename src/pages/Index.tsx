@@ -29,7 +29,7 @@ const Index = () => {
               <BookOpen className="w-5 h-5 text-white" />
             </div>
             <span className="text-xl font-bold adventure-text-gradient">
-              StoryQuest
+              Personalized Adventure Book
             </span>
           </div>
           <div className="hidden md:flex items-center space-x-6">
@@ -398,7 +398,7 @@ const Index = () => {
                   <BookOpen className="w-4 h-4 text-white" />
                 </div>
                 <span className="font-bold adventure-text-gradient">
-                  StoryQuest
+                  Personalized Adventure Book
                 </span>
               </div>
               <p className="text-sm text-foreground/70">
@@ -468,7 +468,7 @@ const Index = () => {
             </div>
           </div>
           <div className="border-t border-border mt-8 pt-8 text-center text-sm text-foreground/70">
-            © 2024 StoryQuest. All rights reserved.
+            © 2024 Personalized Adventure Book. All rights reserved.
           </div>
         </div>
       </footer>
