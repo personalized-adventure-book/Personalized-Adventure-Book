@@ -245,6 +245,8 @@ const BookBuilder = () => {
         return formData.adventureType && formData.location;
       case 4:
         return true; // Optional details
+      case 5:
+        return true; // Optional activity details
       default:
         return false;
     }
