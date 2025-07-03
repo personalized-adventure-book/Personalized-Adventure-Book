@@ -1161,17 +1161,25 @@ const BookBuilder = () => {
                   ))}
 
                   {/* Activity Details Subsections - Appear at the end */}
-                  {formData.experiences.some(
-                    (exp) => exp.activityDetails.length > 0,
-                  ) && (
-                    <div className="space-y-6 mt-8">
-                      <div className="border-t pt-6">
-                        <h4 className="text-xl font-semibold text-adventure-purple mb-6">
-                          Activity Details
-                        </h4>
-                        {formData.experiences.map(
-                          (experience) =>
-                            experience.activityDetails.length > 0 && (
+                  {formData.experiences &&
+                    formData.experiences.length > 0 &&
+                    formData.experiences.some(
+                      (exp) =>
+                        exp.activityDetails && exp.activityDetails.length > 0,
+                    ) && (
+                      <div className="space-y-6 mt-8">
+                        <div className="border-t pt-6">
+                          <h4 className="text-xl font-semibold text-adventure-purple mb-6">
+                            Activity Details
+                          </h4>
+                          {formData.experiences
+                            .filter(
+                              (exp) =>
+                                exp &&
+                                exp.activityDetails &&
+                                exp.activityDetails.length > 0,
+                            )
+                            .map((experience) => (
                               <div
                                 key={`activities-${experience.id}`}
                                 className="space-y-4 mb-8"
@@ -1319,11 +1327,10 @@ const BookBuilder = () => {
                                   ),
                                 )}
                               </div>
-                            ),
-                        )}
+                            ))}
+                        </div>
                       </div>
-                    </div>
-                  )}
+                    )}
 
                   {/* Add Experience Button - On the right */}
                   <div className="flex justify-end mt-6">
