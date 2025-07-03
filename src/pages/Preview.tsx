@@ -253,10 +253,10 @@ const Preview = () => {
                   <CardContent className="p-6">
                     <div className="flex items-start space-x-4">
                       <div
-                        className={`w-16 h-16 bg-adventure-${["green", "purple", "orange"][index]}/20 rounded-lg flex items-center justify-center`}
+                        className={`w-16 h-16 ${index === 0 ? "bg-adventure-green/20" : index === 1 ? "bg-adventure-purple/20" : "bg-adventure-orange/20"} rounded-lg flex items-center justify-center`}
                       >
                         <Sparkles
-                          className={`w-8 h-8 text-adventure-${["green", "purple", "orange"][index]}`}
+                          className={`w-8 h-8 ${index === 0 ? "text-adventure-green" : index === 1 ? "text-adventure-purple" : "text-adventure-orange"}`}
                         />
                       </div>
                       <div className="flex-1">
@@ -277,8 +277,7 @@ const Preview = () => {
                     </div>
                   </CardContent>
                 </Card>
-                );
-              })}
+              ))}
 
               {/* Final Page - Adventure conclusion */}
               <Card className="border-0 shadow-md">
