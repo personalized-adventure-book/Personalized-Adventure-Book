@@ -199,7 +199,11 @@ const BookBuilder = () => {
   const canProceed = () => {
     switch (currentStep) {
       case 1:
-        return formData.parentName && formData.parentEmail;
+        return (
+          formData.parentName &&
+          formData.parentEmail &&
+          isValidGmail(formData.parentEmail)
+        );
       case 2:
         return formData.childName && formData.childAge && formData.childGender;
       case 3:
