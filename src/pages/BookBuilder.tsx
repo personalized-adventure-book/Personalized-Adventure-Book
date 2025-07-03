@@ -112,6 +112,9 @@ const BookBuilder = () => {
     new Set(),
   );
   const [hasAttemptedProceed, setHasAttemptedProceed] = useState(false);
+  const [customActivityInputs, setCustomActivityInputs] = useState<{
+    [key: string]: string;
+  }>({});
   const hasInitializedRef = useRef(false);
   const [formData, setFormData] = useState<FormData>({
     parentName: "",
