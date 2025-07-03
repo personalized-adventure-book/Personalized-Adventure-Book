@@ -134,10 +134,11 @@ const Index = () => {
       <section id="examples" className="container mx-auto px-4 py-16">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Choose Your Adventure
+            Adventure Possibilities
           </h2>
           <p className="text-lg text-foreground/80">
-            Pick from our magical adventure themes
+            Explore the magical worlds we can create for your child - and many
+            more!
           </p>
         </div>
 
