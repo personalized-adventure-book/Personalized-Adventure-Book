@@ -102,7 +102,7 @@ const BookBuilder = () => {
     personalExperiences: [],
   });
 
-  const totalSteps = 4;
+  const totalSteps = 5;
   const progress = (currentStep / totalSteps) * 100;
 
   // Check for pre-selected adventure type on component mount
