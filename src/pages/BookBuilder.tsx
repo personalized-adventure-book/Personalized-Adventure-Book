@@ -1003,14 +1003,16 @@ const BookBuilder = () => {
                           {experience.images.length > 0 && (
                             <div className="mt-4 space-y-4">
                               <h5 className="font-medium">Experience Images</h5>
-                              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                                 {experience.images.map((img, imgIndex) => (
                                   <div key={imgIndex} className="space-y-2">
-                                    <img
-                                      src={URL.createObjectURL(img.file)}
-                                      alt="Experience upload"
-                                      className="w-full h-32 object-cover rounded"
-                                    />
+                                    <div className="aspect-square">
+                                      <img
+                                        src={URL.createObjectURL(img.file)}
+                                        alt="Experience upload"
+                                        className="w-full h-full object-cover rounded"
+                                      />
+                                    </div>
                                     <div>
                                       <Label className="text-sm">
                                         Image Description
@@ -1035,154 +1037,177 @@ const BookBuilder = () => {
                             </div>
                           )}
                         </div>
-
-                        {/* Activity Details Subsections */}
-                        {experience.activityDetails.length > 0 && (
-                          <div className="space-y-4">
-                            <h5 className="font-medium text-adventure-purple">
-                              Activity Details
-                            </h5>
-                            {experience.activityDetails.map(
-                              (activityDetail) => (
-                                <Card
-                                  key={activityDetail.id}
-                                  className="border border-adventure-purple/30 bg-adventure-purple/5"
-                                >
-                                  <CardHeader className="pb-3">
-                                    <h6 className="font-medium">
-                                      {activityDetail.name}
-                                    </h6>
-                                  </CardHeader>
-                                  <CardContent className="space-y-4">
-                                    <div>
-                                      <Label className="text-sm">
-                                        Activity Details
-                                      </Label>
-                                      <Textarea
-                                        value={activityDetail.details}
-                                        onChange={(e) =>
-                                          updateActivityDetail(
-                                            experience.id,
-                                            activityDetail.id,
-                                            "details",
-                                            e.target.value,
-                                          )
-                                        }
-                                        placeholder="Describe what happens during this activity..."
-                                        className="mt-1"
-                                        rows={3}
-                                      />
-                                    </div>
-
-                                    <div>
-                                      <Label className="text-sm">
-                                        Characters Involved
-                                      </Label>
-                                      <Input
-                                        value={activityDetail.characters}
-                                        onChange={(e) =>
-                                          updateActivityDetail(
-                                            experience.id,
-                                            activityDetail.id,
-                                            "characters",
-                                            e.target.value,
-                                          )
-                                        }
-                                        placeholder="Who's involved in this activity?"
-                                        className="mt-1"
-                                      />
-                                    </div>
-
-                                    {/* Activity Images */}
-                                    <div>
-                                      <Label className="text-sm">
-                                        Activity Images
-                                      </Label>
-                                      <div className="mt-2 border-2 border-dashed border-gray-300 rounded-lg p-3">
-                                        <input
-                                          type="file"
-                                          multiple
-                                          accept="image/*"
-                                          onChange={(e) =>
-                                            handleImageUpload(
-                                              experience.id,
-                                              e.target.files,
-                                              activityDetail.id,
-                                            )
-                                          }
-                                          className="hidden"
-                                          id={`activity-images-${activityDetail.id}`}
-                                        />
-                                        <Label
-                                          htmlFor={`activity-images-${activityDetail.id}`}
-                                          className="cursor-pointer flex flex-col items-center space-y-1"
-                                        >
-                                          <Upload className="w-5 h-5 text-gray-400" />
-                                          <span className="text-xs text-gray-500">
-                                            Upload images for{" "}
-                                            {activityDetail.name}
-                                          </span>
-                                        </Label>
-                                      </div>
-
-                                      {/* Activity Image Descriptions */}
-                                      {activityDetail.images.length > 0 && (
-                                        <div className="mt-3 space-y-3">
-                                          <h6 className="text-sm font-medium">
-                                            Activity Images
-                                          </h6>
-                                          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                                            {activityDetail.images.map(
-                                              (img, imgIndex) => (
-                                                <div
-                                                  key={imgIndex}
-                                                  className="space-y-2"
-                                                >
-                                                  <img
-                                                    src={URL.createObjectURL(
-                                                      img.file,
-                                                    )}
-                                                    alt="Activity upload"
-                                                    className="w-full h-24 object-cover rounded"
-                                                  />
-                                                  <div>
-                                                    <Label className="text-xs">
-                                                      Image Description
-                                                    </Label>
-                                                    <Textarea
-                                                      value={img.description}
-                                                      onChange={(e) =>
-                                                        updateImageDescription(
-                                                          experience.id,
-                                                          imgIndex,
-                                                          e.target.value,
-                                                          activityDetail.id,
-                                                        )
-                                                      }
-                                                      placeholder="Describe this image..."
-                                                      className="mt-1"
-                                                      rows={2}
-                                                    />
-                                                  </div>
-                                                </div>
-                                              ),
-                                            )}
-                                          </div>
-                                        </div>
-                                      )}
-                                    </div>
-                                  </CardContent>
-                                </Card>
-                              ),
-                            )}
-                          </div>
-                        )}
                       </CardContent>
                     </Card>
                   ))}
 
-                  {/* Add Experience Button - Always at the end */}
-                  <div className="text-center">
+                  {/* Activity Details Subsections - Appear at the end */}
+                  {formData.experiences.some(
+                    (exp) => exp.activityDetails.length > 0,
+                  ) && (
+                    <div className="space-y-6 mt-8">
+                      <div className="border-t pt-6">
+                        <h4 className="text-xl font-semibold text-adventure-purple mb-6">
+                          Activity Details
+                        </h4>
+                        {formData.experiences.map(
+                          (experience) =>
+                            experience.activityDetails.length > 0 && (
+                              <div
+                                key={`activities-${experience.id}`}
+                                className="space-y-4 mb-8"
+                              >
+                                <h5 className="text-lg font-medium text-adventure-blue">
+                                  {experience.title ||
+                                    `Experience ${formData.experiences.indexOf(experience) + 1}`}{" "}
+                                  - Activities
+                                </h5>
+                                {experience.activityDetails.map(
+                                  (activityDetail) => (
+                                    <Card
+                                      key={activityDetail.id}
+                                      className="border border-adventure-purple/30 bg-adventure-purple/5"
+                                    >
+                                      <CardHeader className="pb-3">
+                                        <h6 className="font-medium">
+                                          {activityDetail.name}
+                                        </h6>
+                                      </CardHeader>
+                                      <CardContent className="space-y-4">
+                                        <div>
+                                          <Label className="text-sm">
+                                            Activity Details
+                                          </Label>
+                                          <Textarea
+                                            value={activityDetail.details}
+                                            onChange={(e) =>
+                                              updateActivityDetail(
+                                                experience.id,
+                                                activityDetail.id,
+                                                "details",
+                                                e.target.value,
+                                              )
+                                            }
+                                            placeholder="Describe what happens during this activity..."
+                                            className="mt-1"
+                                            rows={3}
+                                          />
+                                        </div>
+
+                                        <div>
+                                          <Label className="text-sm">
+                                            Characters Involved
+                                          </Label>
+                                          <Input
+                                            value={activityDetail.characters}
+                                            onChange={(e) =>
+                                              updateActivityDetail(
+                                                experience.id,
+                                                activityDetail.id,
+                                                "characters",
+                                                e.target.value,
+                                              )
+                                            }
+                                            placeholder="Who's involved in this activity?"
+                                            className="mt-1"
+                                          />
+                                        </div>
+
+                                        {/* Activity Images */}
+                                        <div>
+                                          <Label className="text-sm">
+                                            Activity Images
+                                          </Label>
+                                          <div className="mt-2 border-2 border-dashed border-gray-300 rounded-lg p-3">
+                                            <input
+                                              type="file"
+                                              multiple
+                                              accept="image/*"
+                                              onChange={(e) =>
+                                                handleImageUpload(
+                                                  experience.id,
+                                                  e.target.files,
+                                                  activityDetail.id,
+                                                )
+                                              }
+                                              className="hidden"
+                                              id={`activity-images-${activityDetail.id}`}
+                                            />
+                                            <Label
+                                              htmlFor={`activity-images-${activityDetail.id}`}
+                                              className="cursor-pointer flex flex-col items-center space-y-1"
+                                            >
+                                              <Upload className="w-5 h-5 text-gray-400" />
+                                              <span className="text-xs text-gray-500">
+                                                Upload images for{" "}
+                                                {activityDetail.name}
+                                              </span>
+                                            </Label>
+                                          </div>
+
+                                          {/* Activity Image Descriptions */}
+                                          {activityDetail.images.length > 0 && (
+                                            <div className="mt-3 space-y-3">
+                                              <h6 className="text-sm font-medium">
+                                                Activity Images
+                                              </h6>
+                                              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                                                {activityDetail.images.map(
+                                                  (img, imgIndex) => (
+                                                    <div
+                                                      key={imgIndex}
+                                                      className="space-y-2"
+                                                    >
+                                                      <div className="aspect-square">
+                                                        <img
+                                                          src={URL.createObjectURL(
+                                                            img.file,
+                                                          )}
+                                                          alt="Activity upload"
+                                                          className="w-full h-full object-cover rounded"
+                                                        />
+                                                      </div>
+                                                      <div>
+                                                        <Label className="text-xs">
+                                                          Image Description
+                                                        </Label>
+                                                        <Textarea
+                                                          value={
+                                                            img.description
+                                                          }
+                                                          onChange={(e) =>
+                                                            updateImageDescription(
+                                                              experience.id,
+                                                              imgIndex,
+                                                              e.target.value,
+                                                              activityDetail.id,
+                                                            )
+                                                          }
+                                                          placeholder="Describe this image..."
+                                                          className="mt-1"
+                                                          rows={2}
+                                                        />
+                                                      </div>
+                                                    </div>
+                                                  ),
+                                                )}
+                                              </div>
+                                            </div>
+                                          )}
+                                        </div>
+                                      </CardContent>
+                                    </Card>
+                                  ),
+                                )}
+                              </div>
+                            ),
+                        )}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Add Experience Button - On the right */}
+                  <div className="flex justify-end mt-6">
                     <Button
                       type="button"
                       variant="outline"
