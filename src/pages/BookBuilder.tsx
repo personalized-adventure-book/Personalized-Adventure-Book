@@ -38,6 +38,8 @@ import {
   Zap,
   Heart,
   X,
+  Download,
+  Printer,
 } from "lucide-react";
 
 interface ActivityDetail {
