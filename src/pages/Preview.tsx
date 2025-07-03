@@ -855,13 +855,24 @@ const Preview = () => {
                   <span className="text-sm">Estimated Pages:</span>
                   <span className="font-medium">
                     {Math.max(
-                      (bookData.experiences || []).reduce(
-                        (total, exp) =>
-                          total +
-                          (exp.predefinedActivities || []).length +
-                          (exp.customActivities || []).length,
-                        0,
-                      ) + 2,
+                      (bookData.experiences || []).reduce((total, exp) => {
+                        // Count actual activity details (the sections that get created)
+                        const activityDetails = (exp.activityDetails || [])
+                          .length;
+
+                        // Also count predefined and custom activities as backup
+                        const predefined = (exp.predefinedActivities || [])
+                          .length;
+                        const custom = (exp.customActivities || []).length;
+
+                        // Use activityDetails if available, otherwise fall back to predefined + custom
+                        const expCount =
+                          activityDetails > 0
+                            ? activityDetails
+                            : predefined + custom;
+
+                        return total + expCount;
+                      }, 0) + 2,
                       4,
                     )}
                   </span>
