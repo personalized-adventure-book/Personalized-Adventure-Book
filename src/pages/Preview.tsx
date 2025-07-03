@@ -126,22 +126,72 @@ const Preview = () => {
 
   useEffect(() => {
     const savedData = localStorage.getItem("adventureBookData");
+    console.log("Raw localStorage data:", savedData);
+
     if (savedData) {
-      const parsedData = JSON.parse(savedData);
-      console.log("Loaded book data:", parsedData);
-      console.log("Experiences:", parsedData.experiences);
-      if (parsedData.experiences) {
-        parsedData.experiences.forEach((exp: any, index: number) => {
-          console.log(`Experience ${index}:`, {
-            title: exp.title,
-            predefinedActivities: exp.predefinedActivities,
-            customActivities: exp.customActivities,
+      try {
+        const parsedData = JSON.parse(savedData);
+        console.log("Loaded book data:", parsedData);
+        console.log("Experiences:", parsedData.experiences);
+
+        // Ensure experiences array exists and is properly structured
+        if (!parsedData.experiences) {
+          parsedData.experiences = [];
+          console.log("No experiences found, initializing empty array");
+        }
+
+        if (parsedData.experiences) {
+          parsedData.experiences.forEach((exp: any, index: number) => {
+            console.log(`Experience ${index}:`, {
+              title: exp.title,
+              predefinedActivities: exp.predefinedActivities,
+              customActivities: exp.customActivities,
+            });
           });
-        });
+        }
+
+        setBookData(parsedData);
+      } catch (error) {
+        console.error("Error parsing book data:", error);
+        // Fallback: try to get data from draft storage
+        const draftData = localStorage.getItem("bookBuilderDraft");
+        if (draftData) {
+          try {
+            const draft = JSON.parse(draftData);
+            if (draft.formData) {
+              console.log("Using draft data as fallback");
+              setBookData(draft.formData);
+            } else {
+              navigate("/create");
+            }
+          } catch (draftError) {
+            console.error("Error parsing draft data:", draftError);
+            navigate("/create");
+          }
+        } else {
+          navigate("/create");
+        }
       }
-      setBookData(parsedData);
     } else {
-      navigate("/create");
+      console.log("No saved data found, checking for draft...");
+      // Try to get data from draft storage as fallback
+      const draftData = localStorage.getItem("bookBuilderDraft");
+      if (draftData) {
+        try {
+          const draft = JSON.parse(draftData);
+          if (draft.formData) {
+            console.log("Using draft data");
+            setBookData(draft.formData);
+          } else {
+            navigate("/create");
+          }
+        } catch (error) {
+          console.error("Error parsing draft data:", error);
+          navigate("/create");
+        }
+      } else {
+        navigate("/create");
+      }
     }
   }, [navigate]);
 
