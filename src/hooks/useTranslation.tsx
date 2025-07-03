@@ -279,349 +279,29 @@ const translations = {
     "features.printOrDigitalDesc":
       "Recevez un livre physique livré ou téléchargez instantanément",
 
-    // Adventure Types
-    "adventure.possibilities": "Possibilités d'Aventure",
-    "adventure.possibilitiesDesc":
-      "Explorez les mondes magiques que nous pouvons créer pour votre enfant - et bien plus encore!",
-    "adventure.spaceMission": "Mission Spatiale",
-    "adventure.spaceMissionDesc":
-      "Décollage vers des planètes lointaines et rencontre d'amis extraterrestres",
-    "adventure.enchantedForest": "Forêt Enchantée",
-    "adventure.enchantedForestDesc":
-      "Découvrez des créatures magiques et des trésors cachés",
-    "adventure.royalCastle": "Château Royal",
-    "adventure.royalCastleDesc":
-      "Devenez un chevalier brave ou une princesse sage",
-    "adventure.pirateVoyage": "Voyage de Pirate",
-    "adventure.pirateVoyageDesc":
-      "Naviguez sur les sept mers à la recherche de trésors",
-    "adventure.superheroAcademy": "Académie de Super-Héros",
-    "adventure.superheroAcademyDesc":
-      "Entraînez-vous pour devenir le prochain grand héros du monde",
-    "adventure.underwaterWorld": "Monde Sous-Marin",
-    "adventure.underwaterWorldDesc":
-      "Plongez profondément pour explorer les royaumes coralliens",
-
-    // Examples Section
+    // Examples
     "examples.title": "Exemples de Livres",
     "examples.description":
       "Voyez comment les aventures d'autres enfants ont pris vie dans leurs livres personnalisés",
-    "examples.adventure": "Aventure",
-    "examples.preview": "Aperçu de l'Histoire",
-    "examples.createYours": "Créez Votre Aventure",
-    "examples.example1.title": "Quête de la Forêt Magique",
-    "examples.example1.adventure":
-      "Forêt enchantée avec des animaux parlants et des villages de fées cachés",
-    "examples.example1.preview":
-      "Emma franchit l'arche dorée et haleta alors que des papillons aux ailes arc-en-ciel dansaient autour d'elle...",
-    "examples.example2.title": "Mission d'Explorateur Spatial",
-    "examples.example2.adventure":
-      "Voyage vers Mars avec des compagnons robotiques et des découvertes extraterrestres",
-    "examples.example2.preview":
-      "Le Capitaine Lucas ajusta son casque spatial et regarda la planète rouge en contrebas...",
-    "examples.example3.title": "Académie de Princesse",
-    "examples.example3.adventure":
-      "Château royal avec des amis dragons et des sorts magiques à apprendre",
-    "examples.example3.preview":
-      "La Princesse Sofia agita sa baguette scintillante et regarda les fleurs commencer à briller...",
-    "examples.example4.title": "Chasse au Trésor de Pirate",
-    "examples.example4.adventure":
-      "Navigation sur les sept mers avec un équipage de pirates amicaux",
-    "examples.example4.preview":
-      "Le Premier Maître Alex aperçut quelque chose qui scintillait sous l'eau cristalline...",
-    "examples.example5.title": "Apprentie Sorcière",
-    "examples.example5.adventure":
-      "Apprendre des sorts magiques dans une tour remplie de créatures mystérieuses",
-    "examples.example5.preview":
-      "Maya mélangea soigneusement la potion chatoyante tandis que son compagnon hibou regardait...",
-    "examples.example6.title": "Aventure Océanique",
-    "examples.example6.adventure":
-      "Royaume sous-marin avec des amis dauphins et des châteaux de corail",
-    "examples.example6.preview":
-      "Diego nagea aux côtés des dauphins amicaux vers la cité sous-marine brillante...",
 
     // How It Works
     "howItWorks.title": "Comment Ça Marche",
     "howItWorks.description":
       "Créez votre livre d'aventure personnalisé en quelques étapes simples",
-    "howItWorks.step1.title": "Remplir les Détails",
-    "howItWorks.step1.description":
-      "Entrez le nom, l'âge et les préférences d'aventure de votre enfant",
-    "howItWorks.step2.title": "Personnaliser l'Histoire",
-    "howItWorks.step2.description":
-      "Choisissez le cadre, les personnages et les détails spéciaux",
-    "howItWorks.step3.title": "Aperçu des Pages",
-    "howItWorks.step3.description":
-      "Voyez votre livre personnalisé prendre vie instantanément",
-    "howItWorks.step4.title": "Obtenez Votre Livre",
-    "howItWorks.step4.description":
-      "Téléchargez une copie numérique ou commandez une version imprimée",
-
-    // Form Steps
-    "form.step1": "Informations Parent",
-    "form.step2": "Informations Enfant",
-    "form.step3": "Sélection d'Aventure",
-    "form.step4": "Touches Personnelles",
-    "form.step5": "Détails d'Activité",
-
-    // Form Fields
-    "form.parentName": "Votre Nom",
-    "form.email": "Adresse Gmail",
-    "form.emailInvalid": "Veuillez entrer une adresse Gmail valide",
-    "form.childName": "Nom de l'Enfant",
-    "form.age": "Âge",
-    "form.gender": "Genre",
-    "form.boy": "Garçon",
-    "form.girl": "Fille",
-    "form.other": "Autre",
-    "form.adventureType": "Choisir le Type d'Aventure",
-    "form.customAdventure":
-      "Vous ne trouvez pas votre type d'aventure? Entrez-le ici:",
-    "form.customAdventurePlaceholder":
-      "Décrivez votre aventure personnalisée...",
-    "form.location": "Cadre ou Lieu",
-    "form.keyActivities": "Activités Clés",
-    "form.selectActivities":
-      "Sélectionnez les activités qui intéressent votre enfant:",
-    "form.customActivities": "Autres activités (une par ligne):",
-    "form.favoriteColor": "Couleur Préférée de l'Enfant",
-    "form.petName": "Nom de l'Animal (si applicable)",
-    "form.includeFriends": "Amis ou Famille à Inclure",
-    "form.characters": "Personnages ou Thèmes Préférés",
-    "form.specialDetails": "Détails Spéciaux ou Blagues Privées",
-    "form.personalExperiences": "Expériences Personnelles à Inclure",
-    "form.addExperience": "Ajouter une Autre Expérience",
-    "form.activityName": "Nom de l'Activité",
-    "form.activityDetails": "Détails de l'Activité",
-    "form.activityCharacters": "Personnages Impliqués",
-    "form.activityImageDesc": "Description de l'Image",
-    "form.uploadImages": "Télécharger des Images",
-    "form.addActivity": "Ajouter une Autre Activité",
-    "form.previous": "Précédent",
-    "form.next": "Suivant",
-    "form.reviewBook": "Réviser Mon Livre",
-    "form.required": "Obligatoire",
-    "form.complete": "Terminé",
 
     // Pricing
     "pricing.title": "Options de Livre",
     "pricing.description":
-      "Créez des souvenirs durables avec un livre personnalisé que votre enfant chérira pour toujours. Choisissez l'option parfaite pour le budget et les préférences de votre famille.",
-    "pricing.digitalBook": "Livre Numérique",
-    "pricing.digitalBookDesc": "Téléchargement PDF instantané",
-    "pricing.printedBook": "Livre Imprimé",
-    "pricing.printedBookDesc": "Couverture rigide professionnelle",
-    "pricing.feature1": "Histoire personnalisée de 20+ pages",
-    "pricing.feature2": "Illustrations de haute qualité",
-    "pricing.feature3": "Téléchargement instantané",
-    "pricing.feature4": "Option d'impression à domicile",
-    "pricing.feature5": "Tout dans Numérique",
-    "pricing.feature6": "Reliure rigide premium",
-    "pricing.feature7": "Impression professionnelle",
-    "pricing.feature8": "Livraison gratuite en Europe",
-    "pricing.popular": "Populaire",
-
-    // Order
-    "order.chooseFormat": "Choisissez le Format de Votre Livre",
-    "order.digitalOption": "Livre Numérique - 12,99€",
-    "order.printedOption": "Livre Imprimé - 24,99€",
-    "order.shippingAddress": "Adresse de Livraison",
-    "order.fullName": "Nom Complet",
-    "order.streetAddress": "Adresse de la Rue",
-    "order.city": "Ville",
-    "order.postalCode": "Code Postal",
-    "order.country": "Pays",
-    "order.selectCountry": "Sélectionnez un pays...",
-    "order.phone": "Numéro de Téléphone",
-    "order.countryCode": "Indicatif Pays",
-    "order.phoneInvalid": "Veuillez entrer un numéro de téléphone valide",
-    "order.paymentDetails": "Détails de Paiement",
-    "order.cardNumber": "Numéro de Carte",
-    "order.cardNumberInvalid": "Veuillez entrer un numéro de carte valide",
-    "order.expiryDate": "Date d'Expiration",
-    "order.expiryInvalid":
-      "Veuillez entrer une date d'expiration valide (MM/AA)",
-    "order.cvv": "CVV",
-    "order.cvvInvalid": "Veuillez entrer un CVV valide",
-    "order.cardholderName": "Nom du Titulaire de la Carte",
-    "order.completePayment": "Finaliser le Paiement",
-    "order.cancel": "Annuler",
-    "order.confirmed": "Commande Confirmée!",
-    "order.confirmationDetails": "Détails de Confirmation",
-    "order.shippingDetails": "Détails de Livraison",
-    "order.deliveryInfo": "Votre livre sera livré par email quand il sera prêt",
-    "order.createAnother": "Créer un Autre Livre",
-    "order.goHome": "Aller à l'Accueil",
-    "order.backToForm": "Retour au Formulaire",
-
-    // Countries
-    "countries.us": "États-Unis",
-    "countries.ca": "Canada",
-    "countries.gb": "Royaume-Uni",
-    "countries.fr": "France",
-    "countries.de": "Allemagne",
-    "countries.it": "Italie",
-    "countries.es": "Espagne",
-    "countries.nl": "Pays-Bas",
-    "countries.be": "Belgique",
-    "countries.at": "Autriche",
-    "countries.ch": "Suisse",
-    "countries.au": "Australie",
-    "countries.nz": "Nouvelle-Zélande",
-    "countries.jp": "Japon",
-    "countries.kr": "Corée du Sud",
-    "countries.cn": "Chine",
-    "countries.in": "Inde",
-    "countries.br": "Brésil",
-    "countries.mx": "Mexique",
-    "countries.ar": "Argentine",
+      "Créez des souvenirs durables avec un livre personnalisé que votre enfant chérira pour toujours.",
 
     // CTA Section
     "cta.title": "Prêt à Créer de la Magie?",
     "cta.description":
-      "Offrez à votre enfant le cadeau d'être le héros de sa propre histoire d'aventure personnalisée. Commencez à créer son livre magique aujourd'hui!",
-    "cta.startAdventure": "Commencez Votre Aventure",
+      "Offrez à votre enfant le cadeau d'être le héros de sa propre histoire d'aventure personnalisée.",
 
     // Footer
-    "footer.tagline":
-      "Création de livres d'aventure personnalisés magiques pour enfants du monde entier.",
-    "footer.product": "Produit",
-    "footer.howItWorks": "Comment Ça Marche",
-    "footer.examples": "Exemples",
-    "footer.pricing": "Tarifs",
-    "footer.support": "Support",
-    "footer.helpCenter": "Centre d'Aide",
-    "footer.contactUs": "Nous Contacter",
-    "footer.faq": "FAQ",
-    "footer.company": "Entreprise",
-    "footer.about": "À Propos",
-    "footer.privacy": "Confidentialité",
-    "footer.terms": "Conditions",
     "footer.copyright":
       "© 2024 Livre d'Aventure Personnalisé. Tous droits réservés.",
-  },
-  // Add other languages with complete translations...
-  it: {
-    // Navigation
-    "nav.adventurePossibilities": "Possibilità di Avventura",
-    "nav.howItWorks": "Come Funziona",
-    "nav.examples": "Esempi",
-    "nav.pricing": "Prezzi",
-
-    // Homepage
-    "hero.subtitle": "Libri di Avventura Personalizzati per Bambini",
-    "hero.title": "Crea",
-    "hero.titleHighlight": "Avventure",
-    "hero.subtitle2": "Magiche con Tuo Figlio",
-    "hero.description":
-      "Trasforma tuo figlio nell'eroe del suo libro di avventura personalizzato. Scegli tra foreste incantate, missioni spaziali, spedizioni sottomarine e molto altro!",
-    "hero.startCreating": "Inizia a Creare",
-    "hero.seeExamples": "Vedi Esempi",
-
-    // Add all other translations...
-    "examples.title": "Esempi di Libri",
-    "examples.description":
-      "Vedi come le avventure di altri bambini hanno preso vita nei loro libri personalizzati",
-    "howItWorks.title": "Come Funziona",
-    "pricing.title": "Opzioni Libro",
-    "cta.title": "Pronto a Creare Magia?",
-    "footer.copyright":
-      "© 2024 Libro di Avventura Personalizzato. Tutti i diritti riservati.",
-  },
-  es: {
-    // Navigation
-    "nav.adventurePossibilities": "Posibilidades de Aventura",
-    "nav.howItWorks": "Cómo Funciona",
-    "nav.examples": "Ejemplos",
-    "nav.pricing": "Precios",
-
-    // Homepage
-    "hero.subtitle": "Libros de Aventura Personalizados para Niños",
-    "hero.title": "Crea",
-    "hero.titleHighlight": "Aventuras",
-    "hero.subtitle2": "Mágicas con Tu Hijo",
-    "hero.description":
-      "Transforma a tu hijo en el héroe de su propio libro de aventuras personalizado. ¡Elige entre bosques encantados, misiones espaciales, expediciones submarinas y más!",
-    "hero.startCreating": "Comenzar a Crear",
-    "hero.seeExamples": "Ver Ejemplos",
-
-    "examples.title": "Ejemplos de Libros",
-    "howItWorks.title": "Cómo Funciona",
-    "pricing.title": "Opciones de Libro",
-    "cta.title": "¿Listo para Crear Magia?",
-    "footer.copyright":
-      "© 2024 Libro de Aventuras Personalizado. Todos los derechos reservados.",
-  },
-  ar: {
-    // Navigation
-    "nav.adventurePossibilities": "إمكانيات المغامرة",
-    "nav.howItWorks": "كيف يعمل",
-    "nav.examples": "أمثلة",
-    "nav.pricing": "الأسعار",
-
-    // Homepage
-    "hero.subtitle": "كتب مغامرات شخصية للأطفال",
-    "hero.title": "اصنع",
-    "hero.titleHighlight": "مغامرات",
-    "hero.subtitle2": "سحرية مع طفلك",
-    "hero.description":
-      "حول طفلك إلى بطل كتاب المغامرات الشخصي الخاص به. اختر من بين الغابات المسحورة، والمهام الفضائية، والرحلات تحت الماء، وأكثر!",
-    "hero.startCreating": "ابدأ الإنشاء",
-    "hero.seeExamples": "انظر الأمثلة",
-
-    "examples.title": "أمثلة الكتب",
-    "howItWorks.title": "كيف يعمل",
-    "pricing.title": "خيارات الكتاب",
-    "cta.title": "مستعد لصنع السحر؟",
-    "footer.copyright": "© 2024 كتاب المغامرة الشخصي. جميع الحقوق محفوظة.",
-  },
-  nl: {
-    // Navigation
-    "nav.adventurePossibilities": "Avontuarmogelijkheden",
-    "nav.howItWorks": "Hoe Het Werkt",
-    "nav.examples": "Voorbeelden",
-    "nav.pricing": "Prijzen",
-
-    // Homepage
-    "hero.subtitle": "Gepersonaliseerde Avontuurboeken voor Kinderen",
-    "hero.title": "Creëer",
-    "hero.titleHighlight": "Avonturen",
-    "hero.subtitle2": "Magische met Je Kind",
-    "hero.description":
-      "Transformeer je kind in de held van hun eigen gepersonaliseerde avontuurboek. Kies uit betoverde bossen, ruimtemissies, onderwaterexpedities en meer!",
-    "hero.startCreating": "Begin met Maken",
-    "hero.seeExamples": "Zie Voorbeelden",
-
-    "examples.title": "Boekvoorbeelden",
-    "howItWorks.title": "Hoe Het Werkt",
-    "pricing.title": "Boekopties",
-    "cta.title": "Klaar om Magie te Creëren?",
-    "footer.copyright":
-      "© 2024 Gepersonaliseerd Avontuurboek. Alle rechten voorbehouden.",
-  },
-  de: {
-    // Navigation
-    "nav.adventurePossibilities": "Abenteuer-Möglichkeiten",
-    "nav.howItWorks": "Wie Es Funktioniert",
-    "nav.examples": "Beispiele",
-    "nav.pricing": "Preise",
-
-    // Homepage
-    "hero.subtitle": "Personalisierte Abenteuerbücher für Kinder",
-    "hero.title": "Erschaffe",
-    "hero.titleHighlight": "Abenteuer",
-    "hero.subtitle2": "Magische mit Deinem Kind",
-    "hero.description":
-      "Verwandle dein Kind in den Helden seines eigenen personalisierten Abenteuerbuchs. Wähle aus verzauberten Wäldern, Weltraummissionen, Unterwasserexpeditionen und mehr!",
-    "hero.startCreating": "Mit Erstellen Beginnen",
-    "hero.seeExamples": "Beispiele Ansehen",
-
-    "examples.title": "Buchbeispiele",
-    "howItWorks.title": "Wie Es Funktioniert",
-    "pricing.title": "Buchoptionen",
-    "cta.title": "Bereit, Magie zu Erschaffen?",
-    "footer.copyright":
-      "© 2024 Personalisiertes Abenteuerbuch. Alle Rechte vorbehalten.",
   },
 };
 
@@ -629,9 +309,7 @@ const TranslationContext = createContext<TranslationContextType | undefined>(
   undefined,
 );
 
-export const TranslationProvider: React.FC<{ children: ReactNode }> = ({
-  children,
-}) => {
+export function TranslationProvider({ children }: { children: ReactNode }) {
   const [language, setLanguage] = useState<Language>("en");
 
   const t = (key: string): string => {
@@ -663,12 +341,12 @@ export const TranslationProvider: React.FC<{ children: ReactNode }> = ({
       {children}
     </TranslationContext.Provider>
   );
-};
+}
 
-export const useTranslation = (): TranslationContextType => {
+export function useTranslation(): TranslationContextType {
   const context = useContext(TranslationContext);
   if (context === undefined) {
     throw new Error("useTranslation must be used within a TranslationProvider");
   }
   return context;
-};
+}
