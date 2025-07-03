@@ -185,11 +185,30 @@ const BookBuilder = () => {
         localStorage.removeItem("bookBuilderDraft");
       }
     }
+
+    // Initialize first experience if none exist and not loaded from draft
+    if (!savedDraft || !draftData?.formData?.experiences?.length) {
+      const firstExperience: ExperienceDetail = {
+        id: "experience-1",
+        title: "",
+        description: "",
+        predefinedActivities: [],
+        customActivities: [],
+        activityDetails: [],
+        characters: "",
+        images: [],
+        imageDescription: "",
+      };
+
+      setFormData((prev) => ({
+        ...prev,
+        experiences: [firstExperience],
+      }));
+      setExpandedExperiences(new Set(["experience-1"]));
+    }
+
     setIsLoadingDraft(false);
     hasInitializedRef.current = true;
-
-    // Initialize first experience if none exist
-    setTimeout(() => initializeFirstExperience(), 0);
   }, []);
 
   // Track changes only after initial load
