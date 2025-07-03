@@ -1100,7 +1100,10 @@ const BookBuilder = () => {
                         {(isExpanded || isFirst) && (
                           <CardContent className="space-y-6">
                             <div>
-                              <Label>{t("form.activityName")}</Label>
+                              <Label>
+                                {t("form.activityName")}
+                                {isFirst && <RequiredStar />}
+                              </Label>
                               <Input
                                 value={experience.title}
                                 onChange={(e) =>
@@ -1111,12 +1114,22 @@ const BookBuilder = () => {
                                   )
                                 }
                                 placeholder="Swimming with dolphins, Finding treasure..."
-                                className="mt-1"
+                                className={`mt-1 ${isFirst && !experience.title ? "border-red-300" : ""}`}
+                                required={isFirst}
                               />
+                              {isFirst && !experience.title && (
+                                <p className="text-xs text-red-500 mt-1">
+                                  This field is required for the first
+                                  experience
+                                </p>
+                              )}
                             </div>
 
                             <div>
-                              <Label>{t("form.activityDetails")}</Label>
+                              <Label>
+                                {t("form.activityDetails")}
+                                {isFirst && <RequiredStar />}
+                              </Label>
                               <Textarea
                                 value={experience.description}
                                 onChange={(e) =>
@@ -1127,9 +1140,16 @@ const BookBuilder = () => {
                                   )
                                 }
                                 placeholder="Describe what happens in this part of the adventure..."
-                                className="mt-1"
+                                className={`mt-1 ${isFirst && !experience.description ? "border-red-300" : ""}`}
                                 rows={3}
+                                required={isFirst}
                               />
+                              {isFirst && !experience.description && (
+                                <p className="text-xs text-red-500 mt-1">
+                                  This field is required for the first
+                                  experience
+                                </p>
+                              )}
                             </div>
 
                             <div>
