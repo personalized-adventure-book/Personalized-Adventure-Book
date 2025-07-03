@@ -60,6 +60,10 @@ interface FormData {
 const BookBuilder = () => {
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(1);
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [orderType, setOrderType] = useState<"digital" | "printed" | null>(
+    null,
+  );
   const [formData, setFormData] = useState<FormData>({
     parentName: "",
     parentEmail: "",
@@ -190,9 +194,17 @@ const BookBuilder = () => {
     }
   };
 
-  const handleSubmit = () => {
-    // Store form data and navigate to preview
-    localStorage.setItem("adventureBookData", JSON.stringify(formData));
+  const handleSubmit = (type: "digital" | "printed") => {
+    setOrderType(type);
+    setShowConfirmation(true);
+  };
+
+  const confirmOrder = () => {
+    localStorage.setItem(
+      "adventureBookData",
+      JSON.stringify({ ...formData, orderType }),
+    );
+    setShowConfirmation(false);
     navigate("/preview");
   };
 
