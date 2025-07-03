@@ -466,27 +466,75 @@ const BookBuilder = () => {
                 </div>
 
                 <div className="space-y-3">
-                  <Label>Key Activities (select up to 4)</Label>
-                  <div className="grid md:grid-cols-2 gap-3">
-                    {activityOptions.map((activity) => (
-                      <div
-                        key={activity}
-                        className="flex items-center space-x-2"
-                      >
-                        <Checkbox
-                          id={activity}
-                          checked={formData.activities.includes(activity)}
-                          onCheckedChange={() => handleActivityToggle(activity)}
-                          disabled={
-                            formData.activities.length >= 4 &&
-                            !formData.activities.includes(activity)
+                  <Label>Key Activities</Label>
+                  <p className="text-sm text-foreground/70">
+                    Add activities your child will experience in this adventure
+                  </p>
+
+                  {formData.activities.length > 0 && (
+                    <div className="space-y-2">
+                      {formData.activities.map((activity, index) => (
+                        <div
+                          key={index}
+                          className="flex items-center space-x-2 bg-secondary/50 rounded-lg p-3"
+                        >
+                          <span className="flex-1 text-sm">{activity}</span>
+                          <Button
+                            type="button"
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => {
+                              const updated = formData.activities.filter(
+                                (_, i) => i !== index,
+                              );
+                              updateFormData("activities", updated);
+                            }}
+                            className="h-6 w-6 p-0"
+                          >
+                            <X className="w-3 h-3" />
+                          </Button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  <div className="flex space-x-2">
+                    <Input
+                      placeholder="e.g., Treasure hunting, Dragon encounters, Space exploration..."
+                      onKeyPress={(e) => {
+                        if (e.key === "Enter") {
+                          e.preventDefault();
+                          const target = e.target as HTMLInputElement;
+                          if (target.value.trim()) {
+                            updateFormData("activities", [
+                              ...formData.activities,
+                              target.value.trim(),
+                            ]);
+                            target.value = "";
                           }
-                        />
-                        <Label htmlFor={activity} className="text-sm">
-                          {activity}
-                        </Label>
-                      </div>
-                    ))}
+                        }
+                      }}
+                    />
+                    <Button
+                      type="button"
+                      variant="outline"
+                      onClick={(e) => {
+                        const input = (
+                          e.target as HTMLElement
+                        ).parentElement?.querySelector(
+                          "input",
+                        ) as HTMLInputElement;
+                        if (input && input.value.trim()) {
+                          updateFormData("activities", [
+                            ...formData.activities,
+                            input.value.trim(),
+                          ]);
+                          input.value = "";
+                        }
+                      }}
+                    >
+                      Add
+                    </Button>
                   </div>
                 </div>
               </div>
