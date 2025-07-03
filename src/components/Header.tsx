@@ -19,13 +19,13 @@ const Header: React.FC<HeaderProps> = ({ showNavigation = true }) => {
   const { theme, toggleTheme } = useTheme();
 
   const languages: { code: Language; name: string; flag: string }[] = [
-    { code: "en", name: "English", flag: "🇺🇸" },
-    { code: "fr", name: "Français", flag: "🇫🇷" },
-    { code: "it", name: "Italiano", flag: "🇮🇹" },
-    { code: "es", name: "Español", flag: "🇪🇸" },
-    { code: "ar", name: "العربية", flag: "🇸🇦" },
-    { code: "nl", name: "Nederlands", flag: "🇳🇱" },
-    { code: "de", name: "Deutsch", flag: "🇩🇪" },
+    { code: "en", name: t("ui.english"), flag: "🇺🇸" },
+    { code: "fr", name: t("ui.french"), flag: "🇫🇷" },
+    { code: "it", name: t("ui.italian"), flag: "🇮🇹" },
+    { code: "es", name: t("ui.spanish"), flag: "🇪🇸" },
+    { code: "ar", name: t("ui.arabic"), flag: "🇸🇦" },
+    { code: "nl", name: t("ui.dutch"), flag: "🇳🇱" },
+    { code: "de", name: t("ui.german"), flag: "🇩🇪" },
   ];
 
   const currentLanguage = languages.find((lang) => lang.code === language);
@@ -130,12 +130,12 @@ const Header: React.FC<HeaderProps> = ({ showNavigation = true }) => {
             {theme === "light" ? (
               <>
                 <Moon className="w-4 h-4" />
-                <span className="hidden sm:inline">Dark</span>
+                <span className="hidden sm:inline">{t("ui.dark")}</span>
               </>
             ) : (
               <>
                 <Sun className="w-4 h-4" />
-                <span className="hidden sm:inline">Light</span>
+                <span className="hidden sm:inline">{t("ui.light")}</span>
               </>
             )}
           </Button>
