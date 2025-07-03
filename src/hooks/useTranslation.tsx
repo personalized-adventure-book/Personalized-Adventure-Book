@@ -356,8 +356,8 @@ const translations = {
 
     // Form Fields
     "form.parentName": "Votre Nom",
-    "form.email": "Adresse Gmail",
-    "form.emailInvalid": "Veuillez entrer une adresse Gmail valide",
+    "form.email": "Adresse Email",
+    "form.emailInvalid": "Veuillez entrer une adresse email valide",
     "form.childName": "Nom de l'Enfant",
     "form.age": "Âge",
     "form.selectAge": "Sélectionner l'Âge",
@@ -749,7 +749,7 @@ const translations = {
     // Adventure Types
     "adventure.possibilities": "Posibilidades de Aventura",
     "adventure.possibilitiesDesc":
-      "¡Explora los mundos mágicos que podemos crear para tu hijo - y muchos más!",
+      "��Explora los mundos mágicos que podemos crear para tu hijo - y muchos más!",
     "adventure.spaceMission": "Misión Espacial",
     "adventure.spaceMissionDesc":
       "Despega hacia planetas distantes y conoce amigos alienígenas",
@@ -956,18 +956,18 @@ const translations = {
   },
   ar: {
     // Navigation
-    "nav.adventurePossibilities": "إمكانيات ا��مغامرة",
+    "nav.adventurePossibilities": "إمكانيات المغامرة",
     "nav.howItWorks": "كيف يعمل",
     "nav.examples": "أمثلة",
     "nav.pricing": "الأسعار",
 
     // Homepage
     "hero.subtitle": "كتب مغامرات شخصية للأطفال",
-    "hero.title": "اصنع",
+    "hero.title": "اصن��",
     "hero.titleHighlight": "مغامرات",
     "hero.subtitle2": "سحرية مع طفلك",
     "hero.description":
-      "حول طفلك إلى بطل كتاب المغامرات الشخصي الخاص به. اختر من بين الغابات المسحورة، والمهام الفضائية، والرحلات تحت الماء، وأكثر!",
+      "حول طفلك إلى بطل كتاب المغامرات ال��خصي الخاص به. اختر من بين الغابات المسحورة، والمهام الفضائية، والرحلات تحت الماء، وأكثر!",
     "hero.startCreating": "ابدأ الإنشاء",
     "hero.seeExamples": "انظر الأمثلة",
 
@@ -980,7 +980,7 @@ const translations = {
       "شاهد كتابك ينبض بالحياة مع صفحات المعاينة الفورية",
     "features.printOrDigital": "مطبوع أو رقمي",
     "features.printOrDigitalDesc":
-      "احصل على كتاب مادي مُسلم ��و قم بالتحميل فوراً",
+      "احصل على كتاب مادي مُسلم أو قم بالتحميل فوراً",
 
     // Adventure Types
     "adventure.possibilities": "إمكانيات المغامرة",
@@ -1019,12 +1019,12 @@ const translations = {
       "عدّل الكابتن لوكاس خوذته الفضائية ونظر إلى الكوكب الأحمر أدناه...",
     "examples.example3.title": "أكاديمية الأميرات",
     "examples.example3.adventure":
-      "��لعة ملكية مع أصدقاء التنانين وتعاويذ سحرية للتعلم",
+      "قلعة ملكية مع أصدقاء التنانين وتعاويذ سحرية للتعلم",
     "examples.example3.preview":
       "لوحت الأميرة صوفيا بعصاها المتلألئة وشاهدت الزهور تبدأ في التوهج...",
     "examples.example4.title": "البحث عن كنز القراصنة",
     "examples.example4.adventure":
-      "الإبحار في البحار السبعة مع طاقم من القراصنة الودودين",
+      "الإبحار في البحار السبعة مع طاقم من القراصن�� الودودين",
     "examples.example4.preview":
       "رصد الضابط الأول أليكس شيئاً يتلألأ تحت الماء الكريستالي...",
     "examples.example5.title": "تلميذ الساحر",
@@ -1069,7 +1069,7 @@ const translations = {
     "form.girl": "بنت",
     "form.other": "آخر",
     "form.adventureType": "اختر نوع المغامرة",
-    "form.customAdventure": "لا تجد نوع مغامرتك؟ أدخلها هنا:",
+    "form.customAdventure": "لا تجد نوع مغامرتك؟ أدخ��ها هنا:",
     "form.customAdventurePlaceholder": "صف مغامرتك المخصصة...",
     "form.location": "البيئة أو المكان",
     "form.keyActivities": "الأنشطة الرئيسية",
@@ -1080,7 +1080,7 @@ const translations = {
     "form.includeFriends": "الأصدقاء أو العائلة للتضمين",
     "form.characters": "الشخصيات أو المواضيع المفضلة",
     "form.specialDetails": "تفاصيل خاصة أو نكات داخلية",
-    "form.personalExperiences": "التجارب الشخصية للت��مين",
+    "form.personalExperiences": "التجارب الشخصية للتضمين",
     "form.addExperience": "أضف تجربة أخرى",
     "form.activityName": "اسم النشاط",
     "form.activityDetails": "تفاصيل النشاط",
@@ -1128,7 +1128,7 @@ const translations = {
     "order.phoneInvalid": "يرجى إدخال رقم هاتف صالح",
     "order.paymentDetails": "تفاصيل الدفع",
     "order.cardNumber": "رقم البطاقة",
-    "order.cardNumberInvalid": "يرجى إدخال ��قم بطاقة صالح",
+    "order.cardNumberInvalid": "يرجى إدخال رقم بطاقة صالح",
     "order.expiryDate": "تاريخ الانتهاء",
     "order.expiryInvalid": "يرجى إدخال تاريخ انتهاء صالح (شش/سس)",
     "order.cvv": "CVV",
