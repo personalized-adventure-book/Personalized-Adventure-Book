@@ -32,20 +32,20 @@ const Index = () => {
         <div className="text-center max-w-4xl mx-auto">
           <div className="inline-flex items-center space-x-2 bg-adventure-pink/20 text-adventure-purple px-4 py-2 rounded-full text-sm font-medium mb-6">
             <Sparkles className="w-4 h-4" />
-            <span>Personalized Adventure Books for Kids 3-8</span>
+            <span>{t("hero.subtitle")}</span>
           </div>
 
           <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-            Create Magical{" "}
-            <span className="adventure-text-gradient">Adventures</span>
+            {t("hero.title")}{" "}
+            <span className="adventure-text-gradient">
+              {t("hero.titleHighlight")}
+            </span>
             <br />
-            Starring Your Child
+            {t("hero.subtitle2")}
           </h1>
 
           <p className="text-lg md:text-xl text-foreground/80 mb-8 max-w-2xl mx-auto">
-            Transform your child into the hero of their own personalized
-            adventure book. Choose from enchanted forests, space missions,
-            underwater expeditions, and more!
+            {t("hero.description")}
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4 mb-12">
