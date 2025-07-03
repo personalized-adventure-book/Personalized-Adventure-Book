@@ -647,7 +647,10 @@ const Preview = () => {
                             <span>{t("pricing.feature8")}</span>
                           </div>
                         </div>
-                        <Button className="w-full" size="lg" variant="outline">
+                        <Button
+                          className="w-full bg-adventure-green hover:bg-adventure-green/90 text-white"
+                          size="lg"
+                        >
                           Choose Printed
                         </Button>
                       </div>
