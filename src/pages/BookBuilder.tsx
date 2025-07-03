@@ -651,12 +651,22 @@ const BookBuilder = () => {
       case 4:
         return true; // Optional details
       case 5:
-        // First experience is required with title and description
+        // All experiences must have title and description
         if (formData.experiences.length === 0) return false;
-        const firstExperience = formData.experiences[0];
-        return (
-          firstExperience.title.trim() && firstExperience.description.trim()
+
+        // Check that all experiences have required fields
+        const allExperiencesValid = formData.experiences.every(
+          (exp) => exp.title.trim() && exp.description.trim(),
         );
+
+        // Check that all activity details have required fields
+        const allActivityDetailsValid = formData.experiences.every((exp) =>
+          exp.activityDetails.every(
+            (activity) => activity.name.trim() && activity.details.trim(),
+          ),
+        );
+
+        return allExperiencesValid && allActivityDetailsValid;
       default:
         return false;
     }
