@@ -1345,7 +1345,8 @@ const BookBuilder = () => {
                     </Button>
                   </div>
 
-                  {formData.experiences.length === 0 && (
+                  {(!formData.experiences ||
+                    formData.experiences.length === 0) && (
                     <div className="text-center py-8 text-foreground/70">
                       <p>
                         No experiences added yet. Click "Add Experience" to get
