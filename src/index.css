@@ -60,13 +60,13 @@
     --background: 220 84% 4.9%;
     --foreground: 45 100% 98%;
 
-    --card: 220 84% 4.9%;
+    --card: 220 84% 6%;
     --card-foreground: 45 100% 98%;
 
     --popover: 220 84% 4.9%;
     --popover-foreground: 45 100% 98%;
 
-    --primary: 142 85% 45%;
+    --primary: 142 85% 55%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 220 32% 17%;
@@ -81,21 +81,21 @@
     --destructive: 0 63% 31%;
     --destructive-foreground: 45 100% 98%;
 
-    --border: 220 32% 17%;
-    --input: 220 32% 17%;
-    --ring: 142 85% 45%;
+    --border: 220 32% 25%;
+    --input: 220 32% 20%;
+    --ring: 142 85% 55%;
 
-    /* Adventure-specific colors for dark mode */
-    --adventure-orange: 25 85% 55%;
-    --adventure-blue: 210 75% 50%;
-    --adventure-purple: 280 75% 60%;
-    --adventure-green: 142 75% 35%;
-    --adventure-yellow: 45 90% 60%;
-    --adventure-pink: 320 75% 65%;
+    /* Adventure-specific colors for dark mode - adjusted for better visibility */
+    --adventure-orange: 25 90% 65%;
+    --adventure-blue: 210 85% 65%;
+    --adventure-purple: 280 85% 70%;
+    --adventure-green: 142 80% 50%;
+    --adventure-yellow: 45 95% 70%;
+    --adventure-pink: 320 85% 70%;
 
     --sidebar-background: 220 84% 4.9%;
     --sidebar-foreground: 45 100% 98%;
-    --sidebar-primary: 142 85% 45%;
+    --sidebar-primary: 142 85% 55%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 220 32% 17%;
     --sidebar-accent-foreground: 45 100% 98%;
