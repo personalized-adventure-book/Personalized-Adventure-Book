@@ -80,27 +80,33 @@ const Index = () => {
               <div className="w-16 h-16 rounded-full bg-adventure-blue/20 text-adventure-blue mx-auto mb-4 flex items-center justify-center">
                 <Users className="w-8 h-8" />
               </div>
-              <h3 className="font-semibold mb-2">Personalized Characters</h3>
+              <h3 className="font-semibold mb-2">
+                {t("features.personalizedCharacters")}
+              </h3>
               <p className="text-sm text-foreground/70">
-                Include your child, friends, and family members in the story
+                {t("features.personalizedCharactersDesc")}
               </p>
             </div>
             <div className="text-center">
               <div className="w-16 h-16 rounded-full bg-adventure-green/20 text-adventure-green mx-auto mb-4 flex items-center justify-center">
                 <BookOpen className="w-8 h-8" />
               </div>
-              <h3 className="font-semibold mb-2">Instant Preview</h3>
+              <h3 className="font-semibold mb-2">
+                {t("features.instantPreview")}
+              </h3>
               <p className="text-sm text-foreground/70">
-                See your book come to life with immediate preview pages
+                {t("features.instantPreviewDesc")}
               </p>
             </div>
             <div className="text-center">
               <div className="w-16 h-16 rounded-full bg-adventure-purple/20 text-adventure-purple mx-auto mb-4 flex items-center justify-center">
                 <Heart className="w-8 h-8" />
               </div>
-              <h3 className="font-semibold mb-2">Print or Digital</h3>
+              <h3 className="font-semibold mb-2">
+                {t("features.printOrDigital")}
+              </h3>
               <p className="text-sm text-foreground/70">
-                Get a physical book delivered or download instantly
+                {t("features.printOrDigitalDesc")}
               </p>
             </div>
           </div>
@@ -111,55 +117,53 @@ const Index = () => {
       <section id="adventure-types" className="container mx-auto px-4 py-16">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Adventure Possibilities
+            {t("adventure.possibilities")}
           </h2>
           <p className="text-lg text-foreground/80">
-            Explore the magical worlds we can create for your child - and many
-            more!
+            {t("adventure.possibilitiesDesc")}
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {[
             {
-              title: "Space Mission",
-              description:
-                "Blast off to distant planets and meet alien friends",
+              title: t("adventure.spaceMission"),
+              description: t("adventure.spaceMissionDesc"),
               icon: Rocket,
               color: "adventure-blue",
               gradient: "from-adventure-blue/20 to-adventure-purple/20",
             },
             {
-              title: "Enchanted Forest",
-              description: "Discover magical creatures and hidden treasures",
+              title: t("adventure.enchantedForest"),
+              description: t("adventure.enchantedForestDesc"),
               icon: TreePine,
               color: "adventure-green",
               gradient: "from-adventure-green/20 to-adventure-yellow/20",
             },
             {
-              title: "Royal Castle",
-              description: "Become a brave knight or wise princess",
+              title: t("adventure.royalCastle"),
+              description: t("adventure.royalCastleDesc"),
               icon: Crown,
               color: "adventure-purple",
               gradient: "from-adventure-purple/20 to-adventure-pink/20",
             },
             {
-              title: "Pirate Voyage",
-              description: "Sail the seven seas in search of treasure",
+              title: t("adventure.pirateVoyage"),
+              description: t("adventure.pirateVoyageDesc"),
               icon: Anchor,
               color: "adventure-orange",
               gradient: "from-adventure-orange/20 to-adventure-blue/20",
             },
             {
-              title: "Superhero Academy",
-              description: "Train to become the world's next great hero",
+              title: t("adventure.superheroAcademy"),
+              description: t("adventure.superheroAcademyDesc"),
               icon: Zap,
               color: "adventure-yellow",
               gradient: "from-adventure-yellow/20 to-adventure-orange/20",
             },
             {
-              title: "Underwater World",
-              description: "Dive deep to explore coral kingdoms",
+              title: t("adventure.underwaterWorld"),
+              description: t("adventure.underwaterWorldDesc"),
               icon: Heart,
               color: "adventure-blue",
               gradient: "from-adventure-blue/20 to-adventure-green/20",
@@ -313,10 +317,10 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              How It Works
+              {t("howItWorks.title")}
             </h2>
             <p className="text-lg text-foreground/80">
-              Create your personalized adventure book in just a few simple steps
+              {t("howItWorks.description")}
             </p>
           </div>
 
@@ -324,28 +328,26 @@ const Index = () => {
             {[
               {
                 step: "1",
-                title: "Fill Details",
-                description:
-                  "Enter your child's name, age, and adventure preferences",
+                title: t("howItWorks.step1.title"),
+                description: t("howItWorks.step1.description"),
                 icon: "📝",
               },
               {
                 step: "2",
-                title: "Customize Story",
-                description: "Choose setting, characters, and special details",
+                title: t("howItWorks.step2.title"),
+                description: t("howItWorks.step2.description"),
                 icon: "✨",
               },
               {
                 step: "3",
-                title: "Preview Pages",
-                description:
-                  "See your personalized book come to life instantly",
+                title: t("howItWorks.step3.title"),
+                description: t("howItWorks.step3.description"),
                 icon: "👀",
               },
               {
                 step: "4",
-                title: "Get Your Book",
-                description: "Download digital copy or order a printed version",
+                title: t("howItWorks.step4.title"),
+                description: t("howItWorks.step4.description"),
                 icon: "📚",
               },
             ].map((step, index) => (
@@ -365,12 +367,12 @@ const Index = () => {
       <section id="pricing" className="container mx-auto px-4 py-16">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            <span className="adventure-text-gradient">Book Options</span>
+            <span className="adventure-text-gradient">
+              {t("pricing.title")}
+            </span>
           </h2>
           <p className="text-lg text-foreground/80 max-w-2xl mx-auto">
-            Create lasting memories with a personalized book that your child
-            will treasure forever. Choose the perfect option for your family's
-            budget and preferences.
+            {t("pricing.description")}
           </p>
         </div>
 
@@ -379,8 +381,12 @@ const Index = () => {
             <CardContent className="p-8">
               <div className="text-center mb-6">
                 <Download className="w-12 h-12 text-adventure-blue mx-auto mb-4" />
-                <h3 className="text-2xl font-bold mb-2">Digital Book</h3>
-                <p className="text-foreground/70 mb-4">Instant download PDF</p>
+                <h3 className="text-2xl font-bold mb-2">
+                  {t("pricing.digitalBook")}
+                </h3>
+                <p className="text-foreground/70 mb-4">
+                  {t("pricing.digitalBookDesc")}
+                </p>
                 <div className="text-4xl font-bold text-primary mb-2">
                   $12.99
                 </div>
@@ -388,19 +394,19 @@ const Index = () => {
               <ul className="space-y-3 mb-6">
                 <li className="flex items-center">
                   <Star className="w-4 h-4 text-adventure-yellow mr-2" />
-                  <span className="text-sm">20+ page personalized story</span>
+                  <span className="text-sm">{t("pricing.feature1")}</span>
                 </li>
                 <li className="flex items-center">
                   <Star className="w-4 h-4 text-adventure-yellow mr-2" />
-                  <span className="text-sm">High-quality illustrations</span>
+                  <span className="text-sm">{t("pricing.feature2")}</span>
                 </li>
                 <li className="flex items-center">
                   <Star className="w-4 h-4 text-adventure-yellow mr-2" />
-                  <span className="text-sm">Instant download</span>
+                  <span className="text-sm">{t("pricing.feature3")}</span>
                 </li>
                 <li className="flex items-center">
                   <Star className="w-4 h-4 text-adventure-yellow mr-2" />
-                  <span className="text-sm">Print at home option</span>
+                  <span className="text-sm">{t("pricing.feature4")}</span>
                 </li>
               </ul>
             </CardContent>
@@ -409,15 +415,17 @@ const Index = () => {
           <Card className="border-2 border-primary relative overflow-hidden">
             <div className="absolute top-4 right-4">
               <Badge className="bg-primary text-primary-foreground">
-                Popular
+                {t("pricing.popular")}
               </Badge>
             </div>
             <CardContent className="p-8">
               <div className="text-center mb-6">
                 <Printer className="w-12 h-12 text-adventure-green mx-auto mb-4" />
-                <h3 className="text-2xl font-bold mb-2">Printed Book</h3>
+                <h3 className="text-2xl font-bold mb-2">
+                  {t("pricing.printedBook")}
+                </h3>
                 <p className="text-foreground/70 mb-4">
-                  Professional hardcover
+                  {t("pricing.printedBookDesc")}
                 </p>
                 <div className="text-4xl font-bold text-primary mb-2">
                   $24.99
@@ -426,19 +434,19 @@ const Index = () => {
               <ul className="space-y-3 mb-6">
                 <li className="flex items-center">
                   <Star className="w-4 h-4 text-adventure-yellow mr-2" />
-                  <span className="text-sm">Everything in Digital</span>
+                  <span className="text-sm">{t("pricing.feature5")}</span>
                 </li>
                 <li className="flex items-center">
                   <Star className="w-4 h-4 text-adventure-yellow mr-2" />
-                  <span className="text-sm">Premium hardcover binding</span>
+                  <span className="text-sm">{t("pricing.feature6")}</span>
                 </li>
                 <li className="flex items-center">
                   <Star className="w-4 h-4 text-adventure-yellow mr-2" />
-                  <span className="text-sm">Professional printing</span>
+                  <span className="text-sm">{t("pricing.feature7")}</span>
                 </li>
                 <li className="flex items-center">
                   <Star className="w-4 h-4 text-adventure-yellow mr-2" />
-                  <span className="text-sm">Free delivery in Europe</span>
+                  <span className="text-sm">{t("pricing.feature8")}</span>
                 </li>
               </ul>
             </CardContent>
@@ -450,11 +458,10 @@ const Index = () => {
       <section className="bg-gradient-to-r from-adventure-purple to-adventure-pink py-16">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Ready to Create Magic?
+            {t("cta.title")}
           </h2>
           <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
-            Give your child the gift of being the hero in their own personalized
-            adventure story. Start creating their magical book today!
+            {t("cta.description")}
           </p>
           <Button
             asChild
@@ -463,7 +470,7 @@ const Index = () => {
           >
             <Link to="/create">
               <Sparkles className="w-5 h-5 mr-2" />
-              Start Your Adventure
+              {t("cta.startAdventure")}
               <ArrowRight className="w-5 h-5 ml-2" />
             </Link>
           </Button>
