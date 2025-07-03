@@ -224,7 +224,7 @@ const BookBuilder = () => {
       formData,
       currentStep,
       savedAt: new Date().toISOString(),
-      status: "draft",
+      status: "draft" as const,
     };
     localStorage.setItem("bookBuilderDraft", JSON.stringify(draftData));
 
@@ -232,14 +232,25 @@ const BookBuilder = () => {
     const existingDrafts = JSON.parse(
       localStorage.getItem("orderDrafts") || "[]",
     );
-    const draftId = Date.now().toString();
+
+    // Use a consistent ID based on child name and creation time
+    const baseId =
+      `${formData.childName || "unnamed"}_${formData.parentEmail || "no-email"}`
+        .toLowerCase()
+        .replace(/[^a-z0-9]/g, "_");
+    const draftId = `${baseId}_${Date.now()}`;
+
     const newDraft = {
       id: draftId,
       ...draftData,
       title: `${formData.childName || "Unnamed"}'s Adventure`,
     };
 
-    const updatedDrafts = existingDrafts.filter((d: any) => d.id !== draftId);
+    // Remove any existing draft with similar title and add the new one
+    const updatedDrafts = existingDrafts.filter(
+      (d: any) =>
+        !d.title.startsWith(`${formData.childName || "Unnamed"}'s Adventure`),
+    );
     updatedDrafts.push(newDraft);
     localStorage.setItem("orderDrafts", JSON.stringify(updatedDrafts));
 
