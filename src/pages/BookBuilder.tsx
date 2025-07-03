@@ -532,6 +532,67 @@ const BookBuilder = () => {
                   />
                 </div>
 
+                <div className="space-y-3">
+                  <Label>Personal Adventures or Experiences</Label>
+                  <p className="text-sm text-foreground/70">
+                    Add real adventures or experiences your child has had that
+                    can be included in the story
+                  </p>
+
+                  {formData.personalExperiences.length > 0 && (
+                    <div className="space-y-2">
+                      {formData.personalExperiences.map((experience, index) => (
+                        <div
+                          key={index}
+                          className="flex items-center space-x-2 bg-secondary/50 rounded-lg p-3"
+                        >
+                          <span className="flex-1 text-sm">{experience}</span>
+                          <Button
+                            type="button"
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => removePersonalExperience(index)}
+                            className="h-6 w-6 p-0"
+                          >
+                            <X className="w-3 h-3" />
+                          </Button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  <div className="flex space-x-2">
+                    <Input
+                      placeholder="e.g., Visited the zoo, went camping, learned to swim..."
+                      onKeyPress={(e) => {
+                        if (e.key === "Enter") {
+                          e.preventDefault();
+                          const target = e.target as HTMLInputElement;
+                          addPersonalExperience(target.value);
+                          target.value = "";
+                        }
+                      }}
+                    />
+                    <Button
+                      type="button"
+                      variant="outline"
+                      onClick={(e) => {
+                        const input = (
+                          e.target as HTMLElement
+                        ).parentElement?.querySelector(
+                          "input",
+                        ) as HTMLInputElement;
+                        if (input) {
+                          addPersonalExperience(input.value);
+                          input.value = "";
+                        }
+                      }}
+                    >
+                      Add
+                    </Button>
+                  </div>
+                </div>
+
                 <div className="space-y-2">
                   <Label htmlFor="specialDetails">
                     Special Details or Inside Jokes
