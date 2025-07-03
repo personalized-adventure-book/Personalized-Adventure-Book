@@ -491,73 +491,72 @@ const Index = () => {
                 </span>
               </div>
               <p className="text-sm text-foreground/70">
-                Creating magical personalized adventure books for children
-                worldwide.
+                {t("footer.tagline")}
               </p>
             </div>
             <div>
-              <h4 className="font-semibold mb-4">Product</h4>
+              <h4 className="font-semibold mb-4">{t("footer.product")}</h4>
               <ul className="space-y-2 text-sm text-foreground/70">
                 <li>
-                  <a href="#" className="hover:text-foreground">
-                    How It Works
+                  <a href="#how-it-works" className="hover:text-foreground">
+                    {t("footer.howItWorks")}
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-foreground">
-                    Examples
+                  <a href="#examples" className="hover:text-foreground">
+                    {t("footer.examples")}
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-foreground">
-                    Pricing
+                  <a href="#pricing" className="hover:text-foreground">
+                    {t("footer.pricing")}
                   </a>
                 </li>
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold mb-4">Support</h4>
+              <h4 className="font-semibold mb-4">{t("footer.support")}</h4>
               <ul className="space-y-2 text-sm text-foreground/70">
                 <li>
                   <a href="#" className="hover:text-foreground">
-                    Help Center
+                    {t("footer.helpCenter")}
                   </a>
                 </li>
                 <li>
                   <a href="#" className="hover:text-foreground">
-                    Contact Us
+                    {t("footer.contactUs")}
                   </a>
                 </li>
                 <li>
                   <a href="#" className="hover:text-foreground">
-                    FAQ
+                    {t("footer.faq")}
                   </a>
                 </li>
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold mb-4">Company</h4>
+              <h4 className="font-semibold mb-4">{t("footer.company")}</h4>
               <ul className="space-y-2 text-sm text-foreground/70">
                 <li>
                   <a href="#" className="hover:text-foreground">
-                    About
+                    {t("footer.about")}
                   </a>
                 </li>
                 <li>
                   <a href="#" className="hover:text-foreground">
-                    Privacy
+                    {t("footer.privacy")}
                   </a>
                 </li>
                 <li>
                   <a href="#" className="hover:text-foreground">
-                    Terms
+                    {t("footer.terms")}
                   </a>
                 </li>
               </ul>
             </div>
           </div>
           <div className="border-t border-border mt-8 pt-8 text-center text-sm text-foreground/70">
-            © 2024 Personalized Adventure Book. All rights reserved.
+            {t("footer.copyright")}
           </div>
         </div>
       </footer>
