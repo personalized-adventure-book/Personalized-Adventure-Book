@@ -794,7 +794,7 @@ const translations = {
     "examples.example4.adventure":
       "Navegando los siete mares con una tripulación de piratas amigables",
     "examples.example4.preview":
-      "El Primer Oficial Alex divis�� algo brillando bajo el agua cristalina...",
+      "El Primer Oficial Alex divisó algo brillando bajo el agua cristalina...",
     "examples.example5.title": "Aprendiz de Mago",
     "examples.example5.adventure":
       "Aprendiendo hechizos mágicos en una torre llena de criaturas misteriosas",
@@ -967,7 +967,7 @@ const translations = {
     "hero.titleHighlight": "مغامرات",
     "hero.subtitle2": "سحرية مع طفلك",
     "hero.description":
-      "حول طفلك إلى بطل ��تاب المغامرات الشخصي الخاص به. اختر من بين الغابات المسحورة، والمهام الفضائية، والرحلات تحت الماء، وأكثر!",
+      "حول طفلك إلى بطل كتاب المغامرات الشخصي الخاص به. اختر من بين الغابات المسحورة، والمهام الفضائية، والرحلات تحت الماء، وأكثر!",
     "hero.startCreating": "ابدأ الإنشاء",
     "hero.seeExamples": "انظر الأمثلة",
 
@@ -987,8 +987,7 @@ const translations = {
     "adventure.possibilitiesDesc":
       "استكشف العوالم السحرية التي يمكننا إنشاؤها لطفلك - وأكثر من ذلك بكثير!",
     "adventure.spaceMission": "مهمة فضائية",
-    "adventure.spaceMissionDesc":
-      "انطلق إلى كوا��ب بعيدة والتق بأصدقاء فضائيين",
+    "adventure.spaceMissionDesc": "انطلق إلى كواكب بعيدة والتق بأصدقاء فضائيين",
     "adventure.enchantedForest": "غابة مسحورة",
     "adventure.enchantedForestDesc": "اكتشف مخلوقات سحرية وكنوز مخفية",
     "adventure.royalCastle": "قلعة ملكية",
@@ -1060,8 +1059,8 @@ const translations = {
 
     // Form Fields
     "form.parentName": "اسمك",
-    "form.email": "عنوان Gmail",
-    "form.emailInvalid": "يرجى إدخال عنوان Gmail صالح",
+    "form.email": "عنوان البريد الإلكتروني",
+    "form.emailInvalid": "يرجى إدخال عنوان بريد إلكتروني صالح",
     "form.childName": "اسم الطفل",
     "form.age": "العمر",
     "form.selectAge": "اختر العمر",
@@ -1087,7 +1086,7 @@ const translations = {
     "form.activityDetails": "تفاصيل النشاط",
     "form.activityCharacters": "الشخصيات المشاركة",
     "form.activityImageDesc": "وصف الصورة",
-    "form.uploadImages": "تحميل الصور",
+    "form.uploadImages": "ت��ميل الصور",
     "form.addActivity": "أضف نشاطاً آخر",
     "form.previous": "السابق",
     "form.next": "التالي",
@@ -1110,7 +1109,7 @@ const translations = {
     "pricing.feature5": "كل شيء في الرقمي",
     "pricing.feature6": "تجليد غلاف صلب ممتاز",
     "pricing.feature7": "طباعة احترافية",
-    "pricing.feature8": "توصيل مجاني في أوروبا",
+    "pricing.feature8": "توصيل ��جاني في أوروبا",
     "pricing.popular": "شائع",
 
     // Order
@@ -1136,7 +1135,7 @@ const translations = {
     "order.cvvInvalid": "يرجى إدخال CVV صالح",
     "order.cardholderName": "اسم حامل البطاقة",
     "order.completePayment": "إكمال الدفع",
-    "order.cancel": "إلغ��ء",
+    "order.cancel": "إلغاء",
     "order.confirmed": "تم تأكيد الطلب!",
     "order.confirmationDetails": "تفاصيل التأكيد",
     "order.shippingDetails": "تفاصيل الشحن",
