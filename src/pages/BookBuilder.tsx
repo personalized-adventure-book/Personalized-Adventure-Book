@@ -732,6 +732,227 @@ const BookBuilder = () => {
               </div>
             )}
 
+            {/* Step 5: Activity Details */}
+            {currentStep === 5 && (
+              <div className="space-y-6">
+                <div className="flex items-center space-x-2 text-adventure-orange">
+                  <MapPin className="w-5 h-5" />
+                  <h3 className="font-semibold">Activity Details</h3>
+                </div>
+
+                {formData.activities.length > 0 ? (
+                  <div className="space-y-6">
+                    {formData.activities.map((activity, index) => {
+                      const detail = formData.activityDetails.find(
+                        (d) => d.name === activity,
+                      ) || {
+                        name: activity,
+                        details: "",
+                        characters: "",
+                        imageDescription: "",
+                        images: [],
+                      };
+
+                      return (
+                        <Card key={index} className="p-6 bg-secondary/30">
+                          <h4 className="font-semibold mb-4 text-adventure-purple text-lg">
+                            {activity}
+                          </h4>
+                          <div className="space-y-4">
+                            <div>
+                              <Label className="text-sm font-medium">
+                                Activity Details
+                              </Label>
+                              <Textarea
+                                placeholder="Describe what happens during this activity..."
+                                value={detail.details}
+                                onChange={(e) => {
+                                  const updated =
+                                    formData.activityDetails.filter(
+                                      (d) => d.name !== activity,
+                                    );
+                                  updated.push({
+                                    ...detail,
+                                    details: e.target.value,
+                                  });
+                                  updateFormData("activityDetails", updated);
+                                }}
+                                rows={3}
+                              />
+                            </div>
+                            <div>
+                              <Label className="text-sm font-medium">
+                                Characters Involved
+                              </Label>
+                              <Input
+                                placeholder="Who is involved in this activity?"
+                                value={detail.characters}
+                                onChange={(e) => {
+                                  const updated =
+                                    formData.activityDetails.filter(
+                                      (d) => d.name !== activity,
+                                    );
+                                  updated.push({
+                                    ...detail,
+                                    characters: e.target.value,
+                                  });
+                                  updateFormData("activityDetails", updated);
+                                }}
+                              />
+                            </div>
+                            <div>
+                              <Label className="text-sm font-medium">
+                                Scene Description
+                              </Label>
+                              <Input
+                                placeholder="Describe the scene or image for this activity..."
+                                value={detail.imageDescription}
+                                onChange={(e) => {
+                                  const updated =
+                                    formData.activityDetails.filter(
+                                      (d) => d.name !== activity,
+                                    );
+                                  updated.push({
+                                    ...detail,
+                                    imageDescription: e.target.value,
+                                  });
+                                  updateFormData("activityDetails", updated);
+                                }}
+                              />
+                            </div>
+
+                            {/* Image Upload Section */}
+                            <div className="space-y-3">
+                              <Label className="text-sm font-medium">
+                                Upload Images (Optional)
+                              </Label>
+
+                              {detail.images && detail.images.length > 0 && (
+                                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                                  {detail.images.map((img, imgIndex) => (
+                                    <div key={imgIndex} className="space-y-2">
+                                      <div className="relative border-2 border-dashed border-gray-300 rounded-lg p-2">
+                                        <Image className="w-full h-20 object-cover rounded" />
+                                        <Button
+                                          type="button"
+                                          variant="ghost"
+                                          size="sm"
+                                          onClick={() => {
+                                            const updated =
+                                              formData.activityDetails.filter(
+                                                (d) => d.name !== activity,
+                                              );
+                                            const newImages =
+                                              detail.images.filter(
+                                                (_, i) => i !== imgIndex,
+                                              );
+                                            updated.push({
+                                              ...detail,
+                                              images: newImages,
+                                            });
+                                            updateFormData(
+                                              "activityDetails",
+                                              updated,
+                                            );
+                                          }}
+                                          className="absolute -top-1 -right-1 h-6 w-6 p-0 bg-red-500 text-white hover:bg-red-600"
+                                        >
+                                          <X className="w-3 h-3" />
+                                        </Button>
+                                      </div>
+                                      <Input
+                                        placeholder="Image description..."
+                                        value={img.description}
+                                        onChange={(e) => {
+                                          const updated =
+                                            formData.activityDetails.filter(
+                                              (d) => d.name !== activity,
+                                            );
+                                          const newImages = [...detail.images];
+                                          newImages[imgIndex] = {
+                                            ...img,
+                                            description: e.target.value,
+                                          };
+                                          updated.push({
+                                            ...detail,
+                                            images: newImages,
+                                          });
+                                          updateFormData(
+                                            "activityDetails",
+                                            updated,
+                                          );
+                                        }}
+                                        className="text-xs"
+                                      />
+                                    </div>
+                                  ))}
+                                </div>
+                              )}
+
+                              <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center">
+                                <input
+                                  type="file"
+                                  accept="image/*"
+                                  multiple
+                                  onChange={(e) => {
+                                    const files = Array.from(
+                                      e.target.files || [],
+                                    );
+                                    if (files.length > 0) {
+                                      const updated =
+                                        formData.activityDetails.filter(
+                                          (d) => d.name !== activity,
+                                        );
+                                      const newImages = files.map((file) => ({
+                                        file,
+                                        description: "",
+                                      }));
+                                      updated.push({
+                                        ...detail,
+                                        images: [
+                                          ...(detail.images || []),
+                                          ...newImages,
+                                        ],
+                                      });
+                                      updateFormData(
+                                        "activityDetails",
+                                        updated,
+                                      );
+                                    }
+                                  }}
+                                  className="hidden"
+                                  id={`file-${index}`}
+                                />
+                                <label
+                                  htmlFor={`file-${index}`}
+                                  className="cursor-pointer"
+                                >
+                                  <Upload className="w-8 h-8 mx-auto mb-2 text-gray-400" />
+                                  <p className="text-sm text-gray-600">
+                                    Click to upload images or drag and drop
+                                  </p>
+                                  <p className="text-xs text-gray-500">
+                                    PNG, JPG up to 10MB each
+                                  </p>
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                        </Card>
+                      );
+                    })}
+                  </div>
+                ) : (
+                  <div className="text-center py-8">
+                    <p className="text-foreground/70">
+                      No activities selected. Go back to step 3 to add
+                      activities.
+                    </p>
+                  </div>
+                )}
+              </div>
+            )}
+
             {/* Navigation Buttons */}
             <div className="flex justify-between pt-6 border-t">
               <Button
