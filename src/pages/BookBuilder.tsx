@@ -652,13 +652,23 @@ const BookBuilder = () => {
                   <ArrowRight className="w-4 h-4" />
                 </Button>
               ) : (
-                <Button
-                  onClick={handleSubmit}
-                  className="flex items-center space-x-2 bg-primary hover:bg-primary/90"
-                >
-                  <Sparkles className="w-4 h-4" />
-                  <span>Create My Book</span>
-                </Button>
+                <div className="flex space-x-3">
+                  <Button
+                    onClick={() => handleSubmit("digital")}
+                    variant="outline"
+                    className="flex items-center space-x-2"
+                  >
+                    <Sparkles className="w-4 h-4" />
+                    <span>Digital Book ($12.99)</span>
+                  </Button>
+                  <Button
+                    onClick={() => handleSubmit("printed")}
+                    className="flex items-center space-x-2 bg-primary hover:bg-primary/90"
+                  >
+                    <Sparkles className="w-4 h-4" />
+                    <span>Printed Book ($24.99)</span>
+                  </Button>
+                </div>
               )}
             </div>
           </CardContent>
