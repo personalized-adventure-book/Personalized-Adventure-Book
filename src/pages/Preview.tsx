@@ -743,7 +743,18 @@ const Preview = () => {
                 </div>
                 <div className="flex justify-between">
                   <span className="text-sm">Estimated Pages:</span>
-                  <span className="font-medium">20-25</span>
+                  <span className="font-medium">
+                    {Math.max(
+                      bookData.experiences.reduce(
+                        (total, exp) =>
+                          total +
+                          exp.predefinedActivities.length +
+                          exp.customActivities.length,
+                        0,
+                      ) + 2,
+                      4,
+                    )}
+                  </span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-sm">Reading Level:</span>
