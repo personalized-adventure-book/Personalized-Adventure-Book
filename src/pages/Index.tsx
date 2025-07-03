@@ -64,8 +64,13 @@ const Index = () => {
               variant="outline"
               size="lg"
               className="px-8 py-6 text-lg rounded-full"
+              onClick={() =>
+                document
+                  .getElementById("examples")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
             >
-              <span>See Examples</span>
+              <span>{t("hero.seeExamples")}</span>
             </Button>
           </div>
 
@@ -179,6 +184,127 @@ const Index = () => {
               </CardContent>
             </Card>
           ))}
+        </div>
+      </section>
+
+      {/* Examples Section */}
+      <section
+        id="examples"
+        className="bg-gradient-to-br from-adventure-purple/10 to-adventure-pink/10 py-16"
+      >
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              {t("examples.title")}
+            </h2>
+            <p className="text-lg text-foreground/80 max-w-2xl mx-auto">
+              {t("examples.description")}
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                title: t("examples.example1.title"),
+                childName: "Emma",
+                adventure: t("examples.example1.adventure"),
+                preview: t("examples.example1.preview"),
+                image: "🌟",
+                color: "adventure-purple",
+              },
+              {
+                title: t("examples.example2.title"),
+                childName: "Lucas",
+                adventure: t("examples.example2.adventure"),
+                preview: t("examples.example2.preview"),
+                image: "🚀",
+                color: "adventure-blue",
+              },
+              {
+                title: t("examples.example3.title"),
+                childName: "Sofia",
+                adventure: t("examples.example3.adventure"),
+                preview: t("examples.example3.preview"),
+                image: "🏰",
+                color: "adventure-pink",
+              },
+              {
+                title: t("examples.example4.title"),
+                childName: "Alex",
+                adventure: t("examples.example4.adventure"),
+                preview: t("examples.example4.preview"),
+                image: "🏴‍☠️",
+                color: "adventure-orange",
+              },
+              {
+                title: t("examples.example5.title"),
+                childName: "Maya",
+                adventure: t("examples.example5.adventure"),
+                preview: t("examples.example5.preview"),
+                image: "🧙‍♀️",
+                color: "adventure-green",
+              },
+              {
+                title: t("examples.example6.title"),
+                childName: "Diego",
+                adventure: t("examples.example6.adventure"),
+                preview: t("examples.example6.preview"),
+                image: "🌊",
+                color: "adventure-blue",
+              },
+            ].map((example, index) => (
+              <Card
+                key={index}
+                className="group hover:shadow-xl transition-all duration-300 border-0 bg-white/50 backdrop-blur-sm hover:scale-105"
+              >
+                <CardContent className="p-6">
+                  <div className="text-center mb-4">
+                    <div
+                      className={`w-16 h-16 rounded-full bg-${example.color}/20 text-${example.color} mx-auto mb-3 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform`}
+                    >
+                      {example.image}
+                    </div>
+                    <h3 className="font-bold text-lg mb-1">{example.title}</h3>
+                    <p className="text-sm font-medium text-primary">
+                      {example.childName}'s Adventure
+                    </p>
+                  </div>
+                  <div className="space-y-3">
+                    <div className="bg-white/70 rounded-lg p-3">
+                      <p className="text-sm font-medium mb-1">
+                        {t("examples.adventure")}:
+                      </p>
+                      <p className="text-sm text-foreground/80">
+                        {example.adventure}
+                      </p>
+                    </div>
+                    <div className="bg-white/70 rounded-lg p-3">
+                      <p className="text-sm font-medium mb-1">
+                        {t("examples.preview")}:
+                      </p>
+                      <p className="text-sm text-foreground/80 italic">
+                        "{example.preview}"
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <Button
+              asChild
+              size="lg"
+              className="bg-primary hover:bg-primary/90 text-white px-8 py-6 text-lg rounded-full shadow-lg"
+            >
+              <Link to="/create">
+                <Sparkles className="w-5 h-5 mr-2" />
+                {t("examples.createYours")}
+                <ArrowRight className="w-5 h-5 ml-2" />
+              </Link>
+            </Button>
+          </div>
         </div>
       </section>
 
