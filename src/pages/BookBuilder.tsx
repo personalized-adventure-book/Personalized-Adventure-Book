@@ -1414,6 +1414,7 @@ const BookBuilder = () => {
                                           <div>
                                             <Label className="text-sm">
                                               Activity Details
+                                              <RequiredStar />
                                             </Label>
                                             <Textarea
                                               value={activityDetail.details}
@@ -1426,15 +1427,23 @@ const BookBuilder = () => {
                                                 )
                                               }
                                               placeholder="Describe what happens during this activity..."
-                                              className="mt-1"
+                                              className={`mt-1 ${!activityDetail.details && hasAttemptedProceed ? "border-red-300" : ""}`}
                                               rows={2}
+                                              required
                                             />
-                                            {!activityDetail.details && (
-                                              <p className="text-xs text-blue-500 mt-1">
-                                                💡 Describe this activity to
-                                                make it more engaging!
-                                              </p>
-                                            )}
+                                            {!activityDetail.details &&
+                                              hasAttemptedProceed && (
+                                                <p className="text-xs text-red-500 mt-1">
+                                                  Activity details are required
+                                                </p>
+                                              )}
+                                            {!activityDetail.details &&
+                                              !hasAttemptedProceed && (
+                                                <p className="text-xs text-blue-500 mt-1">
+                                                  💡 Describe this activity to
+                                                  make it more engaging!
+                                                </p>
+                                              )}
                                           </div>
 
                                           <div>
