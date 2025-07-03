@@ -309,31 +309,48 @@ const TranslationContext = createContext<TranslationContextType | undefined>(
   undefined,
 );
 
-export function TranslationProvider({ children }: { children: ReactNode }) {
+export const TranslationProvider: React.FC<{ children: ReactNode }> = ({
+  children,
+}) => {
   const [language, setLanguage] = useState<Language>("en");
 
   const t = (key: string): string => {
-    const keys = key.split(".");
-    let value: any = translations[language];
+    try {
+      // Get the current language translations
+      const langTranslations = translations[language] || translations.en;
 
-    for (const k of keys) {
-      if (value && typeof value === "object" && k in value) {
-        value = value[k];
-      } else {
-        // Fallback to English if translation not found
-        value = translations.en;
-        for (const fallbackKey of keys) {
-          if (value && typeof value === "object" && fallbackKey in value) {
-            value = value[fallbackKey];
-          } else {
-            return key; // Return key if no translation found
-          }
-        }
-        break;
+      // Check if the key exists directly
+      if (langTranslations[key as keyof typeof langTranslations]) {
+        return langTranslations[key as keyof typeof langTranslations] as string;
       }
-    }
 
-    return typeof value === "string" ? value : key;
+      // Split the key by dots for nested access
+      const keys = key.split(".");
+      let value: any = langTranslations;
+
+      for (const k of keys) {
+        if (value && typeof value === "object" && k in value) {
+          value = value[k];
+        } else {
+          // Fallback to English
+          value = translations.en;
+          for (const fallbackKey of keys) {
+            if (value && typeof value === "object" && fallbackKey in value) {
+              value = value[fallbackKey];
+            } else {
+              console.warn(`Translation key not found: ${key}`);
+              return key; // Return key if no translation found
+            }
+          }
+          break;
+        }
+      }
+
+      return typeof value === "string" ? value : key;
+    } catch (error) {
+      console.error(`Translation error for key: ${key}`, error);
+      return key;
+    }
   };
 
   return (
@@ -341,12 +358,12 @@ export function TranslationProvider({ children }: { children: ReactNode }) {
       {children}
     </TranslationContext.Provider>
   );
-}
+};
 
-export function useTranslation(): TranslationContextType {
+export const useTranslation = (): TranslationContextType => {
   const context = useContext(TranslationContext);
   if (context === undefined) {
     throw new Error("useTranslation must be used within a TranslationProvider");
   }
   return context;
-}
+};
