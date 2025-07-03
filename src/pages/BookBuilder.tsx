@@ -1313,21 +1313,9 @@ const BookBuilder = () => {
                                   >
                                     <Checkbox
                                       id={`${experience.id}-${activity}`}
-                                      checked={(() => {
-                                        const isChecked = (
-                                          experience.predefinedActivities || []
-                                        ).includes(activity);
-                                        console.log(
-                                          `Checkbox for ${activity}:`,
-                                          {
-                                            experienceId: experience.id,
-                                            predefinedActivities:
-                                              experience.predefinedActivities,
-                                            isChecked,
-                                          },
-                                        );
-                                        return isChecked;
-                                      })()}
+                                      checked={(
+                                        experience.predefinedActivities || []
+                                      ).includes(activity)}
                                       onCheckedChange={() =>
                                         togglePredefinedActivity(
                                           experience.id,
