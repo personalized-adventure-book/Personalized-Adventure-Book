@@ -1202,6 +1202,170 @@ const BookBuilder = () => {
                               </div>
                             </div>
 
+                            {/* Activity Details */}
+                            {experience.activityDetails &&
+                              experience.activityDetails.length > 0 && (
+                                <div className="space-y-4">
+                                  <h5 className="font-medium text-adventure-purple">
+                                    Activity Details
+                                  </h5>
+                                  {experience.activityDetails.map(
+                                    (activityDetail) => (
+                                      <Card
+                                        key={activityDetail.id}
+                                        className="border border-adventure-purple/30 bg-adventure-purple/5"
+                                      >
+                                        <CardHeader className="pb-3">
+                                          <div className="flex items-center justify-between">
+                                            <h6 className="font-medium text-sm">
+                                              {activityDetail.name}
+                                            </h6>
+                                            <Button
+                                              type="button"
+                                              variant="ghost"
+                                              size="sm"
+                                              onClick={() =>
+                                                removeActivityDetail(
+                                                  experience.id,
+                                                  activityDetail.name,
+                                                )
+                                              }
+                                              className="text-red-500 hover:text-red-700"
+                                            >
+                                              <X className="w-3 h-3" />
+                                            </Button>
+                                          </div>
+                                        </CardHeader>
+                                        <CardContent className="space-y-3">
+                                          <div>
+                                            <Label className="text-sm">
+                                              Activity Details
+                                            </Label>
+                                            <Textarea
+                                              value={activityDetail.details}
+                                              onChange={(e) =>
+                                                updateActivityDetail(
+                                                  experience.id,
+                                                  activityDetail.id,
+                                                  "details",
+                                                  e.target.value,
+                                                )
+                                              }
+                                              placeholder="Describe what happens during this activity..."
+                                              className="mt-1"
+                                              rows={2}
+                                            />
+                                          </div>
+
+                                          <div>
+                                            <Label className="text-sm">
+                                              Characters Involved
+                                            </Label>
+                                            <Input
+                                              value={activityDetail.characters}
+                                              onChange={(e) =>
+                                                updateActivityDetail(
+                                                  experience.id,
+                                                  activityDetail.id,
+                                                  "characters",
+                                                  e.target.value,
+                                                )
+                                              }
+                                              placeholder="Who's involved in this activity?"
+                                              className="mt-1"
+                                            />
+                                          </div>
+
+                                          {/* Activity Images */}
+                                          <div>
+                                            <Label className="text-sm">
+                                              Activity Images
+                                            </Label>
+                                            <div className="mt-2 border-2 border-dashed border-gray-300 rounded-lg p-3">
+                                              <input
+                                                type="file"
+                                                multiple
+                                                accept="image/*"
+                                                onChange={(e) =>
+                                                  handleImageUpload(
+                                                    experience.id,
+                                                    e.target.files,
+                                                    activityDetail.id,
+                                                  )
+                                                }
+                                                className="hidden"
+                                                id={`activity-images-${activityDetail.id}`}
+                                              />
+                                              <Label
+                                                htmlFor={`activity-images-${activityDetail.id}`}
+                                                className="cursor-pointer flex flex-col items-center space-y-1"
+                                              >
+                                                <Upload className="w-4 h-4 text-gray-400" />
+                                                <span className="text-xs text-gray-500">
+                                                  Upload images for{" "}
+                                                  {activityDetail.name}
+                                                </span>
+                                              </Label>
+                                            </div>
+
+                                            {/* Activity Image Descriptions */}
+                                            {activityDetail.images.length >
+                                              0 && (
+                                              <div className="mt-3 space-y-2">
+                                                <h6 className="text-sm font-medium">
+                                                  Activity Images
+                                                </h6>
+                                                <div className="grid grid-cols-3 md:grid-cols-4 gap-2">
+                                                  {activityDetail.images.map(
+                                                    (img, imgIndex) => (
+                                                      <div
+                                                        key={imgIndex}
+                                                        className="space-y-1"
+                                                      >
+                                                        <div className="aspect-square w-full max-w-[80px]">
+                                                          <img
+                                                            src={URL.createObjectURL(
+                                                              img.file,
+                                                            )}
+                                                            alt="Activity upload"
+                                                            className="w-full h-full object-cover rounded border-2 border-gray-200 shadow-sm"
+                                                          />
+                                                        </div>
+                                                        <div>
+                                                          <Label className="text-xs">
+                                                            Description
+                                                          </Label>
+                                                          <Textarea
+                                                            value={
+                                                              img.description
+                                                            }
+                                                            onChange={(e) =>
+                                                              updateImageDescription(
+                                                                experience.id,
+                                                                imgIndex,
+                                                                e.target.value,
+                                                                activityDetail.id,
+                                                              )
+                                                            }
+                                                            placeholder="Describe image..."
+                                                            className="mt-1 text-xs"
+                                                            rows={2}
+                                                          />
+                                                        </div>
+                                                      </div>
+                                                    ),
+                                                  )}
+                                                </div>
+                                              </div>
+                                            )}
+                                          </div>
+                                        </CardContent>
+                                      </Card>
+                                    ),
+                                  )}
+                                </div>
+                              )}
+
                             <div>
                               <Label>{t("form.activityCharacters")}</Label>
                               <Input
