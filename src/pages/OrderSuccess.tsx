@@ -317,7 +317,7 @@ const OrderSuccess = () => {
         <div className="text-center mt-8 space-y-4">
           <div className="flex flex-col sm:flex-row justify-center space-y-3 sm:space-y-0 sm:space-x-4">
             <Button asChild size="lg">
-              <Link to="/">Create Another Book</Link>
+              <Link to="/create">Create Another Book</Link>
             </Button>
             <Button variant="outline" size="lg" asChild>
               <Link to="/">Back to Home</Link>
