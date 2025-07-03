@@ -153,6 +153,7 @@ const translations = {
     "form.next": "Next",
     "form.reviewBook": "Review My Book",
     "form.required": "Required",
+    "form.complete": "Complete",
 
     // Pricing
     "pricing.title": "Book Options",
@@ -558,7 +559,7 @@ const translations = {
     "nav.pricing": "الأسعار",
 
     // Homepage
-    "hero.subtitle": "كتب مغامرات شخصية للأطفال",
+    "hero.subtitle": "كتب مغامرات شخصية ل��أطفال",
     "hero.title": "اصنع",
     "hero.titleHighlight": "مغامرات",
     "hero.subtitle2": "سحرية مع طفلك",
