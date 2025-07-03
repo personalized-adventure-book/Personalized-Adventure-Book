@@ -260,7 +260,11 @@ const Preview = () => {
                         <span>Instant download</span>
                       </li>
                     </ul>
-                    <Button className="w-full" variant="outline">
+                    <Button
+                      className="w-full"
+                      variant="outline"
+                      onClick={() => handleOrderClick("digital")}
+                    >
                       <Download className="w-4 h-4 mr-2" />
                       Buy Digital ($12.99)
                     </Button>
@@ -308,7 +312,10 @@ const Preview = () => {
                         <span>Free shipping (5-7 days)</span>
                       </li>
                     </ul>
-                    <Button className="w-full bg-primary hover:bg-primary/90">
+                    <Button
+                      className="w-full bg-primary hover:bg-primary/90"
+                      onClick={() => handleOrderClick("printed")}
+                    >
                       <ShoppingCart className="w-4 h-4 mr-2" />
                       Order Printed Book ($24.99)
                     </Button>
