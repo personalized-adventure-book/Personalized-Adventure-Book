@@ -279,10 +279,14 @@ const Index = () => {
       <section id="pricing" className="container mx-auto px-4 py-16">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Simple Pricing
+            <span className="adventure-text-gradient">Bring Magic Home</span> -
+            <br className="hidden sm:block" />
+            Affordable Adventures for Every Family
           </h2>
-          <p className="text-lg text-foreground/80">
-            Choose the perfect option for your family
+          <p className="text-lg text-foreground/80 max-w-2xl mx-auto">
+            Create lasting memories with a personalized book that your child
+            will treasure forever. Choose the perfect option for your family's
+            budget and preferences.
           </p>
         </div>
 
