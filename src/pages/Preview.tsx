@@ -732,11 +732,11 @@ const Preview = () => {
                 <div className="flex justify-between">
                   <span className="text-sm">Adventure Activities:</span>
                   <span className="font-medium">
-                    {bookData.experiences.reduce(
+                    {(bookData.experiences || []).reduce(
                       (total, exp) =>
                         total +
-                        exp.predefinedActivities.length +
-                        exp.customActivities.length,
+                        (exp.predefinedActivities || []).length +
+                        (exp.customActivities || []).length,
                       0,
                     )}
                   </span>
