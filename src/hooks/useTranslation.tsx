@@ -749,7 +749,7 @@ const translations = {
     // Adventure Types
     "adventure.possibilities": "Posibilidades de Aventura",
     "adventure.possibilitiesDesc":
-      "¡Explora los mundos m��gicos que podemos crear para tu hijo - y muchos más!",
+      "¡Explora los mundos mágicos que podemos crear para tu hijo - y muchos más!",
     "adventure.spaceMission": "Misión Espacial",
     "adventure.spaceMissionDesc":
       "Despega hacia planetas distantes y conoce amigos alienígenas",
@@ -985,10 +985,9 @@ const translations = {
     // Adventure Types
     "adventure.possibilities": "إمكانيات المغامرة",
     "adventure.possibilitiesDesc":
-      "استكشف العوالم السحرية التي يمكننا إنشاؤها لطفلك - وأكثر من ذلك بكثير!",
+      "استكشف ��لعوالم السحرية التي يمكننا إنشاؤها لطفلك - وأكثر من ذلك بكثير!",
     "adventure.spaceMission": "مهمة فضائية",
-    "adventure.spaceMissionDesc":
-      "انطلق إلى كواكب بعيدة والتق بأصدقاء فضا��يين",
+    "adventure.spaceMissionDesc": "انطلق إلى كواكب بعيدة والتق بأصدقاء فضائيين",
     "adventure.enchantedForest": "غابة مسحورة",
     "adventure.enchantedForestDesc": "اكتشف مخلوقات سحرية وكنوز مخفية",
     "adventure.royalCastle": "قلعة ملكية",
@@ -1004,7 +1003,7 @@ const translations = {
     // Examples
     "examples.title": "أمثلة الكتب",
     "examples.description":
-      "شاهد كيف أصبحت مغامرات الأطفال الآخرين حية في كتبهم الشخصية",
+      "شاهد كيف أصبحت مغامر��ت الأطفال الآخرين حية في كتبهم الشخصية",
     "examples.adventure": "مغامرة",
     "examples.preview": "معاينة القصة",
     "examples.createYours": "اصنع مغامرتك",
@@ -1022,7 +1021,7 @@ const translations = {
     "examples.example3.adventure":
       "قلعة ملكية مع أصدقاء التنانين وتعاويذ سحرية للتعلم",
     "examples.example3.preview":
-      "لوحت الأميرة صوفيا بعصاها المتلألئة وشاهدت الزهور تبدأ في التوهج...",
+      "لوحت الأميرة صوفيا بعصاها المتل��لئة وشاهدت الزهور تبدأ في التوهج...",
     "examples.example4.title": "البحث عن كنز القراصنة",
     "examples.example4.adventure":
       "الإبحار في البحار السبعة مع طاقم من القراصنة الودودين",
@@ -1136,7 +1135,7 @@ const translations = {
     "order.cvvInvalid": "يرجى إدخال CVV صالح",
     "order.cardholderName": "اسم حامل البطاقة",
     "order.completePayment": "إكمال الدفع",
-    "order.cancel": "إلغ��ء",
+    "order.cancel": "إلغاء",
     "order.confirmed": "تم تأكيد الطلب!",
     "order.confirmationDetails": "تفاصيل التأكيد",
     "order.shippingDetails": "تفاصيل الشحن",
@@ -1155,7 +1154,7 @@ const translations = {
     // Footer
     "footer.tagline":
       "إنشاء كتب مغامرات شخصية سحرية للأطفال في جميع أنحاء العالم.",
-    "footer.product": "المنتج",
+    "footer.product": "��لمنتج",
     "footer.howItWorks": "كيف يعمل",
     "footer.examples": "أمثلة",
     "footer.pricing": "الأسعار",
@@ -1530,8 +1529,8 @@ const translations = {
 
     // Form Fields
     "form.parentName": "Dein Name",
-    "form.email": "Gmail-Adresse",
-    "form.emailInvalid": "Bitte gib eine gültige Gmail-Adresse ein",
+    "form.email": "Email-Adresse",
+    "form.emailInvalid": "Bitte gib eine gültige Email-Adresse ein",
     "form.childName": "Name des Kindes",
     "form.age": "Alter",
     "form.selectAge": "Alter Auswählen",
