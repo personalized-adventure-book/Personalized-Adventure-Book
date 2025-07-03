@@ -40,6 +40,13 @@ import {
   X,
 } from "lucide-react";
 
+interface ActivityDetail {
+  name: string;
+  details: string;
+  characters: string;
+  imageDescription: string;
+}
+
 interface FormData {
   // Parent Information
   parentName: string;
@@ -54,6 +61,7 @@ interface FormData {
   adventureType: string;
   location: string;
   activities: string[];
+  activityDetails: ActivityDetail[];
   characters: string;
   personalTouches: string;
 
@@ -82,6 +90,7 @@ const BookBuilder = () => {
     adventureType: "",
     location: "",
     activities: [],
+    activityDetails: [],
     characters: "",
     personalTouches: "",
     includeFriends: "",
