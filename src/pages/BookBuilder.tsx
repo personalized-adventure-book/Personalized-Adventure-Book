@@ -411,7 +411,8 @@ const BookBuilder = () => {
     );
     if (!experience) return;
 
-    const currentActivities = experience.predefinedActivities;
+    // Ensure predefinedActivities is properly initialized
+    const currentActivities = experience.predefinedActivities || [];
     const updated = currentActivities.includes(activity)
       ? currentActivities.filter((a) => a !== activity)
       : [...currentActivities, activity];
