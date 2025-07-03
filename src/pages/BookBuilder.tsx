@@ -44,11 +44,17 @@ import {
   Image,
 } from "lucide-react";
 
+interface ActivityImage {
+  file: File;
+  description: string;
+}
+
 interface ActivityDetail {
   name: string;
   details: string;
   characters: string;
   imageDescription: string;
+  images: ActivityImage[];
 }
 
 interface FormData {
