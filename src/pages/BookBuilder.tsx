@@ -1562,21 +1562,15 @@ const BookBuilder = () => {
 
                   {/* Add Experience Button - On the right */}
                   <div className="flex justify-end mt-6">
-                    <div className="text-center">
-                      <Button
-                        type="button"
-                        variant="outline"
-                        onClick={addExperience}
-                        className="flex items-center space-x-2"
-                      >
-                        <Plus className="w-4 h-4" />
-                        <span>Add Another Experience</span>
-                      </Button>
-                      <p className="text-xs text-foreground/60 mt-2">
-                        ✨ Add more experiences to create a richer, more
-                        personalized adventure! ✨
-                      </p>
-                    </div>
+                    <Button
+                      type="button"
+                      variant="outline"
+                      onClick={addExperience}
+                      className="flex items-center space-x-2"
+                    >
+                      <Plus className="w-4 h-4" />
+                      <span>Add Another Experience</span>
+                    </Button>
                   </div>
 
                   {(!formData.experiences ||
