@@ -745,11 +745,11 @@ const Preview = () => {
                   <span className="text-sm">Estimated Pages:</span>
                   <span className="font-medium">
                     {Math.max(
-                      bookData.experiences.reduce(
+                      (bookData.experiences || []).reduce(
                         (total, exp) =>
                           total +
-                          exp.predefinedActivities.length +
-                          exp.customActivities.length,
+                          (exp.predefinedActivities || []).length +
+                          (exp.customActivities || []).length,
                         0,
                       ) + 2,
                       4,
