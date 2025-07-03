@@ -613,7 +613,7 @@ const Preview = () => {
                             <span>{t("pricing.feature4")}</span>
                           </div>
                         </div>
-                        <Button className="w-full" size="lg">
+                        <Button className="w-full" size="lg" variant="outline">
                           Choose Digital
                         </Button>
                       </div>
