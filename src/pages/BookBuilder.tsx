@@ -164,7 +164,7 @@ const BookBuilder = () => {
 
   // Track changes only after initial load
   useEffect(() => {
-    if (!isLoadingDraft) {
+    if (hasInitializedRef.current && !isLoadingDraft) {
       setHasUnsavedChanges(true);
     }
   }, [
