@@ -426,16 +426,25 @@ const BookBuilder = () => {
 
   // Activity Management Functions
   const togglePredefinedActivity = (experienceId: string, activity: string) => {
+    console.log("togglePredefinedActivity called:", { experienceId, activity });
+
     const experience = formData.experiences.find(
       (exp) => exp.id === experienceId,
     );
-    if (!experience) return;
+    if (!experience) {
+      console.log("Experience not found");
+      return;
+    }
 
     // Ensure predefinedActivities is properly initialized
     const currentActivities = experience.predefinedActivities || [];
+    console.log("Current activities:", currentActivities);
+
     const updated = currentActivities.includes(activity)
       ? currentActivities.filter((a) => a !== activity)
       : [...currentActivities, activity];
+
+    console.log("Updated activities:", updated);
 
     updateExperience(experienceId, "predefinedActivities", updated);
 
