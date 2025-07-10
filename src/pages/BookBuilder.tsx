@@ -218,8 +218,8 @@ const BookBuilder = () => {
     loadDraft();
   }, []); // Only run once on mount
 
-  // DISABLED - Save draft before user leaves the page
-  const DISABLED_useEffect2 = () => {
+  // Save draft before user leaves the page
+  useEffect(() => {
     const handleBeforeUnload = (e: BeforeUnloadEvent) => {
       if (hasUnsavedChanges) {
         saveDraft();
@@ -230,7 +230,7 @@ const BookBuilder = () => {
 
     window.addEventListener("beforeunload", handleBeforeUnload);
     return () => window.removeEventListener("beforeunload", handleBeforeUnload);
-  }; // End of disabled useEffect
+  }, [hasUnsavedChanges]); // Only re-run when hasUnsavedChanges changes
 
   // Track changes only after initial load
   useEffect(() => {
