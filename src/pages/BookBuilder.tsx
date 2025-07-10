@@ -1160,7 +1160,7 @@ const BookBuilder = () => {
                                     e.target.value,
                                   )
                                 }
-                                placeholder="Swimming with dolphins, Finding treasure..."
+                                placeholder={t("placeholder.experienceTitle")}
                                 className={`mt-1 ${!experience.title && hasAttemptedProceed ? "border-red-300" : ""}`}
                                 required
                               />
