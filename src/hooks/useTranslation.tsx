@@ -240,6 +240,26 @@ const translations = {
     "ui.arabic": "العربية",
     "ui.dutch": "Nederlands",
     "ui.german": "Deutsch",
+
+    // Placeholder texts
+    "placeholder.email": "your.name@example.com",
+    "placeholder.location":
+      "Magical Kingdom, Space Station, Underwater City...",
+    "placeholder.favoriteColor": "Blue, Pink, Rainbow...",
+    "placeholder.petName": "Fluffy, Rex, Whiskers...",
+    "placeholder.includeFriends": "Mom, Dad, Sister Emma, Best friend Jake...",
+    "placeholder.specialDetails":
+      "Special interests, hobbies, funny moments...",
+    "placeholder.experienceTitle":
+      "Swimming with dolphins, Finding treasure...",
+    "placeholder.experienceDescription":
+      "Describe what happens in this part of the adventure...",
+    "placeholder.characters": "Who's involved in this experience?",
+    "placeholder.imageDescription": "Describe image...",
+    "placeholder.customActivity": "Add custom activity...",
+    "placeholder.activityDescription":
+      "Describe what happens during this activity...",
+    "placeholder.activityCharacters": "Who's involved in this activity?",
   },
   fr: {
     // Navigation
@@ -994,7 +1014,7 @@ const translations = {
     "adventure.royalCastleDesc": "كن فارساً شجاعاً أو أميرة ��كيمة",
     "adventure.pirateVoyage": "رحلة القراصنة",
     "adventure.pirateVoyageDesc": "أبحر في البحار السبعة بحثاً عن الكنز",
-    "adventure.superheroAcademy": "أكاديمية الأبطال الخارقين",
+    "adventure.superheroAcademy": "أكاديمية الأب��ال الخارقين",
     "adventure.superheroAcademyDesc":
       "تدرب لتصبح البطل العظيم القادم في العالم",
     "adventure.underwaterWorld": "عالم تحت الماء",
@@ -1032,7 +1052,7 @@ const translations = {
       "تعلم التعاويذ السحرية في برج مليء بالمخلوقات الغامضة",
     "examples.example5.preview":
       "خلطت مايا بعناية الجرعة المتلألئة بينما راقب رفيقها البوم...",
-    "examples.example6.title": "مغامرة المحيط",
+    "examples.example6.title": "��غامرة المحيط",
     "examples.example6.adventure":
       "مملكة تحت الماء مع أصدقاء الدلافين وقلاع المرجان",
     "examples.example6.preview":
