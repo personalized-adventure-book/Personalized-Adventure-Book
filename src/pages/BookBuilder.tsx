@@ -241,7 +241,7 @@ const BookBuilder = () => {
   // Save draft before user leaves the page
   useEffect(() => {
     const handleBeforeUnload = (e: BeforeUnloadEvent) => {
-      if (hasUnsavedChanges && (formData.childName || formData.parentName)) {
+      if (hasUnsavedChanges) {
         saveDraft();
         e.preventDefault();
         e.returnValue = "";
@@ -250,7 +250,7 @@ const BookBuilder = () => {
 
     window.addEventListener("beforeunload", handleBeforeUnload);
     return () => window.removeEventListener("beforeunload", handleBeforeUnload);
-  }, [hasUnsavedChanges, formData.childName, formData.parentName]);
+  }, [hasUnsavedChanges]);
 
   // Track changes only after initial load
   useEffect(() => {
