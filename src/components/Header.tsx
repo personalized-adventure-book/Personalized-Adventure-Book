@@ -35,6 +35,7 @@ const Header: React.FC<HeaderProps> = ({ showNavigation = true }) => {
   return (
     <header className="container mx-auto px-4 py-6">
       <nav className="flex items-center justify-between">
+        {/* Logo - stays same size on all devices */}
         <Link to="/" className="flex items-center space-x-2">
           <div className="w-10 h-10 rounded-full adventure-gradient flex items-center justify-center">
             <BookOpen className="w-5 h-5 text-white" />
@@ -44,10 +45,11 @@ const Header: React.FC<HeaderProps> = ({ showNavigation = true }) => {
           </span>
         </Link>
 
-        <div className="flex items-center space-x-4">
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex items-center space-x-4">
           {/* Navigation Menu */}
           {showNavigation && (
-            <div className="hidden md:flex items-center space-x-6">
+            <div className="flex items-center space-x-6">
               <button
                 onClick={() => {
                   document.getElementById("adventure-types")?.scrollIntoView({
@@ -148,7 +150,137 @@ const Header: React.FC<HeaderProps> = ({ showNavigation = true }) => {
             )}
           </Button>
         </div>
+
+        {/* Mobile Hamburger Menu */}
+        <div className="md:hidden flex items-center space-x-2">
+          {/* Theme Toggle for Mobile */}
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={toggleTheme}
+            className="flex items-center"
+          >
+            {theme === "light" ? (
+              <Moon className="w-4 h-4" />
+            ) : (
+              <Sun className="w-4 h-4" />
+            )}
+          </Button>
+
+          {/* Hamburger Button */}
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="flex items-center"
+          >
+            {isMobileMenuOpen ? (
+              <X className="w-5 h-5" />
+            ) : (
+              <Menu className="w-5 h-5" />
+            )}
+          </Button>
+        </div>
       </nav>
+
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden mt-4 py-4 border-t border-border bg-background">
+          <div className="flex flex-col space-y-4">
+            {/* Navigation Items */}
+            {showNavigation && (
+              <>
+                <button
+                  onClick={() => {
+                    document.getElementById("adventure-types")?.scrollIntoView({
+                      behavior: "smooth",
+                    });
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="text-left py-2 text-foreground/80 hover:text-foreground transition-colors"
+                >
+                  {t("nav.adventurePossibilities")}
+                </button>
+                <button
+                  onClick={() => {
+                    document.getElementById("how-it-works")?.scrollIntoView({
+                      behavior: "smooth",
+                    });
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="text-left py-2 text-foreground/80 hover:text-foreground transition-colors"
+                >
+                  {t("nav.howItWorks")}
+                </button>
+                <button
+                  onClick={() => {
+                    document.getElementById("examples")?.scrollIntoView({
+                      behavior: "smooth",
+                    });
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="text-left py-2 text-foreground/80 hover:text-foreground transition-colors"
+                >
+                  {t("nav.examples")}
+                </button>
+                <button
+                  onClick={() => {
+                    document.getElementById("pricing")?.scrollIntoView({
+                      behavior: "smooth",
+                    });
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="text-left py-2 text-foreground/80 hover:text-foreground transition-colors"
+                >
+                  {t("nav.pricing")}
+                </button>
+                <Link
+                  to="/orders"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-left py-2 text-foreground/80 hover:text-foreground transition-colors block"
+                >
+                  {t("nav.myOrders")}
+                </Link>
+              </>
+            )}
+
+            {/* Language Selector for Mobile */}
+            <div className="pt-2 border-t border-border">
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    variant="outline"
+                    className="w-full justify-start flex items-center space-x-2"
+                  >
+                    <Globe className="w-4 h-4" />
+                    <span className="text-sm">
+                      {currentLanguage?.flag} {currentLanguage?.name}
+                    </span>
+                    <ChevronDown className="w-3 h-3 ml-auto" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="start" className="w-full">
+                  {languages.map((lang) => (
+                    <DropdownMenuItem
+                      key={lang.code}
+                      onClick={() => {
+                        setLanguage(lang.code);
+                        setIsMobileMenuOpen(false);
+                      }}
+                      className={`flex items-center space-x-2 cursor-pointer ${
+                        language === lang.code ? "bg-secondary" : ""
+                      }`}
+                    >
+                      <span>{lang.flag}</span>
+                      <span>{lang.name}</span>
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
+          </div>
+        </div>
+      )}
     </header>
   );
 };
