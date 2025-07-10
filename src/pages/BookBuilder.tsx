@@ -1475,7 +1475,9 @@ const BookBuilder = () => {
                                                   e.target.value,
                                                 )
                                               }
-                                              placeholder="Who's involved in this activity?"
+                                              placeholder={t(
+                                                "placeholder.activityCharacters",
+                                              )}
                                               className="mt-1"
                                             />
                                           </div>
