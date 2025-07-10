@@ -1016,7 +1016,7 @@ const BookBuilder = () => {
                       onChange={(e) =>
                         updateFormData("includeFriends", e.target.value)
                       }
-                      placeholder="Mom, Dad, Sister Emma, Best friend Jake..."
+                      placeholder={t("placeholder.includeFriends")}
                       className="mt-1"
                     />
                   </div>
