@@ -988,7 +988,7 @@ const BookBuilder = () => {
                       onChange={(e) =>
                         updateFormData("favoriteColor", e.target.value)
                       }
-                      placeholder="Blue, Pink, Rainbow..."
+                      placeholder={t("placeholder.favoriteColor")}
                       className="mt-1"
                     />
                   </div>
