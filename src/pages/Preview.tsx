@@ -898,7 +898,7 @@ const Preview = () => {
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-sm">Reading Level:</span>
+                  <span className="text-sm">{t("preview.readingLevel")}</span>
                   <span className="font-medium">Ages {bookData.childAge}+</span>
                 </div>
               </CardContent>
