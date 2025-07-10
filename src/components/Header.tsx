@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -19,6 +19,20 @@ const Header: React.FC<HeaderProps> = ({ showNavigation = true }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { language, setLanguage, t } = useTranslation();
   const { theme, toggleTheme } = useTheme();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleNavigateToSection = (sectionId: string) => {
+    if (location.pathname === "/") {
+      // If on homepage, scroll to section
+      document.getElementById(sectionId)?.scrollIntoView({
+        behavior: "smooth",
+      });
+    } else {
+      // If on other page, navigate to homepage with section hash
+      navigate(`/#${sectionId}`);
+    }
+  };
 
   const languages: { code: Language; name: string; flag: string }[] = [
     { code: "en", name: t("ui.english"), flag: "🇺🇸" },
@@ -51,41 +65,25 @@ const Header: React.FC<HeaderProps> = ({ showNavigation = true }) => {
           {showNavigation && (
             <div className="flex items-center space-x-6">
               <button
-                onClick={() => {
-                  document.getElementById("adventure-types")?.scrollIntoView({
-                    behavior: "smooth",
-                  });
-                }}
+                onClick={() => handleNavigateToSection("adventure-types")}
                 className="text-foreground/80 hover:text-foreground transition-colors cursor-pointer"
               >
                 {t("nav.adventurePossibilities")}
               </button>
               <button
-                onClick={() => {
-                  document.getElementById("how-it-works")?.scrollIntoView({
-                    behavior: "smooth",
-                  });
-                }}
+                onClick={() => handleNavigateToSection("how-it-works")}
                 className="text-foreground/80 hover:text-foreground transition-colors cursor-pointer"
               >
                 {t("nav.howItWorks")}
               </button>
               <button
-                onClick={() => {
-                  document.getElementById("examples")?.scrollIntoView({
-                    behavior: "smooth",
-                  });
-                }}
+                onClick={() => handleNavigateToSection("examples")}
                 className="text-foreground/80 hover:text-foreground transition-colors cursor-pointer"
               >
                 {t("nav.examples")}
               </button>
               <button
-                onClick={() => {
-                  document.getElementById("pricing")?.scrollIntoView({
-                    behavior: "smooth",
-                  });
-                }}
+                onClick={() => handleNavigateToSection("pricing")}
                 className="text-foreground/80 hover:text-foreground transition-colors cursor-pointer"
               >
                 {t("nav.pricing")}
@@ -311,9 +309,7 @@ const Header: React.FC<HeaderProps> = ({ showNavigation = true }) => {
               <>
                 <button
                   onClick={() => {
-                    document.getElementById("adventure-types")?.scrollIntoView({
-                      behavior: "smooth",
-                    });
+                    handleNavigateToSection("adventure-types");
                     setIsMobileMenuOpen(false);
                   }}
                   className="w-full text-left px-4 py-3 text-foreground/80 hover:text-foreground hover:bg-secondary/50 transition-colors"
@@ -322,9 +318,7 @@ const Header: React.FC<HeaderProps> = ({ showNavigation = true }) => {
                 </button>
                 <button
                   onClick={() => {
-                    document.getElementById("how-it-works")?.scrollIntoView({
-                      behavior: "smooth",
-                    });
+                    handleNavigateToSection("how-it-works");
                     setIsMobileMenuOpen(false);
                   }}
                   className="w-full text-left px-4 py-3 text-foreground/80 hover:text-foreground hover:bg-secondary/50 transition-colors"
@@ -333,9 +327,7 @@ const Header: React.FC<HeaderProps> = ({ showNavigation = true }) => {
                 </button>
                 <button
                   onClick={() => {
-                    document.getElementById("examples")?.scrollIntoView({
-                      behavior: "smooth",
-                    });
+                    handleNavigateToSection("examples");
                     setIsMobileMenuOpen(false);
                   }}
                   className="w-full text-left px-4 py-3 text-foreground/80 hover:text-foreground hover:bg-secondary/50 transition-colors"
@@ -344,9 +336,7 @@ const Header: React.FC<HeaderProps> = ({ showNavigation = true }) => {
                 </button>
                 <button
                   onClick={() => {
-                    document.getElementById("pricing")?.scrollIntoView({
-                      behavior: "smooth",
-                    });
+                    handleNavigateToSection("pricing");
                     setIsMobileMenuOpen(false);
                   }}
                   className="w-full text-left px-4 py-3 text-foreground/80 hover:text-foreground hover:bg-secondary/50 transition-colors"
