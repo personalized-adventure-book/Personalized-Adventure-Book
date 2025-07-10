@@ -883,7 +883,7 @@ const translations = {
     "hero.subtitle": "Libros de Aventura Personalizados para Niños",
     "hero.title": "Crea",
     "hero.titleHighlight": "Aventuras",
-    "hero.subtitle2": "Mágicas con Tu Hijo",
+    "hero.subtitle2": "M��gicas con Tu Hijo",
     "hero.description":
       "Transforma a tu hijo en el héroe de su propio libro de aventuras personalizado. ¡Elige entre bosques encantados, misiones espaciales, expediciones submarinas y más!",
     "hero.startCreating": "Comenzar a Crear",
@@ -987,7 +987,7 @@ const translations = {
     // Form Fields
     "form.parentName": "Tu Nombre",
     "form.email": "Dirección de Email",
-    "form.emailInvalid": "Por favor ingresa una dirección de email válida",
+    "form.emailInvalid": "Por favor ingresa una dirección de email v��lida",
     "form.childName": "Nombre del Niño",
     "form.age": "Edad",
     "form.selectAge": "Seleccionar Edad",
@@ -1145,7 +1145,7 @@ const translations = {
     "hero.description":
       "حول طفلك إلى بطل كتاب المغامرات الشخصي الخاص به. اختر من بين الغابات المسحورة، والمهام الفضائية، والرحلات تحت الماء، وأكثر!",
     "hero.startCreating": "ابدأ الإنشاء",
-    "hero.seeExamples": "انظ�� الأمثلة",
+    "hero.seeExamples": "انظر الأمثلة",
 
     // Features
     "features.personalizedCharacters": "شخصيات مخصصة",
@@ -1202,7 +1202,7 @@ const translations = {
     "examples.example4.adventure":
       "الإبحار في البحار السبعة مع طاقم من القراصنة الودودين",
     "examples.example4.preview":
-      "رصد الضابط الأول أليكس شيئاً يتلألأ تحت الماء الكريستالي...",
+      "رصد الضابط الأول ألي��س شيئاً يتلألأ تحت الماء الكريستالي...",
     "examples.example5.title": "تلميذ الساحر",
     "examples.example5.adventure":
       "تعلم التعاويذ السحرية في برج مليء بالمخلوقات الغامضة",
@@ -1220,7 +1220,7 @@ const translations = {
     "howItWorks.step1.title": "املأ التفاصيل",
     "howItWorks.step1.description": "أدخل اسم طفلك وعمره وتفضيلات المغامرة",
     "howItWorks.step2.title": "خصص القصة",
-    "howItWorks.step2.description": "اختر البيئة والشخصيات والتفاصيل الخاصة",
+    "howItWorks.step2.description": "اختر البيئة والشخصيات وال��فاصيل الخاصة",
     "howItWorks.step3.title": "معاينة الصفحات",
     "howItWorks.step3.description": "شاهد كتاب�� الشخصي ينبض بالحياة فوراً",
     "howItWorks.step4.title": "احصل على كتابك",
@@ -1260,7 +1260,7 @@ const translations = {
     "form.addExperience": "أضف تجربة أخرى",
     "form.activityName": "اسم النشاط",
     "form.activityDetails": "تفاصيل النشاط",
-    "form.activityCharacters": "الشخصيات ��لمشاركة",
+    "form.activityCharacters": "الشخصيات المشاركة",
     "form.activityImageDesc": "وصف الصورة",
     "form.uploadImages": "تحميل الصور",
     "form.addActivity": "أضف نشاطاً آخر",
@@ -1269,6 +1269,82 @@ const translations = {
     "form.reviewBook": "راجع كتابي",
     "form.required": "مطلوب",
     "form.complete": "اكتمل",
+    "form.stop": "توقف",
+
+    // Loading and messages
+    "loading.adventure": "جاري تحميل مغامرتك...",
+    "loading.preparation": "يرجى الانتظار بينما نعد نموذج إنشاء كتابك.",
+
+    // UI elements
+    "ui.activityImages": "صور النشاط",
+    "ui.charactersInvolved": "الشخصيات المشاركة",
+    "ui.description": "الوصف",
+    "ui.add": "إضافة",
+    "ui.addAnotherExperience": "إضافة تجربة أخرى",
+
+    // Upload messages
+    "upload.clickToUploadExperience": "انقر لتحميل صور لهذه التجربة",
+    "upload.uploadImagesFor": "تحميل صور لـ",
+
+    // Empty states
+    "empty.firstAdventure": "🌟 أول تجربة مغامرة لك جاهزة للإنشاء! 🌟",
+    "empty.autoCreate":
+      "سيقوم النظام تلقائياً بإنشاء قسم التجربة الأولى أدناه.",
+
+    // Dialog
+    "dialog.saveProgress": "حفظ التقدم؟",
+    "dialog.unsavedChanges": "لديك تغييرات غير محفوظة. هل تريد حفظ تقدمك؟",
+    "dialog.discardChanges": "عدم الحفظ",
+    "dialog.saveDraft": "حفظ والمتابعة",
+
+    // Draft Detection Dialog
+    "draftDetection.title": "متابعة مغامرتك؟",
+    "draftDetection.description":
+      "وجدنا مسودة محفوظة لكتاب مغامرتك. هل تريد المتابعة من حيث توقفت، أم بدء كتاب جديد، أم العودة للصفحة الرئيسية؟",
+    "draftDetection.continue": "متابعة المسودة",
+    "draftDetection.startNew": "بدء كتاب جديد",
+    "draftDetection.goHome": "العودة للرئيسية",
+
+    // Stop Dialog
+    "stopDialog.title": "التوقف عن إنشاء كتابك؟",
+    "stopDialog.description":
+      "ماذا تريد أن تفعل بتقدمك؟ يمكنك حفظه كمسودة للمتابعة لاحقاً، أو حذفه تماماً.",
+    "stopDialog.save": "حفظ كمسودة",
+    "stopDialog.delete": "حذف التقدم",
+
+    // Additional UI elements
+    "ui.experience": "التجربة",
+    "ui.required": "مطلوب",
+    "ui.activityName": "اسم النشاط",
+    "ui.activityEncouragement":
+      "💡 كلما أضفت المزيد من التجارب، كلما أصبحت قصتك أكثر تخصيصاً وسحراً! ✨",
+    "ui.addDetails": "أضف تفاصيل وأنشطة وشخصيات لإنشاء مغامرة فريدة حقاً",
+
+    // Activity names
+    "activity.treasureHunting": "البحث عن الكنوز",
+    "activity.dragonEncounters": "لقاءات التنانين",
+    "activity.deepSeaDiving": "الغوص في أعماق البحار",
+    "activity.rocketLaunches": "إطلاق الصواريخ",
+    "activity.magicSpellCasting": "إلقاء التعاويذ السحرية",
+    "activity.solvingMysteries": "حل الألغاز",
+    "activity.meetingNewFriends": "مقابلة أصدقاء جدد",
+    "activity.savingTheDay": "إنقاذ الموقف",
+    "activity.exploringNewWorlds": "استكشاف عوالم جديدة",
+    "activity.learningNewSkills": "تعلم مهارات جديدة",
+    "activity.findingHiddenSecrets": "العثور على أسرار مخفية",
+    "activity.goingOnQuests": "الذهاب في المهام",
+
+    // Preview page
+    "preview.storyPreview": "معاينة القصة",
+    "preview.bookStatistics": "إحصائيات كتابك",
+    "preview.totalChapters": "إجمالي الفصول:",
+    "preview.adventureActivities": "أنشطة المغامرة:",
+    "preview.estimatedPages": "الصفحات المقدرة:",
+    "preview.readingLevel": "مستوى القراءة:",
+    "preview.bookDetails": "تفاصيل الكتاب",
+    "preview.chooseFormat": "اختر التنسيق",
+    "preview.digitalBook": "كتاب رقمي",
+    "preview.printedBook": "كتاب مطبوع",
 
     // Pricing
     "pricing.title": "خيارات الكتاب",
@@ -1361,7 +1437,7 @@ const translations = {
       "المملكة السحرية، محطة الفضاء، المدينة تحت الماء...",
     "placeholder.favoriteColor": "أزرق، وردي، قوس قزح...",
     "placeholder.petName": "فلافي، ريكس، شوارب...",
-    "placeholder.includeFriends": "ماما، بابا، ا��أخت إيما، أفضل صديق جيك...",
+    "placeholder.includeFriends": "ماما، بابا، الأخت إيم��، أفضل صديق جيك...",
     "placeholder.specialDetails": "اهتمامات خاصة، هوايات، لحظات مضحكة...",
     "placeholder.experienceTitle": "السباحة مع الدلافين، العثور على كنز...",
     "placeholder.experienceDescription":
