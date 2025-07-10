@@ -165,6 +165,7 @@ const BookBuilder = () => {
         if (savedDraft) {
           try {
             const draftData = JSON.parse(savedDraft);
+            setHadPreviousDraft(true);
             loadDraftData(draftData);
             return;
           } catch (error) {
