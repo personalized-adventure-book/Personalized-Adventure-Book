@@ -1048,7 +1048,7 @@ const translations = {
     "hero.subtitle": "كتب مغامرات شخصية للأطفال",
     "hero.title": "اصنع",
     "hero.titleHighlight": "مغامرات",
-    "hero.subtitle2": "سحرية مع طفلك",
+    "hero.subtitle2": "سحرية م�� طفلك",
     "hero.description":
       "حول طفلك إلى بطل كتاب المغامرات الشخصي الخاص به. اختر من بين الغابات المسحورة، والمهام الفضائية، والرحلات تحت الماء، وأكثر!",
     "hero.startCreating": "ابدأ الإنشاء",
@@ -1068,8 +1068,8 @@ const translations = {
     // Adventure Types
     "adventure.possibilities": "إمكانيات المغامرة",
     "adventure.possibilitiesDesc":
-      "ا��تكشف ��لعوالم السحرية التي يمكننا إنشاؤها لطفلك - وأكثر من ذلك بكثير!",
-    "adventure.spaceMission": "مهمة فضائية",
+      "استكشف ��لعوالم السحرية التي يمكننا إنشاؤها لطفلك - وأكثر من ذلك بكثير!",
+    "adventure.spaceMission": "مهمة ��ضائية",
     "adventure.spaceMissionDesc": "انطلق إلى كواكب بعيدة والتق بأصدقاء فضائيين",
     "adventure.enchantedForest": "غابة مسحورة",
     "adventure.enchantedForestDesc": "اكتشف مخلوقات سحرية وكنوز مخفية",
@@ -1086,9 +1086,9 @@ const translations = {
     // Examples
     "examples.title": "أمثلة الكتب",
     "examples.description":
-      "شاهد كيف أ��بحت مغامر��ت الأطفال الآخرين حية في كتبهم الشخصية",
+      "شاهد كيف أصبحت مغامر��ت الأطفال الآخرين حية في كتبهم الشخصية",
     "examples.adventure": "مغامرة",
-    "examples.preview": "معاينة القصة",
+    "examples.preview": "م��اينة القصة",
     "examples.createYours": "اصنع مغامرتك",
     "examples.example1.title": "مهمة الغابة السحرية",
     "examples.example1.adventure":
@@ -1240,7 +1240,7 @@ const translations = {
     "footer.product": "��لمنتج",
     "footer.howItWorks": "كيف يعمل",
     "footer.examples": "أمثلة",
-    "footer.pricing": "الأسعار",
+    "footer.pricing": "ال��سعار",
     "footer.support": "الدعم",
     "footer.helpCenter": "مركز المساعدة",
     "footer.contactUs": "اتصل بنا",
@@ -1513,6 +1513,25 @@ const translations = {
     "ui.arabic": "العربية",
     "ui.dutch": "Nederlands",
     "ui.german": "Deutsch",
+
+    // Placeholder texts
+    "placeholder.email": "jouw.naam@voorbeeld.com",
+    "placeholder.location":
+      "Magisch Koninkrijk, Ruimtestation, Onderwater Stad...",
+    "placeholder.favoriteColor": "Blauw, Roze, Regenboog...",
+    "placeholder.petName": "Fluffy, Rex, Snorharen...",
+    "placeholder.includeFriends": "Mama, Papa, Zus Emma, Beste vriend Jake...",
+    "placeholder.specialDetails":
+      "Speciale interesses, hobby's, grappige momenten...",
+    "placeholder.experienceTitle": "Zwemmen met dolfijnen, Schat vinden...",
+    "placeholder.experienceDescription":
+      "Beschrijf wat er gebeurt in dit deel van het avontuur...",
+    "placeholder.characters": "Wie is betrokken bij deze ervaring?",
+    "placeholder.imageDescription": "Beschrijf afbeelding...",
+    "placeholder.customActivity": "Aangepaste activiteit toevoegen...",
+    "placeholder.activityDescription":
+      "Beschrijf wat er gebeurt tijdens deze activiteit...",
+    "placeholder.activityCharacters": "Wie is betrokken bij deze activiteit?",
   },
   de: {
     // Navigation
