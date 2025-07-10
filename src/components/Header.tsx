@@ -132,18 +132,12 @@ const Header: React.FC<HeaderProps> = ({ showNavigation = true }) => {
             variant="outline"
             size="sm"
             onClick={toggleTheme}
-            className="flex items-center space-x-2"
+            className="flex items-center"
           >
             {theme === "light" ? (
-              <>
-                <Moon className="w-4 h-4" />
-                <span className="hidden sm:inline">{t("ui.dark")}</span>
-              </>
+              <Moon className="w-4 h-4" />
             ) : (
-              <>
-                <Sun className="w-4 h-4" />
-                <span className="hidden sm:inline">{t("ui.light")}</span>
-              </>
+              <Sun className="w-4 h-4" />
             )}
           </Button>
         </div>
