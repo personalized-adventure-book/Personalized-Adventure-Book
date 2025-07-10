@@ -271,7 +271,7 @@ const BookBuilder = () => {
 
       return () => clearTimeout(saveTimer);
     }
-  }, [hasUnsavedChanges, isLoadingDraft, saveDraft]); // Simplified dependencies
+  }, [hasUnsavedChanges, isLoadingDraft]); // Simplified dependencies
 
   const adventureTypes = [
     {
