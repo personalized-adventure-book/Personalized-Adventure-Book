@@ -154,67 +154,75 @@ const BookBuilder = () => {
     hasInitializedRef.current = true;
   }, []);
 
-  // DISABLED - Load saved draft on mount
-  const DISABLED_useEffect1 = () => {
-    // Check localStorage for draft data
-    const savedDraft = localStorage.getItem("bookBuilderDraft");
+  // Load saved draft on mount
+  useEffect(() => {
+    const loadDraft = () => {
+      // Check localStorage for draft data
+      const savedDraft = localStorage.getItem("bookBuilderDraft");
+      let draftData: any = null;
 
-    if (savedDraft) {
-      try {
-        const draftData = JSON.parse(savedDraft);
-        const loadedFormData = draftData.formData || {
-          parentName: "",
-          parentEmail: "",
-          childName: "",
-          childAge: "",
-          childGender: "",
-          adventureType: "",
-          customAdventureType: "",
-          location: "",
-          experiences: [],
-          favoriteColor: "",
-          petName: "",
-          includeFriends: "",
-          specialDetails: "",
+      if (savedDraft) {
+        try {
+          draftData = JSON.parse(savedDraft);
+          const loadedFormData = draftData.formData || {
+            parentName: "",
+            parentEmail: "",
+            childName: "",
+            childAge: "",
+            childGender: "",
+            adventureType: "",
+            customAdventureType: "",
+            location: "",
+            experiences: [],
+            favoriteColor: "",
+            petName: "",
+            includeFriends: "",
+            specialDetails: "",
+          };
+
+          // Ensure experience data integrity
+          if (loadedFormData.experiences) {
+            loadedFormData.experiences = ensureExperienceIntegrity(
+              loadedFormData.experiences,
+            );
+          }
+
+          setFormData(loadedFormData);
+          setCurrentStep(draftData.currentStep || 1);
+          setHasUnsavedChanges(false); // Draft data is already saved
+        } catch (error) {
+          console.error("Error loading draft:", error);
+          localStorage.removeItem("bookBuilderDraft");
+        }
+      }
+
+      // Initialize first experience if none exist and not loaded from draft
+      if (!savedDraft || !draftData?.formData?.experiences?.length) {
+        const firstExperience: ExperienceDetail = {
+          id: "experience-1",
+          title: "",
+          description: "",
+          predefinedActivities: [],
+          customActivities: [],
+          activityDetails: [],
+          characters: "",
+          images: [],
+          imageDescription: "",
         };
 
-        // Ensure experience data integrity
-        if (loadedFormData.experiences) {
-          loadedFormData.experiences = ensureExperienceIntegrity(
-            loadedFormData.experiences,
-          );
-        }
-
-        setFormData(loadedFormData);
-        setCurrentStep(draftData.currentStep || 1);
-        setHasUnsavedChanges(false); // Draft data is already saved
-      } catch (error) {
-        console.error("Error loading draft:", error);
-        localStorage.removeItem("bookBuilderDraft");
+        setFormData((prev) => ({
+          ...prev,
+          experiences: [firstExperience],
+        }));
+        setExpandedExperiences(new Set(["experience-1"]));
       }
-    }
 
-    // Initialize first experience if none exist and not loaded from draft
-    if (!savedDraft || !draftData?.formData?.experiences?.length) {
-      const firstExperience: ExperienceDetail = {
-        id: "experience-1",
-        title: "",
-        description: "",
-        predefinedActivities: [],
-        customActivities: [],
-        activityDetails: [],
-        characters: "",
-        images: [],
-        imageDescription: "",
-      };
+      setIsLoadingDraft(false);
+      hasInitializedRef.current = true;
+    };
 
-      setFormData((prev) => ({
-        ...prev,
-        experiences: [firstExperience],
-      }));
-      setExpandedExperiences(new Set(["experience-1"]));
-    }
-  }; // End of disabled useEffect
+    loadDraft();
+  }, []); // Only run once on mount
 
   // DISABLED - Save draft before user leaves the page
   const DISABLED_useEffect2 = () => {
