@@ -309,6 +309,13 @@ const translations = {
     "draftDetection.startNew": "Start New Book",
     "draftDetection.goHome": "Go Home",
 
+    // Stop Dialog
+    "stopDialog.title": "Stop Creating Your Book?",
+    "stopDialog.description":
+      "What would you like to do with your progress? You can save it as a draft to continue later, or delete it completely.",
+    "stopDialog.save": "Save as Draft",
+    "stopDialog.delete": "Delete Progress",
+
     // Additional UI elements
     "ui.experience": "Experience",
     "ui.required": "Required",
@@ -347,7 +354,7 @@ const translations = {
   fr: {
     // Navigation
     "nav.adventurePossibilities": "Possibilités d'Aventure",
-    "nav.howItWorks": "Comment Ça Marche",
+    "nav.howItWorks": "Comment ��a Marche",
     "nav.examples": "Exemples",
     "nav.pricing": "Tarifs",
     "nav.myOrders": "Mes Commandes",
@@ -1144,7 +1151,7 @@ const translations = {
       "اشمل طفلك وأصدقاءه وأفراد عائلته في القصة",
     "features.instantPreview": "معاينة فورية",
     "features.instantPreviewDesc":
-      "شاهد ك��ابك ينبض بالحياة مع صفحات المعاينة الفورية",
+      "شاهد كتابك ينبض بالحياة مع صفحات المعاينة الفورية",
     "features.printOrDigital": "مطبوع أو رقمي",
     "features.printOrDigitalDesc":
       "احصل على كتاب مادي مُسلم أو قم بالتحميل فوراً",
@@ -1188,7 +1195,7 @@ const translations = {
     "examples.example3.adventure":
       "قلعة ملكية مع أصدقاء التنانين وتعاويذ سحرية للتعلم",
     "examples.example3.preview":
-      "لوحت الأميرة صوفيا بعصاها المتل��لئة وشاهدت الزهور تبدأ في التوهج...",
+      "لوحت الأميرة صوفيا بعصاها المتل���لئة وشاهدت الزهور تبدأ في التوهج...",
     "examples.example4.title": "البحث عن كن�� القراصنة",
     "examples.example4.adventure":
       "الإبحار في البحار السبعة مع طاقم من القراصنة الودودين",
@@ -1207,7 +1214,7 @@ const translations = {
 
     // How It Works
     "howItWorks.title": "كيف يعمل",
-    "howItWorks.description": "اصنع كتاب مغامرتك الشخصي في خطوات بسيطة قليلة",
+    "howItWorks.description": "اصنع كتاب مغامرتك ا��شخصي في خطوات بسيطة قليلة",
     "howItWorks.step1.title": "املأ التفاصيل",
     "howItWorks.step1.description": "أدخل اسم طفلك وعمره وتفضيلات المغامرة",
     "howItWorks.step2.title": "خصص القصة",
@@ -1219,7 +1226,7 @@ const translations = {
 
     // Form Steps
     "form.step1": "معلومات الوالد",
-    "form.step2": "معلومات ا��طفل",
+    "form.step2": "معلومات الطفل",
     "form.step3": "اختيار المغامرة",
     "form.step4": "لمسات ش��صية",
     "form.step5": "تفاصيل النشاط",
@@ -1315,7 +1322,7 @@ const translations = {
     // CTA Section
     "cta.title": "مستعد لصنع السحر؟",
     "cta.description":
-      "امنح طفلك هدية كونه البطل في قصة مغامرته الشخصية. ابدأ في إنشاء كتابه السحري اليو��!",
+      "امنح طفلك هدية كونه البطل في قصة مغامرته الشخصية. ابدأ في إنشاء كتابه السحري اليوم!",
     "cta.startAdventure": "ابدأ مغامرتك",
 
     // Footer
