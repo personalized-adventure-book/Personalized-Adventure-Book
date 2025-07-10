@@ -1742,6 +1742,43 @@ const BookBuilder = () => {
           </CardContent>
         </Card>
 
+        {/* Draft Detection Dialog */}
+        <Dialog
+          open={showDraftDetectionDialog}
+          onOpenChange={setShowDraftDetectionDialog}
+        >
+          <DialogContent className="max-w-md">
+            <DialogHeader>
+              <DialogTitle>{t("draftDetection.title")}</DialogTitle>
+              <DialogDescription>
+                {t("draftDetection.description")}
+              </DialogDescription>
+            </DialogHeader>
+            <DialogFooter className="flex-col space-y-2 sm:flex-row sm:space-y-0 sm:space-x-2">
+              <Button
+                variant="outline"
+                onClick={handleGoHome}
+                className="w-full sm:w-auto"
+              >
+                {t("draftDetection.goHome")}
+              </Button>
+              <Button
+                variant="outline"
+                onClick={handleStartNewDraft}
+                className="w-full sm:w-auto"
+              >
+                {t("draftDetection.startNew")}
+              </Button>
+              <Button
+                onClick={handleContinueDraft}
+                className="w-full sm:w-auto"
+              >
+                {t("draftDetection.continue")}
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
+
         {/* Save/Discard Dialog */}
         <Dialog open={showSaveDialog} onOpenChange={setShowSaveDialog}>
           <DialogContent className="max-w-md">
