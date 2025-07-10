@@ -792,7 +792,7 @@ const BookBuilder = () => {
                         updateFormData("parentEmail", e.target.value)
                       }
                       onBlur={() => setEmailTouched(true)}
-                      placeholder="your.name@example.com"
+                      placeholder={t("placeholder.email")}
                       className="mt-1"
                     />
                     {emailTouched &&
@@ -1584,7 +1584,7 @@ const BookBuilder = () => {
                     formData.experiences.length === 0) && (
                     <div className="text-center py-8 text-foreground/70">
                       <p>
-                        ������ Your first adventure experience is ready to be
+                        ���� Your first adventure experience is ready to be
                         created! 🌟
                       </p>
                       <p className="text-sm mt-2">
