@@ -355,7 +355,7 @@ const translations = {
   fr: {
     // Navigation
     "nav.adventurePossibilities": "Possibilités d'Aventure",
-    "nav.howItWorks": "Comment ��a Marche",
+    "nav.howItWorks": "Comment Ça Marche",
     "nav.examples": "Exemples",
     "nav.pricing": "Tarifs",
     "nav.myOrders": "Mes Commandes",
@@ -374,7 +374,7 @@ const translations = {
     "features.personalizedCharacters": "Personnages Personnalisés",
     "features.personalizedCharactersDesc":
       "Incluez votre enfant, ses amis et sa famille dans l'histoire",
-    "features.instantPreview": "Aperçu Instantan��",
+    "features.instantPreview": "Aperçu Instantané",
     "features.instantPreviewDesc":
       "Voyez votre livre prendre vie avec des pages d'aperçu immédiates",
     "features.printOrDigital": "Imprimé ou Numérique",
@@ -490,7 +490,7 @@ const translations = {
     "form.favoriteColor": "Couleur Préférée de l'Enfant",
     "form.petName": "Nom de l'Animal (si applicable)",
     "form.includeFriends": "Amis ou Famille à Inclure",
-    "form.characters": "Personnages ou Th��mes Préférés",
+    "form.characters": "Personnages ou Thèmes Préférés",
     "form.specialDetails": "Détails Spéciaux ou Blagues Privées",
     "form.personalExperiences": "Expériences Personnelles à Inclure",
     "form.addExperience": "Ajouter une Autre Expérience",
@@ -883,7 +883,7 @@ const translations = {
     "hero.subtitle": "Libros de Aventura Personalizados para Niños",
     "hero.title": "Crea",
     "hero.titleHighlight": "Aventuras",
-    "hero.subtitle2": "M��gicas con Tu Hijo",
+    "hero.subtitle2": "Mágicas con Tu Hijo",
     "hero.description":
       "Transforma a tu hijo en el héroe de su propio libro de aventuras personalizado. ¡Elige entre bosques encantados, misiones espaciales, expediciones submarinas y más!",
     "hero.startCreating": "Comenzar a Crear",
@@ -929,7 +929,7 @@ const translations = {
     "examples.adventure": "Aventura",
     "examples.preview": "Vista Previa de la Historia",
     "examples.createYours": "Crea Tu Aventura",
-    "examples.example1.title": "B��squeda del Bosque Mágico",
+    "examples.example1.title": "Búsqueda del Bosque Mágico",
     "examples.example1.adventure":
       "Bosque encantado con animales parlantes y aldeas de hadas ocultas",
     "examples.example1.preview":
@@ -987,7 +987,7 @@ const translations = {
     // Form Fields
     "form.parentName": "Tu Nombre",
     "form.email": "Dirección de Email",
-    "form.emailInvalid": "Por favor ingresa una dirección de email v��lida",
+    "form.emailInvalid": "Por favor ingresa una dirección de email válida",
     "form.childName": "Nombre del Niño",
     "form.age": "Edad",
     "form.selectAge": "Seleccionar Edad",
@@ -1051,7 +1051,7 @@ const translations = {
     "order.postalCode": "Código Postal",
     "order.country": "País",
     "order.selectCountry": "Selecciona un país...",
-    "order.phone": "Número de Tel��fono",
+    "order.phone": "Número de Teléfono",
     "order.countryCode": "Código de País",
     "order.phoneInvalid": "Por favor ingresa un número de teléfono válido",
     "order.paymentDetails": "Detalles de Pago",
@@ -1187,7 +1187,7 @@ const translations = {
     "examples.example1.adventure":
       "غابة مسحورة مع حيوانات ناطقة وقرى الجنيات المخفية",
     "examples.example1.preview":
-      "عبرت إيما القوس الذهبي ولهثت بينما رقصت الفراشات ذات الأجنحة قوس قزح حولها...",
+      "عبرت إيما القوس الذهبي ولهثت بينما رقصت الفراشات ذات الأجنحة قوس قزح حوله��...",
     "examples.example2.title": "مهمة مستكشف الفضاء",
     "examples.example2.adventure":
       "رحلة إلى المريخ مع رفاق آليين واكتشافات فضائية",
@@ -1249,7 +1249,7 @@ const translations = {
     "form.customAdventurePlaceholder": "صف مغامرتك المخصصة...",
     "form.location": "البيئة أو المكان",
     "form.keyActivities": "الأنشطة الرئيسية",
-    "form.selectActivities": "اختر الأنشطة التي تهم طفلك:",
+    "form.selectActivities": "اختر الأنشط�� التي تهم طفلك:",
     "form.customActivities": "أنشطة أخرى (واحد في كل سطر):",
     "form.favoriteColor": "لون الطفل المفضل",
     "form.petName": "اسم الحيوان الأليف (إن وجد)",
@@ -1366,7 +1366,7 @@ const translations = {
     "pricing.feature3": "تحميل فوري",
     "pricing.feature4": "خيار الطباعة في المنزل",
     "pricing.feature5": "كل شيء في الرقمي",
-    "pricing.feature6": "تجليد غلاف صلب ممتاز",
+    "pricing.feature6": "تجليد غلاف صل�� ممتاز",
     "pricing.feature7": "طباعة احترافية",
     "pricing.feature8": "توصيل مجاني في أوروبا",
     "pricing.popular": "شائع",

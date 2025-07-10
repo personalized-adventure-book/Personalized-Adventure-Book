@@ -631,7 +631,7 @@ const Preview = () => {
                 <div className="bg-gradient-to-br from-adventure-green via-adventure-yellow to-adventure-orange p-8 text-white">
                   <div className="text-center">
                     <div className="w-20 h-20 rounded-full bg-white/20 mx-auto mb-6 flex items-center justify-center">
-                      <span className="text-3xl">���</span>
+                      <span className="text-3xl">🎉</span>
                     </div>
                     <h3 className="text-2xl font-bold mb-4">
                       The Adventure Continues!
