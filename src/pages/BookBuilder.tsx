@@ -476,6 +476,37 @@ const BookBuilder = () => {
     navigate("/");
   };
 
+  // Stop dialog handlers
+  const handleStopAndSave = () => {
+    if (
+      formData.childName ||
+      formData.parentName ||
+      formData.experiences?.length
+    ) {
+      saveDraft();
+    }
+    setShowStopDialog(false);
+    navigate("/");
+  };
+
+  const handleStopAndDelete = () => {
+    // Delete draft completely
+    localStorage.removeItem("bookBuilderDraft");
+
+    // Also remove from drafts list
+    const existingDrafts = JSON.parse(
+      localStorage.getItem("orderDrafts") || "[]",
+    );
+    const updatedDrafts = existingDrafts.filter(
+      (d: any) =>
+        !d.title.startsWith(`${formData.childName || "Unnamed"}'s Adventure`),
+    );
+    localStorage.setItem("orderDrafts", JSON.stringify(updatedDrafts));
+
+    setShowStopDialog(false);
+    navigate("/");
+  };
+
   const isValidEmail = (email: string) => {
     // More comprehensive email validation regex
     const emailPattern =
