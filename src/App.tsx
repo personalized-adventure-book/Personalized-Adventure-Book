@@ -10,6 +10,12 @@ import BookBuilder from "./pages/BookBuilder";
 import Preview from "./pages/Preview";
 import OrderSuccess from "./pages/OrderSuccess";
 import Orders from "./pages/Orders";
+import About from "./pages/About";
+import Privacy from "./pages/Privacy";
+import Terms from "./pages/Terms";
+import HelpCenter from "./pages/HelpCenter";
+import Contact from "./pages/Contact";
+import FAQ from "./pages/FAQ";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
