@@ -828,7 +828,7 @@ const Preview = () => {
               </CardHeader>
               <CardContent className="space-y-3">
                 <div className="flex justify-between">
-                  <span className="text-sm">Total Chapters:</span>
+                  <span className="text-sm">{t("preview.totalChapters")}</span>
                   <span className="font-medium">
                     {bookData.experiences.length + 2}
                   </span>
