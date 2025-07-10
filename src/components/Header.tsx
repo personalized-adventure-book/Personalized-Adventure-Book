@@ -46,8 +46,7 @@ const Header: React.FC<HeaderProps> = ({ showNavigation = true }) => {
           </span>
         </Link>
 
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center space-x-4">
+        <div className="flex items-center space-x-4">
           {/* Navigation Menu */}
           {showNavigation && (
             <div className="flex items-center space-x-6">
