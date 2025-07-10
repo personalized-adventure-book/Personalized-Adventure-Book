@@ -290,7 +290,7 @@ const translations = {
 
     // Empty states
     "empty.firstAdventure":
-      "�� Your first adventure experience is ready to be created! 🌟",
+      "🌟 Your first adventure experience is ready to be created! 🌟",
     "empty.autoCreate":
       "The system will automatically create your first experience section below.",
 
@@ -330,6 +330,7 @@ const translations = {
     "nav.howItWorks": "Comment Ça Marche",
     "nav.examples": "Exemples",
     "nav.pricing": "Tarifs",
+    "nav.myOrders": "Mes Commandes",
 
     // Homepage
     "hero.subtitle": "Livres d'Aventure Personnalisés pour Enfants",
@@ -1147,7 +1148,7 @@ const translations = {
     "adventure.underwaterWorldDesc": "اغطس عميقاً لاستكشاف ممالك المرجان",
 
     // Examples
-    "examples.title": "أم��لة الكتب",
+    "examples.title": "أمثلة الكتب",
     "examples.description":
       "شاهد كيف أصبحت مغامر��ت الأطفال الآخرين حية في كتبهم الشخصية",
     "examples.adventure": "مغامرة",
@@ -1177,7 +1178,7 @@ const translations = {
     "examples.example5.adventure":
       "تعلم التعاويذ السحرية في برج مليء بالمخلوقات الغامضة",
     "examples.example5.preview":
-      "خلطت مايا بعناية الجرعة المتلألئة بينما راقب رفيقها البوم...",
+      "خلطت م��يا بعناية الجرعة المتلألئة بينما راقب رفيقها البوم...",
     "examples.example6.title": "��غامرة المحيط",
     "examples.example6.adventure":
       "مملكة تحت الماء مع أصدقاء الدلافين وقلاع المرجان",
@@ -1194,7 +1195,7 @@ const translations = {
     "howItWorks.step3.title": "معاينة الصفحات",
     "howItWorks.step3.description": "شاهد كتابك الشخصي ينبض بالحياة فوراً",
     "howItWorks.step4.title": "احصل على كتابك",
-    "howItWorks.step4.description": "حمّل نسخة رقمية أو اطلب نسخة مطبوعة",
+    "howItWorks.step4.description": "حمّل نسخة رقمية أو اطل�� نسخة مطبوعة",
 
     // Form Steps
     "form.step1": "معلومات الوالد",
@@ -1220,7 +1221,7 @@ const translations = {
     "form.location": "البيئة أو المكان",
     "form.keyActivities": "الأنشطة الرئيسية",
     "form.selectActivities": "اختر الأنشطة التي تهم طفلك:",
-    "form.customActivities": "أنشطة أخرى (واحد في كل سطر):",
+    "form.customActivities": "أنشطة أخرى (واحد في كل سط��):",
     "form.favoriteColor": "لون الطفل المفضل",
     "form.petName": "اسم الحيوان الأليف (إن وجد)",
     "form.includeFriends": "الأصدقاء أو العائلة للتضمين",
@@ -1230,7 +1231,7 @@ const translations = {
     "form.addExperience": "أضف تجربة أخرى",
     "form.activityName": "اسم النشاط",
     "form.activityDetails": "تفاصيل النشاط",
-    "form.activityCharacters": "الشخصيات ا��مشاركة",
+    "form.activityCharacters": "الشخصيات المشاركة",
     "form.activityImageDesc": "وصف الصورة",
     "form.uploadImages": "تحميل الصور",
     "form.addActivity": "أضف نشاطاً آخر",
@@ -1254,7 +1255,7 @@ const translations = {
     "pricing.feature4": "خيار الطباعة في المنزل",
     "pricing.feature5": "كل شيء في الرقمي",
     "pricing.feature6": "تجليد غلاف صلب ممتاز",
-    "pricing.feature7": "طباعة اح��رافية",
+    "pricing.feature7": "طباعة احترافية",
     "pricing.feature8": "توصيل مجاني في أوروبا",
     "pricing.popular": "شائع",
 
