@@ -1249,7 +1249,7 @@ const BookBuilder = () => {
                               {experience.images.length > 0 && (
                                 <div className="mt-4 space-y-3">
                                   <h5 className="font-medium text-sm">
-                                    Experience Images
+                                    {t("ui.experienceImages")}
                                   </h5>
                                   <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
                                     {experience.images.map((img, imgIndex) => (
