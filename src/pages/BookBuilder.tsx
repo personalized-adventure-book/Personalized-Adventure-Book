@@ -1651,10 +1651,10 @@ const BookBuilder = () => {
                 onClick={handleDiscardAndLeave}
                 className="w-full sm:w-auto"
               >
-                Discard Changes
+                {t("dialog.discardChanges")}
               </Button>
               <Button onClick={handleSaveAndLeave} className="w-full sm:w-auto">
-                Save Draft
+                {t("dialog.saveDraft")}
               </Button>
             </DialogFooter>
           </DialogContent>
