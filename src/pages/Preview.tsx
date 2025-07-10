@@ -479,7 +479,7 @@ const Preview = () => {
             {/* Story Preview Pages */}
             <div className="space-y-6">
               <h2 className="text-2xl font-bold text-center mb-6">
-                Story Preview
+                {t("preview.storyPreview")}
               </h2>
 
               {/* Page 1 - Opening */}
