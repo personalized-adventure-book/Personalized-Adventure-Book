@@ -1053,12 +1053,10 @@ const BookBuilder = () => {
                       {t("form.personalExperiences")}
                     </h3>
                     <p className="text-base font-medium text-adventure-blue">
-                      �� The more experiences you add, the more personalized and
-                      magical your story becomes! ✨
+                      {t("ui.activityEncouragement")}
                     </p>
                     <p className="text-sm text-foreground/60 mt-2">
-                      Add details, activities, and characters to create a truly
-                      unique adventure
+                      {t("ui.addDetails")}
                     </p>
                   </div>
 
