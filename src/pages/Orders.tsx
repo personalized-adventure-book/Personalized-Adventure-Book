@@ -61,6 +61,7 @@ const Orders = () => {
 
   const continueDraft = (draft: OrderDraft) => {
     localStorage.setItem("bookBuilderDraft", JSON.stringify(draft));
+    localStorage.setItem("skipDraftDetection", "true");
     navigate("/create");
   };
 
