@@ -822,7 +822,9 @@ const Preview = () => {
             {/* Book Statistics */}
             <Card className="bg-gradient-to-br from-adventure-blue/10 to-adventure-purple/10">
               <CardHeader>
-                <CardTitle className="text-lg">Your Book Statistics</CardTitle>
+                <CardTitle className="text-lg">
+                  {t("preview.bookStatistics")}
+                </CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
                 <div className="flex justify-between">
