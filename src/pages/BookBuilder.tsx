@@ -228,7 +228,7 @@ const BookBuilder = () => {
 
     window.addEventListener("beforeunload", handleBeforeUnload);
     return () => window.removeEventListener("beforeunload", handleBeforeUnload);
-  }, [hasUnsavedChanges]);
+  }; // End of disabled useEffect
 
   // Track changes only after initial load
   useEffect(() => {
