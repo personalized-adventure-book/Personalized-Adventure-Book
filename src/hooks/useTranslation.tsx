@@ -1015,6 +1015,27 @@ const translations = {
     "ui.arabic": "العربية",
     "ui.dutch": "Nederlands",
     "ui.german": "Deutsch",
+
+    // Placeholder texts
+    "placeholder.email": "tu.nombre@ejemplo.com",
+    "placeholder.location":
+      "Reino Mágico, Estación Espacial, Ciudad Submarina...",
+    "placeholder.favoriteColor": "Azul, Rosa, Arcoíris...",
+    "placeholder.petName": "Fluffy, Rex, Bigotes...",
+    "placeholder.includeFriends":
+      "Mamá, Papá, Hermana Emma, Mejor amigo Jake...",
+    "placeholder.specialDetails":
+      "Intereses especiales, hobbies, momentos divertidos...",
+    "placeholder.experienceTitle": "Nadar con delfines, Encontrar un tesoro...",
+    "placeholder.experienceDescription":
+      "Describe qué pasa en esta parte de la aventura...",
+    "placeholder.characters": "¿Quién está involucrado en esta experiencia?",
+    "placeholder.imageDescription": "Describe la imagen...",
+    "placeholder.customActivity": "Agregar actividad personalizada...",
+    "placeholder.activityDescription":
+      "Describe qué pasa durante esta actividad...",
+    "placeholder.activityCharacters":
+      "¿Quién está involucrado en esta actividad?",
   },
   ar: {
     // Navigation
@@ -1084,7 +1105,7 @@ const translations = {
       "قلعة ملكية مع أصدقاء التنانين وتعاويذ سحرية للتعلم",
     "examples.example3.preview":
       "لوحت الأميرة صوفيا بعصاها المتل��لئة وشاهدت الزهور تبدأ في التوهج...",
-    "examples.example4.title": "البحث عن كنز القراصنة",
+    "examples.example4.title": "البحث عن كنز ��لقراصنة",
     "examples.example4.adventure":
       "الإبحار في البحار السبعة مع طاقم من القراصنة الودودين",
     "examples.example4.preview":
@@ -1122,7 +1143,7 @@ const translations = {
     // Form Fields
     "form.parentName": "اسمك",
     "form.email": "عنوان البريد الإلكتروني",
-    "form.emailInvalid": "يرجى إدخا�� عنوان بريد إلكتروني صالح",
+    "form.emailInvalid": "يرجى إدخال عنوان بريد إلكتروني صالح",
     "form.childName": "اسم الطفل",
     "form.age": "العمر",
     "form.selectAge": "اختر العمر",
