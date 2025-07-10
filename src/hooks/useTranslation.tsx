@@ -1172,14 +1172,14 @@ const translations = {
     "adventure.pirateVoyageDesc": "أبحر في البحار السبعة بحثاً عن الكنز",
     "adventure.superheroAcademy": "أكاديمية الأبطال الخارقين",
     "adventure.superheroAcademyDesc":
-      "تدرب لتصبح ال��طل العظيم القادم في العالم",
+      "تدرب لتصبح البطل العظيم القادم ف�� العالم",
     "adventure.underwaterWorld": "عالم تحت الماء",
     "adventure.underwaterWorldDesc": "اغطس عميقاً لاستكشاف ممالك المرجان",
 
     // Examples
     "examples.title": "أمثلة الكتب",
     "examples.description":
-      "شاهد كيف أصبحت مغامر��ت الأطفال الآخرين حية في كتبهم الشخصية",
+      "شاهد كيف أصبحت مغامرات الأطفال الآخرين حية في كتبهم الشخصية",
     "examples.adventure": "مغامرة",
     "examples.preview": "معاينة القصة",
     "examples.createYours": "اصنع مغامرتك",
@@ -1187,13 +1187,13 @@ const translations = {
     "examples.example1.adventure":
       "غابة مسحورة مع حيوانات ناطقة وقرى الجنيات المخفية",
     "examples.example1.preview":
-      "عبرت إيما القوس ال��هبي ولهثت بينما رقصت الفراشات ذات الأجنحة ��وس قزح حولها...",
+      "عبرت إيما القوس الذهبي ولهثت بينما رقصت الفراشات ذات الأجنحة قوس قزح حولها...",
     "examples.example2.title": "مهمة مستكشف الفضاء",
     "examples.example2.adventure":
       "رحلة إلى المريخ مع رفاق آليين واكتشافات فضائية",
     "examples.example2.preview":
-      "عدّل الكابتن لوكاس خوذته الفض��ئية ونظر إلى الكوكب الأحمر أدناه...",
-    "examples.example3.title": "أكا��يمية الأميرات",
+      "عدّل الكابتن لوكاس خوذته الفضائية ونظر إلى الكوكب الأحمر أدناه...",
+    "examples.example3.title": "أكاديمية الأميرات",
     "examples.example3.adventure":
       "قلعة ملكية مع أصدقاء التنانين وتعاويذ سحرية للتعلم",
     "examples.example3.preview":
@@ -1205,14 +1205,14 @@ const translations = {
       "رصد الضابط الأول ألي��س شيئاً يتلألأ تحت الماء الكريستالي...",
     "examples.example5.title": "تلميذ الساحر",
     "examples.example5.adventure":
-      "تعلم التعاويذ السحرية في برج مليء بالمخلوقات الغامضة",
+      "تعلم التعاويذ السحرية في برج مليء بالمخلوقا�� الغامضة",
     "examples.example5.preview":
       "خلطت م��يا بعناية الجرعة المتلألئة بينما راقب رفيقها البوم...",
     "examples.example6.title": "��غامرة المحيط",
     "examples.example6.adventure":
       "مملكة تحت الماء مع أص��قاء الدلافين وقلاع المرجان",
     "examples.example6.preview":
-      "سبح دييغو بجانب الدلافين الودودة نح�� المدينة تحت الماء المضيئة...",
+      "سبح دييغو بجانب الدلافين الودودة نحو المدينة تحت الماء المضيئة...",
 
     // How It Works
     "howItWorks.title": "كيف يعمل",
@@ -1223,7 +1223,7 @@ const translations = {
     "howItWorks.step2.description": "اختر البيئة والشخصيات وال��فاصيل الخاصة",
     "howItWorks.step3.title": "معاينة الصفحات",
     "howItWorks.step3.description": "شاهد كتاب�� الشخصي ينبض بالحياة فوراً",
-    "howItWorks.step4.title": "احصل على كتابك",
+    "howItWorks.step4.title": "اح��ل على كتابك",
     "howItWorks.step4.description": "حمّل نسخة رقمية أو اطل�� نسخة مطبوعة",
 
     // Form Steps
@@ -1255,7 +1255,7 @@ const translations = {
     "form.petName": "اسم الحيوان الأليف (إن وجد)",
     "form.includeFriends": "الأصدقاء أو العائلة للتضمين",
     "form.characters": "الشخصيات أو المواضيع المفضلة",
-    "form.specialDetails": "تفاصيل خاصة أو نكا�� داخلية",
+    "form.specialDetails": "تفاصيل خاصة أو نكات داخلية",
     "form.personalExperiences": "التجارب الشخصية للتضمين",
     "form.addExperience": "أضف تجربة أخرى",
     "form.activityName": "اسم النشاط",
@@ -1272,7 +1272,7 @@ const translations = {
     "form.stop": "توقف",
 
     // Loading and messages
-    "loading.adventure": "جاري تحميل مغامرتك...",
+    "loading.adventure": "جاري ��حميل مغامرتك...",
     "loading.preparation": "يرجى الانتظار بينما نعد نموذج إنشاء كتابك.",
 
     // UI elements
@@ -1283,7 +1283,7 @@ const translations = {
     "ui.addAnotherExperience": "إضافة تجربة أخرى",
 
     // Upload messages
-    "upload.clickToUploadExperience": "ا��قر لتحميل صور لهذه التجربة",
+    "upload.clickToUploadExperience": "انقر لتحميل صور لهذه التجربة",
     "upload.uploadImagesFor": "تحميل صور لـ",
 
     // Empty states
@@ -1399,7 +1399,7 @@ const translations = {
     "order.confirmationDetails": "تفاصيل التأكيد",
     "order.shippingDetails": "تفاصيل الشحن",
     "order.deliveryInfo":
-      "سيتم تسليم كتابك عبر البريد ال��لكتروني عندما يكون جاهزاً",
+      "سيتم تسليم كتابك عبر البريد الإلكتروني عندما يكون جاهزاً",
     "order.createAnother": "إنش��ء كتاب آخر",
     "order.goHome": "الذه��ب للصفحة الرئيسية",
     "order.backToForm": "العودة للنموذج",
@@ -1444,7 +1444,7 @@ const translations = {
       "المملكة السحرية، محطة الفضاء، المدينة تحت الماء...",
     "placeholder.favoriteColor": "أزرق، وردي، قوس قزح...",
     "placeholder.petName": "فلافي، ريكس، شوارب...",
-    "placeholder.includeFriends": "ماما، بابا، الأخت إيم��، أفضل صديق جيك...",
+    "placeholder.includeFriends": "ماما، بابا، ا��أخت إيم��، أفضل صديق جيك...",
     "placeholder.specialDetails": "اهتمامات خاصة، هوايات، لحظات مضحكة...",
     "placeholder.experienceTitle": "السباحة مع الدلافين، العثور على كنز...",
     "placeholder.experienceDescription":
