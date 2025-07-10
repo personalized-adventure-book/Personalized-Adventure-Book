@@ -415,6 +415,7 @@ const BookBuilder = () => {
 
   const handleNavigation = (destination: string) => {
     if (hasUnsavedChanges) {
+      setNavigationDestination(destination);
       setShowSaveDialog(true);
       return;
     }
