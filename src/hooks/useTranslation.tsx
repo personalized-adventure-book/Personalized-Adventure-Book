@@ -301,6 +301,14 @@ const translations = {
     "dialog.discardChanges": "Discard Changes",
     "dialog.saveDraft": "Save Draft",
 
+    // Draft Detection Dialog
+    "draftDetection.title": "Continue Your Adventure?",
+    "draftDetection.description":
+      "We found a saved draft of your adventure book. Would you like to continue where you left off, start a new book, or go back to the homepage?",
+    "draftDetection.continue": "Continue Draft",
+    "draftDetection.startNew": "Start New Book",
+    "draftDetection.goHome": "Go Home",
+
     // Additional UI elements
     "ui.experience": "Experience",
     "ui.required": "Required",
@@ -1170,7 +1178,7 @@ const translations = {
     "examples.example1.adventure":
       "غابة مسحورة مع حيوانات ناطقة وقرى الجنيات المخفية",
     "examples.example1.preview":
-      "عبرت إيما القوس الذهبي ولهثت بينما رقصت الفراشات ذات الأجنحة ��وس قزح حولها...",
+      "عبرت إيما القوس ال��هبي ولهثت بينما رقصت الفراشات ذات الأجنحة ��وس قزح حولها...",
     "examples.example2.title": "مهمة مستكشف الفضاء",
     "examples.example2.adventure":
       "رحلة إلى المريخ مع رفاق آليين واكتشافات فضائية",
@@ -1205,7 +1213,7 @@ const translations = {
     "howItWorks.step2.title": "خصص القصة",
     "howItWorks.step2.description": "اختر البيئة والشخصيات والتفاصيل الخاصة",
     "howItWorks.step3.title": "معاينة الصفحات",
-    "howItWorks.step3.description": "شاهد كتابك الشخصي ينبض بالحياة فوراً",
+    "howItWorks.step3.description": "شاهد كتاب�� الشخصي ينبض بالحياة فوراً",
     "howItWorks.step4.title": "احصل على كتابك",
     "howItWorks.step4.description": "حمّل نسخة رقمية أو اطل�� نسخة مطبوعة",
 
@@ -1279,7 +1287,7 @@ const translations = {
     "order.fullName": "الاسم الكامل",
     "order.streetAddress": "عنوان الشارع",
     "order.city": "المدينة",
-    "order.postalCode": "الرمز البريدي",
+    "order.postalCode": "الرمز ال��ريدي",
     "order.country": "البلد",
     "order.selectCountry": "اختر بلداً...",
     "order.phone": "رقم الهاتف",
@@ -1301,7 +1309,7 @@ const translations = {
     "order.deliveryInfo":
       "سيتم تسليم كتابك عبر البريد الإلكتروني عندما يكون جاهزاً",
     "order.createAnother": "إنش��ء كتاب آخر",
-    "order.goHome": "الذهاب للصفحة الرئيسية",
+    "order.goHome": "الذه��ب للصفحة الرئيسية",
     "order.backToForm": "العودة للنموذج",
 
     // CTA Section
