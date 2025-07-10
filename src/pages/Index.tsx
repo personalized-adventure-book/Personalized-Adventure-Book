@@ -568,19 +568,28 @@ const Index = () => {
               <h4 className="font-semibold mb-4">{t("footer.company")}</h4>
               <ul className="space-y-2 text-sm text-foreground/70">
                 <li>
-                  <a href="#" className="hover:text-foreground">
+                  <Link
+                    to="/about"
+                    className="hover:text-foreground transition-colors"
+                  >
                     {t("footer.about")}
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-foreground">
+                  <Link
+                    to="/privacy"
+                    className="hover:text-foreground transition-colors"
+                  >
                     {t("footer.privacy")}
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-foreground">
+                  <Link
+                    to="/terms"
+                    className="hover:text-foreground transition-colors"
+                  >
                     {t("footer.terms")}
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
