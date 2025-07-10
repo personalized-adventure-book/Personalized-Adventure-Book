@@ -1263,7 +1263,7 @@ const BookBuilder = () => {
                                         </div>
                                         <div>
                                           <Label className="text-xs">
-                                            Description
+                                            {t("ui.description")}
                                           </Label>
                                           <Textarea
                                             value={img.description}
