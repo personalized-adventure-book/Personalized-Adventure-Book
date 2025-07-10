@@ -1161,18 +1161,18 @@ const translations = {
     // Adventure Types
     "adventure.possibilities": "إمكانيات المغامرة",
     "adventure.possibilitiesDesc":
-      "استكشف ��لعوالم السحرية التي يمكننا إنشاؤها لطفلك - وأكثر من ذلك بكثير!",
+      "استكشف العوالم السحرية التي يمكننا إنشاؤها لطفلك - وأكثر من ذلك بكثير!",
     "adventure.spaceMission": "مهمة فضائية",
     "adventure.spaceMissionDesc": "انطلق إلى كواكب بعيدة والتق بأصدقاء فضائيين",
     "adventure.enchantedForest": "غابة مسحورة",
     "adventure.enchantedForestDesc": "اكتشف مخلوقات سحرية وكنوز مخفية",
     "adventure.royalCastle": "قلعة ملكية",
-    "adventure.royalCastleDesc": "كن فارساً شجاعاً أو أميرة ��كيمة",
+    "adventure.royalCastleDesc": "كن فارساً شجاعاً أو أميرة حكيمة",
     "adventure.pirateVoyage": "رحلة القراصنة",
     "adventure.pirateVoyageDesc": "أبحر في البحار السبعة بحثاً عن الكنز",
-    "adventure.superheroAcademy": "أكاديمية الأب��ال الخارقين",
+    "adventure.superheroAcademy": "أكاديمية الأبطال الخارقين",
     "adventure.superheroAcademyDesc":
-      "تدرب لتصبح البطل العظيم ال��ادم في العالم",
+      "تدرب لتصبح ال��طل العظيم القادم في العالم",
     "adventure.underwaterWorld": "عالم تحت الماء",
     "adventure.underwaterWorldDesc": "اغطس عميقاً لاستكشاف ممالك المرجان",
 
@@ -1192,7 +1192,7 @@ const translations = {
     "examples.example2.adventure":
       "رحلة إلى المريخ مع رفاق آليين واكتشافات فضائية",
     "examples.example2.preview":
-      "عدّل الكابتن لوكاس خوذته الفضائية ونظر إلى الكوكب الأحمر أدناه...",
+      "عدّل الكابتن لوكاس خوذته الفض��ئية ونظر إلى الكوكب الأحمر أدناه...",
     "examples.example3.title": "أكا��يمية الأميرات",
     "examples.example3.adventure":
       "قلعة ملكية مع أصدقاء التنانين وتعاويذ سحرية للتعلم",
@@ -1212,7 +1212,7 @@ const translations = {
     "examples.example6.adventure":
       "مملكة تحت الماء مع أص��قاء الدلافين وقلاع المرجان",
     "examples.example6.preview":
-      "سبح دييغو بجانب الدلافين الودودة نحو المدينة تحت الماء المضيئة...",
+      "سبح دييغو بجانب الدلافين الودودة نح�� المدينة تحت الماء المضيئة...",
 
     // How It Works
     "howItWorks.title": "كيف يعمل",
@@ -1255,7 +1255,7 @@ const translations = {
     "form.petName": "اسم الحيوان الأليف (إن وجد)",
     "form.includeFriends": "الأصدقاء أو العائلة للتضمين",
     "form.characters": "الشخصيات أو المواضيع المفضلة",
-    "form.specialDetails": "تفاصيل خاصة أو نكات داخلية",
+    "form.specialDetails": "تفاصيل خاصة أو نكا�� داخلية",
     "form.personalExperiences": "التجارب الشخصية للتضمين",
     "form.addExperience": "أضف تجربة أخرى",
     "form.activityName": "اسم النشاط",
@@ -1283,7 +1283,7 @@ const translations = {
     "ui.addAnotherExperience": "إضافة تجربة أخرى",
 
     // Upload messages
-    "upload.clickToUploadExperience": "انقر لتحميل صور لهذه التجربة",
+    "upload.clickToUploadExperience": "ا��قر لتحميل صور لهذه التجربة",
     "upload.uploadImagesFor": "تحميل صور لـ",
 
     // Empty states
@@ -1399,7 +1399,7 @@ const translations = {
     "order.confirmationDetails": "تفاصيل التأكيد",
     "order.shippingDetails": "تفاصيل الشحن",
     "order.deliveryInfo":
-      "سيتم تسليم كتابك عبر البريد الإلكتروني عندما يكون جاهزاً",
+      "سيتم تسليم كتابك عبر البريد ال��لكتروني عندما يكون جاهزاً",
     "order.createAnother": "إنش��ء كتاب آخر",
     "order.goHome": "الذه��ب للصفحة الرئيسية",
     "order.backToForm": "العودة للنموذج",
