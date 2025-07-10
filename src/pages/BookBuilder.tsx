@@ -860,11 +860,22 @@ const BookBuilder = () => {
       <div className="container mx-auto px-4 py-8 max-w-4xl">
         {/* Progress Bar */}
         <div className="mb-8">
-          <div className="flex justify-between text-sm text-foreground/70 mb-2">
+          <div className="flex justify-between items-center text-sm text-foreground/70 mb-2">
             <span>{t("nav.examples")}</span>
-            <span>
-              {Math.round(progress)}% {t("form.complete")}
-            </span>
+            <div className="flex items-center gap-4">
+              <span>
+                {Math.round(progress)}% {t("form.complete")}
+              </span>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setShowStopDialog(true)}
+                className="text-red-600 border-red-200 hover:bg-red-50 hover:border-red-300"
+              >
+                <X className="w-4 h-4 mr-1" />
+                {t("form.stop")}
+              </Button>
+            </div>
           </div>
           <Progress value={progress} className="h-2" />
         </div>
