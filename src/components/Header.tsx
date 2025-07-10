@@ -262,41 +262,6 @@ const Header: React.FC<HeaderProps> = ({ showNavigation = true }) => {
                 </Link>
               </>
             )}
-
-            {/* Language Selector for Mobile */}
-            <div className="pt-2 border-t border-border">
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button
-                    variant="outline"
-                    className="w-full justify-start flex items-center space-x-2"
-                  >
-                    <Globe className="w-4 h-4" />
-                    <span className="text-sm">
-                      {currentLanguage?.flag} {currentLanguage?.name}
-                    </span>
-                    <ChevronDown className="w-3 h-3 ml-auto" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="start" className="w-full">
-                  {languages.map((lang) => (
-                    <DropdownMenuItem
-                      key={lang.code}
-                      onClick={() => {
-                        setLanguage(lang.code);
-                        setIsMobileMenuOpen(false);
-                      }}
-                      className={`flex items-center space-x-2 cursor-pointer ${
-                        language === lang.code ? "bg-secondary" : ""
-                      }`}
-                    >
-                      <span>{lang.flag}</span>
-                      <span>{lang.name}</span>
-                    </DropdownMenuItem>
-                  ))}
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </div>
           </div>
         </div>
       )}
