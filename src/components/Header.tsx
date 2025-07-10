@@ -105,12 +105,9 @@ const Header: React.FC<HeaderProps> = ({ showNavigation = true }) => {
               <Button
                 variant="outline"
                 size="sm"
-                className="flex items-center space-x-2"
+                className="flex items-center space-x-1"
               >
-                <Globe className="w-4 h-4" />
-                <span className="text-sm">
-                  {currentLanguage?.flag} {currentLanguage?.name}
-                </span>
+                <span className="text-sm">{currentLanguage?.flag}</span>
                 <ChevronDown className="w-3 h-3" />
               </Button>
             </DropdownMenuTrigger>
