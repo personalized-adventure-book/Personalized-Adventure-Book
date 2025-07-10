@@ -154,6 +154,7 @@ const translations = {
     "form.previous": "Previous",
     "form.next": "Next",
     "form.reviewBook": "Review My Book",
+    "form.stop": "Stop",
     "form.required": "Required",
     "form.complete": "Complete",
 
@@ -1208,7 +1209,7 @@ const translations = {
       "خلطت م��يا بعناية الجرعة المتلألئة بينما راقب رفيقها البوم...",
     "examples.example6.title": "��غامرة المحيط",
     "examples.example6.adventure":
-      "مملكة تحت الماء مع أصدقاء الدلافين وقلاع المرجان",
+      "مملكة تحت الماء مع أص��قاء الدلافين وقلاع المرجان",
     "examples.example6.preview":
       "سبح دييغو بجانب الدلافين الودودة نحو المدينة تحت الماء المضيئة...",
 
