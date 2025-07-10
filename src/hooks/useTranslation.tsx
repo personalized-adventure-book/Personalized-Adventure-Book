@@ -297,9 +297,9 @@ const translations = {
     // Dialog
     "dialog.saveProgress": "Save Your Progress?",
     "dialog.unsavedChanges":
-      "You have unsaved changes. Would you like to save your progress before leaving?",
-    "dialog.discardChanges": "Discard Changes",
-    "dialog.saveDraft": "Save Draft",
+      "You have unsaved changes. Would you like to save your current progress?",
+    "dialog.discardChanges": "Don't Save",
+    "dialog.saveDraft": "Save & Continue",
 
     // Draft Detection Dialog
     "draftDetection.title": "Continue Your Adventure?",
@@ -921,7 +921,7 @@ const translations = {
     "examples.adventure": "Aventura",
     "examples.preview": "Vista Previa de la Historia",
     "examples.createYours": "Crea Tu Aventura",
-    "examples.example1.title": "Búsqueda del Bosque Mágico",
+    "examples.example1.title": "B��squeda del Bosque Mágico",
     "examples.example1.adventure":
       "Bosque encantado con animales parlantes y aldeas de hadas ocultas",
     "examples.example1.preview":
@@ -1144,7 +1144,7 @@ const translations = {
       "اشمل طفلك وأصدقاءه وأفراد عائلته في القصة",
     "features.instantPreview": "معاينة فورية",
     "features.instantPreviewDesc":
-      "شاهد كتابك ينبض بالحياة مع صفحات المعاينة الفورية",
+      "شاهد ك��ابك ينبض بالحياة مع صفحات المعاينة الفورية",
     "features.printOrDigital": "مطبوع أو رقمي",
     "features.printOrDigitalDesc":
       "احصل على كتاب مادي مُسلم أو قم بالتحميل فوراً",
@@ -1219,7 +1219,7 @@ const translations = {
 
     // Form Steps
     "form.step1": "معلومات الوالد",
-    "form.step2": "معلومات الطفل",
+    "form.step2": "معلومات ا��طفل",
     "form.step3": "اختيار المغامرة",
     "form.step4": "لمسات ش��صية",
     "form.step5": "تفاصيل النشاط",
@@ -1269,8 +1269,8 @@ const translations = {
     "pricing.digitalBookDesc": "تحميل PDF فوري",
     "pricing.printedBook": "كتاب مطبوع",
     "pricing.printedBookDesc": "غلاف صلب احترافي",
-    "pricing.feature1": "قصة شخصية من 20+ صفحة",
-    "pricing.feature2": "رسوم توضيحية عالية الجودة",
+    "pricing.feature1": "قصة شخصية من 20+ صفح��",
+    "pricing.feature2": "ر��وم توضيحية عالية الجودة",
     "pricing.feature3": "تحميل فوري",
     "pricing.feature4": "خيار الطباعة في المنزل",
     "pricing.feature5": "كل شيء في الرقمي",
@@ -1315,7 +1315,7 @@ const translations = {
     // CTA Section
     "cta.title": "مستعد لصنع السحر؟",
     "cta.description":
-      "امنح طفلك هدية كونه البطل في قصة مغامرته الشخصية. ابدأ في إنشاء كتابه السحري اليوم!",
+      "امنح طفلك هدية كونه البطل في قصة مغامرته الشخصية. ابدأ في إنشاء كتابه السحري اليو��!",
     "cta.startAdventure": "ابدأ مغامرتك",
 
     // Footer
