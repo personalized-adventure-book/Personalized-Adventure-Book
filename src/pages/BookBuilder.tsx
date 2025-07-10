@@ -315,14 +315,21 @@ const BookBuilder = () => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
-  const saveDraft = () => {
+  const saveDraft = (useCookies: boolean = false) => {
     const draftData = {
       formData,
       currentStep,
       savedAt: new Date().toISOString(),
       status: "draft" as const,
     };
-    localStorage.setItem("bookBuilderDraft", JSON.stringify(draftData));
+
+    if (useCookies) {
+      // Save to cookies (with 7 day expiration)
+      setCookie("bookBuilderDraft", JSON.stringify(draftData), 7);
+    } else {
+      // Save to localStorage (default)
+      localStorage.setItem("bookBuilderDraft", JSON.stringify(draftData));
+    }
 
     // Also save to drafts list
     const existingDrafts = JSON.parse(
