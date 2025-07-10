@@ -106,6 +106,9 @@ const BookBuilder = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [emailTouched, setEmailTouched] = useState(false);
   const [showSaveDialog, setShowSaveDialog] = useState(false);
+  const [showDraftDetectionDialog, setShowDraftDetectionDialog] =
+    useState(false);
+  const [detectedDraft, setDetectedDraft] = useState<any>(null);
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
   const [isLoadingDraft, setIsLoadingDraft] = useState(true);
   const [expandedExperiences, setExpandedExperiences] = useState<Set<string>>(
