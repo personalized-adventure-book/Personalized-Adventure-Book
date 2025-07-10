@@ -34,8 +34,9 @@ const Header: React.FC<HeaderProps> = ({ showNavigation = true }) => {
 
   return (
     <header className="container mx-auto px-4 py-6">
-      <nav className="flex items-center justify-between">
-        {/* Logo - stays same size on all devices */}
+      {/* Desktop Navigation */}
+      <nav className="hidden md:flex items-center justify-between">
+        {/* Logo */}
         <Link to="/" className="flex items-center space-x-2">
           <div className="w-10 h-10 rounded-full adventure-gradient flex items-center justify-center">
             <BookOpen className="w-5 h-5 text-white" />
