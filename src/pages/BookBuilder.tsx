@@ -1642,8 +1642,7 @@ const BookBuilder = () => {
             <DialogHeader>
               <DialogTitle>{t("dialog.saveProgress")}</DialogTitle>
               <DialogDescription>
-                You have unsaved changes. Would you like to save your progress
-                before leaving?
+                {t("dialog.unsavedChanges")}
               </DialogDescription>
             </DialogHeader>
             <DialogFooter className="flex-col space-y-2 sm:flex-row sm:space-y-0 sm:space-x-2">
