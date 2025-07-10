@@ -154,6 +154,25 @@ const BookBuilder = () => {
   // Check for existing draft on mount
   useEffect(() => {
     const checkForDraft = () => {
+      // Check if we should skip draft detection (coming from Orders continue button)
+      const skipDetection = localStorage.getItem("skipDraftDetection");
+      if (skipDetection) {
+        localStorage.removeItem("skipDraftDetection");
+
+        // Load draft directly without showing dialog
+        const savedDraft = localStorage.getItem("bookBuilderDraft");
+        if (savedDraft) {
+          try {
+            const draftData = JSON.parse(savedDraft);
+            loadDraftData(draftData);
+            return;
+          } catch (error) {
+            console.error("Error parsing draft:", error);
+            localStorage.removeItem("bookBuilderDraft");
+          }
+        }
+      }
+
       // Check localStorage for draft data
       const savedDraft = localStorage.getItem("bookBuilderDraft");
       let draftData: any = null;
