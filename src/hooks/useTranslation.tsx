@@ -1135,6 +1135,7 @@ const translations = {
     "nav.howItWorks": "كيف يعمل",
     "nav.examples": "أمثلة",
     "nav.pricing": "الأسعار",
+    "nav.myOrders": "طلباتي",
 
     // Homepage
     "hero.subtitle": "كتب مغامرات شخصية للأطفال",
@@ -1144,7 +1145,7 @@ const translations = {
     "hero.description":
       "حول طفلك إلى بطل كتاب المغامرات الشخصي الخاص به. اختر من بين الغابات المسحورة، والمهام الفضائية، والرحلات تحت الماء، وأكثر!",
     "hero.startCreating": "ابدأ الإنشاء",
-    "hero.seeExamples": "انظر الأمثلة",
+    "hero.seeExamples": "انظ�� الأمثلة",
 
     // Features
     "features.personalizedCharacters": "شخصيات مخصصة",
@@ -1259,7 +1260,7 @@ const translations = {
     "form.addExperience": "أضف تجربة أخرى",
     "form.activityName": "اسم النشاط",
     "form.activityDetails": "تفاصيل النشاط",
-    "form.activityCharacters": "الشخصيات المشاركة",
+    "form.activityCharacters": "الشخصيات ��لمشاركة",
     "form.activityImageDesc": "وصف الصورة",
     "form.uploadImages": "تحميل الصور",
     "form.addActivity": "أضف نشاطاً آخر",
@@ -1360,7 +1361,7 @@ const translations = {
       "المملكة السحرية، محطة الفضاء، المدينة تحت الماء...",
     "placeholder.favoriteColor": "أزرق، وردي، قوس قزح...",
     "placeholder.petName": "فلافي، ريكس، شوارب...",
-    "placeholder.includeFriends": "ماما، بابا، الأخت إيما، أفضل صديق جيك...",
+    "placeholder.includeFriends": "ماما، بابا، ا��أخت إيما، أفضل صديق جيك...",
     "placeholder.specialDetails": "اهتمامات خاصة، هوايات، لحظات مضحكة...",
     "placeholder.experienceTitle": "السباحة مع الدلافين، العثور على كنز...",
     "placeholder.experienceDescription":
