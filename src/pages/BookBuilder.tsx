@@ -310,23 +310,8 @@ const BookBuilder = () => {
     isLoadingDraft,
   ]);
 
-  // Separate useEffect for auto-saving with proper dependencies
-  useEffect(() => {
-    if (hasInitializedRef.current && !isLoadingDraft && hasUnsavedChanges) {
-      const saveTimer = setTimeout(() => {
-        if (
-          formData.childName ||
-          formData.parentName ||
-          formData.experiences?.length
-        ) {
-          // Only save if there's meaningful data
-          saveDraft();
-        }
-      }, 3000); // Save after 3 seconds of inactivity
-
-      return () => clearTimeout(saveTimer);
-    }
-  }, [hasUnsavedChanges, isLoadingDraft]); // Simplified dependencies
+  // Auto-saving disabled for explicit user control
+  // Users will manually save via the dialog when leaving
 
   const adventureTypes = [
     {
