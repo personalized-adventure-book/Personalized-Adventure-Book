@@ -1185,7 +1185,9 @@ const BookBuilder = () => {
                                     e.target.value,
                                   )
                                 }
-                                placeholder="Describe what happens in this part of the adventure..."
+                                placeholder={t(
+                                  "placeholder.experienceDescription",
+                                )}
                                 className={`mt-1 ${!experience.description && hasAttemptedProceed ? "border-red-300" : ""}`}
                                 rows={3}
                                 required
