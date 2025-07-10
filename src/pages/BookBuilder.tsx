@@ -256,16 +256,6 @@ const BookBuilder = () => {
   useEffect(() => {
     if (hasInitializedRef.current && !isLoadingDraft) {
       setHasUnsavedChanges(true);
-
-      // Auto-save draft after a short delay (debounced)
-      const saveTimer = setTimeout(() => {
-        if (formData.childName || formData.parentName) {
-          // Only save if there's meaningful data
-          saveDraft();
-        }
-      }, 2000); // Save after 2 seconds of inactivity
-
-      return () => clearTimeout(saveTimer);
     }
   }, [
     formData.parentName,
@@ -282,6 +272,25 @@ const BookBuilder = () => {
     formData.specialDetails,
     formData.experiences?.length,
     currentStep,
+    isLoadingDraft,
+  ]);
+
+  // Separate useEffect for auto-saving with proper dependencies
+  useEffect(() => {
+    if (hasInitializedRef.current && !isLoadingDraft && hasUnsavedChanges) {
+      const saveTimer = setTimeout(() => {
+        if (formData.childName || formData.parentName) {
+          // Only save if there's meaningful data
+          saveDraft();
+        }
+      }, 3000); // Save after 3 seconds of inactivity
+
+      return () => clearTimeout(saveTimer);
+    }
+  }, [
+    hasUnsavedChanges,
+    formData.childName,
+    formData.parentName,
     isLoadingDraft,
   ]);
 
