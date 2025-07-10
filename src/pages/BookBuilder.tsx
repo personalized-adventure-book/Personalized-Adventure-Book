@@ -214,10 +214,7 @@ const BookBuilder = () => {
       }));
       setExpandedExperiences(new Set(["experience-1"]));
     }
-
-    setIsLoadingDraft(false);
-    hasInitializedRef.current = true;
-  }, []);
+  }; // End of disabled useEffect
 
   // Save draft before user leaves the page
   useEffect(() => {
