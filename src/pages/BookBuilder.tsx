@@ -901,7 +901,7 @@ const BookBuilder = () => {
                 variant="outline"
                 size="sm"
                 onClick={() => setShowStopDialog(true)}
-                className="text-red-600 border-red-200 hover:bg-red-50 hover:border-red-300"
+                className="text-red-600 border-red-200 hover:bg-red-50 hover:border-red-300 hover:text-red-700 transition-colors"
               >
                 <X className="w-4 h-4 mr-1" />
                 {t("form.stop")}
