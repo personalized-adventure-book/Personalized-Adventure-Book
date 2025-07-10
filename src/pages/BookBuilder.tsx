@@ -448,7 +448,7 @@ const BookBuilder = () => {
     }
 
     setShowSaveDialog(false);
-    navigate("/");
+    navigate(navigationDestination);
   };
 
   // Draft detection dialog handlers
