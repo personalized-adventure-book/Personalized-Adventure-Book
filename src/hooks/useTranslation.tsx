@@ -15,6 +15,7 @@ const translations = {
     "nav.howItWorks": "How It Works",
     "nav.examples": "Examples",
     "nav.pricing": "Pricing",
+    "nav.myOrders": "My Orders",
 
     // Homepage
     "hero.subtitle": "Personalized Adventure Books for Kids",
@@ -337,7 +338,7 @@ const translations = {
       "Décollage vers des planètes lointaines et rencontre d'amis extraterrestres",
     "adventure.enchantedForest": "Forêt Enchantée",
     "adventure.enchantedForestDesc":
-      "D��couvrez des créatures magiques et des trésors cachés",
+      "Découvrez des créatures magiques et des trésors cachés",
     "adventure.royalCastle": "Château Royal",
     "adventure.royalCastleDesc":
       "Devenez un chevalier brave ou une princesse sage",
@@ -1090,7 +1091,7 @@ const translations = {
     "hero.subtitle2": "سحرية مع طفلك",
     "hero.description":
       "حول طفلك إلى بطل كتاب المغامرات الشخصي الخاص به. اختر من بين الغابات المسحورة، والمهام الفضائية، والرحلات تحت الماء، وأكثر!",
-    "hero.startCreating": "��بدأ الإنشاء",
+    "hero.startCreating": "ابدأ الإنشاء",
     "hero.seeExamples": "انظر الأمثلة",
 
     // Features
@@ -1133,7 +1134,7 @@ const translations = {
     "examples.example1.adventure":
       "غابة مسحورة مع حيوانات ناطقة وقرى الجنيات المخفية",
     "examples.example1.preview":
-      "عبرت إيما القوس الذهبي ولهثت بينما رقصت الفراشات ذات الأجنحة ��وس قزح حولها...",
+      "عبرت إيما القوس الذهبي ولهثت بينما رقصت الفراشات ذات الأج��حة ��وس قزح حولها...",
     "examples.example2.title": "مهمة مستكشف الفضاء",
     "examples.example2.adventure":
       "رحلة إلى المريخ مع رفاق آليين واكتشافات فضائية",
@@ -1167,7 +1168,7 @@ const translations = {
     "howItWorks.step1.description": "أدخل اسم طفلك وعمره وتفضيلات المغامرة",
     "howItWorks.step2.title": "خصص القصة",
     "howItWorks.step2.description": "اختر البيئة والشخصيات والتفاصيل الخاصة",
-    "howItWorks.step3.title": "معاينة الصفح��ت",
+    "howItWorks.step3.title": "معاينة الصفحات",
     "howItWorks.step3.description": "شاهد كتابك الشخصي ينبض بالحياة فوراً",
     "howItWorks.step4.title": "احصل على كتابك",
     "howItWorks.step4.description": "حمّل نسخة رقمية أو اطلب نسخة مطبوعة",
@@ -1219,7 +1220,7 @@ const translations = {
     // Pricing
     "pricing.title": "خيارات الكتاب",
     "pricing.description":
-      "اصنع ذكريات دائمة مع كتاب شخصي سيح��فظ به طفلك إلى الأبد. اخت�� الخيار المثالي لميزانية وتفضيلات عائلتك.",
+      "اصنع ذكريات دائمة مع كتاب شخصي سيح��فظ به طفلك إلى الأبد. اختر الخيار المثالي لميزانية وتفضيلات عائلتك.",
     "pricing.digitalBook": "كتاب رقمي",
     "pricing.digitalBookDesc": "تحميل PDF فوري",
     "pricing.printedBook": "كتاب مطبوع",
@@ -1294,7 +1295,7 @@ const translations = {
     "ui.light": "فاتح",
     "ui.dark": "داكن",
     "ui.english": "English",
-    "ui.french": "Français",
+    "ui.french": "Fran��ais",
     "ui.italian": "Italiano",
     "ui.spanish": "Español",
     "ui.arabic": "العربية",
