@@ -222,21 +222,9 @@ const Header: React.FC<HeaderProps> = ({ showNavigation = true }) => {
         </div>
 
         {/* Tablet Layout (sm to lg breakpoint) */}
-        <div className="hidden sm:block space-y-4">
-          {/* Logo on top - centered */}
-          <div className="flex justify-center">
-            <Link to="/" className="flex items-center space-x-2">
-              <div className="w-10 h-10 rounded-full adventure-gradient flex items-center justify-center">
-                <BookOpen className="w-5 h-5 text-white" />
-              </div>
-              <span className="text-xl font-bold adventure-text-gradient">
-                Personalized Adventure Book
-              </span>
-            </Link>
-          </div>
-
-          {/* Controls below logo - right aligned */}
-          <div className="flex items-center justify-end space-x-2">
+        <div className="hidden sm:block relative">
+          {/* Controls on top right */}
+          <div className="absolute top-0 right-0 flex items-center space-x-2">
             {/* Language Selector */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -294,6 +282,18 @@ const Header: React.FC<HeaderProps> = ({ showNavigation = true }) => {
                 )}
               </Button>
             )}
+          </div>
+
+          {/* Logo centered with top margin to account for controls */}
+          <div className="flex justify-center pt-12">
+            <Link to="/" className="flex items-center space-x-2">
+              <div className="w-10 h-10 rounded-full adventure-gradient flex items-center justify-center">
+                <BookOpen className="w-5 h-5 text-white" />
+              </div>
+              <span className="text-xl font-bold adventure-text-gradient">
+                Personalized Adventure Book
+              </span>
+            </Link>
           </div>
         </div>
       </div>
