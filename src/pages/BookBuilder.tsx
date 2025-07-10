@@ -109,6 +109,7 @@ const BookBuilder = () => {
   const [showDraftDetectionDialog, setShowDraftDetectionDialog] =
     useState(false);
   const [detectedDraft, setDetectedDraft] = useState<any>(null);
+  const [hadPreviousDraft, setHadPreviousDraft] = useState(false);
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
   const [isLoadingDraft, setIsLoadingDraft] = useState(true);
   const [expandedExperiences, setExpandedExperiences] = useState<Set<string>>(
