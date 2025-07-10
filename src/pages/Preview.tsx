@@ -872,7 +872,7 @@ const Preview = () => {
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-sm">Estimated Pages:</span>
+                  <span className="text-sm">{t("preview.estimatedPages")}</span>
                   <span className="font-medium">
                     {Math.max(
                       (bookData.experiences || []).reduce((total, exp) => {
