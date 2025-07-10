@@ -151,9 +151,9 @@ const BookBuilder = () => {
     }));
   };
 
-  // Load saved draft on mount
+  // Check for existing draft on mount
   useEffect(() => {
-    const loadDraft = () => {
+    const checkForDraft = () => {
       // Check localStorage for draft data
       const savedDraft = localStorage.getItem("bookBuilderDraft");
       let draftData: any = null;
@@ -161,70 +161,95 @@ const BookBuilder = () => {
       if (savedDraft) {
         try {
           draftData = JSON.parse(savedDraft);
-          const loadedFormData = draftData.formData || {
-            parentName: "",
-            parentEmail: "",
-            childName: "",
-            childAge: "",
-            childGender: "",
-            adventureType: "",
-            customAdventureType: "",
-            location: "",
-            experiences: [],
-            favoriteColor: "",
-            petName: "",
-            includeFriends: "",
-            specialDetails: "",
-          };
 
-          // Ensure experience data integrity
-          if (loadedFormData.experiences) {
-            loadedFormData.experiences = ensureExperienceIntegrity(
-              loadedFormData.experiences,
-            );
-          }
+          // Check if draft has meaningful content
+          const formData = draftData.formData || {};
+          const hasContent =
+            formData.childName ||
+            formData.parentName ||
+            formData.parentEmail ||
+            (formData.experiences?.length > 0 &&
+              formData.experiences.some(
+                (exp: any) => exp.title || exp.description,
+              ));
 
-          setFormData(loadedFormData);
-          setCurrentStep(draftData.currentStep || 1);
-          setHasUnsavedChanges(false); // Draft data is already saved
-
-          // Restore expanded experiences (expand first by default)
-          if (loadedFormData.experiences?.length) {
-            setExpandedExperiences(new Set([loadedFormData.experiences[0].id]));
+          if (hasContent) {
+            // Show draft detection dialog
+            setDetectedDraft(draftData);
+            setShowDraftDetectionDialog(true);
+            setIsLoadingDraft(false);
+            return;
           }
         } catch (error) {
-          console.error("Error loading draft:", error);
+          console.error("Error parsing draft:", error);
           localStorage.removeItem("bookBuilderDraft");
         }
       }
 
-      // Initialize first experience if none exist and not loaded from draft
-      if (!savedDraft || !draftData?.formData?.experiences?.length) {
-        const firstExperience: ExperienceDetail = {
-          id: "experience-1",
-          title: "",
-          description: "",
-          predefinedActivities: [],
-          customActivities: [],
-          activityDetails: [],
-          characters: "",
-          images: [],
-          imageDescription: "",
-        };
-
-        setFormData((prev) => ({
-          ...prev,
-          experiences: [firstExperience],
-        }));
-        setExpandedExperiences(new Set(["experience-1"]));
-      }
-
-      setIsLoadingDraft(false);
-      hasInitializedRef.current = true;
+      // No meaningful draft found, initialize new form
+      initializeNewForm();
     };
 
-    loadDraft();
+    checkForDraft();
   }, []); // Only run once on mount
+
+  const initializeNewForm = () => {
+    const firstExperience: ExperienceDetail = {
+      id: "experience-1",
+      title: "",
+      description: "",
+      predefinedActivities: [],
+      customActivities: [],
+      activityDetails: [],
+      characters: "",
+      images: [],
+      imageDescription: "",
+    };
+
+    setFormData({
+      parentName: "",
+      parentEmail: "",
+      childName: "",
+      childAge: "",
+      childGender: "",
+      adventureType: "",
+      customAdventureType: "",
+      location: "",
+      experiences: [firstExperience],
+      favoriteColor: "",
+      petName: "",
+      includeFriends: "",
+      specialDetails: "",
+    });
+    setExpandedExperiences(new Set(["experience-1"]));
+    setCurrentStep(1);
+    setHasUnsavedChanges(false);
+    setIsLoadingDraft(false);
+    hasInitializedRef.current = true;
+  };
+
+  const loadDraftData = (draftData: any) => {
+    const loadedFormData = draftData.formData || {};
+
+    // Ensure experience data integrity
+    if (loadedFormData.experiences) {
+      loadedFormData.experiences = ensureExperienceIntegrity(
+        loadedFormData.experiences,
+      );
+    }
+
+    setFormData(loadedFormData);
+    setCurrentStep(draftData.currentStep || 1);
+    setHasUnsavedChanges(false);
+
+    // Restore expanded experiences (expand first by default)
+    if (loadedFormData.experiences?.length) {
+      setExpandedExperiences(new Set([loadedFormData.experiences[0].id]));
+    }
+
+    setIsLoadingDraft(false);
+    hasInitializedRef.current = true;
+  };
 
   // Save draft before user leaves the page
   useEffect(() => {
