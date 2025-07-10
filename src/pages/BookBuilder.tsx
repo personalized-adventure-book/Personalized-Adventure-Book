@@ -1001,7 +1001,7 @@ const BookBuilder = () => {
                       onChange={(e) =>
                         updateFormData("petName", e.target.value)
                       }
-                      placeholder="Fluffy, Rex, Whiskers..."
+                      placeholder={t("placeholder.petName")}
                       className="mt-1"
                     />
                   </div>
