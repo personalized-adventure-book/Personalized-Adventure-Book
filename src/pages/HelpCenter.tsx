@@ -23,19 +23,23 @@ const HelpCenter = () => {
       articles: [
         {
           title: "How to start creating a book",
-          content: "Step-by-step guide to begin your book creation journey.",
+          content:
+            "1. Click 'Start Creating' on the homepage or navigation menu.\n2. Enter your name and email address (required for order delivery).\n3. Provide your child's name, age, and gender - this personalizes the entire story.\n4. Select an adventure type from our collection (Space Mission, Enchanted Forest, Royal Castle, etc.) or describe a custom adventure.\n5. Add location details where the adventure takes place.\n6. Include personal touches like favorite colors, pet names, friends and family to include.\n7. Create detailed experiences with activities, characters, and descriptions.\n8. Upload photos to inspire custom illustrations of your child.\n9. Review everything in the preview section before ordering.",
         },
         {
           title: "Customizing your child's character",
-          content: "Tips for personalizing your child's appearance and traits.",
+          content:
+            "Make your child the perfect hero by:\n• Providing clear, recent photos for our artists to reference\n• Describing physical features: hair color, eye color, height, distinctive features\n• Including personality traits: brave, curious, funny, kind, etc.\n• Mentioning favorite activities or hobbies to weave into the story\n• Adding any special characteristics or interests they're passionate about\n• Including their favorite colors for clothing and theme elements\n• Describing their relationship with friends/family members you want included\n• Noting any accessibility needs or considerations for the character\n• The more details you provide, the more personalized and meaningful the story becomes!",
         },
         {
           title: "Choosing the right adventure type",
-          content: "Guide to selecting the perfect adventure for your child.",
+          content:
+            "Select the perfect adventure based on your child's interests:\n\n🚀 SPACE MISSION: Perfect for kids who love astronauts, planets, aliens, and sci-fi. Features space exploration, meeting friendly aliens, and cosmic adventures.\n\n🌲 ENCHANTED FOREST: Ideal for nature lovers and fantasy fans. Includes magical creatures, talking animals, fairy villages, and mystical quests.\n\n👑 ROYAL CASTLE: Great for kids who love princesses, knights, and medieval themes. Features castle life, royal adventures, and noble quests.\n\n🏴‍☠️ PIRATE VOYAGE: Perfect for adventure seekers who love the ocean. Includes treasure hunts, sailing adventures, and meeting friendly pirates.\n\n🦸 SUPERHERO ACADEMY: Ideal for kids who love superheroes and powers. Features training to become a hero and saving the day.\n\n🐠 UNDERWATER WORLD: Great for ocean lovers. Includes swimming with dolphins, exploring coral reefs, and underwater kingdoms.\n\n🎨 CUSTOM ADVENTURE: Create something unique! Describe any theme or setting you want - we'll craft a personalized adventure around your child's specific interests.",
         },
         {
           title: "Adding photos and personal details",
-          content: "How to include photos and special details in your book.",
+          content:
+            "Photos and details make your book truly special:\n\nPHOTO GUIDELINES:\n• Upload clear, well-lit photos showing your child's face clearly\n• Include full-body shots for character design reference\n• Add photos of pets, family members, or friends you want included\n• Pictures of favorite places or objects can inspire story settings\n• Photos should be high resolution (at least 300 DPI) for best results\n• Multiple angles help our artists create accurate representations\n\nPERSONAL DETAILS TO INCLUDE:\n• Favorite foods, games, or activities\n• Special family traditions or inside jokes\n• Unique phrases or words your child uses\n• Fears to avoid or things that make them feel brave\n• Recent achievements or milestones to celebrate\n• Favorite books, movies, or characters for inspiration\n• Special memories or experiences to incorporate\n• Any learning goals or values you want emphasized\n\nThese details help create a story that feels authentically about YOUR child, making it more engaging and memorable.",
         },
       ],
     },
