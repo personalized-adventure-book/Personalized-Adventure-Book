@@ -433,6 +433,29 @@ const BookBuilder = () => {
     navigate("/");
   };
 
+  // Draft detection dialog handlers
+  const handleContinueDraft = () => {
+    if (detectedDraft) {
+      loadDraftData(detectedDraft);
+    }
+    setShowDraftDetectionDialog(false);
+    setDetectedDraft(null);
+  };
+
+  const handleStartNewDraft = () => {
+    // Clear existing draft and start fresh
+    localStorage.removeItem("bookBuilderDraft");
+    initializeNewForm();
+    setShowDraftDetectionDialog(false);
+    setDetectedDraft(null);
+  };
+
+  const handleGoHome = () => {
+    setShowDraftDetectionDialog(false);
+    setDetectedDraft(null);
+    navigate("/");
+  };
+
   const isValidEmail = (email: string) => {
     // More comprehensive email validation regex
     const emailPattern =
