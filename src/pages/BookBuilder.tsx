@@ -1053,8 +1053,8 @@ const BookBuilder = () => {
                       {t("form.personalExperiences")}
                     </h3>
                     <p className="text-base font-medium text-adventure-blue">
-                      �� The more experiences you add, the more personalized and
-                      magical your story becomes! ✨
+                      ��� The more experiences you add, the more personalized
+                      and magical your story becomes! ✨
                     </p>
                     <p className="text-sm text-foreground/60 mt-2">
                       Add details, activities, and characters to create a truly
@@ -1392,7 +1392,7 @@ const BookBuilder = () => {
                               experience.activityDetails.length > 0 && (
                                 <div className="space-y-4">
                                   <h5 className="font-medium text-adventure-blue">
-                                    Activity Details
+                                    {t("ui.activityDetails")}
                                   </h5>
                                   {experience.activityDetails.map(
                                     (activityDetail) => (
