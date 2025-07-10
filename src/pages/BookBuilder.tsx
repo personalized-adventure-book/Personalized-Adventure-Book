@@ -178,9 +178,14 @@ const BookBuilder = () => {
         }
       }
 
-      // Check localStorage for draft data
+      // Check both current draft and existing drafts list
       const savedDraft = localStorage.getItem("bookBuilderDraft");
+      const existingDrafts = JSON.parse(
+        localStorage.getItem("orderDrafts") || "[]",
+      );
       let draftData: any = null;
+      let hasCurrentDraft = false;
+      let hasExistingDrafts = existingDrafts.length > 0;
 
       if (savedDraft) {
         try {
@@ -188,7 +193,7 @@ const BookBuilder = () => {
 
           // Check if draft has meaningful content
           const formData = draftData.formData || {};
-          const hasContent =
+          hasCurrentDraft =
             formData.childName ||
             formData.parentName ||
             formData.parentEmail ||
@@ -196,19 +201,24 @@ const BookBuilder = () => {
               formData.experiences.some(
                 (exp: any) => exp.title || exp.description,
               ));
-
-          if (hasContent) {
-            // Show draft detection dialog
-            setDetectedDraft(draftData);
-            setHadPreviousDraft(true);
-            setShowDraftDetectionDialog(true);
-            setIsLoadingDraft(false);
-            return;
-          }
         } catch (error) {
           console.error("Error parsing draft:", error);
           localStorage.removeItem("bookBuilderDraft");
         }
+      }
+
+      // Only show dialog if there's either a current draft OR existing drafts
+      if (hasCurrentDraft || hasExistingDrafts) {
+        if (hasCurrentDraft) {
+          // Show draft detection dialog for current draft
+          setDetectedDraft(draftData);
+          setHadPreviousDraft(true);
+          setShowDraftDetectionDialog(true);
+          setIsLoadingDraft(false);
+          return;
+        }
+        // If no current draft but there are existing drafts, just start new form
+        // The user can access existing drafts from the Orders page
       }
 
       // No meaningful draft found, initialize new form
