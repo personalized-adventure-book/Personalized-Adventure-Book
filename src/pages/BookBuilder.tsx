@@ -184,6 +184,11 @@ const BookBuilder = () => {
           setFormData(loadedFormData);
           setCurrentStep(draftData.currentStep || 1);
           setHasUnsavedChanges(false); // Draft data is already saved
+
+          // Restore expanded experiences (expand first by default)
+          if (loadedFormData.experiences?.length) {
+            setExpandedExperiences(new Set([loadedFormData.experiences[0].id]));
+          }
         } catch (error) {
           console.error("Error loading draft:", error);
           localStorage.removeItem("bookBuilderDraft");
