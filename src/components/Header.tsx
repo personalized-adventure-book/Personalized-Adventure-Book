@@ -144,6 +144,34 @@ const Header: React.FC<HeaderProps> = ({ showNavigation = true }) => {
 
         {/* Mobile Hamburger Menu */}
         <div className="md:hidden flex items-center space-x-2">
+          {/* Language Selector for Mobile */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                variant="outline"
+                size="sm"
+                className="flex items-center space-x-1"
+              >
+                <span className="text-sm">{currentLanguage?.flag}</span>
+                <ChevronDown className="w-3 h-3" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-48">
+              {languages.map((lang) => (
+                <DropdownMenuItem
+                  key={lang.code}
+                  onClick={() => setLanguage(lang.code)}
+                  className={`flex items-center space-x-2 cursor-pointer ${
+                    language === lang.code ? "bg-secondary" : ""
+                  }`}
+                >
+                  <span>{lang.flag}</span>
+                  <span>{lang.name}</span>
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+
           {/* Theme Toggle for Mobile */}
           <Button
             variant="outline"
