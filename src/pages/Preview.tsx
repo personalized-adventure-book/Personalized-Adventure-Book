@@ -834,7 +834,9 @@ const Preview = () => {
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-sm">Adventure Activities:</span>
+                  <span className="text-sm">
+                    {t("preview.adventureActivities")}
+                  </span>
                   <span className="font-medium">
                     {(() => {
                       const count = (bookData.experiences || []).reduce(
