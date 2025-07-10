@@ -290,7 +290,7 @@ const translations = {
 
     // Empty states
     "empty.firstAdventure":
-      "🌟 Your first adventure experience is ready to be created! 🌟",
+      "�� Your first adventure experience is ready to be created! 🌟",
     "empty.autoCreate":
       "The system will automatically create your first experience section below.",
 
@@ -300,6 +300,29 @@ const translations = {
       "You have unsaved changes. Would you like to save your progress before leaving?",
     "dialog.discardChanges": "Discard Changes",
     "dialog.saveDraft": "Save Draft",
+
+    // Additional UI elements
+    "ui.experience": "Experience",
+    "ui.required": "Required",
+    "ui.activityName": "Activity Name",
+    "ui.activityEncouragement":
+      "💡 The more experiences you add, the more personalized and magical your story becomes! ✨",
+    "ui.addDetails":
+      "Add details, activities, and characters to create a truly unique adventure",
+
+    // Activity names
+    "activity.treasureHunting": "Treasure hunting",
+    "activity.dragonEncounters": "Dragon encounters",
+    "activity.deepSeaDiving": "Deep-sea diving",
+    "activity.rocketLaunches": "Rocket launches",
+    "activity.magicSpellCasting": "Magic spell casting",
+    "activity.solvingMysteries": "Solving mysteries",
+    "activity.meetingNewFriends": "Meeting new friends",
+    "activity.savingTheDay": "Saving the day",
+    "activity.exploringNewWorlds": "Exploring new worlds",
+    "activity.learningNewSkills": "Learning new skills",
+    "activity.findingHiddenSecrets": "Finding hidden secrets",
+    "activity.goingOnQuests": "Going on quests",
   },
   fr: {
     // Navigation
@@ -1124,7 +1147,7 @@ const translations = {
     "adventure.underwaterWorldDesc": "اغطس عميقاً لاستكشاف ممالك المرجان",
 
     // Examples
-    "examples.title": "أمثلة الكتب",
+    "examples.title": "أم��لة الكتب",
     "examples.description":
       "شاهد كيف أصبحت مغامر��ت الأطفال الآخرين حية في كتبهم الشخصية",
     "examples.adventure": "مغامرة",
@@ -1134,7 +1157,7 @@ const translations = {
     "examples.example1.adventure":
       "غابة مسحورة مع حيوانات ناطقة وقرى الجنيات المخفية",
     "examples.example1.preview":
-      "عبرت إيما القوس الذهبي ولهثت بينما رقصت الفراشات ذات الأج��حة ��وس قزح حولها...",
+      "عبرت إيما القوس الذهبي ولهثت بينما رقصت الفراشات ذات الأجنحة ��وس قزح حولها...",
     "examples.example2.title": "مهمة مستكشف الفضاء",
     "examples.example2.adventure":
       "رحلة إلى المريخ مع رفاق آليين واكتشافات فضائية",
@@ -1207,7 +1230,7 @@ const translations = {
     "form.addExperience": "أضف تجربة أخرى",
     "form.activityName": "اسم النشاط",
     "form.activityDetails": "تفاصيل النشاط",
-    "form.activityCharacters": "الشخصيات المشاركة",
+    "form.activityCharacters": "الشخصيات ا��مشاركة",
     "form.activityImageDesc": "وصف الصورة",
     "form.uploadImages": "تحميل الصور",
     "form.addActivity": "أضف نشاطاً آخر",
@@ -1231,7 +1254,7 @@ const translations = {
     "pricing.feature4": "خيار الطباعة في المنزل",
     "pricing.feature5": "كل شيء في الرقمي",
     "pricing.feature6": "تجليد غلاف صلب ممتاز",
-    "pricing.feature7": "طباعة احترافية",
+    "pricing.feature7": "طباعة اح��رافية",
     "pricing.feature8": "توصيل مجاني في أوروبا",
     "pricing.popular": "شائع",
 
@@ -1295,7 +1318,7 @@ const translations = {
     "ui.light": "فاتح",
     "ui.dark": "داكن",
     "ui.english": "English",
-    "ui.french": "Fran��ais",
+    "ui.french": "Français",
     "ui.italian": "Italiano",
     "ui.spanish": "Español",
     "ui.arabic": "العربية",
