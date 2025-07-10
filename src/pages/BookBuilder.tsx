@@ -435,7 +435,24 @@ const BookBuilder = () => {
   };
 
   const handleDiscardAndLeave = () => {
-    localStorage.removeItem("bookBuilderDraft");
+    if (hadPreviousDraft) {
+      // There was a previous draft, so we keep the last saved version
+      // Don't remove from localStorage - revert to the last saved state
+      setHasUnsavedChanges(false);
+    } else {
+      // No previous draft existed, so delete completely
+      localStorage.removeItem("bookBuilderDraft");
+      // Also remove from drafts list since this was never saved
+      const existingDrafts = JSON.parse(
+        localStorage.getItem("orderDrafts") || "[]",
+      );
+      const updatedDrafts = existingDrafts.filter(
+        (d: any) =>
+          !d.title.startsWith(`${formData.childName || "Unnamed"}'s Adventure`),
+      );
+      localStorage.setItem("orderDrafts", JSON.stringify(updatedDrafts));
+    }
+
     setShowSaveDialog(false);
     navigate("/");
   };
