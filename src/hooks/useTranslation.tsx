@@ -1205,7 +1205,7 @@ const translations = {
       "رصد الضابط الأول ألي��س شيئاً يتلألأ تحت الماء الكريستالي...",
     "examples.example5.title": "تلميذ الساحر",
     "examples.example5.adventure":
-      "تعلم التعاويذ السحرية في برج مليء بالمخلوقا�� الغامضة",
+      "تعلم التع��ويذ السحرية في برج مليء بالمخلوقا�� الغامضة",
     "examples.example5.preview":
       "خلطت م��يا بعناية الجرعة المتلألئة بينما راقب رفيقها البوم...",
     "examples.example6.title": "��غامرة المحيط",
@@ -1216,15 +1216,15 @@ const translations = {
 
     // How It Works
     "howItWorks.title": "كيف يعمل",
-    "howItWorks.description": "اصنع كتاب مغامرتك ا��شخصي في خطوات بسيطة قليلة",
+    "howItWorks.description": "اصنع كتاب مغامرتك الشخصي في خطوات بسيطة قليلة",
     "howItWorks.step1.title": "املأ التفاصيل",
-    "howItWorks.step1.description": "أدخل اس�� طفلك وعمره وتفضيلات المغامرة",
+    "howItWorks.step1.description": "أدخل اسم طفلك وعمره وتفضيلات المغامرة",
     "howItWorks.step2.title": "خصص القصة",
-    "howItWorks.step2.description": "اختر البيئة والشخصيات وال��فاصيل الخاصة",
+    "howItWorks.step2.description": "اختر البيئة والشخصيات والتفاصيل الخاصة",
     "howItWorks.step3.title": "معاينة الصفحات",
-    "howItWorks.step3.description": "شاهد كتاب�� الشخصي ينبض بالحياة فوراً",
-    "howItWorks.step4.title": "اح��ل على كتابك",
-    "howItWorks.step4.description": "حمّل نسخة رقمية أو اطل�� نسخة مطبوعة",
+    "howItWorks.step3.description": "شاهد كتابك الشخصي ينبض بالحياة فوراً",
+    "howItWorks.step4.title": "احصل على كتابك",
+    "howItWorks.step4.description": "حمّل نسخة رقمية أو اطلب نسخة مطبوعة",
 
     // Form Steps
     "form.step1": "معلومات الوالد",
@@ -1262,7 +1262,7 @@ const translations = {
     "form.activityDetails": "تفاصيل النشاط",
     "form.activityCharacters": "الشخصيات المشاركة",
     "form.activityImageDesc": "وصف الصورة",
-    "form.uploadImages": "تحميل الصور",
+    "form.uploadImages": "تح��يل الصور",
     "form.addActivity": "أضف نشاطاً آخر",
     "form.previous": "السابق",
     "form.next": "التالي",
