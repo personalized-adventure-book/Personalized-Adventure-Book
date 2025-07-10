@@ -16,6 +16,7 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ showNavigation = true }) => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { language, setLanguage, t } = useTranslation();
   const { theme, toggleTheme } = useTheme();
 
