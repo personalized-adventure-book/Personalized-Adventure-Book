@@ -230,8 +230,8 @@ const BookBuilder = () => {
     return () => window.removeEventListener("beforeunload", handleBeforeUnload);
   }; // End of disabled useEffect
 
-  // Track changes only after initial load
-  useEffect(() => {
+  // DISABLED - Track changes only after initial load
+  const DISABLED_useEffect3 = () => {
     if (hasInitializedRef.current && !isLoadingDraft) {
       setHasUnsavedChanges(true);
     }
