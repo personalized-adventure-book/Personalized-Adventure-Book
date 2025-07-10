@@ -1068,8 +1068,7 @@ const translations = {
     "order.confirmed": "¡Pedido Confirmado!",
     "order.confirmationDetails": "Detalles de Confirmación",
     "order.shippingDetails": "Detalles de Envío",
-    "order.deliveryInfo":
-      "Tu libro será entregado por email cuando est�� listo",
+    "order.deliveryInfo": "Tu libro será entregado por email cuando esté listo",
     "order.createAnother": "Crear Otro Libro",
     "order.goHome": "Ir a la Página Principal",
     "order.backToForm": "Volver al Formulario",
@@ -1211,7 +1210,7 @@ const translations = {
       "خلطت م��يا بعناية الجرعة المتلألئة بينما راقب رفيقها البوم...",
     "examples.example6.title": "��غامرة المحيط",
     "examples.example6.adventure":
-      "مملكة تحت الماء مع أص��قاء الدلافين وقلاع المرجان",
+      "مملكة تحت الماء مع أص��قاء الدل��فين وقلاع المرجان",
     "examples.example6.preview":
       "سبح دييغو بجانب الدلافين الودودة نحو المدينة تحت الماء المضيئة...",
 
@@ -1273,7 +1272,7 @@ const translations = {
     "form.stop": "توقف",
 
     // Loading and messages
-    "loading.adventure": "جاري ��حميل مغامرتك...",
+    "loading.adventure": "جاري تحميل مغامرتك...",
     "loading.preparation": "يرجى الانتظار بينما نعد نموذج إنشاء كتابك.",
 
     // UI elements
@@ -1301,7 +1300,7 @@ const translations = {
     // Draft Detection Dialog
     "draftDetection.title": "متابعة مغامرتك؟",
     "draftDetection.description":
-      "وجدنا مسودة محفوظة لكتاب مغامرتك. هل تريد المتابعة من حيث توقفت، أم بدء كتاب جديد، أم العودة للصفحة الرئيسية؟",
+      "وجدنا مسودة محفوظة لك��اب مغامرتك. هل تريد المتابعة من حيث توقفت، أم بدء كتاب جديد، أم العودة للصفحة الرئيسية؟",
     "draftDetection.continue": "متابعة المسودة",
     "draftDetection.startNew": "بدء كتاب جديد",
     "draftDetection.goHome": "العودة للرئيسية",
@@ -1323,7 +1322,7 @@ const translations = {
 
     // Activity names
     "activity.treasureHunting": "البحث عن الكنوز",
-    "activity.dragonEncounters": "لقاءات التنانين",
+    "activity.dragonEncounters": "ل��اءات التنانين",
     "activity.deepSeaDiving": "الغوص في أعماق البحار",
     "activity.rocketLaunches": "إطلاق الصواريخ",
     "activity.magicSpellCasting": "إلقاء التعاويذ السحرية",
@@ -1416,7 +1415,7 @@ const translations = {
       "إنشا�� كتب مغامرات شخصية سحرية للأطفال في جميع أنحاء العالم.",
     "footer.product": "��لمنتج",
     "footer.howItWorks": "كيف يعمل",
-    "footer.examples": "أمثلة",
+    "footer.examples": "أمث��ة",
     "footer.pricing": "الأسعار",
     "footer.support": "الدعم",
     "footer.helpCenter": "مركز المساعدة",
