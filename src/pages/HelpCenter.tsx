@@ -50,20 +50,23 @@ const HelpCenter = () => {
       articles: [
         {
           title: "Payment methods accepted",
-          content: "We accept all major credit cards, PayPal, and Apple Pay.",
+          content:
+            "ACCEPTED PAYMENT METHODS:\n• All major credit cards (Visa, MasterCard, American Express, Discover)\n• PayPal (including PayPal Credit)\n• Apple Pay (on supported devices)\n• Google Pay (on supported devices)\n• Bank transfers for large orders (contact us)\n\nSECURITY:\n• All transactions are secured with 256-bit SSL encryption\n• We never store your payment information\n• PCI DSS compliant payment processing\n• Fraud protection and secure checkout\n\nBILLING:\n• Charges appear as 'Personalized Adventure Book'\n• You'll receive an email receipt immediately\n• Billing address must match payment method\n• International cards accepted (currency converted automatically)\n• No hidden fees or recurring charges",
         },
         {
           title: "How to track your order",
           content:
-            "Use your order number to track progress and delivery status.",
+            "TRACKING YOUR ORDER:\n\n1. CHECK YOUR EMAIL:\n• Order confirmation sent immediately after purchase\n• Production updates sent every 24-48 hours\n• Shipping notification with tracking number (printed books)\n• Digital delivery email with download links\n\n2. MY ORDERS SECTION:\n• Log into your account and visit 'My Orders'\n• View real-time status updates\n• See estimated delivery dates\n• Download previous orders\n\n3. ORDER STATUSES:\n• 'Confirmed' - Payment processed, creation beginning\n• 'In Progress' - Story being written and illustrated\n• 'Review' - Ready for your approval (if requested)\n• 'Printing' - Book being professionally printed\n• 'Shipped' - On its way to you with tracking\n• 'Delivered' - Enjoy your adventure book!\n\n4. NEED HELP?\n• Contact us with your order number for instant updates\n• We respond within 2 hours during business days",
         },
         {
           title: "Changing or canceling an order",
-          content: "Orders can be modified within 24 hours of placement.",
+          content:
+            "ORDER MODIFICATIONS:\n\nWITHIN 4 HOURS (Free Changes):\n• Update child's information or photos\n• Modify story details or preferences\n• Change adventure type or activities\n• Update shipping address\n• Switch between digital and printed format\n\n4-24 HOURS (May Incur Fees):\n• Minor text changes: $5 fee\n• Character modifications: $10 fee\n• Major story changes: $15 fee\n• Photo replacements: $5 per photo\n\nAFTER 24 HOURS:\n• Digital books: Changes possible until delivery ($20 fee)\n• Printed books: No changes once printing begins\n• Emergency changes: Contact us immediately\n\nCANCELLATION POLICY:\n• Full refund within 4 hours of order\n• 50% refund within 24 hours (before production)\n• No refund after production begins (unless defective)\n• Printed books: No refund once shipped (unless damaged)\n\nTO MAKE CHANGES:\n• Email us your order number and requested changes\n• Call our support line for urgent modifications\n• Changes processed within 2-4 hours during business days",
         },
         {
           title: "Understanding pricing",
-          content: "Transparent pricing for digital and printed book options.",
+          content:
+            "PRICING BREAKDOWN:\n\nDIGITAL BOOK - $19.99:\n• High-resolution PDF (300 DPI)\n• 20-24 full-color pages\n• Instant download after creation\n• Print-at-home option included\n• Lifetime access and re-downloads\n• Mobile-friendly format\n\nPRINTED BOOK - $39.99:\n• Premium hardcover binding\n• Glossy, thick paper stock\n• Professional printing quality\n• 20-24 full-color pages\n• Includes digital copy\n• Free shipping within US\n• Gift wrapping available (+$5)\n\nADD-ONS:\n• Extra characters: $3 each\n• Rush delivery (48 hours): $15\n• Additional printed copies: $25 each\n• Gift message card: $2\n• Premium gift box: $8\n\nDISCOUNTS:\n• Multiple books: 10% off 2+, 15% off 3+\n• Returning customers: 5% loyalty discount\n• Seasonal promotions throughout the year\n• Bulk orders (10+): Contact for custom pricing\n\nTAXES & FEES:\n• Sales tax applied based on delivery address\n• International shipping: $12-25 depending on location\n• No hidden fees or subscription charges",
         },
       ],
     },
