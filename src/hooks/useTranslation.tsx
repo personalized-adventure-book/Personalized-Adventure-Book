@@ -758,6 +758,27 @@ const translations = {
     "ui.arabic": "العربية",
     "ui.dutch": "Nederlands",
     "ui.german": "Deutsch",
+
+    // Placeholder texts
+    "placeholder.email": "tuo.nome@esempio.com",
+    "placeholder.location":
+      "Regno Magico, Stazione Spaziale, Città Sottomarina...",
+    "placeholder.favoriteColor": "Blu, Rosa, Arcobaleno...",
+    "placeholder.petName": "Fluffy, Rex, Baffi...",
+    "placeholder.includeFriends":
+      "Mamma, Papà, Sorella Emma, Migliore amico Jake...",
+    "placeholder.specialDetails":
+      "Interessi speciali, hobby, momenti divertenti...",
+    "placeholder.experienceTitle":
+      "Nuotare con i delfini, Trovare un tesoro...",
+    "placeholder.experienceDescription":
+      "Descrivi cosa succede in questa parte dell'avventura...",
+    "placeholder.characters": "Chi è coinvolto in questa esperienza?",
+    "placeholder.imageDescription": "Descrivi l'immagine...",
+    "placeholder.customActivity": "Aggiungi attività personalizzata...",
+    "placeholder.activityDescription":
+      "Descrivi cosa succede durante questa attività...",
+    "placeholder.activityCharacters": "Chi è coinvolto in questa attività?",
   },
   es: {
     // Navigation
@@ -1101,7 +1122,7 @@ const translations = {
     // Form Fields
     "form.parentName": "اسمك",
     "form.email": "عنوان البريد الإلكتروني",
-    "form.emailInvalid": "يرجى إدخال عنوان بريد إلكتروني صالح",
+    "form.emailInvalid": "يرجى إدخا�� عنوان بريد إلكتروني صالح",
     "form.childName": "اسم الطفل",
     "form.age": "العمر",
     "form.selectAge": "اختر العمر",
