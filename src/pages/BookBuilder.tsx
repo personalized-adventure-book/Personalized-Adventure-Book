@@ -216,8 +216,8 @@ const BookBuilder = () => {
     }
   }; // End of disabled useEffect
 
-  // Save draft before user leaves the page
-  useEffect(() => {
+  // DISABLED - Save draft before user leaves the page
+  const DISABLED_useEffect2 = () => {
     const handleBeforeUnload = (e: BeforeUnloadEvent) => {
       if (hasUnsavedChanges) {
         saveDraft();
