@@ -1640,7 +1640,7 @@ const BookBuilder = () => {
         <Dialog open={showSaveDialog} onOpenChange={setShowSaveDialog}>
           <DialogContent className="max-w-md">
             <DialogHeader>
-              <DialogTitle>Save Your Progress?</DialogTitle>
+              <DialogTitle>{t("dialog.saveProgress")}</DialogTitle>
               <DialogDescription>
                 You have unsaved changes. Would you like to save your progress
                 before leaving?
