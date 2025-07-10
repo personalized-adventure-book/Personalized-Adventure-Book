@@ -196,6 +196,7 @@ const BookBuilder = () => {
           if (hasContent) {
             // Show draft detection dialog
             setDetectedDraft(draftData);
+            setHadPreviousDraft(true);
             setShowDraftDetectionDialog(true);
             setIsLoadingDraft(false);
             return;
