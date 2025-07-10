@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { TranslationProvider } from "@/hooks/useTranslation";
 import { ThemeProvider } from "@/hooks/useTheme";
+import ScrollToTop from "@/components/ScrollToTop";
 import Index from "./pages/Index";
 import BookBuilder from "./pages/BookBuilder";
 import Preview from "./pages/Preview";
