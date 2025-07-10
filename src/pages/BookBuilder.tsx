@@ -720,10 +720,8 @@ const BookBuilder = () => {
       <div className="min-h-screen bg-gradient-to-br from-background via-secondary/30 to-adventure-yellow/20 flex items-center justify-center">
         <div className="text-center">
           <BookOpen className="w-16 h-16 text-primary mx-auto mb-4 animate-pulse" />
-          <h2 className="text-2xl font-bold mb-2">Loading your adventure...</h2>
-          <p className="text-foreground/70">
-            Please wait while we prepare your book creation form.
-          </p>
+          <h2 className="text-2xl font-bold mb-2">{t("loading.adventure")}</h2>
+          <p className="text-foreground/70">{t("loading.preparation")}</p>
         </div>
       </div>
     );
