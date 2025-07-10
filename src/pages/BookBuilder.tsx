@@ -1804,6 +1804,30 @@ const BookBuilder = () => {
           </CardContent>
         </Card>
 
+        {/* Stop Dialog */}
+        <Dialog open={showStopDialog} onOpenChange={setShowStopDialog}>
+          <DialogContent className="max-w-md">
+            <DialogHeader>
+              <DialogTitle>{t("stopDialog.title")}</DialogTitle>
+              <DialogDescription>
+                {t("stopDialog.description")}
+              </DialogDescription>
+            </DialogHeader>
+            <DialogFooter className="flex-col space-y-2 sm:flex-row sm:space-y-0 sm:space-x-2">
+              <Button
+                variant="outline"
+                onClick={handleStopAndDelete}
+                className="w-full sm:w-auto text-red-600 border-red-200 hover:bg-red-50"
+              >
+                {t("stopDialog.delete")}
+              </Button>
+              <Button onClick={handleStopAndSave} className="w-full sm:w-auto">
+                {t("stopDialog.save")}
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
+
         {/* Draft Detection Dialog */}
         <Dialog
           open={showDraftDetectionDialog}
