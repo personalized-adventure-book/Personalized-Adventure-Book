@@ -141,52 +141,58 @@ const Header: React.FC<HeaderProps> = ({ showNavigation = true }) => {
             )}
           </Button>
         </div>
+      </nav>
 
-        {/* Mobile Hamburger Menu */}
-        <div className="md:hidden flex items-center space-x-2">
-          {/* Language Selector for Mobile */}
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button
-                variant="outline"
-                size="sm"
-                className="flex items-center space-x-1"
-              >
-                <span className="text-sm">{currentLanguage?.flag}</span>
-                <ChevronDown className="w-3 h-3" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-48">
-              {languages.map((lang) => (
-                <DropdownMenuItem
-                  key={lang.code}
-                  onClick={() => setLanguage(lang.code)}
-                  className={`flex items-center space-x-2 cursor-pointer ${
-                    language === lang.code ? "bg-secondary" : ""
-                  }`}
+      {/* Mobile Navigation */}
+      <div className="md:hidden">
+        {/* Mobile Top Bar */}
+        <div className="flex items-center justify-between mb-4">
+          {/* Left Side Controls */}
+          <div className="flex items-center space-x-2">
+            {/* Language Selector for Mobile */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="flex items-center space-x-1"
                 >
-                  <span>{lang.flag}</span>
-                  <span>{lang.name}</span>
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
+                  <span className="text-sm">{currentLanguage?.flag}</span>
+                  <ChevronDown className="w-3 h-3" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="start" className="w-48">
+                {languages.map((lang) => (
+                  <DropdownMenuItem
+                    key={lang.code}
+                    onClick={() => setLanguage(lang.code)}
+                    className={`flex items-center space-x-2 cursor-pointer ${
+                      language === lang.code ? "bg-secondary" : ""
+                    }`}
+                  >
+                    <span>{lang.flag}</span>
+                    <span>{lang.name}</span>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
 
-          {/* Theme Toggle for Mobile */}
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={toggleTheme}
-            className="flex items-center"
-          >
-            {theme === "light" ? (
-              <Moon className="w-4 h-4" />
-            ) : (
-              <Sun className="w-4 h-4" />
-            )}
-          </Button>
+            {/* Theme Toggle for Mobile */}
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={toggleTheme}
+              className="flex items-center"
+            >
+              {theme === "light" ? (
+                <Moon className="w-4 h-4" />
+              ) : (
+                <Sun className="w-4 h-4" />
+              )}
+            </Button>
+          </div>
 
-          {/* Hamburger Button */}
+          {/* Right Side Hamburger */}
           <Button
             variant="outline"
             size="sm"
@@ -200,7 +206,19 @@ const Header: React.FC<HeaderProps> = ({ showNavigation = true }) => {
             )}
           </Button>
         </div>
-      </nav>
+
+        {/* Centered Logo */}
+        <div className="flex justify-center mb-4">
+          <Link to="/" className="flex items-center space-x-2">
+            <div className="w-10 h-10 rounded-full adventure-gradient flex items-center justify-center">
+              <BookOpen className="w-5 h-5 text-white" />
+            </div>
+            <span className="text-xl font-bold adventure-text-gradient">
+              Personalized Adventure Book
+            </span>
+          </Link>
+        </div>
+      </div>
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
