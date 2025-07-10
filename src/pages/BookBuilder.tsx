@@ -377,6 +377,15 @@ const BookBuilder = () => {
   };
 
   const handleNavigation = (destination: string) => {
+    // Always save if there's meaningful data before navigation
+    if (
+      formData.childName ||
+      formData.parentName ||
+      formData.experiences?.length
+    ) {
+      saveDraft();
+    }
+
     if (hasUnsavedChanges) {
       setShowSaveDialog(true);
       return;
