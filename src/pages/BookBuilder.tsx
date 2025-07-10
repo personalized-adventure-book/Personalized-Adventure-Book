@@ -1351,7 +1351,9 @@ const BookBuilder = () => {
                                 )}
                                 <div className="flex items-center space-x-2">
                                   <Input
-                                    placeholder="Add custom activity..."
+                                    placeholder={t(
+                                      "placeholder.customActivity",
+                                    )}
                                     value={
                                       customActivityInputs[experience.id] || ""
                                     }
