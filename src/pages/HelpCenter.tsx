@@ -78,21 +78,22 @@ const HelpCenter = () => {
         {
           title: "Digital book delivery",
           content:
-            "Digital books are delivered within 2-3 business days via email.",
+            "DIGITAL DELIVERY PROCESS:\n\nTIMELINE:\n• Order confirmation: Immediate\n• Story creation begins: Within 2 hours\n• First draft: 24-48 hours\n• Review period (if requested): 24 hours\n• Final delivery: 2-3 business days total\n\nDELIVERY METHOD:\n• High-resolution PDF sent to your email\n• Download link valid for 30 days\n• Automatic backup to your account\n• Mobile-optimized viewing\n• Print-ready format (300 DPI)\n\nWHAT'S INCLUDED:\n• Full-color personalized story (20-24 pages)\n• Cover design with your child's name\n• High-quality illustrations\n• Printable format for home printing\n• Digital reading version for tablets/phones\n• Lifetime access through your account\n\nTROUBLESHOOTING:\n• Check spam/junk folders if not received\n• Email delivery usually within 10 minutes of completion\n• Re-download available anytime from your account\n• Technical issues? Contact support for immediate assistance",
         },
         {
           title: "Printed book shipping times",
           content:
-            "Printed books ship within 5-7 business days after approval.",
+            "PRINTED BOOK PRODUCTION & SHIPPING:\n\nPRODUCTION TIMELINE:\n• Story creation: 2-3 business days\n• Your approval (if requested): 24 hours\n• Professional printing: 3-4 business days\n• Quality check & packaging: 1 business day\n• Total production time: 5-7 business days\n\nSHIPPING OPTIONS:\n\nSTANDARD SHIPPING (FREE):\n• US domestic: 3-5 business days\n• Tracking provided automatically\n• Delivered Monday-Saturday\n• Insurance included up to $100\n\nEXPRESS SHIPPING (+$12):\n• US domestic: 1-2 business days\n• Guaranteed delivery date\n• Saturday delivery available\n• Full insurance coverage\n\nRUSH PRODUCTION (+$15):\n• Complete book in 48 hours\n• Expedited creation and printing\n• Can combine with express shipping\n• Perfect for last-minute gifts\n\nPACKAGING:\n• Protective bubble mailer or box\n• Books wrapped in tissue paper\n• Gift message card included (if requested)\n• Eco-friendly packaging materials",
         },
         {
           title: "International shipping",
-          content: "We ship worldwide with various delivery speed options.",
+          content:
+            "WORLDWIDE DELIVERY:\n\nSHIPPING ZONES:\n\nZONE 1 - CANADA & MEXICO:\n• Shipping cost: $12\n• Delivery time: 7-10 business days\n• Customs forms included\n• Tracking provided\n\nZONE 2 - EUROPE, AUSTRALIA, JAPAN:\n• Shipping cost: $18\n• Delivery time: 10-14 business days\n• DHL/FedEx international\n• Full tracking and insurance\n\nZONE 3 - REST OF WORLD:\n• Shipping cost: $25\n• Delivery time: 14-21 business days\n• Express options available\n• Tracking provided\n\nCUSTOMS & DUTIES:\n• All customs forms completed by us\n• Books marked as 'Gift' when applicable\n• Customer responsible for any import duties\n• Value declared accurately for customs\n• We provide all necessary documentation\n\nINTERNATIONAL CONSIDERATIONS:\n• Digital books delivered instantly worldwide\n• No customs delays for digital format\n• Language customization available\n• Currency conversion at checkout\n• Local customer service via email\n• International payment methods accepted",
         },
         {
           title: "Damaged or lost packages",
           content:
-            "We'll replace any damaged books or resend lost packages for free.",
+            "DAMAGE & LOSS PROTECTION:\n\nDAMAGED PACKAGES:\n\nIF YOUR BOOK ARRIVES DAMAGED:\n1. Take photos of damaged book and packaging\n2. Contact us within 30 days with photos\n3. We'll send a replacement immediately (no return required)\n4. Express shipping at no charge for replacements\n5. Keep the damaged book or dispose of it - your choice\n\nCOMMON DAMAGE SCENARIOS:\n• Bent corners or pages: Full replacement\n• Water damage from shipping: Full replacement + expedited shipping\n• Printing defects: Full replacement + quality upgrade\n• Binding issues: Full replacement + production review\n\nLOST PACKAGES:\n\nIF YOUR PACKAGE IS LOST:\n1. Check tracking - sometimes marked delivered but delayed\n2. Check with neighbors and building management\n3. Wait 2 additional business days for delayed delivery\n4. Contact us with tracking number\n5. We'll investigate with shipping carrier\n6. Replacement shipped within 24 hours of confirmed loss\n\nPREVENTION MEASURES:\n• All packages fully insured\n• Signature required for orders over $50\n• Photo confirmation of delivery when possible\n• Special handling instructions honored\n• Safe delivery locations can be specified\n\nOUR GUARANTEE:\n• 100% satisfaction or full replacement\n• No questions asked replacement policy\n• We cover all shipping costs for replacements\n• Expedited replacement shipping included\n• Your happiness is our priority",
         },
       ],
     },
