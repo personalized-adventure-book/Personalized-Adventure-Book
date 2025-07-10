@@ -36,11 +36,8 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     if (savedTheme) {
       setTheme(savedTheme);
     } else {
-      // Check system preference
-      const systemPrefersDark = window.matchMedia(
-        "(prefers-color-scheme: dark)",
-      ).matches;
-      setTheme(systemPrefersDark ? "dark" : "light");
+      // Always default to light mode
+      setTheme("light");
     }
   }, []);
 
