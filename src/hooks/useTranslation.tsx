@@ -490,7 +490,7 @@ const translations = {
     "form.favoriteColor": "Couleur Préférée de l'Enfant",
     "form.petName": "Nom de l'Animal (si applicable)",
     "form.includeFriends": "Amis ou Famille à Inclure",
-    "form.characters": "Personnages ou Thèmes Préférés",
+    "form.characters": "Personnages ou Th��mes Préférés",
     "form.specialDetails": "Détails Spéciaux ou Blagues Privées",
     "form.personalExperiences": "Expériences Personnelles à Inclure",
     "form.addExperience": "Ajouter une Autre Expérience",
@@ -1218,7 +1218,7 @@ const translations = {
     "howItWorks.title": "كيف يعمل",
     "howItWorks.description": "اصنع كتاب مغامرتك ا��شخصي في خطوات بسيطة قليلة",
     "howItWorks.step1.title": "املأ التفاصيل",
-    "howItWorks.step1.description": "أدخل اسم طفلك وعمره وتفضيلات المغامرة",
+    "howItWorks.step1.description": "أدخل اس�� طفلك وعمره وتفضيلات المغامرة",
     "howItWorks.step2.title": "خصص القصة",
     "howItWorks.step2.description": "اختر البيئة والشخصيات وال��فاصيل الخاصة",
     "howItWorks.step3.title": "معاينة الصفحات",
@@ -1287,7 +1287,7 @@ const translations = {
     "upload.uploadImagesFor": "تحميل صور لـ",
 
     // Empty states
-    "empty.firstAdventure": "🌟 أول تجربة مغامرة لك جاهزة للإنشاء! 🌟",
+    "empty.firstAdventure": "🌟 أول تجربة مغامرة لك جاهزة للإن��اء! 🌟",
     "empty.autoCreate":
       "سيقوم النظام تلقائياً بإنشاء قسم التجربة الأولى أدناه.",
 
@@ -1346,11 +1346,18 @@ const translations = {
     "preview.digitalBook": "كتاب رقمي",
     "preview.printedBook": "كتاب مطبوع",
 
+    // Validation messages
+    "validation.experienceNameRequired": "اسم التجربة مطلوب",
+    "validation.experienceDetailsRequired": "تفاصيل التجربة مطلوبة",
+
+    // Missing UI elements
+    "ui.experienceImages": "صور التجربة",
+
     // Pricing
     "pricing.title": "خيارات الكتاب",
     "pricing.description":
       "اصنع ذكريات دائمة مع كتاب شخصي سيح��فظ به طفلك إلى الأبد. اختر الخيار المثالي لميزانية وتفضيلات عائلتك.",
-    "pricing.digitalBook": "كتاب رقمي",
+    "pricing.digitalBook": "كت��ب رقمي",
     "pricing.digitalBookDesc": "تحميل PDF فوري",
     "pricing.printedBook": "كتاب مطبوع",
     "pricing.printedBookDesc": "غلاف صلب احترافي",
