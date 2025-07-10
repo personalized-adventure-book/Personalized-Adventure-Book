@@ -290,6 +290,8 @@ const HelpCenter = () => {
           )}
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 };
