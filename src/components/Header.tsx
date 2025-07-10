@@ -90,7 +90,7 @@ const Header: React.FC<HeaderProps> = ({ showNavigation = true }) => {
                 to="/orders"
                 className="text-foreground/80 hover:text-foreground transition-colors"
               >
-                My Orders
+                {t("nav.myOrders")}
               </Link>
             </div>
           )}
