@@ -238,6 +238,20 @@ const BookBuilder = () => {
     hasInitializedRef.current = true;
   }, []);
 
+  // Save draft before user leaves the page
+  useEffect(() => {
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      if (hasUnsavedChanges && (formData.childName || formData.parentName)) {
+        saveDraft();
+        e.preventDefault();
+        e.returnValue = "";
+      }
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => window.removeEventListener("beforeunload", handleBeforeUnload);
+  }, [hasUnsavedChanges, formData.childName, formData.parentName]);
+
   // Track changes only after initial load
   useEffect(() => {
     if (hasInitializedRef.current && !isLoadingDraft) {
