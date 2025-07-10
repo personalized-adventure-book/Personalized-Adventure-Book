@@ -296,10 +296,16 @@ const Header: React.FC<HeaderProps> = ({ showNavigation = true }) => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <div className="lg:hidden mt-4 py-4 border-t border-border bg-background">
-          <div className="flex flex-col space-y-4">
+      {/* Mobile Menu with smooth transitions */}
+      <div className="lg:hidden relative">
+        <div
+          className={`absolute top-2 right-0 w-64 bg-background border border-border rounded-lg shadow-lg overflow-hidden transition-all duration-300 ease-out ${
+            isMobileMenuOpen
+              ? "opacity-100 scale-100 translate-y-0"
+              : "opacity-0 scale-95 -translate-y-2 pointer-events-none"
+          }`}
+        >
+          <div className="py-2">
             {/* Navigation Items */}
             {showNavigation && (
               <>
@@ -310,7 +316,7 @@ const Header: React.FC<HeaderProps> = ({ showNavigation = true }) => {
                     });
                     setIsMobileMenuOpen(false);
                   }}
-                  className="text-left py-2 text-foreground/80 hover:text-foreground transition-colors"
+                  className="w-full text-left px-4 py-3 text-foreground/80 hover:text-foreground hover:bg-secondary/50 transition-colors"
                 >
                   {t("nav.adventurePossibilities")}
                 </button>
@@ -321,7 +327,7 @@ const Header: React.FC<HeaderProps> = ({ showNavigation = true }) => {
                     });
                     setIsMobileMenuOpen(false);
                   }}
-                  className="text-left py-2 text-foreground/80 hover:text-foreground transition-colors"
+                  className="w-full text-left px-4 py-3 text-foreground/80 hover:text-foreground hover:bg-secondary/50 transition-colors"
                 >
                   {t("nav.howItWorks")}
                 </button>
@@ -332,7 +338,7 @@ const Header: React.FC<HeaderProps> = ({ showNavigation = true }) => {
                     });
                     setIsMobileMenuOpen(false);
                   }}
-                  className="text-left py-2 text-foreground/80 hover:text-foreground transition-colors"
+                  className="w-full text-left px-4 py-3 text-foreground/80 hover:text-foreground hover:bg-secondary/50 transition-colors"
                 >
                   {t("nav.examples")}
                 </button>
@@ -343,14 +349,14 @@ const Header: React.FC<HeaderProps> = ({ showNavigation = true }) => {
                     });
                     setIsMobileMenuOpen(false);
                   }}
-                  className="text-left py-2 text-foreground/80 hover:text-foreground transition-colors"
+                  className="w-full text-left px-4 py-3 text-foreground/80 hover:text-foreground hover:bg-secondary/50 transition-colors"
                 >
                   {t("nav.pricing")}
                 </button>
                 <Link
                   to="/orders"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-left py-2 text-foreground/80 hover:text-foreground transition-colors block"
+                  className="block w-full text-left px-4 py-3 text-foreground/80 hover:text-foreground hover:bg-secondary/50 transition-colors"
                 >
                   {t("nav.myOrders")}
                 </Link>
@@ -358,7 +364,7 @@ const Header: React.FC<HeaderProps> = ({ showNavigation = true }) => {
             )}
           </div>
         </div>
-      )}
+      </div>
     </header>
   );
 };
