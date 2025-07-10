@@ -498,19 +498,40 @@ const Index = () => {
               <h4 className="font-semibold mb-4">{t("footer.product")}</h4>
               <ul className="space-y-2 text-sm text-foreground/70">
                 <li>
-                  <a href="#how-it-works" className="hover:text-foreground">
+                  <button
+                    onClick={() => {
+                      document.getElementById("how-it-works")?.scrollIntoView({
+                        behavior: "smooth",
+                      });
+                    }}
+                    className="hover:text-foreground transition-colors text-left"
+                  >
                     {t("footer.howItWorks")}
-                  </a>
+                  </button>
                 </li>
                 <li>
-                  <a href="#examples" className="hover:text-foreground">
+                  <button
+                    onClick={() => {
+                      document.getElementById("examples")?.scrollIntoView({
+                        behavior: "smooth",
+                      });
+                    }}
+                    className="hover:text-foreground transition-colors text-left"
+                  >
                     {t("footer.examples")}
-                  </a>
+                  </button>
                 </li>
                 <li>
-                  <a href="#pricing" className="hover:text-foreground">
+                  <button
+                    onClick={() => {
+                      document.getElementById("pricing")?.scrollIntoView({
+                        behavior: "smooth",
+                      });
+                    }}
+                    className="hover:text-foreground transition-colors text-left"
+                  >
                     {t("footer.pricing")}
-                  </a>
+                  </button>
                 </li>
               </ul>
             </div>
