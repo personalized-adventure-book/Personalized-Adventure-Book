@@ -273,11 +273,11 @@ const BookBuilder = () => {
     hasInitializedRef.current = true;
   };
 
-  // Save draft before user leaves the page
+  // Warn user before leaving page with unsaved changes
   useEffect(() => {
     const handleBeforeUnload = (e: BeforeUnloadEvent) => {
       if (hasUnsavedChanges) {
-        saveDraft();
+        // Only show browser warning, don't auto-save
         e.preventDefault();
         e.returnValue = "";
       }
