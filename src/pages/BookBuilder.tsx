@@ -259,7 +259,11 @@ const BookBuilder = () => {
   useEffect(() => {
     if (hasInitializedRef.current && !isLoadingDraft && hasUnsavedChanges) {
       const saveTimer = setTimeout(() => {
-        if (formData.childName || formData.parentName) {
+        if (
+          formData.childName ||
+          formData.parentName ||
+          formData.experiences?.length
+        ) {
           // Only save if there's meaningful data
           saveDraft();
         }
@@ -267,12 +271,7 @@ const BookBuilder = () => {
 
       return () => clearTimeout(saveTimer);
     }
-  }, [
-    hasUnsavedChanges,
-    formData.childName,
-    formData.parentName,
-    isLoadingDraft,
-  ]);
+  }, [hasUnsavedChanges, isLoadingDraft, saveDraft]); // Simplified dependencies
 
   const adventureTypes = [
     {
