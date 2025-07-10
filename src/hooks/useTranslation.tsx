@@ -1068,7 +1068,7 @@ const translations = {
     // Adventure Types
     "adventure.possibilities": "إمكانيات المغامرة",
     "adventure.possibilitiesDesc":
-      "استكشف ��لعوالم السحرية التي يمكننا إنشاؤها لطفلك - وأكثر من ذلك بكثير!",
+      "ا��تكشف ��لعوالم السحرية التي يمكننا إنشاؤها لطفلك - وأكثر من ذلك بكثير!",
     "adventure.spaceMission": "مهمة فضائية",
     "adventure.spaceMissionDesc": "انطلق إلى كواكب بعيدة والتق بأصدقاء فضائيين",
     "adventure.enchantedForest": "غابة مسحورة",
@@ -1086,7 +1086,7 @@ const translations = {
     // Examples
     "examples.title": "أمثلة الكتب",
     "examples.description":
-      "شاهد كيف أصبحت مغامر��ت الأطفال الآخرين حية في كتبهم الشخصية",
+      "شاهد كيف أ��بحت مغامر��ت الأطفال الآخرين حية في كتبهم الشخصية",
     "examples.adventure": "مغامرة",
     "examples.preview": "معاينة القصة",
     "examples.createYours": "اصنع مغامرتك",
@@ -1105,7 +1105,7 @@ const translations = {
       "قلعة ملكية مع أصدقاء التنانين وتعاويذ سحرية للتعلم",
     "examples.example3.preview":
       "لوحت الأميرة صوفيا بعصاها المتل��لئة وشاهدت الزهور تبدأ في التوهج...",
-    "examples.example4.title": "البحث عن كنز ��لقراصنة",
+    "examples.example4.title": "البحث عن كنز القراصنة",
     "examples.example4.adventure":
       "الإبحار في البحار السبعة مع طاقم من القراصنة الودودين",
     "examples.example4.preview":
@@ -1261,6 +1261,23 @@ const translations = {
     "ui.arabic": "العربية",
     "ui.dutch": "Nederlands",
     "ui.german": "Deutsch",
+
+    // Placeholder texts
+    "placeholder.email": "اسمك@مثال.com",
+    "placeholder.location":
+      "المملكة السحرية، محطة الفضاء، المدينة تحت الماء...",
+    "placeholder.favoriteColor": "أزرق، وردي، قوس قزح...",
+    "placeholder.petName": "فلافي، ريكس، شوارب...",
+    "placeholder.includeFriends": "ماما، بابا، الأخت إيما، أفضل صديق جيك...",
+    "placeholder.specialDetails": "اهتمامات خاصة، هوايات، لحظات مضحكة...",
+    "placeholder.experienceTitle": "السباحة مع الدلافين، العثور على كنز...",
+    "placeholder.experienceDescription":
+      "اوصف ما يحدث في هذا الجزء من المغامرة...",
+    "placeholder.characters": "من المشارك في هذه التجربة؟",
+    "placeholder.imageDescription": "وصف الصورة...",
+    "placeholder.customActivity": "إضافة نشاط مخصص...",
+    "placeholder.activityDescription": "اوصف ما يحدث أثناء هذا النشاط...",
+    "placeholder.activityCharacters": "من المشارك في هذا النشاط؟",
   },
   nl: {
     // Navigation
