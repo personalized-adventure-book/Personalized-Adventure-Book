@@ -173,10 +173,8 @@ const BookBuilder = () => {
 
   // Load saved draft on mount
   useEffect(() => {
-    // Check both localStorage and cookies for draft data
-    const localStorageDraft = localStorage.getItem("bookBuilderDraft");
-    const cookieDraft = getCookie("bookBuilderDraft");
-    const savedDraft = localStorageDraft || cookieDraft;
+    // Check localStorage for draft data
+    const savedDraft = localStorage.getItem("bookBuilderDraft");
 
     if (savedDraft) {
       try {
