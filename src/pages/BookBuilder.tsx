@@ -148,8 +148,14 @@ const BookBuilder = () => {
     }));
   };
 
-  // Load saved draft on mount
+  // Initialize on mount - simplified
   useEffect(() => {
+    setIsLoadingDraft(false);
+    hasInitializedRef.current = true;
+  }, []);
+
+  // DISABLED - Load saved draft on mount
+  const DISABLED_useEffect1 = () => {
     // Check localStorage for draft data
     const savedDraft = localStorage.getItem("bookBuilderDraft");
 
