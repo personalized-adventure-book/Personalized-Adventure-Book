@@ -1164,7 +1164,7 @@ const BookBuilder = () => {
                               />
                               {!experience.title && hasAttemptedProceed && (
                                 <p className="text-xs text-red-500 mt-1">
-                                  Experience name is required
+                                  {t("validation.experienceNameRequired")}
                                 </p>
                               )}
                             </div>
