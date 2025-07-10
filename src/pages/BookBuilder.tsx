@@ -1276,7 +1276,9 @@ const BookBuilder = () => {
                                                 e.target.value,
                                               )
                                             }
-                                            placeholder="Describe image..."
+                                            placeholder={t(
+                                              "placeholder.imageDescription",
+                                            )}
                                             className="mt-1 text-xs"
                                             rows={2}
                                           />
