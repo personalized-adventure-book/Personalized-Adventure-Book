@@ -1205,7 +1205,7 @@ const translations = {
       "رصد الضابط الأول ألي��س شيئاً يتلألأ تحت الماء الكريستالي...",
     "examples.example5.title": "تلميذ الساحر",
     "examples.example5.adventure":
-      "تعلم التع��ويذ السحرية في برج مليء بالمخلوقا�� الغامضة",
+      "تعلم التعاويذ السحرية في برج مليء بالمخلوقا�� الغامضة",
     "examples.example5.preview":
       "خلطت م��يا بعناية الجرعة المتلألئة بينما راقب رفيقها البوم...",
     "examples.example6.title": "��غامرة المحيط",
@@ -1230,7 +1230,7 @@ const translations = {
     "form.step1": "معلومات الوالد",
     "form.step2": "معلومات الطفل",
     "form.step3": "اختيار المغامرة",
-    "form.step4": "لمسات ش��صية",
+    "form.step4": "لمسات شخصية",
     "form.step5": "تفاصيل النشاط",
 
     // Form Fields
@@ -1252,7 +1252,7 @@ const translations = {
     "form.selectActivities": "اختر الأنشطة التي تهم طفلك:",
     "form.customActivities": "أنشطة أخرى (واحد في كل سط��):",
     "form.favoriteColor": "لون الطفل المفضل",
-    "form.petName": "اسم الحيوان الأليف (إن وجد)",
+    "form.petName": "اسم الحي��ان الأليف (إن وجد)",
     "form.includeFriends": "الأصدقاء أو العائلة للتضمين",
     "form.characters": "الشخصيات أو المواضيع المفضلة",
     "form.specialDetails": "تفاصيل خاصة أو نكات داخلية",
@@ -1262,7 +1262,7 @@ const translations = {
     "form.activityDetails": "تفاصيل النشاط",
     "form.activityCharacters": "الشخصيات المشاركة",
     "form.activityImageDesc": "وصف الصورة",
-    "form.uploadImages": "تح��يل الصور",
+    "form.uploadImages": "تحميل الصور",
     "form.addActivity": "أضف نشاطاً آخر",
     "form.previous": "السابق",
     "form.next": "التالي",
@@ -1419,7 +1419,7 @@ const translations = {
     "footer.pricing": "الأسعار",
     "footer.support": "الدعم",
     "footer.helpCenter": "مركز المساعدة",
-    "footer.contactUs": "اتصل بنا",
+    "footer.contactUs": "ا��صل بنا",
     "footer.faq": "الأسئلة الشائعة",
     "footer.company": "الشركة",
     "footer.about": "حول",
