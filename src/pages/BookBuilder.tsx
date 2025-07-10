@@ -458,6 +458,7 @@ const BookBuilder = () => {
   // Draft detection dialog handlers
   const handleContinueDraft = () => {
     if (detectedDraft) {
+      setHadPreviousDraft(true);
       loadDraftData(detectedDraft);
     }
     setShowDraftDetectionDialog(false);
