@@ -959,7 +959,7 @@ const translations = {
     "order.postalCode": "Código Postal",
     "order.country": "País",
     "order.selectCountry": "Selecciona un país...",
-    "order.phone": "Número de Teléfono",
+    "order.phone": "Número de Tel��fono",
     "order.countryCode": "Código de País",
     "order.phoneInvalid": "Por favor ingresa un número de teléfono válido",
     "order.paymentDetails": "Detalles de Pago",
@@ -1048,7 +1048,7 @@ const translations = {
     "hero.subtitle": "كتب مغامرات شخصية للأطفال",
     "hero.title": "اصنع",
     "hero.titleHighlight": "مغامرات",
-    "hero.subtitle2": "سحرية م�� طفلك",
+    "hero.subtitle2": "سحرية مع طفلك",
     "hero.description":
       "حول طفلك إلى بطل كتاب المغامرات الشخصي الخاص به. اختر من بين الغابات المسحورة، والمهام الفضائية، والرحلات تحت الماء، وأكثر!",
     "hero.startCreating": "ابدأ الإنشاء",
@@ -1069,7 +1069,7 @@ const translations = {
     "adventure.possibilities": "إمكانيات المغامرة",
     "adventure.possibilitiesDesc":
       "استكشف ��لعوالم السحرية التي يمكننا إنشاؤها لطفلك - وأكثر من ذلك بكثير!",
-    "adventure.spaceMission": "مهمة ��ضائية",
+    "adventure.spaceMission": "مهمة فضائية",
     "adventure.spaceMissionDesc": "انطلق إلى كواكب بعيدة والتق بأصدقاء فضائيين",
     "adventure.enchantedForest": "غابة مسحورة",
     "adventure.enchantedForestDesc": "اكتشف مخلوقات سحرية وكنوز مخفية",
@@ -1088,7 +1088,7 @@ const translations = {
     "examples.description":
       "شاهد كيف أصبحت مغامر��ت الأطفال الآخرين حية في كتبهم الشخصية",
     "examples.adventure": "مغامرة",
-    "examples.preview": "م��اينة القصة",
+    "examples.preview": "معاينة القصة",
     "examples.createYours": "اصنع مغامرتك",
     "examples.example1.title": "مهمة الغابة السحرية",
     "examples.example1.adventure":
@@ -1105,7 +1105,7 @@ const translations = {
       "قلعة ملكية مع أصدقاء التنانين وتعاويذ سحرية للتعلم",
     "examples.example3.preview":
       "لوحت الأميرة صوفيا بعصاها المتل��لئة وشاهدت الزهور تبدأ في التوهج...",
-    "examples.example4.title": "البحث عن كنز القراصنة",
+    "examples.example4.title": "البحث عن كن�� القراصنة",
     "examples.example4.adventure":
       "الإبحار في البحار السبعة مع طاقم من القراصنة الودودين",
     "examples.example4.preview":
@@ -1215,7 +1215,7 @@ const translations = {
     "order.expiryDate": "تاريخ الانتهاء",
     "order.expiryInvalid": "يرجى إدخال تاريخ انتهاء صالح (شش/سس)",
     "order.cvv": "CVV",
-    "order.cvvInvalid": "يرجى إدخال CVV صالح",
+    "order.cvvInvalid": "يرجى إدخال CVV ��الح",
     "order.cardholderName": "اسم حامل البطاقة",
     "order.completePayment": "إكمال الدفع",
     "order.cancel": "إلغاء",
@@ -1240,7 +1240,7 @@ const translations = {
     "footer.product": "��لمنتج",
     "footer.howItWorks": "كيف يعمل",
     "footer.examples": "أمثلة",
-    "footer.pricing": "ال��سعار",
+    "footer.pricing": "الأسعار",
     "footer.support": "الدعم",
     "footer.helpCenter": "مركز المساعدة",
     "footer.contactUs": "اتصل بنا",
@@ -1770,6 +1770,26 @@ const translations = {
     "ui.arabic": "العربية",
     "ui.dutch": "Nederlands",
     "ui.german": "Deutsch",
+
+    // Placeholder texts
+    "placeholder.email": "dein.name@beispiel.com",
+    "placeholder.location":
+      "Magisches Königreich, Raumstation, Unterwasserstadt...",
+    "placeholder.favoriteColor": "Blau, Rosa, Regenbogen...",
+    "placeholder.petName": "Fluffy, Rex, Schnurrhaare...",
+    "placeholder.includeFriends":
+      "Mama, Papa, Schwester Emma, Bester Freund Jake...",
+    "placeholder.specialDetails":
+      "Besondere Interessen, Hobbys, lustige Momente...",
+    "placeholder.experienceTitle": "Mit Delfinen schwimmen, Schatz finden...",
+    "placeholder.experienceDescription":
+      "Beschreibe was in diesem Teil des Abenteuers passiert...",
+    "placeholder.characters": "Wer ist an dieser Erfahrung beteiligt?",
+    "placeholder.imageDescription": "Bild beschreiben...",
+    "placeholder.customActivity": "Benutzerdefinierte Aktivität hinzufügen...",
+    "placeholder.activityDescription":
+      "Beschreibe was während dieser Aktivität passiert...",
+    "placeholder.activityCharacters": "Wer ist an dieser Aktivität beteiligt?",
   },
 };
 
