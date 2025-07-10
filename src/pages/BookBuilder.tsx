@@ -148,12 +148,6 @@ const BookBuilder = () => {
     }));
   };
 
-  // Initialize on mount - simplified
-  useEffect(() => {
-    setIsLoadingDraft(false);
-    hasInitializedRef.current = true;
-  }, []);
-
   // Load saved draft on mount
   useEffect(() => {
     const loadDraft = () => {
