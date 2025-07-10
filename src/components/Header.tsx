@@ -144,78 +144,157 @@ const Header: React.FC<HeaderProps> = ({ showNavigation = true }) => {
       </nav>
 
       {/* Mobile & Tablet Navigation */}
-      <div className="lg:hidden space-y-4">
-        {/* Logo on top - centered */}
-        <div className="flex justify-center">
-          <Link to="/" className="flex items-center space-x-2">
-            <div className="w-10 h-10 rounded-full adventure-gradient flex items-center justify-center">
-              <BookOpen className="w-5 h-5 text-white" />
-            </div>
-            <span className="text-lg sm:text-xl font-bold adventure-text-gradient">
-              Personalized Adventure Book
-            </span>
-          </Link>
-        </div>
+      <div className="lg:hidden">
+        {/* Mobile Layout (below sm breakpoint) */}
+        <div className="sm:hidden space-y-4">
+          {/* Logo on top - centered */}
+          <div className="flex justify-center">
+            <Link to="/" className="flex items-center space-x-2">
+              <div className="w-10 h-10 rounded-full adventure-gradient flex items-center justify-center">
+                <BookOpen className="w-5 h-5 text-white" />
+              </div>
+              <span className="text-lg font-bold adventure-text-gradient">
+                Personalized Adventure Book
+              </span>
+            </Link>
+          </div>
 
-        {/* Controls below logo - centered */}
-        <div className="flex items-center justify-center space-x-2">
-          {/* Language Selector */}
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button
-                variant="outline"
-                size="sm"
-                className="flex items-center space-x-1"
-              >
-                <span className="text-sm">{currentLanguage?.flag}</span>
-                <ChevronDown className="w-3 h-3" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-48">
-              {languages.map((lang) => (
-                <DropdownMenuItem
-                  key={lang.code}
-                  onClick={() => setLanguage(lang.code)}
-                  className={`flex items-center space-x-2 cursor-pointer ${
-                    language === lang.code ? "bg-secondary" : ""
-                  }`}
+          {/* Controls below logo - centered */}
+          <div className="flex items-center justify-center space-x-2">
+            {/* Language Selector */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="flex items-center space-x-1"
                 >
-                  <span>{lang.flag}</span>
-                  <span>{lang.name}</span>
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
+                  <span className="text-sm">{currentLanguage?.flag}</span>
+                  <ChevronDown className="w-3 h-3" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-48">
+                {languages.map((lang) => (
+                  <DropdownMenuItem
+                    key={lang.code}
+                    onClick={() => setLanguage(lang.code)}
+                    className={`flex items-center space-x-2 cursor-pointer ${
+                      language === lang.code ? "bg-secondary" : ""
+                    }`}
+                  >
+                    <span>{lang.flag}</span>
+                    <span>{lang.name}</span>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
 
-          {/* Theme Toggle */}
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={toggleTheme}
-            className="flex items-center"
-          >
-            {theme === "light" ? (
-              <Moon className="w-4 h-4" />
-            ) : (
-              <Sun className="w-4 h-4" />
-            )}
-          </Button>
-
-          {/* Hamburger Menu */}
-          {showNavigation && (
+            {/* Theme Toggle */}
             <Button
               variant="outline"
               size="sm"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              onClick={toggleTheme}
               className="flex items-center"
             >
-              {isMobileMenuOpen ? (
-                <X className="w-5 h-5" />
+              {theme === "light" ? (
+                <Moon className="w-4 h-4" />
               ) : (
-                <Menu className="w-5 h-5" />
+                <Sun className="w-4 h-4" />
               )}
             </Button>
-          )}
+
+            {/* Hamburger Menu */}
+            {showNavigation && (
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="flex items-center"
+              >
+                {isMobileMenuOpen ? (
+                  <X className="w-5 h-5" />
+                ) : (
+                  <Menu className="w-5 h-5" />
+                )}
+              </Button>
+            )}
+          </div>
+        </div>
+
+        {/* Tablet Layout (sm to lg breakpoint) */}
+        <div className="hidden sm:block space-y-4">
+          {/* Logo on top - centered */}
+          <div className="flex justify-center">
+            <Link to="/" className="flex items-center space-x-2">
+              <div className="w-10 h-10 rounded-full adventure-gradient flex items-center justify-center">
+                <BookOpen className="w-5 h-5 text-white" />
+              </div>
+              <span className="text-xl font-bold adventure-text-gradient">
+                Personalized Adventure Book
+              </span>
+            </Link>
+          </div>
+
+          {/* Controls below logo - right aligned */}
+          <div className="flex items-center justify-end space-x-2">
+            {/* Language Selector */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="flex items-center space-x-1"
+                >
+                  <span className="text-sm">{currentLanguage?.flag}</span>
+                  <ChevronDown className="w-3 h-3" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-48">
+                {languages.map((lang) => (
+                  <DropdownMenuItem
+                    key={lang.code}
+                    onClick={() => setLanguage(lang.code)}
+                    className={`flex items-center space-x-2 cursor-pointer ${
+                      language === lang.code ? "bg-secondary" : ""
+                    }`}
+                  >
+                    <span>{lang.flag}</span>
+                    <span>{lang.name}</span>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            {/* Theme Toggle */}
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={toggleTheme}
+              className="flex items-center"
+            >
+              {theme === "light" ? (
+                <Moon className="w-4 h-4" />
+              ) : (
+                <Sun className="w-4 h-4" />
+              )}
+            </Button>
+
+            {/* Hamburger Menu */}
+            {showNavigation && (
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="flex items-center"
+              >
+                {isMobileMenuOpen ? (
+                  <X className="w-5 h-5" />
+                ) : (
+                  <Menu className="w-5 h-5" />
+                )}
+              </Button>
+            )}
+          </div>
         </div>
       </div>
 
