@@ -323,6 +323,18 @@ const translations = {
     "activity.learningNewSkills": "Learning new skills",
     "activity.findingHiddenSecrets": "Finding hidden secrets",
     "activity.goingOnQuests": "Going on quests",
+
+    // Preview page
+    "preview.storyPreview": "Story Preview",
+    "preview.bookStatistics": "Your Book Statistics",
+    "preview.totalChapters": "Total Chapters:",
+    "preview.adventureActivities": "Adventure Activities:",
+    "preview.estimatedPages": "Estimated Pages:",
+    "preview.readingLevel": "Reading Level:",
+    "preview.bookDetails": "Book Details",
+    "preview.chooseFormat": "Choose Your Format",
+    "preview.digitalBook": "Digital Book",
+    "preview.printedBook": "Printed Book",
   },
   fr: {
     // Navigation
@@ -346,7 +358,7 @@ const translations = {
     "features.personalizedCharacters": "Personnages Personnalisés",
     "features.personalizedCharactersDesc":
       "Incluez votre enfant, ses amis et sa famille dans l'histoire",
-    "features.instantPreview": "Aperçu Instantané",
+    "features.instantPreview": "Aperçu Instantan��",
     "features.instantPreviewDesc":
       "Voyez votre livre prendre vie avec des pages d'aperçu immédiates",
     "features.printOrDigital": "Imprimé ou Numérique",
@@ -1143,7 +1155,7 @@ const translations = {
     "adventure.pirateVoyageDesc": "أبحر في البحار السبعة بحثاً عن الكنز",
     "adventure.superheroAcademy": "أكاديمية الأب��ال الخارقين",
     "adventure.superheroAcademyDesc":
-      "تدرب لتصبح البطل العظيم القادم في العالم",
+      "تدرب لتصبح البطل العظيم ال��ادم في العالم",
     "adventure.underwaterWorld": "عالم تحت الماء",
     "adventure.underwaterWorldDesc": "اغطس عميقاً لاستكشاف ممالك المرجان",
 
@@ -1201,7 +1213,7 @@ const translations = {
     "form.step1": "معلومات الوالد",
     "form.step2": "معلومات الطفل",
     "form.step3": "اختيار المغامرة",
-    "form.step4": "لمسات شخصية",
+    "form.step4": "لمسات ش��صية",
     "form.step5": "تفاصيل النشاط",
 
     // Form Fields
@@ -1300,7 +1312,7 @@ const translations = {
 
     // Footer
     "footer.tagline":
-      "إنشاء كتب مغامرات شخصية سحرية للأطفال في جميع أنحاء العالم.",
+      "إنشا�� كتب مغامرات شخصية سحرية للأطفال في جميع أنحاء العالم.",
     "footer.product": "��لمنتج",
     "footer.howItWorks": "كيف يعمل",
     "footer.examples": "أمثلة",
