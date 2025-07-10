@@ -499,6 +499,27 @@ const translations = {
     "ui.arabic": "العربية",
     "ui.dutch": "Nederlands",
     "ui.german": "Deutsch",
+
+    // Placeholder texts
+    "placeholder.email": "votre.nom@exemple.com",
+    "placeholder.location":
+      "Royaume Magique, Station Spatiale, Cité Sous-marine...",
+    "placeholder.favoriteColor": "Bleu, Rose, Arc-en-ciel...",
+    "placeholder.petName": "Fluffy, Rex, Moustaches...",
+    "placeholder.includeFriends":
+      "Maman, Papa, Sœur Emma, Meilleur ami Jake...",
+    "placeholder.specialDetails":
+      "Intérêts spéciaux, hobbies, moments drôles...",
+    "placeholder.experienceTitle":
+      "Nager avec les dauphins, Chercher un trésor...",
+    "placeholder.experienceDescription":
+      "Décrivez ce qui se passe dans cette partie de l'aventure...",
+    "placeholder.characters": "Qui est impliqué dans cette expérience?",
+    "placeholder.imageDescription": "Décrire l'image...",
+    "placeholder.customActivity": "Ajouter une activité personnalisée...",
+    "placeholder.activityDescription":
+      "Décrivez ce qui se passe pendant cette activité...",
+    "placeholder.activityCharacters": "Qui est impliqué dans cette activité?",
   },
   it: {
     // Navigation
@@ -1037,7 +1058,7 @@ const translations = {
       "رحلة إلى المريخ مع رفاق آليين واكتشافات فضائية",
     "examples.example2.preview":
       "عدّل الكابتن لوكاس خوذته الفضائية ونظر إلى الكوكب الأحمر أدناه...",
-    "examples.example3.title": "أكاديمية الأميرات",
+    "examples.example3.title": "أكا��يمية الأميرات",
     "examples.example3.adventure":
       "قلعة ملكية مع أصدقاء التنانين وتعاويذ سحرية للتعلم",
     "examples.example3.preview":
