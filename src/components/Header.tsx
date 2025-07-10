@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
@@ -6,7 +7,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { BookOpen, Globe, Sun, Moon, ChevronDown } from "lucide-react";
+import { BookOpen, Globe, Sun, Moon, ChevronDown, Menu, X } from "lucide-react";
 import { useTranslation, Language } from "@/hooks/useTranslation";
 import { useTheme } from "@/hooks/useTheme";
 
