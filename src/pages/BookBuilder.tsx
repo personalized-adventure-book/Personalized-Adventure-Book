@@ -1586,7 +1586,7 @@ const BookBuilder = () => {
                       className="flex items-center space-x-2"
                     >
                       <Plus className="w-4 h-4" />
-                      <span>Add Another Experience</span>
+                      <span>{t("ui.addAnotherExperience")}</span>
                     </Button>
                   </div>
 
