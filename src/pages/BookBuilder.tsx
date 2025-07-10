@@ -960,7 +960,7 @@ const BookBuilder = () => {
                       onChange={(e) =>
                         updateFormData("location", e.target.value)
                       }
-                      placeholder="Magical Kingdom, Space Station, Underwater City..."
+                      placeholder={t("placeholder.location")}
                       className="mt-1"
                     />
                   </div>
