@@ -260,6 +260,45 @@ const translations = {
     "placeholder.activityDescription":
       "Describe what happens during this activity...",
     "placeholder.activityCharacters": "Who's involved in this activity?",
+
+    // Loading and messages
+    "loading.adventure": "Loading your adventure...",
+    "loading.preparation":
+      "Please wait while we prepare your book creation form.",
+
+    // Validation messages
+    "validation.experienceNameRequired": "Experience name is required",
+    "validation.experienceDetailsRequired": "Experience details are required",
+    "validation.activityDetailsRequired": "Activity details are required",
+    "validation.activityEncouragement":
+      "💡 Describe this activity to make it more engaging!",
+
+    // UI Labels
+    "ui.experienceImages": "Experience Images",
+    "ui.activityDetails": "Activity Details",
+    "ui.activityImages": "Activity Images",
+    "ui.charactersInvolved": "Characters Involved",
+    "ui.description": "Description",
+    "ui.add": "Add",
+    "ui.addAnotherExperience": "Add Another Experience",
+
+    // Upload messages
+    "upload.clickToUploadExperience":
+      "Click to upload images for this experience",
+    "upload.uploadImagesFor": "Upload images for",
+
+    // Empty states
+    "empty.firstAdventure":
+      "🌟 Your first adventure experience is ready to be created! 🌟",
+    "empty.autoCreate":
+      "The system will automatically create your first experience section below.",
+
+    // Dialog
+    "dialog.saveProgress": "Save Your Progress?",
+    "dialog.unsavedChanges":
+      "You have unsaved changes. Would you like to save your progress before leaving?",
+    "dialog.discardChanges": "Discard Changes",
+    "dialog.saveDraft": "Save Draft",
   },
   fr: {
     // Navigation
@@ -298,7 +337,7 @@ const translations = {
       "Décollage vers des planètes lointaines et rencontre d'amis extraterrestres",
     "adventure.enchantedForest": "Forêt Enchantée",
     "adventure.enchantedForestDesc":
-      "Découvrez des créatures magiques et des trésors cachés",
+      "D��couvrez des créatures magiques et des trésors cachés",
     "adventure.royalCastle": "Château Royal",
     "adventure.royalCastleDesc":
       "Devenez un chevalier brave ou une princesse sage",
@@ -1051,7 +1090,7 @@ const translations = {
     "hero.subtitle2": "سحرية مع طفلك",
     "hero.description":
       "حول طفلك إلى بطل كتاب المغامرات الشخصي الخاص به. اختر من بين الغابات المسحورة، والمهام الفضائية، والرحلات تحت الماء، وأكثر!",
-    "hero.startCreating": "ابدأ الإنشاء",
+    "hero.startCreating": "��بدأ الإنشاء",
     "hero.seeExamples": "انظر الأمثلة",
 
     // Features
@@ -1128,7 +1167,7 @@ const translations = {
     "howItWorks.step1.description": "أدخل اسم طفلك وعمره وتفضيلات المغامرة",
     "howItWorks.step2.title": "خصص القصة",
     "howItWorks.step2.description": "اختر البيئة والشخصيات والتفاصيل الخاصة",
-    "howItWorks.step3.title": "معاينة الصفحات",
+    "howItWorks.step3.title": "معاينة الصفح��ت",
     "howItWorks.step3.description": "شاهد كتابك الشخصي ينبض بالحياة فوراً",
     "howItWorks.step4.title": "احصل على كتابك",
     "howItWorks.step4.description": "حمّل نسخة رقمية أو اطلب نسخة مطبوعة",
@@ -1180,7 +1219,7 @@ const translations = {
     // Pricing
     "pricing.title": "خيارات الكتاب",
     "pricing.description":
-      "اصنع ذكريات دائمة مع كتاب شخصي سيح��فظ به طفلك إلى الأبد. اختر الخيار المثالي لميزانية وتفضيلات عائلتك.",
+      "اصنع ذكريات دائمة مع كتاب شخصي سيح��فظ به طفلك إلى الأبد. اخت�� الخيار المثالي لميزانية وتفضيلات عائلتك.",
     "pricing.digitalBook": "كتاب رقمي",
     "pricing.digitalBookDesc": "تحميل PDF فوري",
     "pricing.printedBook": "كتاب مطبوع",
