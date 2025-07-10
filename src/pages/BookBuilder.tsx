@@ -1439,7 +1439,9 @@ const BookBuilder = () => {
                                                   e.target.value,
                                                 )
                                               }
-                                              placeholder="Describe what happens during this activity..."
+                                              placeholder={t(
+                                                "placeholder.activityDescription",
+                                              )}
                                               className={`mt-1 ${!activityDetail.details && hasAttemptedProceed ? "border-red-300" : ""}`}
                                               rows={2}
                                               required
