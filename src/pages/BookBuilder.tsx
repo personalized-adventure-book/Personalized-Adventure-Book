@@ -1031,7 +1031,7 @@ const BookBuilder = () => {
                       onChange={(e) =>
                         updateFormData("specialDetails", e.target.value)
                       }
-                      placeholder="Special interests, hobbies, funny moments..."
+                      placeholder={t("placeholder.specialDetails")}
                       className="mt-1"
                       rows={3}
                     />
