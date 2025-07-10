@@ -1240,7 +1240,7 @@ const BookBuilder = () => {
                                 >
                                   <Upload className="w-6 h-6 text-gray-400" />
                                   <span className="text-sm text-gray-500">
-                                    Click to upload images for this experience
+                                    {t("upload.clickToUploadExperience")}
                                   </span>
                                 </Label>
                               </div>
