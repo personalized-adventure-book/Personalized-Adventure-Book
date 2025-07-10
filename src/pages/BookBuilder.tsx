@@ -274,18 +274,18 @@ const BookBuilder = () => {
   ];
 
   const activityOptions = [
-    t("activity.treasureHunting"),
-    t("activity.dragonEncounters"),
-    t("activity.deepSeaDiving"),
-    t("activity.rocketLaunches"),
-    t("activity.magicSpellCasting"),
-    t("activity.solvingMysteries"),
-    t("activity.meetingNewFriends"),
-    t("activity.savingTheDay"),
-    t("activity.exploringNewWorlds"),
-    t("activity.learningNewSkills"),
-    t("activity.findingHiddenSecrets"),
-    t("activity.goingOnQuests"),
+    "Treasure hunting",
+    "Dragon encounters",
+    "Deep-sea diving",
+    "Rocket launches",
+    "Magic spell casting",
+    "Solving mysteries",
+    "Meeting new friends",
+    "Saving the day",
+    "Exploring new worlds",
+    "Learning new skills",
+    "Finding hidden secrets",
+    "Going on quests",
   ];
 
   const updateFormData = (field: keyof FormData, value: any) => {
