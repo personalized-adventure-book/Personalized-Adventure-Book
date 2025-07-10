@@ -425,7 +425,7 @@ const BookBuilder = () => {
   const handleSaveAndLeave = () => {
     saveDraft();
     setShowSaveDialog(false);
-    navigate("/");
+    navigate(navigationDestination);
   };
 
   const handleDiscardAndLeave = () => {
