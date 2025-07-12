@@ -336,19 +336,91 @@ const Preview = () => {
         }
 
         const googleScriptPayload = {
-          name: bookData.parentName?.trim() || "",
-          email: bookData.parentEmail || "",
+          // Parent Information Section
+          parentName: bookData.parentName?.trim() || "",
+          parentEmail: bookData.parentEmail || "",
+
+          // Child Information Section
           childName: bookData.childName?.trim() || "",
-          age: bookData.childAge || "",
-          bookLang: language || "en", // Current language from translation hook
-          country:
+          childAge: bookData.childAge || "",
+          childGender: bookData.childGender || "",
+
+          // Adventure Selection Section
+          adventureType: bookData.adventureType || "",
+          customAdventureType: bookData.customAdventureType || "",
+          finalAdventureType:
+            bookData.finalAdventureType || bookData.adventureType || "",
+          adventureLocation: bookData.location?.trim() || "",
+
+          // Personal Touches Section
+          favoriteColor: bookData.favoriteColor || "",
+          petName: bookData.petName || "",
+          includeFriends: bookData.includeFriends || "",
+          specialDetails: bookData.specialDetails || "",
+
+          // Order Information Section
+          orderType: orderType || "",
+          orderPrice: `$${totalPrice.toFixed(2)}`,
+          orderDate: new Date().toISOString(),
+          orderNumber: "ADV-" + Date.now().toString().slice(-8),
+
+          // Shipping Information Section (if printed book)
+          shippingFullName:
+            orderType === "printed"
+              ? shippingAddress.fullName?.trim() || ""
+              : "",
+          shippingStreet:
+            orderType === "printed" ? shippingAddress.street?.trim() || "" : "",
+          shippingCity:
+            orderType === "printed" ? shippingAddress.city?.trim() || "" : "",
+          shippingPostalCode:
+            orderType === "printed"
+              ? shippingAddress.postalCode?.trim() || ""
+              : "",
+          shippingCountry:
             orderType === "printed"
               ? shippingAddress.country?.trim() || ""
               : "",
-          city:
-            orderType === "printed" ? shippingAddress.city?.trim() || "" : "",
-          destination: bookData.location?.trim() || "",
-          language: language || "en",
+          shippingPhone:
+            orderType === "printed" ? shippingAddress.phone?.trim() || "" : "",
+          shippingCost:
+            orderType === "printed" ? `$${shippingCost.toFixed(2)}` : "$0.00",
+
+          // System Information Section
+          interfaceLanguage: language || "en",
+          bookLanguage: language || "en",
+
+          // Experiences/Adventures Section (detailed breakdown)
+          experiencesCount: bookData.experiences.length,
+          experiencesSummary: bookData.experiences
+            .map(
+              (exp, index) =>
+                `${index + 1}. ${exp.title || "Adventure"}: ${exp.description || "No description"}`,
+            )
+            .join(" | "),
+
+          // Activities Summary (all activities combined)
+          allActivities: bookData.experiences
+            .flatMap((exp) => [
+              ...exp.predefinedActivities,
+              ...exp.customActivities,
+            ])
+            .filter(Boolean)
+            .join(", "),
+
+          // Characters Summary (all characters mentioned)
+          allCharacters: bookData.experiences
+            .map((exp) => exp.characters)
+            .filter(Boolean)
+            .join(", "),
+
+          // Images Count
+          totalImages: bookData.experiences.reduce(
+            (total, exp) => total + (exp.images ? exp.images.length : 0),
+            0,
+          ),
+
+          // Detailed Adventures Array (for complex processing)
           adventures: adventures,
         };
 
