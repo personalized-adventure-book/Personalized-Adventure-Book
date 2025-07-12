@@ -2061,6 +2061,7 @@ const BookBuilder = () => {
                 variant="outline"
                 onClick={prevStep}
                 disabled={currentStep === 1}
+                data-action="previousStep"
                 className="flex items-center space-x-2"
               >
                 <ArrowLeft className="w-4 h-4" />
@@ -2071,6 +2072,7 @@ const BookBuilder = () => {
                 <Button
                   onClick={nextStep}
                   disabled={!canProceed()}
+                  data-action="nextStep"
                   className="flex items-center space-x-2"
                 >
                   <span>{t("form.next")}</span>
@@ -2080,6 +2082,7 @@ const BookBuilder = () => {
                 <Button
                   onClick={handleSubmit}
                   disabled={!canProceed()}
+                  data-action="submitForm"
                   className="flex items-center space-x-2"
                 >
                   <span>{t("form.reviewBook")}</span>
