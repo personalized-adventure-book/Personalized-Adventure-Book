@@ -2,11 +2,26 @@
 
 // Session management
 export const getSessionId = () => {
-  let sessionId = sessionStorage.getItem("trackingSessionId");
+  let sessionId = localStorage.getItem("adv_sessionId");
   if (!sessionId) {
-    sessionId =
-      "session_" + Date.now() + "_" + Math.random().toString(36).substr(2, 9);
-    sessionStorage.setItem("trackingSessionId", sessionId);
+    // Create session ID from current timestamp
+    const isoString = new Date().toISOString();
+
+    // Replace all :, ., T, and Z with -
+    let formattedId = isoString
+      .replace(/:/g, "-")
+      .replace(/\./g, "-")
+      .replace(/T/g, "-")
+      .replace(/Z/g, "-");
+
+    // Trim any trailing dash
+    formattedId = formattedId.replace(/-$/, "");
+
+    // Append hyphen plus random three-digit number
+    const randomNum = Math.floor(Math.random() * 900) + 100; // Ensures 3 digits (100-999)
+    sessionId = `${formattedId}-${randomNum}`;
+
+    localStorage.setItem("adv_sessionId", sessionId);
   }
   return sessionId;
 };
