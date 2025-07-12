@@ -2036,6 +2036,7 @@ const BookBuilder = () => {
                       type="button"
                       variant="outline"
                       onClick={addExperience}
+                      data-action="addExperience"
                       className="flex items-center space-x-2"
                     >
                       <Plus className="w-4 h-4" />
