@@ -1318,9 +1318,9 @@ const BookBuilder = () => {
                     </Label>
                     <Input
                       id="includeFriends"
-                      value={formData.includeFriends}
+                      value={includeFriendsInput.displayValue}
                       onChange={(e) =>
-                        updateFormData("includeFriends", e.target.value)
+                        includeFriendsInput.updateValue(e.target.value)
                       }
                       placeholder={t("placeholder.includeFriends")}
                       className="mt-1"
