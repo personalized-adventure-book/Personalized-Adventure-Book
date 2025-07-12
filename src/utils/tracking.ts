@@ -16,21 +16,65 @@ export const detectHuman = () => {
   sessionStorage.setItem("humanDetected", "true");
 };
 
-// Main tracking function - simplified to capture only essential user actions
+// Store events locally for batching
+let eventQueue: any[] = [];
+let lastSentTime = Date.now();
+const BATCH_INTERVAL = 5000; // Send events every 5 seconds
+const MAX_QUEUE_SIZE = 20; // Or when queue reaches 20 events
+
+// Main tracking function - batches events per session
 export const trackEvent = async (eventType: string, details: any = {}) => {
+  try {
+    const event = {
+      action: details.action || eventType,
+      input: details.input || details.value || "",
+      field: details.field || "",
+      button: details.button || "",
+      focus: details.focus || "",
+      timestamp: new Date().toISOString(),
+    };
+
+    // Add event to queue
+    eventQueue.push(event);
+
+    // Send if queue is full or enough time has passed
+    const now = Date.now();
+    if (
+      eventQueue.length >= MAX_QUEUE_SIZE ||
+      now - lastSentTime >= BATCH_INTERVAL
+    ) {
+      await sendEventBatch();
+    }
+  } catch (error) {
+    console.error("Error tracking event:", error);
+  }
+};
+
+// Send all queued events for this session
+const sendEventBatch = async () => {
+  if (eventQueue.length === 0) return;
+
   try {
     const payload = {
       sessionId: getSessionId(),
-      eventType,
+      eventType: "sessionEvents", // Special type for batched events
       details: {
-        action: details.action || eventType,
-        input: details.input || details.value || "",
-        field: details.field || "",
-        button: details.button || "",
-        focus: details.focus || "",
-        timestamp: new Date().toISOString(),
+        events: [...eventQueue], // All events for this session
+        eventCount: eventQueue.length,
+        sessionStart:
+          sessionStorage.getItem("sessionStart") || new Date().toISOString(),
+        lastUpdate: new Date().toISOString(),
       },
     };
+
+    // Clear queue and update time
+    eventQueue = [];
+    lastSentTime = Date.now();
+
+    // Store session start time if not exists
+    if (!sessionStorage.getItem("sessionStart")) {
+      sessionStorage.setItem("sessionStart", new Date().toISOString());
+    }
 
     // Send to Google Apps Script
     await fetch(
@@ -45,7 +89,33 @@ export const trackEvent = async (eventType: string, details: any = {}) => {
       },
     );
   } catch (error) {
-    console.error("Error tracking event:", error);
+    console.error("Error sending event batch:", error);
+  }
+};
+
+// Send remaining events when user leaves page
+const sendFinalBatch = () => {
+  if (eventQueue.length > 0) {
+    // Use sendBeacon for reliable delivery when page unloads
+    const payload = {
+      sessionId: getSessionId(),
+      eventType: "sessionEvents",
+      details: {
+        events: [...eventQueue],
+        eventCount: eventQueue.length,
+        sessionStart:
+          sessionStorage.getItem("sessionStart") || new Date().toISOString(),
+        lastUpdate: new Date().toISOString(),
+        sessionEnd: true,
+      },
+    };
+
+    navigator.sendBeacon(
+      "https://script.google.com/macros/s/AKfycbyUMrzt00F9K9qNwedqO43LoY26MREwdp-SVfF4JLVFqYqTiKUa5oStVLrjQ44f81ylEQ/exec",
+      JSON.stringify(payload),
+    );
+
+    eventQueue = [];
   }
 };
 
@@ -55,6 +125,24 @@ export const initializeTracking = () => {
   trackEvent("pageLoad", {
     action: "pageLoad",
     input: window.location.pathname,
+  });
+
+  // Send events periodically
+  setInterval(() => {
+    if (eventQueue.length > 0) {
+      sendEventBatch();
+    }
+  }, BATCH_INTERVAL);
+
+  // Send final batch when page unloads
+  window.addEventListener("beforeunload", sendFinalBatch);
+  window.addEventListener("pagehide", sendFinalBatch);
+
+  // Send batch when user becomes inactive
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden && eventQueue.length > 0) {
+      sendEventBatch();
+    }
   });
 
   // Track all focus events
