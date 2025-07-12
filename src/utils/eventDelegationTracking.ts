@@ -56,7 +56,7 @@ export const trackEvent = async (eventType: string, details: any = {}) => {
 };
 
 // Helper to figure out section index (1-based, or 0 for the main form)
-function getSectionIndex(el: Element): number {
+export function getSectionIndex(el: Element): number {
   const secs = Array.from(document.querySelectorAll(".adventure-section"));
   const sec = el.closest(".adventure-section");
   return sec
