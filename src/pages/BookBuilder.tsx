@@ -1379,7 +1379,7 @@ const BookBuilder = () => {
                     return (
                       <Card
                         key={experience.id}
-                        className="border-2 border-adventure-blue/40 bg-adventure-blue/5"
+                        className="adventure-section border-2 border-adventure-blue/40 bg-adventure-blue/5"
                       >
                         <CardHeader
                           className="pb-4 cursor-pointer"
