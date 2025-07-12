@@ -96,13 +96,54 @@ interface PaymentDetails {
   cardholderName: string;
 }
 
-// Helper function to convert file to base64
+// Helper function to convert file to base64 with proper error handling
 const fileToBase64 = (file: File): Promise<string> => {
   return new Promise((resolve, reject) => {
+    // Validate input
+    if (!file) {
+      reject(new Error("File is null or undefined"));
+      return;
+    }
+
+    if (!(file instanceof File) && !(file instanceof Blob)) {
+      reject(new Error("Input is not a valid File or Blob object"));
+      return;
+    }
+
+    // Check file size (limit to 10MB)
+    const maxSize = 10 * 1024 * 1024; // 10MB
+    if (file.size > maxSize) {
+      reject(
+        new Error(
+          `File size (${file.size} bytes) exceeds maximum allowed size (${maxSize} bytes)`,
+        ),
+      );
+      return;
+    }
+
     const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result as string);
-    reader.onerror = (error) => reject(error);
+
+    reader.onload = () => {
+      if (reader.result && typeof reader.result === "string") {
+        resolve(reader.result);
+      } else {
+        reject(new Error("Failed to read file as data URL"));
+      }
+    };
+
+    reader.onerror = (error) => {
+      reject(new Error(`FileReader error: ${error}`));
+    };
+
+    reader.onabort = () => {
+      reject(new Error("File reading was aborted"));
+    };
+
+    try {
+      reader.readAsDataURL(file);
+    } catch (error) {
+      reject(new Error(`Error starting file read: ${error}`));
+    }
   });
 };
 
@@ -313,39 +354,103 @@ const Preview = () => {
         // Prepare data for Google Apps Script in the required format
         const adventures = [];
 
-        for (const experience of bookData.experiences) {
+        // Safety check for experiences array
+        if (!bookData.experiences || !Array.isArray(bookData.experiences)) {
+          console.warn(
+            "No valid experiences array found, proceeding with empty adventures",
+          );
+        } else {
+          console.log(`Processing ${bookData.experiences.length} experiences`);
+        }
+
+        for (const experience of bookData.experiences || []) {
+          if (!experience) {
+            console.warn("Skipping null/undefined experience");
+            continue;
+          }
           // Convert experience images to base64 with descriptions
           const experienceImages = [];
-          if (experience.images && experience.images.length > 0) {
+          if (
+            experience.images &&
+            Array.isArray(experience.images) &&
+            experience.images.length > 0
+          ) {
             for (let i = 0; i < experience.images.length; i++) {
-              const image = experience.images[i];
-              if (image instanceof File) {
-                const base64 = await fileToBase64(image);
-                experienceImages.push({
-                  data: base64,
-                  description:
-                    image.description ||
-                    experience.imageDescription ||
-                    `Experience image ${i + 1}`,
-                  filename:
-                    image.file?.name ||
-                    `experience_${experience.id}_image_${i + 1}`,
-                });
-              } else if (typeof image === "string") {
-                experienceImages.push({
-                  data: image,
-                  description:
-                    experience.imageDescription || `Experience image ${i + 1}`,
-                  filename: `experience_${experience.id}_image_${i + 1}`,
-                });
-              } else if (image.file && image.description) {
-                // Handle ActivityImage interface with file and description
-                const base64 = await fileToBase64(image.file);
-                experienceImages.push({
-                  data: base64,
-                  description: image.description,
-                  filename: image.file.name,
-                });
+              try {
+                const image = experience.images[i];
+
+                if (!image) {
+                  console.warn(
+                    `Skipping null/undefined image at index ${i} for experience ${experience.id}`,
+                  );
+                  continue;
+                }
+
+                if (image instanceof File) {
+                  try {
+                    const base64 = await fileToBase64(image);
+                    experienceImages.push({
+                      data: base64,
+                      description:
+                        experience.imageDescription ||
+                        `Experience image ${i + 1}`,
+                      filename:
+                        image.name ||
+                        `experience_${experience.id}_image_${i + 1}`,
+                    });
+                  } catch (fileError) {
+                    console.error(
+                      `Error processing File object for experience ${experience.id}, image ${i}:`,
+                      fileError,
+                    );
+                  }
+                } else if (typeof image === "string" && image.trim() !== "") {
+                  experienceImages.push({
+                    data: image,
+                    description:
+                      experience.imageDescription ||
+                      `Experience image ${i + 1}`,
+                    filename: `experience_${experience.id}_image_${i + 1}`,
+                  });
+                } else if (image && typeof image === "object" && image.file) {
+                  // Handle ActivityImage interface with file and description
+                  try {
+                    if (image.file instanceof File) {
+                      const base64 = await fileToBase64(image.file);
+                      experienceImages.push({
+                        data: base64,
+                        description:
+                          image.description ||
+                          experience.imageDescription ||
+                          `Experience image ${i + 1}`,
+                        filename:
+                          image.file.name ||
+                          `experience_${experience.id}_image_${i + 1}`,
+                      });
+                    } else {
+                      console.warn(
+                        `Invalid file object for experience ${experience.id}, image ${i}:`,
+                        image.file,
+                      );
+                    }
+                  } catch (fileError) {
+                    console.error(
+                      `Error processing ActivityImage file for experience ${experience.id}, image ${i}:`,
+                      fileError,
+                    );
+                  }
+                } else {
+                  console.warn(
+                    `Unsupported image format for experience ${experience.id}, image ${i}:`,
+                    typeof image,
+                    image,
+                  );
+                }
+              } catch (imageError) {
+                console.error(
+                  `Error processing image ${i} for experience ${experience.id}:`,
+                  imageError,
+                );
               }
             }
           }
@@ -359,32 +464,94 @@ const Preview = () => {
             for (const activity of experience.activityDetails) {
               // Convert activity images to base64 with descriptions
               const activityImages = [];
-              if (activity.images && activity.images.length > 0) {
+              if (
+                activity.images &&
+                Array.isArray(activity.images) &&
+                activity.images.length > 0
+              ) {
                 for (let i = 0; i < activity.images.length; i++) {
-                  const image = activity.images[i];
-                  if (image instanceof File) {
-                    const base64 = await fileToBase64(image);
-                    activityImages.push({
-                      data: base64,
-                      description:
-                        activity.imageDescription || `Activity image ${i + 1}`,
-                      filename: image.name,
-                    });
-                  } else if (typeof image === "string") {
-                    activityImages.push({
-                      data: image,
-                      description:
-                        activity.imageDescription || `Activity image ${i + 1}`,
-                      filename: `activity_${activity.id}_image_${i + 1}`,
-                    });
-                  } else if (image.file && image.description) {
-                    // Handle ActivityImage interface with file and description
-                    const base64 = await fileToBase64(image.file);
-                    activityImages.push({
-                      data: base64,
-                      description: image.description,
-                      filename: image.file.name,
-                    });
+                  try {
+                    const image = activity.images[i];
+
+                    if (!image) {
+                      console.warn(
+                        `Skipping null/undefined image at index ${i} for activity ${activity.id}`,
+                      );
+                      continue;
+                    }
+
+                    if (image instanceof File) {
+                      try {
+                        const base64 = await fileToBase64(image);
+                        activityImages.push({
+                          data: base64,
+                          description:
+                            activity.imageDescription ||
+                            `Activity image ${i + 1}`,
+                          filename:
+                            image.name ||
+                            `activity_${activity.id}_image_${i + 1}`,
+                        });
+                      } catch (fileError) {
+                        console.error(
+                          `Error processing File object for activity ${activity.id}, image ${i}:`,
+                          fileError,
+                        );
+                      }
+                    } else if (
+                      typeof image === "string" &&
+                      image.trim() !== ""
+                    ) {
+                      activityImages.push({
+                        data: image,
+                        description:
+                          activity.imageDescription ||
+                          `Activity image ${i + 1}`,
+                        filename: `activity_${activity.id}_image_${i + 1}`,
+                      });
+                    } else if (
+                      image &&
+                      typeof image === "object" &&
+                      image.file
+                    ) {
+                      // Handle ActivityImage interface with file and description
+                      try {
+                        if (image.file instanceof File) {
+                          const base64 = await fileToBase64(image.file);
+                          activityImages.push({
+                            data: base64,
+                            description:
+                              image.description ||
+                              activity.imageDescription ||
+                              `Activity image ${i + 1}`,
+                            filename:
+                              image.file.name ||
+                              `activity_${activity.id}_image_${i + 1}`,
+                          });
+                        } else {
+                          console.warn(
+                            `Invalid file object for activity ${activity.id}, image ${i}:`,
+                            image.file,
+                          );
+                        }
+                      } catch (fileError) {
+                        console.error(
+                          `Error processing ActivityImage file for activity ${activity.id}, image ${i}:`,
+                          fileError,
+                        );
+                      }
+                    } else {
+                      console.warn(
+                        `Unsupported image format for activity ${activity.id}, image ${i}:`,
+                        typeof image,
+                        image,
+                      );
+                    }
+                  } catch (imageError) {
+                    console.error(
+                      `Error processing image ${i} for activity ${activity.id}:`,
+                      imageError,
+                    );
                   }
                 }
               }
