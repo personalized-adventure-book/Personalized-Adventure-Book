@@ -392,6 +392,55 @@ const BookBuilder = () => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
+  // Debounced inputs for better UX - must be after updateFormData
+  const parentNameInput = useDebouncedInput(
+    formData.parentName,
+    (value) => updateFormData("parentName", value),
+    300,
+  );
+
+  const parentEmailInput = useDebouncedInput(
+    formData.parentEmail,
+    (value) => updateFormData("parentEmail", value),
+    300,
+  );
+
+  const childNameInput = useDebouncedInput(
+    formData.childName,
+    (value) => updateFormData("childName", value),
+    300,
+  );
+
+  const locationInput = useDebouncedInput(
+    formData.location,
+    (value) => updateFormData("location", value),
+    300,
+  );
+
+  const favoriteColorInput = useDebouncedInput(
+    formData.favoriteColor,
+    (value) => updateFormData("favoriteColor", value),
+    300,
+  );
+
+  const petNameInput = useDebouncedInput(
+    formData.petName,
+    (value) => updateFormData("petName", value),
+    300,
+  );
+
+  const includeFriendsInput = useDebouncedInput(
+    formData.includeFriends,
+    (value) => updateFormData("includeFriends", value),
+    300,
+  );
+
+  const specialDetailsInput = useDebouncedInput(
+    formData.specialDetails,
+    (value) => updateFormData("specialDetails", value),
+    500,
+  );
+
   const saveDraft = () => {
     const draftData = {
       formData,
