@@ -1032,7 +1032,7 @@ const BookBuilder = () => {
             </CardTitle>
           </CardHeader>
 
-          <CardContent className="space-y-6">
+          <CardContent id="adventureForm" className="space-y-6">
             {/* Step 1: Parent Information */}
             {currentStep === 1 && (
               <div className="space-y-6">
