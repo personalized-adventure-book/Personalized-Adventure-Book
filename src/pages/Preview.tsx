@@ -95,9 +95,19 @@ interface PaymentDetails {
   cardholderName: string;
 }
 
+// Helper function to convert file to base64
+const fileToBase64 = (file: File): Promise<string> => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result as string);
+    reader.onerror = (error) => reject(error);
+  });
+};
+
 const Preview = () => {
   const navigate = useNavigate();
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   const [bookData, setBookData] = useState<BookData | null>(null);
   const [showFormatChoice, setShowFormatChoice] = useState(true);
   const [showAddressForm, setShowAddressForm] = useState(false);
@@ -296,24 +306,104 @@ const Preview = () => {
     }
   };
 
-  const handlePaymentComplete = () => {
+  const handlePaymentComplete = async () => {
     if (validatePaymentForm()) {
-      // Save order data to localStorage
-      const orderData = {
-        orderNumber: "ADV-" + Date.now().toString().slice(-8),
-        bookData,
-        orderType,
-        shippingAddress: orderType === "printed" ? shippingAddress : null,
-        paymentDetails,
-        shippingCost,
-        total: totalPrice,
-        orderDate: new Date().toISOString(),
-        status: "confirmed",
-      };
+      try {
+        // Prepare data for Google Apps Script in the required format
+        const adventures = [];
 
-      localStorage.setItem("currentOrder", JSON.stringify(orderData));
-      localStorage.removeItem("adventureBookData");
-      navigate("/order-success");
+        for (const experience of bookData.experiences) {
+          // Convert all images to base64
+          const images = [];
+          if (experience.images && experience.images.length > 0) {
+            for (const image of experience.images) {
+              if (image instanceof File) {
+                const base64 = await fileToBase64(image);
+                images.push(base64);
+              } else if (typeof image === "string") {
+                images.push(image);
+              }
+            }
+          }
+
+          const adventure = {
+            name: experience.title || "Adventure",
+            description: experience.description || "",
+            images: images,
+          };
+
+          adventures.push(adventure);
+        }
+
+        const googleScriptPayload = {
+          name: bookData.parentName?.trim() || "",
+          email: bookData.parentEmail || "",
+          childName: bookData.childName?.trim() || "",
+          age: bookData.childAge || "",
+          bookLang: language || "en", // Current language from translation hook
+          country:
+            orderType === "printed"
+              ? shippingAddress.country?.trim() || ""
+              : "",
+          city:
+            orderType === "printed" ? shippingAddress.city?.trim() || "" : "",
+          destination: bookData.location?.trim() || "",
+          language: language || "en",
+          adventures: adventures,
+        };
+
+        console.log("Final payload:", googleScriptPayload);
+
+        // Send to Google Apps Script
+        const payloadStr = JSON.stringify(googleScriptPayload);
+
+        await fetch(
+          "https://script.google.com/macros/s/AKfycbyUMrzt00F9K9qNwedqO43LoY26MREwdp-SVfF4JLVFqYqTiKUa5oStVLrjQ44f81ylEQ/exec",
+          {
+            method: "POST",
+            mode: "no-cors",
+            headers: {
+              "Content-Type": "text/plain;charset=utf-8",
+            },
+            body: payloadStr,
+          },
+        );
+
+        // Save order data to localStorage (keep existing functionality)
+        const orderData = {
+          orderNumber: "ADV-" + Date.now().toString().slice(-8),
+          bookData,
+          orderType,
+          shippingAddress: orderType === "printed" ? shippingAddress : null,
+          paymentDetails,
+          shippingCost,
+          total: totalPrice,
+          orderDate: new Date().toISOString(),
+          status: "confirmed",
+        };
+
+        localStorage.setItem("currentOrder", JSON.stringify(orderData));
+        localStorage.removeItem("adventureBookData");
+        navigate("/order-success");
+      } catch (error) {
+        console.error("Error sending order to Google Apps Script:", error);
+        // Still proceed with local order completion even if Google Apps Script fails
+        const orderData = {
+          orderNumber: "ADV-" + Date.now().toString().slice(-8),
+          bookData,
+          orderType,
+          shippingAddress: orderType === "printed" ? shippingAddress : null,
+          paymentDetails,
+          shippingCost,
+          total: totalPrice,
+          orderDate: new Date().toISOString(),
+          status: "confirmed",
+        };
+
+        localStorage.setItem("currentOrder", JSON.stringify(orderData));
+        localStorage.removeItem("adventureBookData");
+        navigate("/order-success");
+      }
     }
   };
 
