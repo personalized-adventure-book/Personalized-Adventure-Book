@@ -102,53 +102,7 @@ interface FormData {
   bookLanguage: string;
 }
 
-// Event tracking system
-const getSessionId = () => {
-  let sessionId = sessionStorage.getItem("trackingSessionId");
-  if (!sessionId) {
-    sessionId =
-      "session_" + Date.now() + "_" + Math.random().toString(36).substr(2, 9);
-    sessionStorage.setItem("trackingSessionId", sessionId);
-  }
-  return sessionId;
-};
-
-const detectHuman = () => {
-  // Basic human detection - mark as human interaction
-  sessionStorage.setItem("humanDetected", "true");
-};
-
-const trackEvent = async (eventType: string, details: any) => {
-  try {
-    const payload = {
-      sessionId: getSessionId(),
-      eventType,
-      details: {
-        action: details.action || eventType,
-        input: details.input || details.value || "",
-        field: details.field || "",
-        button: details.button || details.action || "",
-        focus: details.focus || details.field || "",
-        timestamp: new Date().toISOString(),
-      },
-    };
-
-    // Send to Google Apps Script
-    await fetch(
-      "https://script.google.com/macros/s/AKfycbyUMrzt00F9K9qNwedqO43LoY26MREwdp-SVfF4JLVFqYqTiKUa5oStVLrjQ44f81ylEQ/exec",
-      {
-        method: "POST",
-        mode: "no-cors",
-        headers: {
-          "Content-Type": "text/plain;charset=utf-8",
-        },
-        body: JSON.stringify(payload),
-      },
-    );
-  } catch (error) {
-    console.error("Error tracking event:", error);
-  }
-};
+// Using global tracking system from @/utils/tracking
 
 const BookBuilder = () => {
   const navigate = useNavigate();
