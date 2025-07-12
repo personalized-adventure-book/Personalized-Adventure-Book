@@ -25,6 +25,7 @@ import {
 } from "@/components/ui/dialog";
 import Header from "@/components/Header";
 import { useTranslation } from "@/hooks/useTranslation";
+import { trackEvent, detectHuman } from "@/utils/tracking";
 import {
   BookOpen,
   User,
