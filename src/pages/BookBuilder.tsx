@@ -1132,9 +1132,9 @@ const BookBuilder = () => {
                     </Label>
                     <Input
                       id="childName"
-                      value={formData.childName}
+                      value={childNameInput.displayValue}
                       onChange={(e) =>
-                        updateFormData("childName", e.target.value)
+                        childNameInput.updateValue(e.target.value)
                       }
                       placeholder={t("form.childName")}
                       className="mt-1"
