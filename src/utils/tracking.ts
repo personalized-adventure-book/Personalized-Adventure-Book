@@ -80,7 +80,7 @@ const sendEventBatch = async () => {
         events: [...eventQueue], // All events for this session
         eventCount: eventQueue.length,
         sessionStart:
-          sessionStorage.getItem("sessionStart") || new Date().toISOString(),
+          localStorage.getItem("adv_sessionStart") || new Date().toISOString(),
         lastUpdate: new Date().toISOString(),
       },
     };
@@ -122,7 +122,7 @@ const sendFinalBatch = () => {
         events: [...eventQueue],
         eventCount: eventQueue.length,
         sessionStart:
-          sessionStorage.getItem("sessionStart") || new Date().toISOString(),
+          localStorage.getItem("adv_sessionStart") || new Date().toISOString(),
         lastUpdate: new Date().toISOString(),
         sessionEnd: true,
       },
