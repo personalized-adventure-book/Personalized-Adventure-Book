@@ -314,23 +314,60 @@ const Preview = () => {
         const adventures = [];
 
         for (const experience of bookData.experiences) {
-          // Convert all images to base64
-          const images = [];
+          // Convert all experience images to base64
+          const experienceImages = [];
           if (experience.images && experience.images.length > 0) {
             for (const image of experience.images) {
               if (image instanceof File) {
                 const base64 = await fileToBase64(image);
-                images.push(base64);
+                experienceImages.push(base64);
               } else if (typeof image === "string") {
-                images.push(image);
+                experienceImages.push(image);
               }
             }
           }
 
+          // Process detailed activities for this experience
+          const activityDetails = [];
+          if (
+            experience.activityDetails &&
+            experience.activityDetails.length > 0
+          ) {
+            for (const activity of experience.activityDetails) {
+              // Convert activity images to base64
+              const activityImages = [];
+              if (activity.images && activity.images.length > 0) {
+                for (const image of activity.images) {
+                  if (image instanceof File) {
+                    const base64 = await fileToBase64(image);
+                    activityImages.push(base64);
+                  } else if (typeof image === "string") {
+                    activityImages.push(image);
+                  }
+                }
+              }
+
+              activityDetails.push({
+                id: activity.id,
+                name: activity.name || "",
+                details: activity.details || "",
+                characters: activity.characters || "",
+                images: activityImages,
+                imageDescription: activity.imageDescription || "",
+              });
+            }
+          }
+
           const adventure = {
+            id: experience.id,
             name: experience.title || "Adventure",
             description: experience.description || "",
-            images: images,
+            predefinedActivities: experience.predefinedActivities || [],
+            customActivities: experience.customActivities || [],
+            activityDetails: activityDetails,
+            characters: experience.characters || "",
+            images: experienceImages,
+            imageDescription: experience.imageDescription || "",
           };
 
           adventures.push(adventure);
@@ -384,6 +421,8 @@ const Preview = () => {
                 `${index + 1}. ${exp.title || "Adventure"}: ${exp.description || "No description"}`,
             )
             .join(" | "),
+
+          // All predefined and custom activities combined
           allActivities: bookData.experiences
             .flatMap((exp) => [
               ...exp.predefinedActivities,
@@ -391,14 +430,43 @@ const Preview = () => {
             ])
             .filter(Boolean)
             .join(", "),
-          allCharacters: bookData.experiences
-            .map((exp) => exp.characters)
-            .filter(Boolean)
-            .join(", "),
-          totalImages: bookData.experiences.reduce(
-            (total, exp) => total + (exp.images ? exp.images.length : 0),
-            0,
-          ),
+
+          // All characters from experiences and activities combined
+          allCharacters: [
+            ...bookData.experiences
+              .map((exp) => exp.characters)
+              .filter(Boolean),
+            ...bookData.experiences.flatMap((exp) =>
+              exp.activityDetails
+                .map((activity) => activity.characters)
+                .filter(Boolean),
+            ),
+          ].join(", "),
+
+          // Total images from experiences and activities
+          totalImages: bookData.experiences.reduce((total, exp) => {
+            const expImages = exp.images ? exp.images.length : 0;
+            const activityImages = exp.activityDetails.reduce(
+              (actTotal, act) =>
+                actTotal + (act.images ? act.images.length : 0),
+              0,
+            );
+            return total + expImages + activityImages;
+          }, 0),
+
+          // Detailed activity breakdown per experience
+          detailedActivities: bookData.experiences.map((exp, index) => ({
+            experienceNumber: index + 1,
+            experienceTitle: exp.title || "Adventure",
+            predefinedActivities: exp.predefinedActivities || [],
+            customActivities: exp.customActivities || [],
+            activityDetails: exp.activityDetails.map((activity) => ({
+              name: activity.name || "",
+              details: activity.details || "",
+              characters: activity.characters || "",
+              imageCount: activity.images ? activity.images.length : 0,
+            })),
+          })),
           adventures: adventures,
         };
 
