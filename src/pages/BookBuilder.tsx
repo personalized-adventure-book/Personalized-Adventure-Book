@@ -967,6 +967,40 @@ const BookBuilder = () => {
 
   const handleSubmit = () => {
     setHasAttemptedProceed(true);
+
+    // Track form submission attempt
+    detectHuman();
+    trackEvent("submit", {
+      form: "adventureForm",
+      step: currentStep,
+      canProceed: canProceed(),
+      experienceCount: formData.experiences.length,
+      formData: {
+        hasParentName: !!formData.parentName,
+        hasParentEmail: !!formData.parentEmail,
+        hasChildName: !!formData.childName,
+        hasChildAge: !!formData.childAge,
+        hasAdventureType: !!formData.adventureType,
+        hasLocation: !!formData.location,
+        experiencesCount: formData.experiences.length,
+        totalActivities: formData.experiences.reduce(
+          (sum, exp) =>
+            sum + exp.predefinedActivities.length + exp.customActivities.length,
+          0,
+        ),
+        totalImages: formData.experiences.reduce(
+          (sum, exp) =>
+            sum +
+            exp.images.length +
+            exp.activityDetails.reduce(
+              (actSum, act) => actSum + act.images.length,
+              0,
+            ),
+          0,
+        ),
+      },
+    });
+
     if (canProceed()) {
       const finalData = {
         ...formData,
@@ -974,6 +1008,16 @@ const BookBuilder = () => {
           formData.adventureType || formData.customAdventureType,
       };
       localStorage.setItem("adventureBookData", JSON.stringify(finalData));
+
+      // Track successful form completion
+      trackEvent("formComplete", {
+        totalSteps: 5,
+        finalData: {
+          experienceCount: finalData.experiences.length,
+          adventureType: finalData.finalAdventureType,
+        },
+      });
+
       navigate("/preview");
     }
   };
