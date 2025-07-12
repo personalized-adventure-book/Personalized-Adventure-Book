@@ -641,8 +641,8 @@ const BookBuilder = () => {
     // Track experience addition
     detectHuman();
     trackEvent("addExperience", {
-      currentExperienceCount: formData.experiences?.length || 0,
-      step: currentStep,
+      action: "addExperience",
+      input: `total: ${(formData.experiences?.length || 0) + 1}`,
     });
 
     const newExperience: ExperienceDetail = {
@@ -696,15 +696,8 @@ const BookBuilder = () => {
     // Track experience removal
     detectHuman();
     trackEvent("removeExperience", {
-      experienceId: id,
-      experienceTitle: experience?.title || "Untitled",
-      currentExperienceCount: formData.experiences.length,
-      step: currentStep,
-      hadImages: experience?.images.length || 0 > 0,
-      hadActivities:
-        (experience?.predefinedActivities.length || 0) +
-          (experience?.customActivities.length || 0) >
-        0,
+      action: "removeExperience",
+      input: experience?.title || "Untitled",
     });
 
     const updated = formData.experiences.filter((exp) => exp.id !== id);
