@@ -98,6 +98,7 @@ interface FormData {
   petName: string;
   includeFriends: string;
   specialDetails: string;
+  bookLanguage: string;
 }
 
 const BookBuilder = () => {
@@ -137,6 +138,7 @@ const BookBuilder = () => {
     petName: "",
     includeFriends: "",
     specialDetails: "",
+    bookLanguage: "en",
   });
 
   const totalSteps = 5;
