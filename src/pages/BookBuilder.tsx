@@ -1050,6 +1050,7 @@ const BookBuilder = () => {
                     </Label>
                     <Input
                       id="parentName"
+                      name="parentName"
                       value={parentNameInput.displayValue}
                       onChange={(e) =>
                         parentNameInput.updateValue(e.target.value)
