@@ -76,6 +76,7 @@ interface BookData {
   petName: string;
   includeFriends: string;
   specialDetails: string;
+  bookLanguage: string;
 }
 
 interface ShippingAddress {
