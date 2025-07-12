@@ -123,10 +123,12 @@ const trackEvent = async (eventType: string, details: any) => {
       sessionId: getSessionId(),
       eventType,
       details: {
-        ...details,
+        action: details.action || eventType,
+        input: details.input || details.value || "",
+        field: details.field || "",
+        button: details.button || details.action || "",
+        focus: details.focus || details.field || "",
         timestamp: new Date().toISOString(),
-        url: window.location.href,
-        userAgent: navigator.userAgent,
       },
     };
 
