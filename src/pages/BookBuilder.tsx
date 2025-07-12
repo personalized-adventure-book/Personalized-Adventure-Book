@@ -1292,9 +1292,9 @@ const BookBuilder = () => {
                     </Label>
                     <Input
                       id="favoriteColor"
-                      value={formData.favoriteColor}
+                      value={favoriteColorInput.displayValue}
                       onChange={(e) =>
-                        updateFormData("favoriteColor", e.target.value)
+                        favoriteColorInput.updateValue(e.target.value)
                       }
                       placeholder={t("placeholder.favoriteColor")}
                       className="mt-1"
