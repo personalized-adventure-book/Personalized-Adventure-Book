@@ -1579,6 +1579,7 @@ const BookBuilder = () => {
                                       e.stopPropagation();
                                       removeExperience(experience.id);
                                     }}
+                                    data-action="removeExperience"
                                     className="text-red-500 hover:text-red-700"
                                   >
                                     <Trash2 className="w-4 h-4" />
