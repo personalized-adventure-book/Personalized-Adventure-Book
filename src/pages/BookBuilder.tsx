@@ -1264,9 +1264,9 @@ const BookBuilder = () => {
                     </Label>
                     <Input
                       id="location"
-                      value={formData.location}
+                      value={locationInput.displayValue}
                       onChange={(e) =>
-                        updateFormData("location", e.target.value)
+                        locationInput.updateValue(e.target.value)
                       }
                       placeholder={t("placeholder.location")}
                       className="mt-1"
