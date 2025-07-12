@@ -1067,9 +1067,9 @@ const BookBuilder = () => {
                     <Input
                       id="parentEmail"
                       type="email"
-                      value={formData.parentEmail}
+                      value={parentEmailInput.displayValue}
                       onChange={(e) =>
-                        updateFormData("parentEmail", e.target.value)
+                        parentEmailInput.updateValue(e.target.value)
                       }
                       onBlur={() => setEmailTouched(true)}
                       placeholder={t("placeholder.email")}
