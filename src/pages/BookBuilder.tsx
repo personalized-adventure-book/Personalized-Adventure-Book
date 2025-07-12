@@ -981,6 +981,34 @@ const BookBuilder = () => {
                         </p>
                       )}
                   </div>
+
+                  <div>
+                    <Label htmlFor="bookLanguage">
+                      {t("form.bookLanguage")}
+                      <RequiredStar />
+                    </Label>
+                    <Select
+                      value={formData.bookLanguage}
+                      onValueChange={(value) =>
+                        updateFormData("bookLanguage", value)
+                      }
+                    >
+                      <SelectTrigger className="mt-1">
+                        <SelectValue
+                          placeholder={t("form.selectBookLanguage")}
+                        />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="en">🇺🇸 English</SelectItem>
+                        <SelectItem value="fr">🇫🇷 Français</SelectItem>
+                        <SelectItem value="it">🇮🇹 Italiano</SelectItem>
+                        <SelectItem value="es">🇪🇸 Español</SelectItem>
+                        <SelectItem value="ar">🇸🇦 العربية</SelectItem>
+                        <SelectItem value="nl">🇳🇱 Nederlands</SelectItem>
+                        <SelectItem value="de">🇩🇪 Deutsch</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
                 </div>
               </div>
             )}
