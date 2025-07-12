@@ -374,6 +374,113 @@ const BookBuilder = () => {
   // Auto-saving disabled for explicit user control
   // Users will manually save via the dialog when leaving
 
+  // Event tracking for form interactions
+  useEffect(() => {
+    // Track page load
+    const handlePageLoad = () => {
+      detectHuman();
+      trackEvent("pageLoad", {
+        page: "BookBuilder",
+        step: currentStep,
+      });
+    };
+
+    // Call immediately if page already loaded, otherwise wait for load
+    if (document.readyState === "complete") {
+      handlePageLoad();
+    } else {
+      window.addEventListener("load", handlePageLoad);
+    }
+
+    // Track focus events on form elements
+    const handleFocusIn = (e: FocusEvent) => {
+      const target = e.target as HTMLElement;
+      if (target.matches("input, textarea, select")) {
+        const field =
+          target.getAttribute("name") || target.getAttribute("id") || "unknown";
+        detectHuman();
+        trackEvent("focus", {
+          field,
+          step: currentStep,
+          elementType: target.tagName.toLowerCase(),
+        });
+      }
+    };
+
+    // Track input changes (typing)
+    const handleInput = (e: Event) => {
+      const target = e.target as HTMLInputElement;
+      if (target.matches('input:not([type="file"]), textarea, select')) {
+        const field =
+          target.getAttribute("name") || target.getAttribute("id") || "unknown";
+        detectHuman();
+        trackEvent("input", {
+          field,
+          step: currentStep,
+          elementType: target.tagName.toLowerCase(),
+          valueLength: target.value?.length || 0,
+        });
+      }
+    };
+
+    // Track file changes and select changes
+    const handleChange = (e: Event) => {
+      const target = e.target as HTMLInputElement;
+      if (target.matches('input[type="file"]')) {
+        detectHuman();
+        trackEvent("change", {
+          field: "images",
+          step: currentStep,
+          fileCount: target.files?.length || 0,
+        });
+      } else if (target.matches("select")) {
+        const field =
+          target.getAttribute("name") || target.getAttribute("id") || "unknown";
+        detectHuman();
+        trackEvent("change", {
+          field,
+          step: currentStep,
+          value: target.value,
+        });
+      }
+    };
+
+    // Track button clicks
+    const handleClick = (e: Event) => {
+      const target = e.target as HTMLElement;
+      if (
+        target.matches('button, .btn, [role="button"]') &&
+        !target.closest("[data-no-track]")
+      ) {
+        detectHuman();
+        trackEvent("click", {
+          action:
+            target.getAttribute("data-action") ||
+            target.textContent?.trim() ||
+            target.getAttribute("aria-label") ||
+            "button",
+          step: currentStep,
+          elementType: target.tagName.toLowerCase(),
+        });
+      }
+    };
+
+    // Add event listeners
+    document.addEventListener("focusin", handleFocusIn, true);
+    document.addEventListener("input", handleInput, true);
+    document.addEventListener("change", handleChange, true);
+    document.addEventListener("click", handleClick, true);
+
+    // Cleanup
+    return () => {
+      window.removeEventListener("load", handlePageLoad);
+      document.removeEventListener("focusin", handleFocusIn, true);
+      document.removeEventListener("input", handleInput, true);
+      document.removeEventListener("change", handleChange, true);
+      document.removeEventListener("click", handleClick, true);
+    };
+  }, [currentStep]); // Re-run when step changes to update step tracking
+
   const adventureTypes = [
     {
       id: "space",
