@@ -314,15 +314,38 @@ const Preview = () => {
         const adventures = [];
 
         for (const experience of bookData.experiences) {
-          // Convert all experience images to base64
+          // Convert experience images to base64 with descriptions
           const experienceImages = [];
           if (experience.images && experience.images.length > 0) {
-            for (const image of experience.images) {
+            for (let i = 0; i < experience.images.length; i++) {
+              const image = experience.images[i];
               if (image instanceof File) {
                 const base64 = await fileToBase64(image);
-                experienceImages.push(base64);
+                experienceImages.push({
+                  data: base64,
+                  description:
+                    image.description ||
+                    experience.imageDescription ||
+                    `Experience image ${i + 1}`,
+                  filename:
+                    image.file?.name ||
+                    `experience_${experience.id}_image_${i + 1}`,
+                });
               } else if (typeof image === "string") {
-                experienceImages.push(image);
+                experienceImages.push({
+                  data: image,
+                  description:
+                    experience.imageDescription || `Experience image ${i + 1}`,
+                  filename: `experience_${experience.id}_image_${i + 1}`,
+                });
+              } else if (image.file && image.description) {
+                // Handle ActivityImage interface with file and description
+                const base64 = await fileToBase64(image.file);
+                experienceImages.push({
+                  data: base64,
+                  description: image.description,
+                  filename: image.file.name,
+                });
               }
             }
           }
@@ -334,15 +357,34 @@ const Preview = () => {
             experience.activityDetails.length > 0
           ) {
             for (const activity of experience.activityDetails) {
-              // Convert activity images to base64
+              // Convert activity images to base64 with descriptions
               const activityImages = [];
               if (activity.images && activity.images.length > 0) {
-                for (const image of activity.images) {
+                for (let i = 0; i < activity.images.length; i++) {
+                  const image = activity.images[i];
                   if (image instanceof File) {
                     const base64 = await fileToBase64(image);
-                    activityImages.push(base64);
+                    activityImages.push({
+                      data: base64,
+                      description:
+                        activity.imageDescription || `Activity image ${i + 1}`,
+                      filename: image.name,
+                    });
                   } else if (typeof image === "string") {
-                    activityImages.push(image);
+                    activityImages.push({
+                      data: image,
+                      description:
+                        activity.imageDescription || `Activity image ${i + 1}`,
+                      filename: `activity_${activity.id}_image_${i + 1}`,
+                    });
+                  } else if (image.file && image.description) {
+                    // Handle ActivityImage interface with file and description
+                    const base64 = await fileToBase64(image.file);
+                    activityImages.push({
+                      data: base64,
+                      description: image.description,
+                      filename: image.file.name,
+                    });
                   }
                 }
               }
