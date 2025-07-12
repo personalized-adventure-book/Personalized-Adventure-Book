@@ -157,6 +157,8 @@ const translations = {
     "form.stop": "Stop",
     "form.required": "Required",
     "form.complete": "Complete",
+    "form.bookLanguage": "Book Language",
+    "form.selectBookLanguage": "Select the language for your book",
 
     // Pricing
     "pricing.title": "Book Options",
@@ -505,6 +507,8 @@ const translations = {
     "form.reviewBook": "Réviser Mon Livre",
     "form.required": "Obligatoire",
     "form.complete": "Terminé",
+    "form.bookLanguage": "Langue du Livre",
+    "form.selectBookLanguage": "Sélectionnez la langue de votre livre",
 
     // Pricing
     "pricing.title": "Options de Livre",
@@ -764,6 +768,8 @@ const translations = {
     "form.reviewBook": "Rivedi il Mio Libro",
     "form.required": "Obbligatorio",
     "form.complete": "Completo",
+    "form.bookLanguage": "Lingua del Libro",
+    "form.selectBookLanguage": "Seleziona la lingua del tuo libro",
 
     // Pricing
     "pricing.title": "Opzioni Libro",
@@ -1021,6 +1027,8 @@ const translations = {
     "form.reviewBook": "Revisar Mi Libro",
     "form.required": "Requerido",
     "form.complete": "Completo",
+    "form.bookLanguage": "Idioma del Libro",
+    "form.selectBookLanguage": "Selecciona el idioma de tu libro",
 
     // Pricing
     "pricing.title": "Opciones de Libro",
@@ -1150,18 +1158,18 @@ const translations = {
     // Features
     "features.personalizedCharacters": "شخصيات مخصصة",
     "features.personalizedCharactersDesc":
-      "اشمل طفلك وأصدقاءه وأفراد عائلته في القصة",
+      "اشمل طفلك وأصدقاءه وأفراد عائلته ��ي القصة",
     "features.instantPreview": "معاينة فورية",
     "features.instantPreviewDesc":
       "شاهد كتابك ينبض بالحياة مع صفحات المعاينة الفورية",
-    "features.printOrDigital": "مطبوع أو رقمي",
+    "features.printOrDigital": "مطبوع أو ر����ي",
     "features.printOrDigitalDesc":
-      "احصل على كتاب مادي مُسلم أو قم بالتحميل فوراً",
+      "ا����ل على كتاب مادي مُسلم أو قم بالتحميل فوراً",
 
     // Adventure Types
     "adventure.possibilities": "إمكانيات المغامرة",
     "adventure.possibilitiesDesc":
-      "استكشف العوالم السحرية التي يمكننا إنشاؤها لطفلك - وأكثر من ذلك بكثير!",
+      "استكشف العوالم السحرية التي يم��ننا إنشاؤها لطفلك - وأكثر من ذلك بكثير!",
     "adventure.spaceMission": "مهمة فضائية",
     "adventure.spaceMissionDesc": "انطلق إلى كواكب بعيدة والتق بأصدقاء فضائيين",
     "adventure.enchantedForest": "غابة مسحورة",
@@ -1187,7 +1195,7 @@ const translations = {
     "examples.example1.adventure":
       "غابة مسحورة مع حيوانات ناطقة وقرى الجنيات المخفية",
     "examples.example1.preview":
-      "عبرت إيما القوس الذهبي ولهثت بينما رقصت الفراشات ذات الأجنحة قوس قزح حوله��...",
+      "عبرت إيما القوس الذهبي ولهثت بينما رقصت الفراشات ذات الأجنحة قوس قزح حولها...",
     "examples.example2.title": "مهمة مستكشف الفضاء",
     "examples.example2.adventure":
       "رحلة إلى المريخ مع رفاق آليين واكتشافات فضائية",
@@ -1205,7 +1213,7 @@ const translations = {
       "رصد الضابط الأول ألي��س شيئاً يتلألأ تحت الماء الكريستالي...",
     "examples.example5.title": "تلميذ الساحر",
     "examples.example5.adventure":
-      "تعلم التعاويذ السحرية في برج مليء بالمخلوقا�� الغامضة",
+      "تعلم التعاويذ السحرية في برج مل��ء بالمخلوقا�� الغامضة",
     "examples.example5.preview":
       "خلطت م��يا بعناية الجرعة المتلألئة بينما راقب رفيقها البوم...",
     "examples.example6.title": "��غامرة المحيط",
@@ -1216,14 +1224,15 @@ const translations = {
 
     // How It Works
     "howItWorks.title": "كيف يعمل",
-    "howItWorks.description": "اصنع كتاب مغامرتك الشخصي في خطوات بسيطة قليلة",
+    "howItWorks.description":
+      "اصنع ����اب م��امرتك الشخص�� في خطوات بسيطة قليلة",
     "howItWorks.step1.title": "املأ التفاصيل",
     "howItWorks.step1.description": "أدخل اسم طفلك وعمره وتفضيلات المغامرة",
     "howItWorks.step2.title": "خصص القصة",
     "howItWorks.step2.description": "اختر البيئة والشخصيات والتفاصيل الخاصة",
     "howItWorks.step3.title": "معاينة الصفحات",
     "howItWorks.step3.description": "شاهد كتابك الشخصي ينبض بالحياة فوراً",
-    "howItWorks.step4.title": "احصل على كتابك",
+    "howItWorks.step4.title": "����صل على كتابك",
     "howItWorks.step4.description": "حمّل نسخة رقمية أو اطلب نسخة مطبوعة",
 
     // Form Steps
@@ -1249,7 +1258,7 @@ const translations = {
     "form.customAdventurePlaceholder": "صف مغامرتك المخصصة...",
     "form.location": "البيئة أو المكان",
     "form.keyActivities": "الأنشطة الرئيسية",
-    "form.selectActivities": "اختر الأنشط�� التي تهم طفلك:",
+    "form.selectActivities": "اختر الأنشطة التي تهم طفلك:",
     "form.customActivities": "أنشطة أخرى (واحد في كل سطر):",
     "form.favoriteColor": "لون الطفل المفضل",
     "form.petName": "اسم الحيوان الأليف (إن وجد)",
@@ -1287,7 +1296,7 @@ const translations = {
     "upload.uploadImagesFor": "تحميل صور لـ",
 
     // Empty states
-    "empty.firstAdventure": "🌟 أول تجربة مغامرة لك جاهزة للإن��اء! 🌟",
+    "empty.firstAdventure": "🌟 أول تجربة مغامرة لك جاهزة للإن���اء! 🌟",
     "empty.autoCreate":
       "سيقوم النظام تلقائياً بإنشاء قسم التجربة الأولى أدناه.",
 
@@ -1331,7 +1340,7 @@ const translations = {
     "activity.savingTheDay": "إنقاذ الموقف",
     "activity.exploringNewWorlds": "استكشاف عوالم جديدة",
     "activity.learningNewSkills": "تعلم مهارات جديدة",
-    "activity.findingHiddenSecrets": "العثور على أسرار مخفية",
+    "activity.findingHiddenSecrets": "العثور على أسرار مخف��ة",
     "activity.goingOnQuests": "الذهاب في المهام",
 
     // Preview page
@@ -1366,7 +1375,7 @@ const translations = {
     "pricing.feature3": "تحميل فوري",
     "pricing.feature4": "خيار الطباعة في المنزل",
     "pricing.feature5": "كل شيء في الرقمي",
-    "pricing.feature6": "تجليد غلاف صل�� ممتاز",
+    "pricing.feature6": "تجليد غلاف صلب ممتاز",
     "pricing.feature7": "طباعة احترافية",
     "pricing.feature8": "توصيل مجاني في أوروبا",
     "pricing.popular": "شائع",
@@ -1603,6 +1612,8 @@ const translations = {
     "form.reviewBook": "Bekijk Mijn Boek",
     "form.required": "Vereist",
     "form.complete": "Compleet",
+    "form.bookLanguage": "Boektaal",
+    "form.selectBookLanguage": "Selecteer de taal voor je boek",
 
     // Pricing
     "pricing.title": "Boekopties",
@@ -1860,6 +1871,8 @@ const translations = {
     "form.reviewBook": "Mein Buch Überprüfen",
     "form.required": "Erforderlich",
     "form.complete": "Vollständig",
+    "form.bookLanguage": "Buchsprache",
+    "form.selectBookLanguage": "Wähle die Sprache für dein Buch",
 
     // Pricing
     "pricing.title": "Buchoptionen",
