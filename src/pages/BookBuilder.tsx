@@ -593,13 +593,6 @@ const BookBuilder = () => {
 
   // Experience Management Functions
   const addExperience = () => {
-    // Track experience addition
-    detectHuman();
-    trackEvent("addExperience", {
-      action: "addExperience",
-      input: `total: ${(formData.experiences?.length || 0) + 1}`,
-    });
-
     const newExperience: ExperienceDetail = {
       id: Date.now().toString(),
       title: "",
