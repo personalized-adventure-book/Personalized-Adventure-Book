@@ -1,7 +1,7 @@
 // Event delegation tracking system following user specifications
 
 // Generate session ID
-function getSessionId() {
+export function getSessionId() {
   const key = "adv_sessionId";
   let sid = localStorage.getItem(key);
 
