@@ -882,13 +882,6 @@ const BookBuilder = () => {
   const handleSubmit = () => {
     setHasAttemptedProceed(true);
 
-    // Track form submission attempt
-    detectHuman();
-    trackEvent("formSubmit", {
-      action: "formSubmit",
-      input: `${formData.experiences.length} experiences`,
-    });
-
     if (canProceed()) {
       const finalData = {
         ...formData,
@@ -896,12 +889,6 @@ const BookBuilder = () => {
           formData.adventureType || formData.customAdventureType,
       };
       localStorage.setItem("adventureBookData", JSON.stringify(finalData));
-
-      // Track successful form completion
-      trackEvent("formComplete", {
-        action: "formComplete",
-        input: "success",
-      });
 
       navigate("/preview");
     }
