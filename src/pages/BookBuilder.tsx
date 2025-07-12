@@ -1333,9 +1333,9 @@ const BookBuilder = () => {
                     </Label>
                     <Textarea
                       id="specialDetails"
-                      value={formData.specialDetails}
+                      value={specialDetailsInput.displayValue}
                       onChange={(e) =>
-                        updateFormData("specialDetails", e.target.value)
+                        specialDetailsInput.updateValue(e.target.value)
                       }
                       placeholder={t("placeholder.specialDetails")}
                       className="mt-1"
