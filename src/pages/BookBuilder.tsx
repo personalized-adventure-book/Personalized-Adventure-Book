@@ -639,15 +639,6 @@ const BookBuilder = () => {
   const removeExperience = (id: string) => {
     if (!formData.experiences) return;
 
-    const experience = formData.experiences.find((exp) => exp.id === id);
-
-    // Track experience removal
-    detectHuman();
-    trackEvent("removeExperience", {
-      action: "removeExperience",
-      input: experience?.title || "Untitled",
-    });
-
     const updated = formData.experiences.filter((exp) => exp.id !== id);
     updateFormData("experiences", updated);
   };
