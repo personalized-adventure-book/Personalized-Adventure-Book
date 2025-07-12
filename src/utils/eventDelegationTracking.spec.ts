@@ -24,8 +24,6 @@ describe("Event Delegation Tracking", () => {
     // Clear localStorage
     localStorage.removeItem("adv_sessionId");
 
-    // Import and call getSessionId
-    const { getSessionId } = require("./eventDelegationTracking");
     const sessionId = getSessionId();
 
     // Should match format like "2025-01-16-20-02-30-123-456"
@@ -42,20 +40,17 @@ describe("Event Delegation Tracking", () => {
   });
 
   it("should correctly identify section indices", () => {
-    const form = document.getElementById("adventureForm");
-    const mainInput = document.getElementById("parentName");
+    const mainInput = document.getElementById("parentName")!;
     const exp1Input = document.querySelector(
       '.adventure-section input[name="experienceTitle"]',
-    );
+    )! as Element;
     const exp2Input = document.querySelector(
       ".adventure-section:nth-child(4) input",
-    );
+    )! as Element;
 
-    // Helper function should be testable (this would require exporting it)
-    // For now, we'll test the overall behavior through event simulation
-    expect(form).toBeTruthy();
-    expect(mainInput).toBeTruthy();
-    expect(exp1Input).toBeTruthy();
-    expect(exp2Input).toBeTruthy();
+    // Test section index calculation
+    expect(getSectionIndex(mainInput)).toBe(0); // Main form
+    expect(getSectionIndex(exp1Input)).toBe(1); // First adventure section
+    expect(getSectionIndex(exp2Input)).toBe(2); // Second adventure section
   });
 });
