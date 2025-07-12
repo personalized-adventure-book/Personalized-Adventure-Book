@@ -681,6 +681,13 @@ const BookBuilder = () => {
 
   // Experience Management Functions
   const addExperience = () => {
+    // Track experience addition
+    detectHuman();
+    trackEvent("addExperience", {
+      currentExperienceCount: formData.experiences?.length || 0,
+      step: currentStep,
+    });
+
     const newExperience: ExperienceDetail = {
       id: Date.now().toString(),
       title: "",
@@ -726,6 +733,23 @@ const BookBuilder = () => {
 
   const removeExperience = (id: string) => {
     if (!formData.experiences) return;
+
+    const experience = formData.experiences.find((exp) => exp.id === id);
+
+    // Track experience removal
+    detectHuman();
+    trackEvent("removeExperience", {
+      experienceId: id,
+      experienceTitle: experience?.title || "Untitled",
+      currentExperienceCount: formData.experiences.length,
+      step: currentStep,
+      hadImages: experience?.images.length || 0 > 0,
+      hadActivities:
+        (experience?.predefinedActivities.length || 0) +
+          (experience?.customActivities.length || 0) >
+        0,
+    });
+
     const updated = formData.experiences.filter((exp) => exp.id !== id);
     updateFormData("experiences", updated);
   };
