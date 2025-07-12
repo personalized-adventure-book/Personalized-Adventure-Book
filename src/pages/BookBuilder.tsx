@@ -1305,10 +1305,8 @@ const BookBuilder = () => {
                     <Label htmlFor="petName">{t("form.petName")}</Label>
                     <Input
                       id="petName"
-                      value={formData.petName}
-                      onChange={(e) =>
-                        updateFormData("petName", e.target.value)
-                      }
+                      value={petNameInput.displayValue}
+                      onChange={(e) => petNameInput.updateValue(e.target.value)}
                       placeholder={t("placeholder.petName")}
                       className="mt-1"
                     />
