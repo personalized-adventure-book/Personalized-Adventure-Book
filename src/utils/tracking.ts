@@ -8,11 +8,7 @@ export const getSessionId = () => {
     const isoString = new Date().toISOString();
 
     // Replace all :, ., T, and Z with -
-    let formattedId = isoString
-      .replace(/:/g, "-")
-      .replace(/\./g, "-")
-      .replace(/T/g, "-")
-      .replace(/Z/g, "-");
+    let formattedId = isoString.replace(/[:.TZ]/g, "-");
 
     // Trim any trailing dash
     formattedId = formattedId.replace(/-$/, "");
