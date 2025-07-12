@@ -375,7 +375,7 @@ const Preview = () => {
           shippingCost:
             orderType === "printed" ? `$${shippingCost.toFixed(2)}` : "$0.00",
           interfaceLanguage: language || "en",
-          bookLanguage: language || "en",
+          bookLanguage: bookData.bookLanguage || "en",
           experiencesCount: bookData.experiences.length,
           experiencesSummary: bookData.experiences
             .map(
