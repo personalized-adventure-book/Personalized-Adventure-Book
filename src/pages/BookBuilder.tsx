@@ -1067,6 +1067,7 @@ const BookBuilder = () => {
                     </Label>
                     <Input
                       id="parentEmail"
+                      name="email"
                       type="email"
                       value={parentEmailInput.displayValue}
                       onChange={(e) =>
