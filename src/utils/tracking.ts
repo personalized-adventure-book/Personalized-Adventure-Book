@@ -28,7 +28,7 @@ export const getSessionId = () => {
 
 // Human detection
 export const detectHuman = () => {
-  sessionStorage.setItem("humanDetected", "true");
+  localStorage.setItem("adv_humanDetected", "true");
 };
 
 // Store events locally for batching
@@ -90,8 +90,8 @@ const sendEventBatch = async () => {
     lastSentTime = Date.now();
 
     // Store session start time if not exists
-    if (!sessionStorage.getItem("sessionStart")) {
-      sessionStorage.setItem("sessionStart", new Date().toISOString());
+    if (!localStorage.getItem("adv_sessionStart")) {
+      localStorage.setItem("adv_sessionStart", new Date().toISOString());
     }
 
     // Send to Google Apps Script
