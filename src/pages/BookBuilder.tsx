@@ -953,14 +953,38 @@ const BookBuilder = () => {
 
   const nextStep = () => {
     setHasAttemptedProceed(true);
+
+    // Track step navigation attempt
+    detectHuman();
+    trackEvent("stepNavigation", {
+      action: "next",
+      fromStep: currentStep,
+      toStep: currentStep + 1,
+      canProceed: canProceed(),
+    });
+
     if (canProceed() && currentStep < totalSteps) {
       setCurrentStep(currentStep + 1);
       setHasAttemptedProceed(false); // Reset for next step
+
+      // Track successful step advance
+      trackEvent("stepAdvanced", {
+        newStep: currentStep + 1,
+        totalSteps: totalSteps,
+      });
     }
   };
 
   const prevStep = () => {
     if (currentStep > 1) {
+      // Track step navigation
+      detectHuman();
+      trackEvent("stepNavigation", {
+        action: "previous",
+        fromStep: currentStep,
+        toStep: currentStep - 1,
+      });
+
       setCurrentStep(currentStep - 1);
     }
   };
