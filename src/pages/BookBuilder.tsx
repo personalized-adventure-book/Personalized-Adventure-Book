@@ -1936,6 +1936,7 @@ const BookBuilder = () => {
                 </Button>
               ) : (
                 <Button
+                  id="createBookBtn"
                   onClick={handleSubmit}
                   disabled={!canProceed()}
                   data-action="submitForm"
