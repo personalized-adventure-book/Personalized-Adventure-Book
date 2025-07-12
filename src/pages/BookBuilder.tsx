@@ -292,6 +292,16 @@ const BookBuilder = () => {
     hasInitializedRef.current = true;
   };
 
+  // Initialize event delegation tracking when component mounts
+  useEffect(() => {
+    if (!isLoadingDraft) {
+      // Wait for next tick to ensure DOM is ready
+      setTimeout(() => {
+        initializeEventDelegationTracking();
+      }, 100);
+    }
+  }, [isLoadingDraft]);
+
   // Warn user before leaving page with unsaved changes
   useEffect(() => {
     const handleBeforeUnload = (e: BeforeUnloadEvent) => {
