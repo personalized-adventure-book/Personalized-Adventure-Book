@@ -26,7 +26,7 @@ import {
 import Header from "@/components/Header";
 import { useTranslation } from "@/hooks/useTranslation";
 import { useDebouncedInput } from "@/hooks/useDebounced";
-import { trackEvent, detectHuman } from "@/utils/tracking";
+import { initializeEventDelegationTracking } from "@/utils/eventDelegationTracking";
 import {
   BookOpen,
   User,
