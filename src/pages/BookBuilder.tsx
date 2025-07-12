@@ -867,13 +867,6 @@ const BookBuilder = () => {
   const nextStep = () => {
     setHasAttemptedProceed(true);
 
-    // Track step navigation attempt
-    detectHuman();
-    trackEvent("nextStep", {
-      action: "nextStep",
-      input: `step ${currentStep} to ${currentStep + 1}`,
-    });
-
     if (canProceed() && currentStep < totalSteps) {
       setCurrentStep(currentStep + 1);
       setHasAttemptedProceed(false); // Reset for next step
@@ -882,13 +875,6 @@ const BookBuilder = () => {
 
   const prevStep = () => {
     if (currentStep > 1) {
-      // Track step navigation
-      detectHuman();
-      trackEvent("previousStep", {
-        action: "previousStep",
-        input: `step ${currentStep} to ${currentStep - 1}`,
-      });
-
       setCurrentStep(currentStep - 1);
     }
   };
