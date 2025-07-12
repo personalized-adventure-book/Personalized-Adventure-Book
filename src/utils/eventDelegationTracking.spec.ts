@@ -1,23 +1,8 @@
 import { describe, it, expect, beforeEach, vi } from "vitest";
-
-// Mock the tracking functions for testing
-const mockTrackEvent = vi.fn();
-const mockDetectHuman = vi.fn();
-
-// Mock the module
-vi.mock("./eventDelegationTracking", async () => {
-  const actual = await vi.importActual("./eventDelegationTracking");
-  return {
-    ...actual,
-    trackEvent: mockTrackEvent,
-    detectHuman: mockDetectHuman,
-  };
-});
+import { getSessionId, getSectionIndex } from "./eventDelegationTracking";
 
 describe("Event Delegation Tracking", () => {
   beforeEach(() => {
-    vi.clearAllMocks();
-
     // Setup basic DOM structure
     document.body.innerHTML = `
       <div id="adventureForm">
