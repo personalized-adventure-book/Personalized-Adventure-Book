@@ -930,22 +930,14 @@ const BookBuilder = () => {
 
     // Track step navigation attempt
     detectHuman();
-    trackEvent("stepNavigation", {
-      action: "next",
-      fromStep: currentStep,
-      toStep: currentStep + 1,
-      canProceed: canProceed(),
+    trackEvent("nextStep", {
+      action: "nextStep",
+      input: `step ${currentStep} to ${currentStep + 1}`,
     });
 
     if (canProceed() && currentStep < totalSteps) {
       setCurrentStep(currentStep + 1);
       setHasAttemptedProceed(false); // Reset for next step
-
-      // Track successful step advance
-      trackEvent("stepAdvanced", {
-        newStep: currentStep + 1,
-        totalSteps: totalSteps,
-      });
     }
   };
 
@@ -953,10 +945,9 @@ const BookBuilder = () => {
     if (currentStep > 1) {
       // Track step navigation
       detectHuman();
-      trackEvent("stepNavigation", {
-        action: "previous",
-        fromStep: currentStep,
-        toStep: currentStep - 1,
+      trackEvent("previousStep", {
+        action: "previousStep",
+        input: `step ${currentStep} to ${currentStep - 1}`,
       });
 
       setCurrentStep(currentStep - 1);
