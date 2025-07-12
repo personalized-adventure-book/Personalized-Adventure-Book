@@ -935,7 +935,7 @@ const translations = {
     "examples.adventure": "Aventura",
     "examples.preview": "Vista Previa de la Historia",
     "examples.createYours": "Crea Tu Aventura",
-    "examples.example1.title": "Búsqueda del Bosque Mágico",
+    "examples.example1.title": "B��squeda del Bosque Mágico",
     "examples.example1.adventure":
       "Bosque encantado con animales parlantes y aldeas de hadas ocultas",
     "examples.example1.preview":
@@ -1151,7 +1151,7 @@ const translations = {
     "hero.titleHighlight": "مغامرات",
     "hero.subtitle2": "سحرية مع طفلك",
     "hero.description":
-      "حول طفلك إلى بطل كتاب المغامرات الشخصي الخاص به. اختر من بين الغابات المسحورة، والمهام الفضائية، والرحلات تحت الماء، وأكثر!",
+      "حول طفلك إلى بطل كتاب المغامرات الشخصي الخاص به. اختر من بين الغابات المسحورة، والمهام الفضائية، والر��لات تحت الماء، وأكثر!",
     "hero.startCreating": "ابدأ الإنشاء",
     "hero.seeExamples": "انظر الأمثلة",
 
@@ -1254,10 +1254,10 @@ const translations = {
     "form.girl": "بنت",
     "form.other": "آخر",
     "form.adventureType": "اختر نوع المغامرة",
-    "form.customAdventure": "لا تجد نوع مغامرتك؟ أدخلها هنا:",
+    "form.customAdventure": "لا تجد نوع مغامرتك�� أدخلها هنا:",
     "form.customAdventurePlaceholder": "صف مغامرتك المخصصة...",
     "form.location": "البيئة أو المكان",
-    "form.keyActivities": "الأنشطة الرئيسية",
+    "form.keyActivities": "الأ��شطة الرئيسية",
     "form.selectActivities": "اختر الأنشطة التي تهم طفلك:",
     "form.customActivities": "أنشطة أخرى (واحد في كل سطر):",
     "form.favoriteColor": "لون الطفل المفضل",
@@ -1279,6 +1279,8 @@ const translations = {
     "form.required": "مطلوب",
     "form.complete": "اكتمل",
     "form.stop": "توقف",
+    "form.bookLanguage": "لغة الكتاب",
+    "form.selectBookLanguage": "اختر لغة كتابك",
 
     // Loading and messages
     "loading.adventure": "جاري تحميل مغامرتك...",
@@ -1348,7 +1350,7 @@ const translations = {
     "preview.bookStatistics": "إحصائيات كتابك",
     "preview.totalChapters": "إجمالي الفصول:",
     "preview.adventureActivities": "أنشطة المغامرة:",
-    "preview.estimatedPages": "الصفحات المقدرة:",
+    "preview.estimatedPages": "ال��فحات المقدرة:",
     "preview.readingLevel": "مستوى القراءة:",
     "preview.bookDetails": "تفاصيل الكتاب",
     "preview.chooseFormat": "اختر التنسيق",
