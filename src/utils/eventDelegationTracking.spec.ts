@@ -58,8 +58,8 @@ describe("Event Delegation Tracking", () => {
     expect(getSectionIndex(exp2Input)).toBe(2); // Second adventure section
   });
 
-  it("should format tracking messages correctly", () => {
-    // Mock fetch to capture the message format
+  it("should send JSON payload correctly", () => {
+    // Mock fetch to capture the payload format
     const mockFetch = vi.fn().mockResolvedValue({ ok: true });
     global.fetch = mockFetch;
 
@@ -73,28 +73,35 @@ describe("Event Delegation Tracking", () => {
       value: "test@gmail.com",
     });
 
-    // Should have called fetch with formatted message
+    // Should have called fetch with JSON payload
     expect(mockFetch).toHaveBeenCalledWith(
-      expect.stringContaining("google.com/macros"),
+      "https://script.google.com/macros/s/AKfycbyUMrzt00F9K9qNwedqO43LoY26MREwdp-SVfF4JLVFqYqTiKUa5oStVLrjQ44f81ylEQ/exec",
       expect.objectContaining({
         method: "POST",
         mode: "no-cors",
-        body: expect.stringMatching(
-          /^\[\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\] input {"field":"email","section":0,"value":"test@gmail.com"}$/,
-        ),
+        headers: { "Content-Type": "application/json;charset=utf-8" },
+        body: expect.stringContaining("sessionId"),
       }),
     );
 
+    // Parse the body to verify structure
+    const call = mockFetch.mock.calls[0];
+    const payload = JSON.parse(call[1].body);
+    expect(payload).toEqual({
+      sessionId: expect.any(String),
+      eventType: "input",
+      details: { field: "email", section: 0, value: "test@gmail.com" },
+    });
+
     // Test tracking with empty details
     trackEvent("pageLoad", {});
-    expect(mockFetch).toHaveBeenLastCalledWith(
-      expect.stringContaining("google.com/macros"),
-      expect.objectContaining({
-        body: expect.stringMatching(
-          /^\[\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\] pageLoad {}$/,
-        ),
-      }),
-    );
+    const call2 = mockFetch.mock.calls[1];
+    const payload2 = JSON.parse(call2[1].body);
+    expect(payload2).toEqual({
+      sessionId: expect.any(String),
+      eventType: "pageLoad",
+      details: {},
+    });
 
     // Cleanup
     consoleSpy.mockRestore();
