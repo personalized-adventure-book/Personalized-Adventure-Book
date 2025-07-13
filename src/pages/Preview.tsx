@@ -736,6 +736,256 @@ const Preview = () => {
     }
   };
 
+  const handleDirectOrderComplete = async () => {
+    try {
+      // Prepare data for Google Apps Script in the required format (same as payment flow but no payment)
+      const adventures = [];
+
+      // Safety check for experiences array
+      if (!bookData.experiences || !Array.isArray(bookData.experiences)) {
+        console.warn(
+          "No valid experiences array found, proceeding with empty adventures",
+        );
+      } else {
+        console.log(`Processing ${bookData.experiences.length} experiences`);
+      }
+
+      for (const experience of bookData.experiences || []) {
+        if (!experience) {
+          console.warn("Skipping null/undefined experience");
+          continue;
+        }
+        // Convert experience images to base64 with descriptions
+        const experienceImages = [];
+        if (
+          experience.images &&
+          Array.isArray(experience.images) &&
+          experience.images.length > 0
+        ) {
+          for (let i = 0; i < experience.images.length; i++) {
+            try {
+              const image = experience.images[i];
+
+              if (!image) {
+                console.warn(
+                  `Skipping null/undefined image at index ${i} for experience ${experience.id}`,
+                );
+                continue;
+              }
+
+              if (image instanceof File) {
+                try {
+                  const base64 = await fileToBase64(image);
+                  experienceImages.push({
+                    data: base64,
+                    description:
+                      experience.imageDescription ||
+                      `Experience image ${i + 1}`,
+                    filename:
+                      image.name ||
+                      `experience_${experience.id}_image_${i + 1}.jpg`,
+                  });
+                } catch (conversionError) {
+                  console.warn(
+                    `Failed to convert image ${i + 1} for experience ${experience.id}:`,
+                    conversionError,
+                  );
+                }
+              } else if (image && typeof image === "object" && image.file) {
+                // Handle ActivityImage structure
+                try {
+                  const base64 = await fileToBase64(image.file);
+                  experienceImages.push({
+                    data: base64,
+                    description:
+                      image.description || `Experience image ${i + 1}`,
+                    filename:
+                      image.file.name ||
+                      `experience_${experience.id}_image_${i + 1}.jpg`,
+                  });
+                } catch (conversionError) {
+                  console.warn(
+                    `Failed to convert ActivityImage ${i + 1} for experience ${experience.id}:`,
+                    conversionError,
+                  );
+                }
+              } else {
+                console.warn(
+                  `Invalid image format at index ${i} for experience ${experience.id}`,
+                );
+              }
+            } catch (error) {
+              console.warn(
+                `Error processing image ${i + 1} for experience ${experience.id}:`,
+                error,
+              );
+            }
+          }
+        }
+
+        // Process activity details and their images
+        const activityDetails = [];
+        if (
+          experience.activityDetails &&
+          Array.isArray(experience.activityDetails)
+        ) {
+          for (const activity of experience.activityDetails) {
+            if (!activity) continue;
+
+            const activityImages = [];
+            if (
+              activity.images &&
+              Array.isArray(activity.images) &&
+              activity.images.length > 0
+            ) {
+              for (let i = 0; i < activity.images.length; i++) {
+                try {
+                  const image = activity.images[i];
+
+                  if (!image) {
+                    console.warn(
+                      `Skipping null/undefined activity image at index ${i}`,
+                    );
+                    continue;
+                  }
+
+                  if (image instanceof File) {
+                    try {
+                      const base64 = await fileToBase64(image);
+                      activityImages.push({
+                        data: base64,
+                        description:
+                          activity.imageDescription ||
+                          `Activity image ${i + 1}`,
+                        filename:
+                          image.name ||
+                          `activity_${activity.id}_image_${i + 1}.jpg`,
+                      });
+                    } catch (conversionError) {
+                      console.warn(
+                        `Failed to convert activity image ${i + 1}:`,
+                        conversionError,
+                      );
+                    }
+                  } else if (image && typeof image === "object" && image.file) {
+                    try {
+                      const base64 = await fileToBase64(image.file);
+                      activityImages.push({
+                        data: base64,
+                        description:
+                          image.description || `Activity image ${i + 1}`,
+                        filename:
+                          image.file.name ||
+                          `activity_${activity.id}_image_${i + 1}.jpg`,
+                      });
+                    } catch (conversionError) {
+                      console.warn(
+                        `Failed to convert activity ActivityImage ${i + 1}:`,
+                        conversionError,
+                      );
+                    }
+                  } else {
+                    console.warn(`Invalid activity image format at index ${i}`);
+                  }
+                } catch (error) {
+                  console.warn(
+                    `Error processing activity image ${i + 1}:`,
+                    error,
+                  );
+                }
+              }
+            }
+
+            activityDetails.push({
+              name: activity.name || "",
+              details: activity.details || "",
+              characters: activity.characters || "",
+              images: activityImages,
+            });
+          }
+        }
+
+        adventures.push({
+          title: experience.title || "",
+          description: experience.description || "",
+          activities: [
+            ...(experience.predefinedActivities || []),
+            ...(experience.customActivities || []),
+          ],
+          characters: experience.characters || "",
+          images: experienceImages,
+          activityDetails,
+        });
+      }
+
+      const orderNumber = "ADV-" + Date.now().toString().slice(-8);
+      const gasData = {
+        orderNumber,
+        bookData: {
+          ...bookData,
+          adventures,
+        },
+        orderType,
+        shippingAddress: orderType === "printed" ? shippingAddress : null,
+        // Remove payment details for free order
+        shippingCost,
+        total: totalPrice,
+        orderDate: new Date().toISOString(),
+        status: "confirmed",
+      };
+
+      console.log("Sending order data to Google Apps Script:", gasData);
+
+      await fetch(
+        "https://script.google.com/macros/s/AKfycbyUMrzt00F9K9qNwedqO43LoY26MREwdp-SVfF4JLVFqYqTiKUa5oStVLrjQ44f81ylEQ/exec",
+        {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(gasData),
+        },
+      );
+
+      console.log("Order sent to Google Apps Script successfully!");
+
+      const orderData = {
+        orderNumber,
+        bookData,
+        orderType,
+        shippingAddress: orderType === "printed" ? shippingAddress : null,
+        // Remove payment details for free order
+        shippingCost,
+        total: totalPrice,
+        orderDate: new Date().toISOString(),
+        status: "confirmed",
+      };
+
+      localStorage.setItem("currentOrder", JSON.stringify(orderData));
+      localStorage.removeItem("adventureBookData");
+      navigate("/order-success");
+    } catch (error) {
+      console.error("Error sending order to Google Apps Script:", error);
+      // Still proceed with local order completion even if Google Apps Script fails
+      const orderData = {
+        orderNumber: "ADV-" + Date.now().toString().slice(-8),
+        bookData,
+        orderType,
+        shippingAddress: orderType === "printed" ? shippingAddress : null,
+        // Remove payment details for free order
+        shippingCost,
+        total: totalPrice,
+        orderDate: new Date().toISOString(),
+        status: "confirmed",
+      };
+
+      localStorage.setItem("currentOrder", JSON.stringify(orderData));
+      localStorage.removeItem("adventureBookData");
+      navigate("/order-success");
+    }
+  };
+
   const handleCountryChange = (countryCode: string) => {
     const selectedCountry = countries.find(
       (country) => country.code === countryCode,
