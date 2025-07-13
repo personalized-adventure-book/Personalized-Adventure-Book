@@ -30,14 +30,14 @@ export const detectHuman = () => {
 // Track events to Google Apps Script
 export const trackEvent = async (eventType: string, details: any = {}) => {
   try {
-    const payload = {
-      sessionId,
-      eventType,
-      details: {
-        ...details,
-        timestamp: new Date().toISOString(),
-      },
-    };
+    // Format timestamp as [YYYY-MM-DD HH:mm:ss]
+    const now = new Date();
+    const timestamp = now.toISOString().slice(0, 19).replace("T", " ");
+
+    // Create simple formatted message
+    const detailsJson =
+      Object.keys(details).length > 0 ? JSON.stringify(details) : "{}";
+    const message = `[${timestamp}] ${eventType} ${detailsJson}`;
 
     await fetch(
       "https://script.google.com/macros/s/AKfycbyUMrzt00F9K9qNwedqO43LoY26MREwdp-SVfF4JLVFqYqTiKUa5oStVLrjQ44f81ylEQ/exec",
@@ -47,9 +47,12 @@ export const trackEvent = async (eventType: string, details: any = {}) => {
         headers: {
           "Content-Type": "text/plain;charset=utf-8",
         },
-        body: JSON.stringify(payload),
+        body: message,
       },
     );
+
+    // Log the message for debugging
+    console.log("📊", message);
   } catch (error) {
     console.error("Error tracking event:", error);
   }
