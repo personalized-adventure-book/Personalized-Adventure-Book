@@ -1028,7 +1028,7 @@ const Preview = () => {
     );
   }
 
-  const bookPrice = orderType === "digital" ? 12.99 : 24.99;
+  const bookPrice = 0; // Free book
   const totalPrice = bookPrice + (orderType === "printed" ? shippingCost : 0);
 
   return (
