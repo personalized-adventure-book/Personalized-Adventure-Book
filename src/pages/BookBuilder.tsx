@@ -295,10 +295,13 @@ const BookBuilder = () => {
   // Initialize event delegation tracking when component mounts
   useEffect(() => {
     if (!isLoadingDraft) {
-      // Wait for next tick to ensure DOM is ready
+      // Wait for DOM to be fully rendered
       setTimeout(() => {
+        console.log(
+          "📋 BookBuilder: Attempting to initialize event tracking...",
+        );
         initializeEventDelegationTracking();
-      }, 100);
+      }, 200);
     }
   }, [isLoadingDraft]);
 
