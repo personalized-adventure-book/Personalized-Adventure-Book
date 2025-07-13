@@ -980,7 +980,16 @@ const Preview = () => {
         status: "confirmed",
       };
 
+      // Save current order for order success page
       localStorage.setItem("currentOrder", JSON.stringify(orderData));
+
+      // Add to completed orders array so all orders are preserved
+      const existingOrders = JSON.parse(
+        localStorage.getItem("completedOrders") || "[]",
+      );
+      existingOrders.push(orderData);
+      localStorage.setItem("completedOrders", JSON.stringify(existingOrders));
+
       localStorage.removeItem("adventureBookData");
       navigate("/order-success");
     } catch (error) {
