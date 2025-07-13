@@ -54,14 +54,48 @@ describe("Event Delegation Tracking", () => {
     expect(getSectionIndex(exp2Input)).toBe(2); // Second adventure section
   });
 
-  it("should verify visitor counter endpoint format", () => {
-    // Just verify that the endpoint URL is correctly formatted
-    const expectedEndpoint =
-      "https://script.google.com/macros/s/AKfycbyUMrzt00F9K9qNwedqO43LoY26MREwdp-SVfF4JLVFqYqTiKUa5oStVLrjQ44f81ylEQ/exec";
+  it("should format tracking messages correctly", () => {
+    // Mock fetch to capture the message format
+    const mockFetch = vi.fn().mockResolvedValue({ ok: true });
+    global.fetch = mockFetch;
 
-    // This test just verifies the URL format is valid
-    expect(expectedEndpoint).toMatch(
-      /^https:\/\/script\.google\.com\/macros\/s\/[A-Za-z0-9_-]+\/exec$/,
+    // Mock console.log to capture debug output
+    const consoleSpy = vi.spyOn(console, "log").mockImplementation(() => {});
+
+    // Import trackEvent
+    const { trackEvent } = require("./eventDelegationTracking");
+
+    // Test tracking with details
+    trackEvent("input", {
+      field: "email",
+      section: 0,
+      value: "test@gmail.com",
+    });
+
+    // Should have called fetch with formatted message
+    expect(mockFetch).toHaveBeenCalledWith(
+      expect.stringContaining("google.com/macros"),
+      expect.objectContaining({
+        method: "POST",
+        mode: "no-cors",
+        body: expect.stringMatching(
+          /^\[\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\] input {"field":"email","section":0,"value":"test@gmail.com"}$/,
+        ),
+      }),
     );
+
+    // Test tracking with empty details
+    trackEvent("pageLoad", {});
+    expect(mockFetch).toHaveBeenLastCalledWith(
+      expect.stringContaining("google.com/macros"),
+      expect.objectContaining({
+        body: expect.stringMatching(
+          /^\[\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\] pageLoad {}$/,
+        ),
+      }),
+    );
+
+    // Cleanup
+    consoleSpy.mockRestore();
   });
 });
