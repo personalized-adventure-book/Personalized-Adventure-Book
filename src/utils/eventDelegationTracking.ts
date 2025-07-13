@@ -177,6 +177,7 @@ window.addEventListener("load", () => {
   )[0] as PerformanceNavigationTiming;
   const evt = nav?.type === "reload" ? "pageReload" : "pageLoad";
 
+  console.log(`📊 Tracking ${evt} event`);
   // Send empty object as requested
   trackEvent(evt, {});
 });
