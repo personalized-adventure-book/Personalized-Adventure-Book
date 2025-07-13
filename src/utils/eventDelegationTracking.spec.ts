@@ -1,5 +1,9 @@
 import { describe, it, expect, beforeEach, vi } from "vitest";
-import { getSessionId, getSectionIndex } from "./eventDelegationTracking";
+import {
+  getSessionId,
+  getSectionIndex,
+  trackEvent,
+} from "./eventDelegationTracking";
 
 describe("Event Delegation Tracking", () => {
   beforeEach(() => {
