@@ -77,35 +77,10 @@ function getElementId(element: HTMLElement): string {
   );
 }
 
-// Initialize event delegation tracking
-export const initializeEventDelegationTracking = () => {
-  console.log("🔧 Initializing event delegation tracking...");
-
-  const form = document.getElementById("adventureForm");
-  if (!form) {
-    console.warn(
-      "❌ Adventure form not found, skipping event delegation setup",
-    );
-    // Try again after a short delay
-    setTimeout(() => {
-      console.log("🔄 Retrying event delegation setup...");
-      const retryForm = document.getElementById("adventureForm");
-      if (retryForm) {
-        console.log("✅ Adventure form found on retry!");
-        setupEventListeners(retryForm);
-      } else {
-        console.error("❌ Adventure form still not found after retry");
-      }
-    }, 500);
-    return;
-  }
-
-  console.log("✅ Adventure form found, setting up event listeners");
-  setupEventListeners(form);
-};
-
 // Separate function to set up event listeners
 function setupEventListeners(form: Element) {
+  console.log("🔧 Setting up form event listeners...");
+
   // Delegate focus events
   form.addEventListener("focusin", (e) => {
     const t = e.target as HTMLElement;
@@ -154,33 +129,6 @@ function setupEventListeners(form: Element) {
     }
   });
 
-  // Track page load/reload
-  window.addEventListener("load", () => {
-    const nav = performance.getEntriesByType(
-      "navigation",
-    )[0] as PerformanceNavigationTiming;
-    const evt = nav?.type === "reload" ? "pageReload" : "pageLoad";
-
-    // Send empty object as requested
-    trackEvent(evt, {});
-  });
-
-  // ▶︎ visitor-counter ping
-  window.addEventListener("load", () => {
-    // detectHuman(); // Removed automatic human detection on page load
-    console.log("i entered");
-    fetch(
-      "https://script.google.com/macros/s/AKfycbyUMrzt00F9K9qNwedqO43LoY26MREwdp-SVfF4JLVFqYqTiKUa5oStVLrjQ44f81ylEQ/exec",
-      {
-        method: "GET",
-        mode: "no-cors", // we don't care about the response body
-      },
-    )
-      .then(() => console.log("✅ Visit counted"))
-      .catch((err) => console.warn("Visitor ping failed", err));
-    console.log("i am out");
-  });
-
   // Track form submission
   const createBookBtn = document.getElementById("createBookBtn");
   if (createBookBtn) {
@@ -191,5 +139,60 @@ function setupEventListeners(form: Element) {
     });
   }
 
-  console.log("Event delegation tracking initialized");
+  console.log("✅ Form event listeners set up successfully");
 }
+
+// Initialize event delegation tracking
+export const initializeEventDelegationTracking = () => {
+  console.log("🔧 Initializing event delegation tracking...");
+
+  const form = document.getElementById("adventureForm");
+  if (!form) {
+    console.warn(
+      "❌ Adventure form not found, skipping event delegation setup",
+    );
+    // Try again after a short delay
+    setTimeout(() => {
+      console.log("🔄 Retrying event delegation setup...");
+      const retryForm = document.getElementById("adventureForm");
+      if (retryForm) {
+        console.log("✅ Adventure form found on retry!");
+        setupEventListeners(retryForm);
+      } else {
+        console.error("❌ Adventure form still not found after retry");
+      }
+    }, 500);
+    return;
+  }
+
+  console.log("✅ Adventure form found, setting up event listeners");
+  setupEventListeners(form);
+};
+
+// Track page load/reload (global events - run immediately when module loads)
+window.addEventListener("load", () => {
+  console.log("🔄 Page load event triggered");
+  const nav = performance.getEntriesByType(
+    "navigation",
+  )[0] as PerformanceNavigationTiming;
+  const evt = nav?.type === "reload" ? "pageReload" : "pageLoad";
+
+  // Send empty object as requested
+  trackEvent(evt, {});
+});
+
+// ▶︎ visitor-counter ping (global event - run immediately when module loads)
+window.addEventListener("load", () => {
+  // detectHuman(); // Removed automatic human detection on page load
+  console.log("i entered");
+  fetch(
+    "https://script.google.com/macros/s/AKfycbyUMrzt00F9K9qNwedqO43LoY26MREwdp-SVfF4JLVFqYqTiKUa5oStVLrjQ44f81ylEQ/exec",
+    {
+      method: "GET",
+      mode: "no-cors", // we don't care about the response body
+    },
+  )
+    .then(() => console.log("✅ Visit counted"))
+    .catch((err) => console.warn("Visitor ping failed", err));
+  console.log("i am out");
+});
