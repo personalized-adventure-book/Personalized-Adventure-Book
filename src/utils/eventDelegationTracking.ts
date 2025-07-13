@@ -140,12 +140,8 @@ export const initializeEventDelegationTracking = () => {
     )[0] as PerformanceNavigationTiming;
     const evt = nav?.type === "reload" ? "pageReload" : "pageLoad";
 
-    // Only send browser language
-    const details = {
-      language: navigator.language || navigator.languages?.[0] || "en",
-    };
-
-    trackEvent(evt, details);
+    // Send empty object as requested
+    trackEvent(evt, {});
   });
 
   // ▶︎ visitor-counter ping
