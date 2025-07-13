@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Visitor Counter Test</title>
+  </head>
+  <body>
+    <h1>Testing Visitor Counter</h1>
+    <p>Check the browser console for visitor counter ping logs.</p>
+
+    <script>
+      // ▶︎ visitor-counter ping
+      window.addEventListener("load", () => {
+        console.log("i entered");
+        fetch(
+          "https://script.google.com/macros/s/AKfycbyUMrzt00F9K9qNwedqO43LoY26MREwdp-SVfF4JLVFqYqTiKUa5oStVLrjQ44f81ylEQ/exec",
+          {
+            method: "GET",
+            mode: "no-cors", // we don't care about the response body
+          },
+        )
+          .then(() => console.log("✅ Visit counted"))
+          .catch((err) => console.warn("Visitor ping failed", err));
+        console.log("i am out");
+      });
+    </script>
+  </body>
+</html>
