@@ -53,4 +53,33 @@ describe("Event Delegation Tracking", () => {
     expect(getSectionIndex(exp1Input)).toBe(1); // First adventure section
     expect(getSectionIndex(exp2Input)).toBe(2); // Second adventure section
   });
+
+  it("should initialize visitor counter ping on load", () => {
+    // Mock fetch
+    const mockFetch = vi.fn().mockResolvedValue({ ok: true });
+    global.fetch = mockFetch;
+
+    // Mock console methods
+    const consoleSpy = vi.spyOn(console, "log").mockImplementation(() => {});
+
+    // Simulate window load event
+    const loadEvent = new Event("load");
+    window.dispatchEvent(loadEvent);
+
+    // Should log entry message
+    expect(consoleSpy).toHaveBeenCalledWith("i entered");
+    expect(consoleSpy).toHaveBeenCalledWith("i am out");
+
+    // Should make GET request to visitor counter endpoint
+    expect(mockFetch).toHaveBeenCalledWith(
+      "https://script.google.com/macros/s/AKfycbyUMrzt00F9K9qNwedqO43LoY26MREwdp-SVfF4JLVFqYqTiKUa5oStVLrjQ44f81ylEQ/exec",
+      {
+        method: "GET",
+        mode: "no-cors",
+      },
+    );
+
+    // Cleanup
+    consoleSpy.mockRestore();
+  });
 });
