@@ -278,7 +278,8 @@ const Preview = () => {
     if (type === "printed") {
       setShowAddressForm(true);
     } else {
-      setShowPayment(true);
+      // Skip payment step for digital orders
+      handleDirectOrderComplete();
     }
   };
 
