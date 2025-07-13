@@ -50,7 +50,23 @@ const Orders = () => {
     const savedOrders = JSON.parse(
       localStorage.getItem("completedOrders") || "[]",
     );
-    setCompletedOrders(savedOrders);
+
+    // Migration: if there's a single order in "currentOrder" but no completedOrders, migrate it
+    const currentOrder = localStorage.getItem("currentOrder");
+    if (currentOrder && savedOrders.length === 0) {
+      try {
+        const orderData = JSON.parse(currentOrder);
+        const migratedOrders = [orderData];
+        localStorage.setItem("completedOrders", JSON.stringify(migratedOrders));
+        setCompletedOrders(migratedOrders);
+        console.log("Migrated existing order to new format");
+      } catch (error) {
+        console.error("Error migrating existing order:", error);
+        setCompletedOrders(savedOrders);
+      }
+    } else {
+      setCompletedOrders(savedOrders);
+    }
   }, []);
 
   const deleteDraft = (draftId: string) => {
