@@ -79,12 +79,33 @@ function getElementId(element: HTMLElement): string {
 
 // Initialize event delegation tracking
 export const initializeEventDelegationTracking = () => {
+  console.log("🔧 Initializing event delegation tracking...");
+
   const form = document.getElementById("adventureForm");
   if (!form) {
-    console.warn("Adventure form not found, skipping event delegation setup");
+    console.warn(
+      "❌ Adventure form not found, skipping event delegation setup",
+    );
+    // Try again after a short delay
+    setTimeout(() => {
+      console.log("🔄 Retrying event delegation setup...");
+      const retryForm = document.getElementById("adventureForm");
+      if (retryForm) {
+        console.log("✅ Adventure form found on retry!");
+        setupEventListeners(retryForm);
+      } else {
+        console.error("❌ Adventure form still not found after retry");
+      }
+    }, 500);
     return;
   }
 
+  console.log("✅ Adventure form found, setting up event listeners");
+  setupEventListeners(form);
+};
+
+// Separate function to set up event listeners
+function setupEventListeners(form: Element) {
   // Delegate focus events
   form.addEventListener("focusin", (e) => {
     const t = e.target as HTMLElement;
@@ -171,4 +192,4 @@ export const initializeEventDelegationTracking = () => {
   }
 
   console.log("Event delegation tracking initialized");
-};
+}
