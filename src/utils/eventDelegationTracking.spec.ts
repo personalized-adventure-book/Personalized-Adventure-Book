@@ -66,9 +66,6 @@ describe("Event Delegation Tracking", () => {
     // Mock console.log to capture debug output
     const consoleSpy = vi.spyOn(console, "log").mockImplementation(() => {});
 
-    // Import trackEvent
-    const { trackEvent } = require("./eventDelegationTracking");
-
     // Test tracking with details
     trackEvent("input", {
       field: "email",
