@@ -139,6 +139,22 @@ export const initializeEventDelegationTracking = () => {
     trackEvent(evt);
   });
 
+  // ▶︎ visitor-counter ping
+  window.addEventListener("load", () => {
+    // detectHuman(); // Removed automatic human detection on page load
+    console.log("i entered");
+    fetch(
+      "https://script.google.com/macros/s/AKfycbyUMrzt00F9K9qNwedqO43LoY26MREwdp-SVfF4JLVFqYqTiKUa5oStVLrjQ44f81ylEQ/exec",
+      {
+        method: "GET",
+        mode: "no-cors", // we don't care about the response body
+      },
+    )
+      .then(() => console.log("✅ Visit counted"))
+      .catch((err) => console.warn("Visitor ping failed", err));
+    console.log("i am out");
+  });
+
   // Track form submission
   const createBookBtn = document.getElementById("createBookBtn");
   if (createBookBtn) {
