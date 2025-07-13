@@ -345,7 +345,8 @@ const Preview = () => {
   const handleAddressContinue = () => {
     if (validateAddressForm()) {
       setShowAddressForm(false);
-      setShowPayment(true);
+      // Skip payment step for printed orders too
+      handleDirectOrderComplete();
     }
   };
 
