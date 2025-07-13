@@ -34,6 +34,7 @@ Where:
 export const TRACKING_FORMAT_EXAMPLES = [
   '[2025-01-16 22:27:14] input {"field":"country","section":0}',
   "[2025-01-16 20:46:42] pageLoad {}",
+  "[2025-01-16 20:46:50] pageReload {}",
   '[2025-01-16 11:29:20] input {"field":"email","section":0,"value":"fff@gmail.c"}',
   '[2025-01-16 14:15:30] focus {"field":"experienceTitle","section":1}',
   '[2025-01-16 16:45:12] change {"field":"images","section":2,"count":3}',
